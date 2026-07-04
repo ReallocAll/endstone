@@ -29,14 +29,14 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes
 
 | Type | Name |
 | ---: | :--- |
-| class | [**ServerEvent**](classendstone_1_1ServerEvent.md) <br>_Represents an Server-related event._  |
+| class | [**ServerEvent**](classendstone_1_1ServerEvent.md) <br>_Represents a Server-related event._  |
 
 
 

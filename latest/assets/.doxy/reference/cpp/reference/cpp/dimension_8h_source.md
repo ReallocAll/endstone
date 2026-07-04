@@ -24,7 +24,13 @@
 
 #pragma once
 
+#include <memory>
+#include <string>
+#include <vector>
+
 #include "endstone/block/block.h"
+#include "endstone/inventory/item_stack.h"
+#include "endstone/level/chunk.h"
 #include "endstone/util/result.h"
 
 namespace endstone {
@@ -46,11 +52,47 @@ public:
 
     [[nodiscard]] virtual Level &getLevel() const = 0;
 
-    virtual Result<std::unique_ptr<Block>> getBlockAt(int x, int y, int z) = 0;
+    [[nodiscard]] virtual std::unique_ptr<Block> getBlockAt(int x, int y, int z) const = 0;
 
-    virtual Result<std::unique_ptr<Block>> getBlockAt(Location location) = 0;
+    [[nodiscard]] virtual std::unique_ptr<Block> getBlockAt(Location location) const = 0;
+
+    [[nodiscard]] virtual int getHighestBlockYAt(int x, int z) const = 0;
+
+    [[nodiscard]] virtual std::unique_ptr<Block> getHighestBlockAt(int x, int z) const = 0;
+
+    [[nodiscard]] virtual std::unique_ptr<Block> getHighestBlockAt(Location location) const = 0;
+
+    [[nodiscard]] virtual std::vector<std::unique_ptr<Chunk>> getLoadedChunks() = 0;
+
+    [[nodiscard]] virtual Item &dropItem(Location location, const ItemStack &item) = 0;
+
+    [[nodiscard]] virtual Actor *spawnActor(Location location, std::string type) = 0;
+
+    [[nodiscard]] virtual std::vector<Actor *> getActors() const = 0;
 };
+
+inline std::unique_ptr<Block> Location::getBlock() const
+{
+    return getDimension().getBlockAt(*this);
+}
+
+inline float Location::distanceSquared(const Location &other) const
+{
+    Preconditions::checkArgument(dimension_ == other.dimension_, "Cannot measure distance between {} and {}.",
+                                 dimension_->getName(), other.dimension_->getName());
+    return ((x_ - other.x_) * (x_ - other.x_)) + ((y_ - other.y_) * (y_ - other.y_)) +
+           ((z_ - other.z_) * (z_ - other.z_));
+}
 }  // namespace endstone
+
+template <>
+struct fmt::formatter<endstone::Dimension> : formatter<string_view> {
+    template <typename FormatContext>
+    auto format(const endstone::Dimension &self, FormatContext &ctx) const -> format_context::iterator
+    {
+        return fmt::format_to(ctx.out(), "Dimension(name={})", self.getName());
+    }
+};
 ```
 
 

@@ -27,128 +27,73 @@
 #include <string>
 #include <utility>
 
-#include "endstone/event/event.h"
+#include "endstone/event/cancellable.h"
 #include "endstone/event/server/server_event.h"
 #include "endstone/game_mode.h"
+#include "endstone/util/socket_address.h"
 
 namespace endstone {
 
-class ServerListPingEvent : public ServerEvent {
+class ServerListPingEvent : public Cancellable<ServerEvent> {
 public:
-    ServerListPingEvent(std::string remote_host, int remote_port, std::string ping_response)
-        : ServerEvent(true), ping_response_(std::move(ping_response)), remote_host_(std::move(remote_host)),
-          remote_port_(remote_port)
+    ENDSTONE_EVENT(ServerListPingEvent);
+    ServerListPingEvent(SocketAddress address, std::string motd, int network_protocol_version,
+                        std::string minecraft_version_network, int num_players, int max_players,
+                        std::string server_guid, std::string level_name, GameMode game_mode, int local_port,
+                        int local_port_v6)
+        : Cancellable(true), address_(std::move(address)), motd_(std::move(motd)),
+          network_protocol_version_(network_protocol_version),
+          minecraft_version_network_(std::move(minecraft_version_network)), num_players_(num_players),
+          max_players_(max_players), server_guid_(std::move(server_guid)), level_name_(std::move(level_name)),
+          game_mode_(game_mode), local_port_(local_port), local_port_v6_(local_port_v6)
     {
     }
 
-    [[nodiscard]] std::string getRemoteHost() const
-    {
-        return remote_host_;
-    }
+    [[nodiscard]] SocketAddress getAddress() const { return address_; }
 
-    [[nodiscard]] int getRemotePort() const
-    {
-        return remote_port_;
-    }
+    [[nodiscard]] std::string getServerGuid() const { return server_guid_; }
 
-    [[nodiscard]] std::string getServerGuid() const
-    {
-        return server_guid_;
-    }
+    void setServerGuid(std::string guid) { server_guid_ = std::move(guid); }
 
-    [[nodiscard]] int getLocalPort() const
-    {
-        return local_port_;
-    }
+    [[nodiscard]] int getLocalPort() const { return local_port_; }
 
-    [[nodiscard]] int getLocalPortV6() const
-    {
-        return local_port_v6_;
-    }
+    void setLocalPort(int port) { local_port_ = port; }
 
-    [[nodiscard]] std::string getMotd() const
-    {
-        return motd_;
-    }
+    [[nodiscard]] int getLocalPortV6() const { return local_port_v6_; }
 
-    void setMotd(std::string motd)
-    {
-        motd_ = std::move(motd);
-    }
+    void setLocalPortV6(int port) { local_port_v6_ = port; }
 
-    [[nodiscard]] int getNetworkProtocolVersion() const
-    {
-        return network_protocol_version_;
-    }
+    [[nodiscard]] std::string getMotd() const { return motd_; }
 
-    [[nodiscard]] std::string getMinecraftVersionNetwork() const
-    {
-        return minecraft_version_network_;
-    }
+    void setMotd(std::string motd) { motd_ = std::move(motd); }
+
+    [[nodiscard]] int getNetworkProtocolVersion() const { return network_protocol_version_; }
+
+    [[nodiscard]] std::string getMinecraftVersionNetwork() const { return minecraft_version_network_; }
 
     void setMinecraftVersionNetwork(std::string minecraft_version_network)
     {
         minecraft_version_network_ = std::move(minecraft_version_network);
     }
 
-    [[nodiscard]] int getNumPlayers() const
-    {
-        return num_players_;
-    }
+    [[nodiscard]] int getNumPlayers() const { return num_players_; }
 
-    void setNumPlayers(int num_players)
-    {
-        num_players_ = num_players;
-    }
+    void setNumPlayers(int num_players) { num_players_ = num_players; }
 
-    [[nodiscard]] int getMaxPlayers() const
-    {
-        return max_players_;
-    }
+    [[nodiscard]] int getMaxPlayers() const { return max_players_; }
 
-    void setMaxPlayers(int max_players)
-    {
-        max_players_ = max_players;
-    }
+    void setMaxPlayers(int max_players) { max_players_ = max_players; }
 
-    [[nodiscard]] std::string getLevelName() const
-    {
-        return level_name_;
-    }
+    [[nodiscard]] std::string getLevelName() const { return level_name_; }
 
-    void setLevelName(std::string level_name)
-    {
-        level_name_ = std::move(level_name);
-    }
+    void setLevelName(std::string level_name) { level_name_ = std::move(level_name); }
 
-    [[nodiscard]] GameMode getGameMode() const
-    {
-        return game_mode_;
-    }
+    [[nodiscard]] GameMode getGameMode() const { return game_mode_; }
 
-    void setGameMode(GameMode game_mode)
-    {
-        game_mode_ = game_mode;
-    }
-
-    inline static const std::string NAME = "ServerListPingEvent";
-    [[nodiscard]] std::string getEventName() const override
-    {
-        return NAME;
-    }
-
-    [[nodiscard]] bool isCancellable() const override
-    {
-        return false;
-    }
-
-    bool deserialize();
-    std::string serialize();
+    void setGameMode(GameMode game_mode) { game_mode_ = game_mode; }
 
 private:
-    std::string ping_response_;
-    std::string remote_host_;
-    int remote_port_;
+    SocketAddress address_;
     std::string motd_;
     int network_protocol_version_;
     std::string minecraft_version_network_;

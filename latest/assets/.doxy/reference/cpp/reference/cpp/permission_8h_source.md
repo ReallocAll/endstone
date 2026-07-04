@@ -25,6 +25,7 @@
 #pragma once
 
 #include <algorithm>
+#include <memory>
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
@@ -38,7 +39,7 @@ namespace endstone {
 
 class Permission {
 public:
-    static const PermissionDefault DefaultPermission = PermissionDefault::Operator;
+    static constexpr auto DefaultPermission = PermissionDefault::Operator;
 
     explicit Permission(std::string name, std::string description = "",
                         PermissionDefault default_value = DefaultPermission,
@@ -50,20 +51,11 @@ public:
         this->children_ = std::move(children);
     }
 
-    [[nodiscard]] std::string getName() const
-    {
-        return name_;
-    }
+    [[nodiscard]] std::string getName() const { return name_; }
 
-    std::unordered_map<std::string, bool> &getChildren()
-    {
-        return children_;
-    }
+    std::unordered_map<std::string, bool> &getChildren() { return children_; }
 
-    [[nodiscard]] PermissionDefault getDefault() const
-    {
-        return default_value_;
-    }
+    [[nodiscard]] PermissionDefault getDefault() const { return default_value_; }
 
     void setDefault(PermissionDefault value)
     {
@@ -71,15 +63,9 @@ public:
         recalculatePermissibles();
     }
 
-    [[nodiscard]] std::string getDescription() const
-    {
-        return description_;
-    }
+    [[nodiscard]] std::string getDescription() const { return description_; }
 
-    void setDescription(std::string value)
-    {
-        description_ = std::move(value);
-    }
+    void setDescription(std::string value) { description_ = std::move(value); }
 
     [[nodiscard]] std::unordered_set<Permissible *> getPermissibles() const
     {
@@ -109,14 +95,11 @@ public:
         if (!plugin_manager_) {
             return nullptr;
         }
-
         std::transform(name.begin(), name.end(), name.begin(), [](unsigned char c) { return std::tolower(c); });
         auto *perm = plugin_manager_->getPermission(name);
-
         if (!perm) {
-            perm = plugin_manager_->addPermission(std::make_unique<Permission>(name));
+            perm = &plugin_manager_->addPermission(std::make_unique<Permission>(name));
         }
-
         addParent(*perm, value);
         return perm;
     }
@@ -127,10 +110,7 @@ public:
         perm.recalculatePermissibles();
     }
 
-    void init(PluginManager &plugin_manager)
-    {
-        plugin_manager_ = &plugin_manager;
-    }
+    void init(PluginManager &plugin_manager) { plugin_manager_ = &plugin_manager; }
 
 private:
     std::string name_;

@@ -11,16 +11,23 @@
 
 
 * `#include <chrono>`
+* `#include <cstdint>`
 * `#include <memory>`
+* `#include <stdexcept>`
 * `#include <string>`
 * `#include <string_view>`
+* `#include <utility>`
 * `#include <vector>`
+* `#include "endstone/ban/ip_ban_list.h"`
+* `#include "endstone/ban/player_ban_list.h"`
 * `#include "endstone/block/block_data.h"`
 * `#include "endstone/boss/boss_bar.h"`
 * `#include "endstone/lang/language.h"`
 * `#include "endstone/level/level.h"`
 * `#include "endstone/logger.h"`
+* `#include "endstone/map/map_view.h"`
 * `#include "endstone/player.h"`
+* `#include "endstone/plugin/service_manager.h"`
 * `#include "endstone/scoreboard/scoreboard.h"`
 * `#include "endstone/util/result.h"`
 * `#include "endstone/util/uuid.h"`
@@ -41,7 +48,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes

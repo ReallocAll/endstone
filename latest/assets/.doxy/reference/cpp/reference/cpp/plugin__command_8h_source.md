@@ -24,6 +24,11 @@
 
 #pragma once
 
+#include <memory>
+#include <stdexcept>
+#include <string>
+#include <vector>
+
 #include "endstone/command/command.h"
 #include "endstone/command/command_executor.h"
 #include "endstone/plugin/plugin.h"
@@ -57,10 +62,7 @@ public:
         }
     }
 
-    virtual void setExecutor(std::shared_ptr<CommandExecutor> executor)
-    {
-        executor_ = std::move(executor);
-    }
+    virtual void setExecutor(std::shared_ptr<CommandExecutor> executor) { executor_ = std::move(executor); }
 
     [[nodiscard]] virtual CommandExecutor &getExecutor() const
     {
@@ -70,15 +72,9 @@ public:
         return owner_;
     }
 
-    [[maybe_unused]] [[nodiscard]] Plugin &getPlugin() const
-    {
-        return owner_;
-    }
+    [[maybe_unused]] [[nodiscard]] Plugin &getPlugin() const { return owner_; }
 
-    [[nodiscard]] PluginCommand *asPluginCommand() const override
-    {
-        return const_cast<PluginCommand *>(this);
-    }
+    [[nodiscard]] PluginCommand *asPluginCommand() const override { return const_cast<PluginCommand *>(this); }
 
 private:
     Plugin &owner_;

@@ -11,6 +11,7 @@
 
 
 * `#include <string>`
+* `#include <utility>`
 * `#include <fmt/format.h>`
 * `#include "endstone/message.h"`
 * `#include "endstone/permissions/permissible.h"`
@@ -31,7 +32,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes

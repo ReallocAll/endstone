@@ -10,8 +10,16 @@
 
 
 
+* `#include <functional>`
 * `#include <optional>`
 * `#include <string>`
+* `#include <utility>`
+* `#include <variant>`
+* `#include <vector>`
+* `#include "endstone/form/controls/button.h"`
+* `#include "endstone/form/controls/divider.h"`
+* `#include "endstone/form/controls/header.h"`
+* `#include "endstone/form/controls/label.h"`
 * `#include "endstone/form/form.h"`
 
 
@@ -30,7 +38,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes
@@ -38,7 +46,6 @@
 | Type | Name |
 | ---: | :--- |
 | class | [**ActionForm**](classendstone_1_1ActionForm.md) <br>_Represents a form with buttons that let the player take action._  |
-| class | [**Button**](classendstone_1_1ActionForm_1_1Button.md) <br>_Represents a button with text and an optional icon._  |
 
 
 

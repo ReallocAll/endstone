@@ -11,6 +11,7 @@
 
 
 * `#include <functional>`
+* `#include <utility>`
 * `#include "endstone/message.h"`
 
 
@@ -29,14 +30,14 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes
 
 | Type | Name |
 | ---: | :--- |
-| class | [**Form**](classendstone_1_1Form.md) &lt;typename T&gt;<br>_Represents a generic form._  |
+| class | [**Form**](classendstone_1_1Form.md) &lt;[**typename**](classendstone_1_1Identifier.md) [**T**](classendstone_1_1Identifier.md)&gt;<br>_Represents a generic form._  |
 
 
 

@@ -24,6 +24,11 @@
 
 #pragma once
 
+#include <cstdint>
+#include <functional>
+#include <memory>
+#include <vector>
+
 #include "endstone/scheduler/task.h"
 
 namespace endstone {
@@ -41,10 +46,11 @@ public:
 
     virtual std::shared_ptr<Task> runTaskAsync(Plugin &plugin, std::function<void()> task) = 0;
 
-    virtual std::shared_ptr<Task> runTaskLaterAsync(Plugin &plugin, std::function<void()> task, std::uint64_t delay) = 0;
+    virtual std::shared_ptr<Task> runTaskLaterAsync(Plugin &plugin, std::function<void()> task,
+                                                    std::uint64_t delay) = 0;
 
     virtual std::shared_ptr<Task> runTaskTimerAsync(Plugin &plugin, std::function<void()> task, std::uint64_t delay,
-                                               std::uint64_t period) = 0;
+                                                    std::uint64_t period) = 0;
 
     virtual void cancelTask(TaskId id) = 0;
 

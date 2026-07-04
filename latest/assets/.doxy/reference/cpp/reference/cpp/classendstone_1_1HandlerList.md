@@ -55,8 +55,8 @@ _A list of event handlers. Should be instantiated on a per-event basis._
 |   | [**HandlerList**](#function-handlerlist) (std::string event) <br> |
 |  std::vector&lt; [**EventHandler**](classendstone_1_1EventHandler.md) \* &gt; | [**getHandlers**](#function-gethandlers) () const<br> |
 |  [**EventHandler**](classendstone_1_1EventHandler.md) \* | [**registerHandler**](#function-registerhandler) (std::unique\_ptr&lt; [**EventHandler**](classendstone_1_1EventHandler.md) &gt; handler) <br> |
-|  void | [**unregister**](#function-unregister-12) (const [**EventHandler**](classendstone_1_1EventHandler.md) & handler) <br> |
-|  void | [**unregister**](#function-unregister-22) (const [**Plugin**](classendstone_1_1Plugin.md) & plugin) <br> |
+|  [**void**](classendstone_1_1Identifier.md) | [**unregister**](#function-unregister-12) ([**const**](classendstone_1_1Identifier.md) [**EventHandler**](classendstone_1_1EventHandler.md) & handler) <br> |
+|  [**void**](classendstone_1_1Identifier.md) | [**unregister**](#function-unregister-22) ([**const**](classendstone_1_1Identifier.md) [**Plugin**](classendstone_1_1Plugin.md) & plugin) <br> |
 
 
 
@@ -85,7 +85,7 @@ _A list of event handlers. Should be instantiated on a per-event basis._
 
 | Type | Name |
 | ---: | :--- |
-|  void | [**bake**](#function-bake) () const<br> |
+|  [**void**](classendstone_1_1Identifier.md) | [**bake**](#function-bake) () const<br> |
 
 
 
@@ -111,7 +111,6 @@ inline explicit endstone::HandlerList::HandlerList (
 
 
 ### function getHandlers 
-
 
 ```C++
 inline std::vector< EventHandler * > endstone::HandlerList::getHandlers () const
@@ -139,7 +138,6 @@ the array of registered handlers
 
 
 ### function registerHandler 
-
 
 ```C++
 inline EventHandler * endstone::HandlerList::registerHandler (
@@ -177,10 +175,9 @@ the pointer to the registered handler
 
 ### function unregister [1/2]
 
-
 ```C++
 inline void endstone::HandlerList::unregister (
-    const EventHandler & handler
+    const  EventHandler & handler
 ) 
 ```
 
@@ -207,10 +204,9 @@ Remove a handler from a specific order slot
 
 ### function unregister [2/2]
 
-
 ```C++
 inline void endstone::HandlerList::unregister (
-    const Plugin & plugin
+    const  Plugin & plugin
 ) 
 ```
 

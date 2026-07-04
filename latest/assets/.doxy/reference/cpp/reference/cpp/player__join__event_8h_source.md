@@ -24,41 +24,28 @@
 
 #pragma once
 
+#include <optional>
+#include <utility>
+
 #include "endstone/event/player/player_event.h"
 
 namespace endstone {
 
 class PlayerJoinEvent : public PlayerEvent {
 public:
-    explicit PlayerJoinEvent(Player &player, std::string join_message)
+    ENDSTONE_EVENT(PlayerJoinEvent);
+
+    explicit PlayerJoinEvent(Player &player, std::optional<Message> join_message)
         : PlayerEvent(player), join_message_(std::move(join_message))
     {
     }
-    ~PlayerJoinEvent() override = default;
 
-    inline static const std::string NAME = "PlayerJoinEvent";
-    [[nodiscard]] std::string getEventName() const override
-    {
-        return NAME;
-    }
+    [[nodiscard]] std::optional<Message> getJoinMessage() const { return join_message_; }
 
-    [[nodiscard]] bool isCancellable() const override
-    {
-        return false;
-    }
-
-    [[nodiscard]] std::string getJoinMessage() const
-    {
-        return join_message_;
-    }
-
-    void setJoinMessage(std::string message)
-    {
-        join_message_ = std::move(message);
-    }
+    void setJoinMessage(std::optional<Message> message) { join_message_ = std::move(message); }
 
 private:
-    std::string join_message_;
+    std::optional<Message> join_message_;
 };
 
 }  // namespace endstone

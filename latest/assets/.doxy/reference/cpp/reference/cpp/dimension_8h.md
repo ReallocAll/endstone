@@ -10,7 +10,12 @@
 
 
 
+* `#include <memory>`
+* `#include <string>`
+* `#include <vector>`
 * `#include "endstone/block/block.h"`
+* `#include "endstone/inventory/item_stack.h"`
+* `#include "endstone/level/chunk.h"`
 * `#include "endstone/util/result.h"`
 
 
@@ -29,7 +34,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes
@@ -37,6 +42,7 @@
 | Type | Name |
 | ---: | :--- |
 | class | [**Dimension**](classendstone_1_1Dimension.md) <br>_Represents a dimension within a_ [_**Level**_](classendstone_1_1Level.md) _._ |
+| struct | [**formatter&lt; endstone::Dimension &gt;**](structfmt_1_1formatter_3_01endstone_1_1Dimension_01_4.md) &lt;&gt;<br> |
 
 
 

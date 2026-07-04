@@ -27,36 +27,23 @@
 #include <algorithm>
 #include <cstddef>
 #include <cstdint>
+#include <cstring>
+#include <functional>
 #include <string>
 
 namespace endstone {
 
 class UUID {
 public:
-    std::uint8_t *begin() noexcept
-    {
-        return data;
-    }
+    std::uint8_t *begin() noexcept { return data; }
 
-    [[nodiscard]] const uint8_t *begin() const noexcept
-    {
-        return data;
-    }
+    [[nodiscard]] const uint8_t *begin() const noexcept { return data; }
 
-    std::uint8_t *end() noexcept
-    {
-        return data + size();
-    }
+    std::uint8_t *end() noexcept { return data + size(); }
 
-    [[nodiscard]] const uint8_t *end() const noexcept
-    {
-        return data + size();
-    }
+    [[nodiscard]] const uint8_t *end() const noexcept { return data + size(); }
 
-    [[nodiscard]] static constexpr std::size_t size() noexcept
-    {
-        return 16;
-    }
+    [[nodiscard]] static constexpr std::size_t size() noexcept { return 16; }
 
     [[nodiscard]] bool isNil() const noexcept
     {
@@ -109,7 +96,7 @@ public:
 
         return result;
     }
-    std::uint8_t data[16];
+    std::uint8_t data[16] = {0};
 };
 static_assert(sizeof(endstone::UUID) == endstone::UUID::size());
 
@@ -162,10 +149,7 @@ inline std::size_t hash_value(UUID const &u) noexcept
 namespace std {
 template <>
 struct hash<endstone::UUID> {
-    std::size_t operator()(const endstone::UUID &value) const noexcept
-    {
-        return endstone::hash_value(value);
-    }
+    std::size_t operator()(const endstone::UUID &value) const noexcept { return endstone::hash_value(value); }
 };
 }  // namespace std
 ```

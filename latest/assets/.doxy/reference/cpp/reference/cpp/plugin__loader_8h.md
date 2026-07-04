@@ -10,11 +10,9 @@
 
 
 
-* `#include <cctype>`
 * `#include <filesystem>`
-* `#include <memory>`
+* `#include <regex>`
 * `#include <string>`
-* `#include <utility>`
 * `#include <vector>`
 * `#include "endstone/event/server/plugin_disable_event.h"`
 * `#include "endstone/event/server/plugin_enable_event.h"`
@@ -38,7 +36,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes

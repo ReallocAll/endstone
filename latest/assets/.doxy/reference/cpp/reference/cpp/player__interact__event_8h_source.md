@@ -24,67 +24,54 @@
 
 #pragma once
 
+#include <optional>
+#include <utility>
+
+#include "endstone/block/block_face.h"
+#include "endstone/event/cancellable.h"
 #include "endstone/event/player/player_event.h"
 #include "endstone/inventory/item_stack.h"
 
 namespace endstone {
 
-class PlayerInteractEvent : public PlayerEvent {
+class PlayerInteractEvent : public Cancellable<PlayerEvent> {
 public:
-    PlayerInteractEvent(Player &player, std::unique_ptr<ItemStack> item, std::unique_ptr<Block> block_clicked,
-                        BlockFace block_face, const Vector<float> &clicked_position)
-        : PlayerEvent(player), item_(std::move(item)), block_clicked_(std::move(block_clicked)),
-          block_face_(block_face), clicked_position_(clicked_position)
-    {
-    }
-    ~PlayerInteractEvent() override = default;
+    ENDSTONE_EVENT(PlayerInteractEvent);
 
-    inline static const std::string NAME = "PlayerInteractEvent";
-    [[nodiscard]] std::string getEventName() const override
-    {
-        return NAME;
-    }
+    enum class Action {
+        LeftClickBlock,
+        RightClickBlock,
+        LeftClickAir,
+        RightClickAir,
+    };
 
-    [[nodiscard]] bool isCancellable() const override
+    PlayerInteractEvent(Player &player, Action action, std::optional<ItemStack> item, Block *block_clicked,
+                        BlockFace block_face, std::optional<Vector> clicked_position)
+        : Cancellable(player), action_(action), item_(std::move(item)), block_clicked_(block_clicked),
+          block_face_(block_face), clicked_position_(std::move(clicked_position))
     {
-        return true;
     }
 
-    [[nodiscard]] bool hasItem() const
-    {
-        return item_ != nullptr;
-    }
+    [[nodiscard]] Action getAction() const { return action_; }
 
-    [[nodiscard]] ItemStack *getItem() const
-    {
-        return item_.get();
-    }
+    [[nodiscard]] bool hasItem() const { return item_.has_value(); }
 
-    [[nodiscard]] bool hasBlock() const
-    {
-        return block_clicked_ != nullptr;
-    }
+    [[nodiscard]] const std::optional<ItemStack> &getItem() const { return item_; }
 
-    [[nodiscard]] Block *getBlock() const
-    {
-        return block_clicked_.get();
-    }
+    [[nodiscard]] bool hasBlock() const { return block_clicked_ != nullptr; }
 
-    [[nodiscard]] BlockFace getBlockFace() const
-    {
-        return block_face_;
-    }
+    [[nodiscard]] Block *getBlock() const { return block_clicked_; }
 
-    [[nodiscard]] Vector<float> getClickedPosition() const
-    {
-        return clicked_position_;
-    }
+    [[nodiscard]] BlockFace getBlockFace() const { return block_face_; }
+
+    [[nodiscard]] std::optional<Vector> getClickedPosition() const { return clicked_position_; }
 
 private:
-    std::unique_ptr<ItemStack> item_;
-    std::unique_ptr<Block> block_clicked_;
+    std::optional<ItemStack> item_;
+    Action action_;
+    Block *block_clicked_;
     BlockFace block_face_;
-    Vector<float> clicked_position_;
+    std::optional<Vector> clicked_position_;
 };
 
 }  // namespace endstone

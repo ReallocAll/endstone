@@ -24,31 +24,24 @@
 
 #pragma once
 
+#include <memory>
+#include <utility>
+
 #include "endstone/event/block/block_event.h"
-#include "endstone/player.h"
+#include "endstone/event/cancellable.h"
 
 namespace endstone {
 
-class BlockBreakEvent : public BlockEvent {
+class BlockBreakEvent : public Cancellable<BlockEvent> {
 public:
-    explicit BlockBreakEvent(Block &block, Player &player) : BlockEvent(block), player_(player) {}
+    ENDSTONE_EVENT(BlockBreakEvent);
+    explicit BlockBreakEvent(std::unique_ptr<Block> block, Player &player)
+        : Cancellable(std::move(block)), player_(player)
+    {
+    }
     ~BlockBreakEvent() override = default;
 
-    inline static const std::string NAME = "BlockBreakEvent";
-    [[nodiscard]] std::string getEventName() const override
-    {
-        return NAME;
-    }
-
-    [[nodiscard]] bool isCancellable() const override
-    {
-        return true;
-    }
-
-    [[nodiscard]] Player &getPlayer() const
-    {
-        return player_;
-    }
+    [[nodiscard]] Player &getPlayer() const { return player_; }
 
 private:
     Player &player_;

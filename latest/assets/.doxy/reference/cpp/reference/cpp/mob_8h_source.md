@@ -30,6 +30,14 @@ namespace endstone {
 class Mob : public Actor {
 public:
     [[nodiscard]] virtual bool isGliding() const = 0;
+
+    [[nodiscard]] virtual int getHealth() const = 0;
+
+    virtual void setHealth(int health) const = 0;
+
+    [[nodiscard]] virtual int getMaxHealth() const = 0;
+
+    virtual void setMaxHealth(int health) const = 0;
 };
 }  // namespace endstone
 ```

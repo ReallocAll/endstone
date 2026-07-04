@@ -14,7 +14,7 @@ _Represents an event that is called when a player right-clicks a block._
 
 
 
-Inherits the following classes: [endstone::PlayerEvent](classendstone_1_1PlayerEvent.md)
+Inherits the following classes: [endstone::Cancellable](classendstone_1_1Cancellable.md)
 
 
 
@@ -29,29 +29,29 @@ Inherits the following classes: [endstone::PlayerEvent](classendstone_1_1PlayerE
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Public Static Attributes
+## Public Types
 
 | Type | Name |
 | ---: | :--- |
-|  const std::string | [**NAME**](#variable-name)   = = "PlayerInteractEvent"<br> |
+| enum  | [**Action**](#enum-action)  <br> |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -98,44 +98,38 @@ Inherits the following classes: [endstone::PlayerEvent](classendstone_1_1PlayerE
 
 | Type | Name |
 | ---: | :--- |
-|   | [**PlayerInteractEvent**](#function-playerinteractevent) ([**Player**](classendstone_1_1Player.md) & player, std::unique\_ptr&lt; [**ItemStack**](classendstone_1_1ItemStack.md) &gt; item, std::unique\_ptr&lt; [**Block**](classendstone_1_1Block.md) &gt; block\_clicked, BlockFace block\_face, const [**Vector**](classendstone_1_1Vector.md)&lt; float &gt; & clicked\_position) <br> |
+|   | [**ENDSTONE\_EVENT**](#function-endstone_event) ([**PlayerInteractEvent**](classendstone_1_1PlayerInteractEvent.md)) <br> |
+|   | [**PlayerInteractEvent**](#function-playerinteractevent) ([**Player**](classendstone_1_1Player.md) & player, [**Action**](classendstone_1_1PlayerInteractEvent.md#enum-action) action, std::optional&lt; [**ItemStack**](classendstone_1_1ItemStack.md) &gt; item, [**Block**](classendstone_1_1Block.md) \* block\_clicked, [**BlockFace**](namespaceendstone.md#enum-blockface) block\_face, std::optional&lt; [**Vector**](classendstone_1_1Vector.md) &gt; clicked\_position) <br> |
+|  [**Action**](classendstone_1_1PlayerInteractEvent.md#enum-action) | [**getAction**](#function-getaction) () const<br>_Returns the action type._  |
 |  [**Block**](classendstone_1_1Block.md) \* | [**getBlock**](#function-getblock) () const<br>_Returns the clicked block._  |
-|  BlockFace | [**getBlockFace**](#function-getblockface) () const<br>_Returns the face of the block that was clicked._  |
-|  [**Vector**](classendstone_1_1Vector.md)&lt; float &gt; | [**getClickedPosition**](#function-getclickedposition) () const<br>_Gets the exact position on the block the player interacted with._  |
-| virtual std::string | [**getEventName**](#function-geteventname) () override const<br> |
-|  [**ItemStack**](classendstone_1_1ItemStack.md) \* | [**getItem**](#function-getitem) () const<br>_Returns the item in hand represented by this event._  |
-|  bool | [**hasBlock**](#function-hasblock) () const<br>_Check if this event involved a block._  |
-|  bool | [**hasItem**](#function-hasitem) () const<br>_Check if this event involved an item._  |
-| virtual bool | [**isCancellable**](#function-iscancellable) () override const<br> |
-|   | [**~PlayerInteractEvent**](#function-playerinteractevent) () override<br> |
+|  [**BlockFace**](namespaceendstone.md#enum-blockface) | [**getBlockFace**](#function-getblockface) () const<br>_Returns the face of the block that was clicked._  |
+|  std::optional&lt; [**Vector**](classendstone_1_1Vector.md) &gt; | [**getClickedPosition**](#function-getclickedposition) () const<br>_Gets the exact position on the block the player interacted with._  |
+|  [**const**](classendstone_1_1Identifier.md) std::optional&lt; [**ItemStack**](classendstone_1_1ItemStack.md) &gt; & | [**getItem**](#function-getitem) () const<br>_Returns the item in hand represented by this event._  |
+|  [**bool**](classendstone_1_1Identifier.md) | [**hasBlock**](#function-hasblock) () const<br>_Check if this event involved a block._  |
+|  [**bool**](classendstone_1_1Identifier.md) | [**hasItem**](#function-hasitem) () const<br>_Check if this event involved an item._  |
 
 
-## Public Functions inherited from endstone::PlayerEvent
+## Public Functions inherited from endstone::Cancellable
 
-See [endstone::PlayerEvent](classendstone_1_1PlayerEvent.md)
+See [endstone::Cancellable](classendstone_1_1Cancellable.md)
 
 | Type | Name |
 | ---: | :--- |
-|   | [**PlayerEvent**](classendstone_1_1PlayerEvent.md#function-playerevent) ([**Player**](classendstone_1_1Player.md) & player) <br> |
-|  [**Player**](classendstone_1_1Player.md) & | [**getPlayer**](classendstone_1_1PlayerEvent.md#function-getplayer) () const<br> |
-|   | [**~PlayerEvent**](classendstone_1_1PlayerEvent.md#function-playerevent) () override<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**cancel**](classendstone_1_1Cancellable.md#function-cancel) () <br>_Cancel this event. A cancelled event will not be executed in the server, but will still pass to other plugins._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isCancelled**](classendstone_1_1Cancellable.md#function-iscancelled) () override const<br>_Gets the cancellation state of this event. A cancelled event will not be executed in the server, but will still pass to other plugins._  |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**setCancelled**](classendstone_1_1Cancellable.md#function-setcancelled) ([**bool**](classendstone_1_1Identifier.md) cancel) override<br>_Sets the cancellation state of this event. A cancelled event will not be executed in the server, but will still pass to other plugins._  |
 
 
-## Public Functions inherited from endstone::Event
+## Public Functions inherited from endstone::ICancellable
 
-See [endstone::Event](classendstone_1_1Event.md)
+See [endstone::ICancellable](classendstone_1_1ICancellable.md)
 
 | Type | Name |
 | ---: | :--- |
-|   | [**Event**](classendstone_1_1Event.md#function-event-12) (bool async=false) <br> |
-|   | [**Event**](classendstone_1_1Event.md#function-event-22) (const [**Event**](classendstone_1_1Event.md) &) = delete<br> |
-| virtual std::string | [**getEventName**](classendstone_1_1Event.md#function-geteventname) () const = 0<br> |
-|  bool | [**isAsynchronous**](classendstone_1_1Event.md#function-isasynchronous) () const<br> |
-| virtual bool | [**isCancellable**](classendstone_1_1Event.md#function-iscancellable) () const = 0<br> |
-|  bool | [**isCancelled**](classendstone_1_1Event.md#function-iscancelled) () const<br> |
-|  [**Event**](classendstone_1_1Event.md) & | [**operator=**](classendstone_1_1Event.md#function-operator) (const [**Event**](classendstone_1_1Event.md) &) = delete<br> |
-|  void | [**setCancelled**](classendstone_1_1Event.md#function-setcancelled) (bool cancel) <br> |
-| virtual  | [**~Event**](classendstone_1_1Event.md#function-event) () = default<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**cancel**](classendstone_1_1ICancellable.md#function-cancel) () = 0<br> |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isCancelled**](classendstone_1_1ICancellable.md#function-iscancelled) () const = 0<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**setCancelled**](classendstone_1_1ICancellable.md#function-setcancelled) ([**bool**](classendstone_1_1Identifier.md) cancel) = 0<br> |
+| virtual  | [**~ICancellable**](classendstone_1_1ICancellable.md#function-icancellable) () = default<br> |
 
 
 
@@ -216,15 +210,20 @@ See [endstone::Event](classendstone_1_1Event.md)
 
 
 
-## Public Static Attributes Documentation
+## Public Types Documentation
 
 
 
 
-### variable NAME 
+### enum Action 
 
 ```C++
-const std::string endstone::PlayerInteractEvent::NAME;
+enum endstone::PlayerInteractEvent::Action {
+    LeftClickBlock,
+    RightClickBlock,
+    LeftClickAir,
+    RightClickAir
+};
 ```
 
 
@@ -236,20 +235,61 @@ const std::string endstone::PlayerInteractEvent::NAME;
 
 
 
-### function PlayerInteractEvent 
+### function ENDSTONE\_EVENT 
 
 ```C++
-inline endstone::PlayerInteractEvent::PlayerInteractEvent (
-    Player & player,
-    std::unique_ptr< ItemStack > item,
-    std::unique_ptr< Block > block_clicked,
-    BlockFace block_face,
-    const Vector < float > & clicked_position
+endstone::PlayerInteractEvent::ENDSTONE_EVENT (
+    PlayerInteractEvent
 ) 
 ```
 
 
 
+
+<hr>
+
+
+
+### function PlayerInteractEvent 
+
+```C++
+inline endstone::PlayerInteractEvent::PlayerInteractEvent (
+    Player & player,
+    Action action,
+    std::optional< ItemStack > item,
+    Block * block_clicked,
+    BlockFace block_face,
+    std::optional< Vector > clicked_position
+) 
+```
+
+
+
+
+<hr>
+
+
+
+### function getAction 
+
+_Returns the action type._ 
+```C++
+inline Action endstone::PlayerInteractEvent::getAction () const
+```
+
+
+
+
+
+**Returns:**
+
+Action returns the type of interaction 
+
+
+
+
+
+        
 
 <hr>
 
@@ -309,10 +349,21 @@ BlockFace returns the face of the block that was clicked
 
 _Gets the exact position on the block the player interacted with._ 
 ```C++
-inline Vector < float > endstone::PlayerInteractEvent::getClickedPosition () const
+inline std::optional< Vector > endstone::PlayerInteractEvent::getClickedPosition () const
 ```
 
 
+
+
+
+**Note:**
+
+This will be std::nullopt outside of Action.RightClickBlock 
+
+
+
+
+**Note:**
 
 All vector components are between 0.0 and 1.0 inclusive.
 
@@ -333,41 +384,11 @@ the clicked position.
 
 
 
-### function getEventName 
-
-
-```C++
-inline virtual std::string endstone::PlayerInteractEvent::getEventName () override const
-```
-
-
-
-Gets a user-friendly identifier for this event.
-
-
-
-
-**Returns:**
-
-name of this event 
-
-
-
-
-
-        
-Implements [*endstone::Event::getEventName*](classendstone_1_1Event.md#function-geteventname)
-
-
-<hr>
-
-
-
 ### function getItem 
 
 _Returns the item in hand represented by this event._ 
 ```C++
-inline ItemStack * endstone::PlayerInteractEvent::getItem () const
+inline const std::optional< ItemStack > & endstone::PlayerInteractEvent::getItem () const
 ```
 
 
@@ -376,7 +397,7 @@ inline ItemStack * endstone::PlayerInteractEvent::getItem () const
 
 **Returns:**
 
-[**ItemStack**](classendstone_1_1ItemStack.md) the item used 
+[**ItemStack**](classendstone_1_1ItemStack.md) the item used, or std::nullopt if no item 
 
 
 
@@ -433,49 +454,6 @@ boolean true if it did
 
 
         
-
-<hr>
-
-
-
-### function isCancellable 
-
-
-```C++
-inline virtual bool endstone::PlayerInteractEvent::isCancellable () override const
-```
-
-
-
-Whether the event can be cancelled by a plugin or the server.
-
-
-
-
-**Returns:**
-
-true if this event can be cancelled 
-
-
-
-
-
-        
-Implements [*endstone::Event::isCancellable*](classendstone_1_1Event.md#function-iscancellable)
-
-
-<hr>
-
-
-
-### function ~PlayerInteractEvent 
-
-```C++
-endstone::PlayerInteractEvent::~PlayerInteractEvent () override
-```
-
-
-
 
 <hr>
 

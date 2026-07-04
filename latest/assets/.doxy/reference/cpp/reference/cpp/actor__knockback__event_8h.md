@@ -12,6 +12,7 @@
 
 * `#include "endstone/actor/mob.h"`
 * `#include "endstone/event/actor/actor_event.h"`
+* `#include "endstone/event/cancellable.h"`
 
 
 
@@ -29,7 +30,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes

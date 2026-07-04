@@ -26,53 +26,30 @@
 
 #include "endstone/actor/mob.h"
 #include "endstone/event/actor/actor_event.h"
+#include "endstone/event/cancellable.h"
 
 namespace endstone {
 
-class ActorKnockbackEvent : public ActorEvent {
+class ActorKnockbackEvent : public Cancellable<ActorEvent<Mob>> {
 public:
-    explicit ActorKnockbackEvent(Mob &mob, Actor *source, Vector<float> knockback)
-        : ActorEvent(mob), mob_(mob), source_(source), knockback_(knockback)
-    {
-    }
-    ~ActorKnockbackEvent() override = default;
+    ENDSTONE_EVENT(ActorKnockbackEvent);
 
-    inline static const std::string NAME = "ActorKnockbackEvent";
-    [[nodiscard]] std::string getEventName() const override
+    explicit ActorKnockbackEvent(Mob &mob, Actor *source, Vector knockback)
+        : Cancellable(mob), mob_(mob), source_(source), knockback_(knockback)
     {
-        return NAME;
     }
 
-    [[nodiscard]] bool isCancellable() const override
-    {
-        return true;
-    }
+    [[nodiscard]] Actor *getSource() const { return source_; }
 
-    [[nodiscard]] Mob &getActor() const
-    {
-        return mob_;
-    }
+    [[nodiscard]] Vector getKnockback() const { return knockback_; }
 
-    [[nodiscard]] Actor *getSource() const
-    {
-        return source_;
-    }
-
-    [[nodiscard]] Vector<float> getKnockback() const
-    {
-        return knockback_;
-    }
-
-    void setKnockback(Vector<float> knockback)
-    {
-        knockback_ = knockback;
-    }
+    void setKnockback(Vector knockback) { knockback_ = knockback; }
 
 private:
     Mob &mob_;
     Actor *source_;
-    Vector<float> raw_knockback_;
-    Vector<float> knockback_;
+    Vector raw_knockback_;
+    Vector knockback_;
 };
 
 }  // namespace endstone

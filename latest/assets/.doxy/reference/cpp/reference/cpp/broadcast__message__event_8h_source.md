@@ -25,50 +25,31 @@
 #pragma once
 
 #include <string>
+#include <unordered_set>
 #include <utility>
 
 #include "endstone/command/command_sender.h"
-#include "endstone/event/event.h"
-#include "endstone/event/handler_list.h"
+#include "endstone/event/cancellable.h"
 #include "endstone/event/server/server_event.h"
 
 namespace endstone {
 
-class BroadcastMessageEvent : public ServerEvent {
+class BroadcastMessageEvent : public Cancellable<ServerEvent> {
 public:
-    BroadcastMessageEvent(bool async, std::string message, std::unordered_set<const CommandSender *> recipients)
-        : ServerEvent(async), message_(std::move(message)), recipients_(std::move(recipients))
+    ENDSTONE_EVENT(BroadcastMessageEvent);
+    BroadcastMessageEvent(bool async, Message message, std::unordered_set<const CommandSender *> recipients)
+        : Cancellable(async), message_(std::move(message)), recipients_(std::move(recipients))
     {
     }
 
-    inline static const std::string NAME = "BroadcastMessageEvent";
-    [[nodiscard]] std::string getEventName() const override
-    {
-        return NAME;
-    }
+    [[nodiscard]] const Message &getMessage() const { return message_; }
 
-    [[nodiscard]] bool isCancellable() const override
-    {
-        return true;
-    }
+    void setMessage(Message message) { message_ = std::move(message); }
 
-    [[nodiscard]] const std::string &getMessage() const
-    {
-        return message_;
-    }
-
-    void setMessage(std::string message)
-    {
-        message_ = std::move(message);
-    }
-
-    [[nodiscard]] const std::unordered_set<const CommandSender *> &getRecipients() const
-    {
-        return recipients_;
-    }
+    [[nodiscard]] const std::unordered_set<const CommandSender *> &getRecipients() const { return recipients_; }
 
 private:
-    std::string message_;
+    Message message_;
     std::unordered_set<const CommandSender *> recipients_;
 };
 

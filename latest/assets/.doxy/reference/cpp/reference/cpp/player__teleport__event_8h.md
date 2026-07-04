@@ -10,8 +10,7 @@
 
 
 
-* `#include "endstone/event/player/player_event.h"`
-* `#include "endstone/level/location.h"`
+* `#include "endstone/event/player/player_move_event.h"`
 
 
 
@@ -29,7 +28,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes

@@ -25,6 +25,7 @@
 #pragma once
 
 #include <string>
+#include <utility>
 
 #include <fmt/format.h>
 
@@ -34,32 +35,24 @@
 namespace endstone {
 
 class Actor;
+class BlockCommandSender;
 class ConsoleCommandSender;
+class Mob;
 class Server;
 class Player;
 
 class CommandSender : public Permissible {
 public:
     // Permissible
-    [[nodiscard]] CommandSender *asCommandSender() const override
-    {
-        return const_cast<CommandSender *>(this);
-    }
+    [[nodiscard]] CommandSender *asCommandSender() const override { return const_cast<CommandSender *>(this); }
 
-    [[nodiscard]] virtual ConsoleCommandSender *asConsole() const
-    {
-        return nullptr;
-    }
+    [[nodiscard]] virtual ConsoleCommandSender *asConsole() const = 0;
 
-    [[nodiscard]] virtual Actor *asActor() const
-    {
-        return nullptr;
-    }
+    [[nodiscard]] virtual BlockCommandSender *asBlock() const = 0;
 
-    [[nodiscard]] virtual Player *asPlayer() const
-    {
-        return nullptr;
-    }
+    [[nodiscard]] virtual Actor *asActor() const = 0;
+
+    [[nodiscard]] virtual Player *asPlayer() const = 0;
 
     virtual void sendMessage(const Message &message) const = 0;
 

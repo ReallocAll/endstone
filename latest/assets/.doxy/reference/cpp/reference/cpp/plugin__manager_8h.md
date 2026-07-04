@@ -13,9 +13,11 @@
 * `#include <functional>`
 * `#include <memory>`
 * `#include <string>`
+* `#include <unordered_set>`
 * `#include <vector>`
 * `#include "endstone/event/event.h"`
 * `#include "endstone/event/event_priority.h"`
+* `#include "endstone/permissions/permission_level.h"`
 
 
 
@@ -33,7 +35,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes

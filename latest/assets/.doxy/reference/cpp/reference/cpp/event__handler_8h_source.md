@@ -45,35 +45,23 @@ public:
     {
     }
 
-    [[nodiscard]] Plugin &getPlugin() const
-    {
-        return plugin_;
-    }
-    [[nodiscard]] EventPriority getPriority() const
-    {
-        return priority_;
-    }
+    [[nodiscard]] Plugin &getPlugin() const { return plugin_; }
+    [[nodiscard]] EventPriority getPriority() const { return priority_; }
 
-    [[nodiscard]] bool isIgnoreCancelled() const
-    {
-        return ignore_cancelled_;
-    }
+    [[nodiscard]] bool isIgnoreCancelled() const { return ignore_cancelled_; }
 
-    void callEvent(Event &event)
+    void callEvent(Event &event) const
     {
         if (event.getEventName() != event_) {
             return;
         }
-        if (event.isCancellable() && event.isCancelled() && isIgnoreCancelled()) {
+        if (event.isCancellable() && event.cancelled_ && isIgnoreCancelled()) {
             return;
         }
         executor_(event);
     };
 
-    [[nodiscard]] std::string getEventType() const
-    {
-        return event_;
-    }
+    [[nodiscard]] std::string getEventType() const { return event_; }
 
 private:
     std::string event_;

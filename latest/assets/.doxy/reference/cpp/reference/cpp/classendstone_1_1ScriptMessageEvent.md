@@ -14,7 +14,7 @@ _Called when a message is sent by_ `/scriptevent` _command._
 
 
 
-Inherits the following classes: [endstone::ServerEvent](classendstone_1_1ServerEvent.md)
+Inherits the following classes: [endstone::Cancellable](classendstone_1_1Cancellable.md)
 
 
 
@@ -47,11 +47,6 @@ Inherits the following classes: [endstone::ServerEvent](classendstone_1_1ServerE
 
 
 
-## Public Static Attributes
-
-| Type | Name |
-| ---: | :--- |
-|  const std::string | [**NAME**](#variable-name)   = = "ScriptMessageEvent"<br> |
 
 
 
@@ -98,43 +93,34 @@ Inherits the following classes: [endstone::ServerEvent](classendstone_1_1ServerE
 
 | Type | Name |
 | ---: | :--- |
-|   | [**ScriptMessageEvent**](#function-scriptmessageevent) (std::string message\_id, std::string message, const [**CommandSender**](classendstone_1_1CommandSender.md) & sender) <br> |
-| virtual std::string | [**getEventName**](#function-geteventname) () override const<br> |
-|  const std::string & | [**getMessage**](#function-getmessage) () const<br> |
-|  const std::string & | [**getMessageId**](#function-getmessageid) () const<br> |
-|  const [**CommandSender**](classendstone_1_1CommandSender.md) & | [**getSender**](#function-getsender) () const<br> |
-| virtual bool | [**isCancellable**](#function-iscancellable) () override const<br> |
+|   | [**ENDSTONE\_EVENT**](#function-endstone_event) ([**ScriptMessageEvent**](classendstone_1_1ScriptMessageEvent.md)) <br> |
+|   | [**ScriptMessageEvent**](#function-scriptmessageevent) (std::string message\_id, std::string message, [**const**](classendstone_1_1Identifier.md) [**CommandSender**](classendstone_1_1CommandSender.md) & sender) <br> |
+|  [**const**](classendstone_1_1Identifier.md) std::string & | [**getMessage**](#function-getmessage) () const<br> |
+|  [**const**](classendstone_1_1Identifier.md) std::string & | [**getMessageId**](#function-getmessageid) () const<br> |
+|  [**const**](classendstone_1_1Identifier.md) [**CommandSender**](classendstone_1_1CommandSender.md) & | [**getSender**](#function-getsender) () const<br> |
 
 
-## Public Functions inherited from endstone::ServerEvent
+## Public Functions inherited from endstone::Cancellable
 
-See [endstone::ServerEvent](classendstone_1_1ServerEvent.md)
-
-| Type | Name |
-| ---: | :--- |
-|   | [**Event**](classendstone_1_1ServerEvent.md#function-event-12) (bool async=false) <br> |
-|   | [**Event**](classendstone_1_1ServerEvent.md#function-event-22) (const [**Event**](classendstone_1_1Event.md) &) = delete<br> |
-
-
-## Public Functions inherited from endstone::Event
-
-See [endstone::Event](classendstone_1_1Event.md)
+See [endstone::Cancellable](classendstone_1_1Cancellable.md)
 
 | Type | Name |
 | ---: | :--- |
-|   | [**Event**](classendstone_1_1Event.md#function-event-12) (bool async=false) <br> |
-|   | [**Event**](classendstone_1_1Event.md#function-event-22) (const [**Event**](classendstone_1_1Event.md) &) = delete<br> |
-| virtual std::string | [**getEventName**](classendstone_1_1Event.md#function-geteventname) () const = 0<br> |
-|  bool | [**isAsynchronous**](classendstone_1_1Event.md#function-isasynchronous) () const<br> |
-| virtual bool | [**isCancellable**](classendstone_1_1Event.md#function-iscancellable) () const = 0<br> |
-|  bool | [**isCancelled**](classendstone_1_1Event.md#function-iscancelled) () const<br> |
-|  [**Event**](classendstone_1_1Event.md) & | [**operator=**](classendstone_1_1Event.md#function-operator) (const [**Event**](classendstone_1_1Event.md) &) = delete<br> |
-|  void | [**setCancelled**](classendstone_1_1Event.md#function-setcancelled) (bool cancel) <br> |
-| virtual  | [**~Event**](classendstone_1_1Event.md#function-event) () = default<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**cancel**](classendstone_1_1Cancellable.md#function-cancel) () <br>_Cancel this event. A cancelled event will not be executed in the server, but will still pass to other plugins._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isCancelled**](classendstone_1_1Cancellable.md#function-iscancelled) () override const<br>_Gets the cancellation state of this event. A cancelled event will not be executed in the server, but will still pass to other plugins._  |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**setCancelled**](classendstone_1_1Cancellable.md#function-setcancelled) ([**bool**](classendstone_1_1Identifier.md) cancel) override<br>_Sets the cancellation state of this event. A cancelled event will not be executed in the server, but will still pass to other plugins._  |
 
 
+## Public Functions inherited from endstone::ICancellable
 
+See [endstone::ICancellable](classendstone_1_1ICancellable.md)
 
+| Type | Name |
+| ---: | :--- |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**cancel**](classendstone_1_1ICancellable.md#function-cancel) () = 0<br> |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isCancelled**](classendstone_1_1ICancellable.md#function-iscancelled) () const = 0<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**setCancelled**](classendstone_1_1ICancellable.md#function-setcancelled) ([**bool**](classendstone_1_1Identifier.md) cancel) = 0<br> |
+| virtual  | [**~ICancellable**](classendstone_1_1ICancellable.md#function-icancellable) () = default<br> |
 
 
 
@@ -211,33 +197,20 @@ See [endstone::Event](classendstone_1_1Event.md)
 
 
 
-## Public Static Attributes Documentation
 
 
 
 
-### variable NAME 
-
-```C++
-const std::string endstone::ScriptMessageEvent::NAME;
-```
-
-
-
-
-<hr>
 ## Public Functions Documentation
 
 
 
 
-### function ScriptMessageEvent 
+### function ENDSTONE\_EVENT 
 
 ```C++
-inline endstone::ScriptMessageEvent::ScriptMessageEvent (
-    std::string message_id,
-    std::string message,
-    const CommandSender & sender
+endstone::ScriptMessageEvent::ENDSTONE_EVENT (
+    ScriptMessageEvent
 ) 
 ```
 
@@ -248,30 +221,17 @@ inline endstone::ScriptMessageEvent::ScriptMessageEvent (
 
 
 
-### function getEventName 
-
+### function ScriptMessageEvent 
 
 ```C++
-inline virtual std::string endstone::ScriptMessageEvent::getEventName () override const
+inline endstone::ScriptMessageEvent::ScriptMessageEvent (
+    std::string message_id,
+    std::string message,
+    const  CommandSender & sender
+) 
 ```
 
 
-
-Gets a user-friendly identifier for this event.
-
-
-
-
-**Returns:**
-
-name of this event 
-
-
-
-
-
-        
-Implements [*endstone::Event::getEventName*](classendstone_1_1Event.md#function-geteventname)
 
 
 <hr>
@@ -279,7 +239,6 @@ Implements [*endstone::Event::getEventName*](classendstone_1_1Event.md#function-
 
 
 ### function getMessage 
-
 
 ```C++
 inline const std::string & endstone::ScriptMessageEvent::getMessage () const
@@ -308,7 +267,6 @@ Message to send
 
 ### function getMessageId 
 
-
 ```C++
 inline const std::string & endstone::ScriptMessageEvent::getMessageId () const
 ```
@@ -336,9 +294,8 @@ Message id to send
 
 ### function getSender 
 
-
 ```C++
-inline const CommandSender & endstone::ScriptMessageEvent::getSender () const
+inline const  CommandSender & endstone::ScriptMessageEvent::getSender () const
 ```
 
 
@@ -357,36 +314,6 @@ Gets the command sender who initiated the command
 
 
         
-
-<hr>
-
-
-
-### function isCancellable 
-
-
-```C++
-inline virtual bool endstone::ScriptMessageEvent::isCancellable () override const
-```
-
-
-
-Whether the event can be cancelled by a plugin or the server.
-
-
-
-
-**Returns:**
-
-true if this event can be cancelled 
-
-
-
-
-
-        
-Implements [*endstone::Event::isCancellable*](classendstone_1_1Event.md#function-iscancellable)
-
 
 <hr>
 

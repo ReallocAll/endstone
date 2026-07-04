@@ -52,17 +52,17 @@ _Represents a scheduler that executes various tasks._
 
 | Type | Name |
 | ---: | :--- |
-| virtual void | [**cancelTask**](#function-canceltask) (TaskId id) = 0<br> |
-| virtual void | [**cancelTasks**](#function-canceltasks) ([**Plugin**](classendstone_1_1Plugin.md) & plugin) = 0<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**cancelTask**](#function-canceltask) (TaskId id) = 0<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**cancelTasks**](#function-canceltasks) ([**Plugin**](classendstone_1_1Plugin.md) & plugin) = 0<br> |
 | virtual std::vector&lt; [**Task**](classendstone_1_1Task.md) \* &gt; | [**getPendingTasks**](#function-getpendingtasks) () = 0<br> |
-| virtual bool | [**isQueued**](#function-isqueued) (TaskId id) = 0<br> |
-| virtual bool | [**isRunning**](#function-isrunning) (TaskId id) = 0<br> |
-| virtual std::shared\_ptr&lt; [**Task**](classendstone_1_1Task.md) &gt; | [**runTask**](#function-runtask) ([**Plugin**](classendstone_1_1Plugin.md) & plugin, std::function&lt; void()&gt; task) = 0<br> |
-| virtual std::shared\_ptr&lt; [**Task**](classendstone_1_1Task.md) &gt; | [**runTaskAsync**](#function-runtaskasync) ([**Plugin**](classendstone_1_1Plugin.md) & plugin, std::function&lt; void()&gt; task) = 0<br>_Returns a task that will be executed asynchronously on the next server tick._  |
-| virtual std::shared\_ptr&lt; [**Task**](classendstone_1_1Task.md) &gt; | [**runTaskLater**](#function-runtasklater) ([**Plugin**](classendstone_1_1Plugin.md) & plugin, std::function&lt; void()&gt; task, std::uint64\_t delay) = 0<br> |
-| virtual std::shared\_ptr&lt; [**Task**](classendstone_1_1Task.md) &gt; | [**runTaskLaterAsync**](#function-runtasklaterasync) ([**Plugin**](classendstone_1_1Plugin.md) & plugin, std::function&lt; void()&gt; task, std::uint64\_t delay) = 0<br>_Returns a task that will be executed asynchronously after the specified number of server ticks._  |
-| virtual std::shared\_ptr&lt; [**Task**](classendstone_1_1Task.md) &gt; | [**runTaskTimer**](#function-runtasktimer) ([**Plugin**](classendstone_1_1Plugin.md) & plugin, std::function&lt; void()&gt; task, std::uint64\_t delay, std::uint64\_t period) = 0<br> |
-| virtual std::shared\_ptr&lt; [**Task**](classendstone_1_1Task.md) &gt; | [**runTaskTimerAsync**](#function-runtasktimerasync) ([**Plugin**](classendstone_1_1Plugin.md) & plugin, std::function&lt; void()&gt; task, std::uint64\_t delay, std::uint64\_t period) = 0<br>_Returns a task that will be executed repeatedly (and asynchronously) until cancelled, starting after the specified number of server ticks._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isQueued**](#function-isqueued) (TaskId id) = 0<br> |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isRunning**](#function-isrunning) (TaskId id) = 0<br> |
+| virtual std::shared\_ptr&lt; [**Task**](classendstone_1_1Task.md) &gt; | [**runTask**](#function-runtask) ([**Plugin**](classendstone_1_1Plugin.md) & plugin, std::function&lt; [**void**](classendstone_1_1Identifier.md)()&gt; task) = 0<br> |
+| virtual std::shared\_ptr&lt; [**Task**](classendstone_1_1Task.md) &gt; | [**runTaskAsync**](#function-runtaskasync) ([**Plugin**](classendstone_1_1Plugin.md) & plugin, std::function&lt; [**void**](classendstone_1_1Identifier.md)()&gt; task) = 0<br>_Returns a task that will be executed asynchronously on the next server tick._  |
+| virtual std::shared\_ptr&lt; [**Task**](classendstone_1_1Task.md) &gt; | [**runTaskLater**](#function-runtasklater) ([**Plugin**](classendstone_1_1Plugin.md) & plugin, std::function&lt; [**void**](classendstone_1_1Identifier.md)()&gt; task, std::uint64\_t delay) = 0<br> |
+| virtual std::shared\_ptr&lt; [**Task**](classendstone_1_1Task.md) &gt; | [**runTaskLaterAsync**](#function-runtasklaterasync) ([**Plugin**](classendstone_1_1Plugin.md) & plugin, std::function&lt; [**void**](classendstone_1_1Identifier.md)()&gt; task, std::uint64\_t delay) = 0<br>_Returns a task that will be executed asynchronously after the specified number of server ticks._  |
+| virtual std::shared\_ptr&lt; [**Task**](classendstone_1_1Task.md) &gt; | [**runTaskTimer**](#function-runtasktimer) ([**Plugin**](classendstone_1_1Plugin.md) & plugin, std::function&lt; [**void**](classendstone_1_1Identifier.md)()&gt; task, std::uint64\_t delay, std::uint64\_t period) = 0<br> |
+| virtual std::shared\_ptr&lt; [**Task**](classendstone_1_1Task.md) &gt; | [**runTaskTimerAsync**](#function-runtasktimerasync) ([**Plugin**](classendstone_1_1Plugin.md) & plugin, std::function&lt; [**void**](classendstone_1_1Identifier.md)()&gt; task, std::uint64\_t delay, std::uint64\_t period) = 0<br>_Returns a task that will be executed repeatedly (and asynchronously) until cancelled, starting after the specified number of server ticks._  |
 | virtual  | [**~Scheduler**](#function-scheduler) () = default<br> |
 
 
@@ -99,7 +99,6 @@ _Represents a scheduler that executes various tasks._
 
 ### function cancelTask 
 
-
 ```C++
 virtual void endstone::Scheduler::cancelTask (
     TaskId id
@@ -128,7 +127,6 @@ Removes task from scheduler.
 
 
 ### function cancelTasks 
-
 
 ```C++
 virtual void endstone::Scheduler::cancelTasks (
@@ -159,7 +157,6 @@ Removes all tasks associated with a particular plugin from the scheduler.
 
 ### function getPendingTasks 
 
-
 ```C++
 virtual std::vector< Task * > endstone::Scheduler::getPendingTasks () = 0
 ```
@@ -189,7 +186,6 @@ Pending tasks
 
 
 ### function isQueued 
-
 
 ```C++
 virtual bool endstone::Scheduler::isQueued (
@@ -227,7 +223,6 @@ If the task is queued to be run.
 
 ### function isRunning 
 
-
 ```C++
 virtual bool endstone::Scheduler::isRunning (
     TaskId id
@@ -264,11 +259,10 @@ If the task is currently running.
 
 ### function runTask 
 
-
 ```C++
 virtual std::shared_ptr< Task > endstone::Scheduler::runTask (
     Plugin & plugin,
-    std::function< void()> task
+    std::function< void ()> task
 ) = 0
 ```
 
@@ -307,7 +301,7 @@ _Returns a task that will be executed asynchronously on the next server tick._
 ```C++
 virtual std::shared_ptr< Task > endstone::Scheduler::runTaskAsync (
     Plugin & plugin,
-    std::function< void()> task
+    std::function< void ()> task
 ) = 0
 ```
 
@@ -346,11 +340,10 @@ a [**Task**](classendstone_1_1Task.md) that contains the id number (nullptr if t
 
 ### function runTaskLater 
 
-
 ```C++
 virtual std::shared_ptr< Task > endstone::Scheduler::runTaskLater (
     Plugin & plugin,
-    std::function< void()> task,
+    std::function< void ()> task,
     std::uint64_t delay
 ) = 0
 ```
@@ -391,7 +384,7 @@ _Returns a task that will be executed asynchronously after the specified number 
 ```C++
 virtual std::shared_ptr< Task > endstone::Scheduler::runTaskLaterAsync (
     Plugin & plugin,
-    std::function< void()> task,
+    std::function< void ()> task,
     std::uint64_t delay
 ) = 0
 ```
@@ -432,11 +425,10 @@ a [**Task**](classendstone_1_1Task.md) that contains the id number (nullptr if t
 
 ### function runTaskTimer 
 
-
 ```C++
 virtual std::shared_ptr< Task > endstone::Scheduler::runTaskTimer (
     Plugin & plugin,
-    std::function< void()> task,
+    std::function< void ()> task,
     std::uint64_t delay,
     std::uint64_t period
 ) = 0
@@ -479,7 +471,7 @@ _Returns a task that will be executed repeatedly (and asynchronously) until canc
 ```C++
 virtual std::shared_ptr< Task > endstone::Scheduler::runTaskTimerAsync (
     Plugin & plugin,
-    std::function< void()> task,
+    std::function< void ()> task,
     std::uint64_t delay,
     std::uint64_t period
 ) = 0

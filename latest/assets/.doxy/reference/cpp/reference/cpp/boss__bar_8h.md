@@ -15,7 +15,6 @@
 * `#include "endstone/boss/bar_color.h"`
 * `#include "endstone/boss/bar_flag.h"`
 * `#include "endstone/boss/bar_style.h"`
-* `#include "endstone/util/result.h"`
 
 
 
@@ -33,7 +32,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes

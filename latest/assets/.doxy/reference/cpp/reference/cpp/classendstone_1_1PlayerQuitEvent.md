@@ -47,11 +47,6 @@ Inherits the following classes: [endstone::PlayerEvent](classendstone_1_1PlayerE
 
 
 
-## Public Static Attributes
-
-| Type | Name |
-| ---: | :--- |
-|  const std::string | [**NAME**](#variable-name)   = = "PlayerQuitEvent"<br> |
 
 
 
@@ -98,12 +93,10 @@ Inherits the following classes: [endstone::PlayerEvent](classendstone_1_1PlayerE
 
 | Type | Name |
 | ---: | :--- |
-|   | [**PlayerQuitEvent**](#function-playerquitevent) ([**Player**](classendstone_1_1Player.md) & player, std::string quit\_message) <br> |
-| virtual std::string | [**getEventName**](#function-geteventname) () override const<br> |
-|  std::string | [**getQuitMessage**](#function-getquitmessage) () const<br>_Gets the quit message to send to all online players._  |
-| virtual bool | [**isCancellable**](#function-iscancellable) () override const<br> |
-|  void | [**setQuitMessage**](#function-setquitmessage) (std::string message) <br>_Sets the quit message to send to all online players._  |
-|   | [**~PlayerQuitEvent**](#function-playerquitevent) () override<br> |
+|   | [**ENDSTONE\_EVENT**](#function-endstone_event) ([**PlayerQuitEvent**](classendstone_1_1PlayerQuitEvent.md)) <br> |
+|   | [**PlayerQuitEvent**](#function-playerquitevent) ([**Player**](classendstone_1_1Player.md) & player, std::optional&lt; Message &gt; quit\_message) <br> |
+|  std::optional&lt; Message &gt; | [**getQuitMessage**](#function-getquitmessage) () const<br>_Gets the quit message to send to all online players._  |
+|  [**void**](classendstone_1_1Identifier.md) | [**setQuitMessage**](#function-setquitmessage) (std::optional&lt; Message &gt; message) <br>_Sets the quit message to send to all online players._  |
 
 
 ## Public Functions inherited from endstone::PlayerEvent
@@ -123,14 +116,13 @@ See [endstone::Event](classendstone_1_1Event.md)
 
 | Type | Name |
 | ---: | :--- |
-|   | [**Event**](classendstone_1_1Event.md#function-event-12) (bool async=false) <br> |
-|   | [**Event**](classendstone_1_1Event.md#function-event-22) (const [**Event**](classendstone_1_1Event.md) &) = delete<br> |
+|   | [**Event**](classendstone_1_1Event.md#function-event-13) ([**bool**](classendstone_1_1Identifier.md) async=[**false**](classendstone_1_1Identifier.md)) <br> |
+|   | [**Event**](classendstone_1_1Event.md#function-event-23) ([**const**](classendstone_1_1Identifier.md) [**Event**](classendstone_1_1Event.md) &) = delete<br> |
+|   | [**Event**](classendstone_1_1Event.md#function-event-33) ([**Event**](classendstone_1_1Event.md) &&) = default<br> |
 | virtual std::string | [**getEventName**](classendstone_1_1Event.md#function-geteventname) () const = 0<br> |
-|  bool | [**isAsynchronous**](classendstone_1_1Event.md#function-isasynchronous) () const<br> |
-| virtual bool | [**isCancellable**](classendstone_1_1Event.md#function-iscancellable) () const = 0<br> |
-|  bool | [**isCancelled**](classendstone_1_1Event.md#function-iscancelled) () const<br> |
-|  [**Event**](classendstone_1_1Event.md) & | [**operator=**](classendstone_1_1Event.md#function-operator) (const [**Event**](classendstone_1_1Event.md) &) = delete<br> |
-|  void | [**setCancelled**](classendstone_1_1Event.md#function-setcancelled) (bool cancel) <br> |
+|  [**bool**](classendstone_1_1Identifier.md) | [**isAsynchronous**](classendstone_1_1Event.md#function-isasynchronous) () const<br> |
+|  [**Event**](classendstone_1_1Event.md) & | [**operator=**](classendstone_1_1Event.md#function-operator) ([**const**](classendstone_1_1Identifier.md) [**Event**](classendstone_1_1Event.md) &) = delete<br> |
+|  [**Event**](classendstone_1_1Event.md) & | [**operator=**](classendstone_1_1Event.md#function-operator_1) ([**Event**](classendstone_1_1Event.md) &&) = default<br> |
 | virtual  | [**~Event**](classendstone_1_1Event.md#function-event) () = default<br> |
 
 
@@ -154,8 +146,13 @@ See [endstone::Event](classendstone_1_1Event.md)
 
 
 
+## Protected Attributes inherited from endstone::PlayerEvent
 
+See [endstone::PlayerEvent](classendstone_1_1PlayerEvent.md)
 
+| Type | Name |
+| ---: | :--- |
+|  std::reference\_wrapper&lt; [**Player**](classendstone_1_1Player.md) &gt; | [**player\_**](classendstone_1_1PlayerEvent.md#variable-player_)  <br> |
 
 
 
@@ -212,32 +209,18 @@ See [endstone::Event](classendstone_1_1Event.md)
 
 
 
-## Public Static Attributes Documentation
 
 
-
-
-### variable NAME 
-
-```C++
-const std::string endstone::PlayerQuitEvent::NAME;
-```
-
-
-
-
-<hr>
 ## Public Functions Documentation
 
 
 
 
-### function PlayerQuitEvent 
+### function ENDSTONE\_EVENT 
 
 ```C++
-inline explicit endstone::PlayerQuitEvent::PlayerQuitEvent (
-    Player & player,
-    std::string quit_message
+endstone::PlayerQuitEvent::ENDSTONE_EVENT (
+    PlayerQuitEvent
 ) 
 ```
 
@@ -248,30 +231,16 @@ inline explicit endstone::PlayerQuitEvent::PlayerQuitEvent (
 
 
 
-### function getEventName 
-
+### function PlayerQuitEvent 
 
 ```C++
-inline virtual std::string endstone::PlayerQuitEvent::getEventName () override const
+inline explicit endstone::PlayerQuitEvent::PlayerQuitEvent (
+    Player & player,
+    std::optional< Message > quit_message
+) 
 ```
 
 
-
-Gets a user-friendly identifier for this event.
-
-
-
-
-**Returns:**
-
-name of this event 
-
-
-
-
-
-        
-Implements [*endstone::Event::getEventName*](classendstone_1_1Event.md#function-geteventname)
 
 
 <hr>
@@ -282,7 +251,7 @@ Implements [*endstone::Event::getEventName*](classendstone_1_1Event.md#function-
 
 _Gets the quit message to send to all online players._ 
 ```C++
-inline std::string endstone::PlayerQuitEvent::getQuitMessage () const
+inline std::optional< Message > endstone::PlayerQuitEvent::getQuitMessage () const
 ```
 
 
@@ -303,42 +272,12 @@ Message to appear to other players on the server.
 
 
 
-### function isCancellable 
-
-
-```C++
-inline virtual bool endstone::PlayerQuitEvent::isCancellable () override const
-```
-
-
-
-Whether the event can be cancelled by a plugin or the server.
-
-
-
-
-**Returns:**
-
-true if this event can be cancelled 
-
-
-
-
-
-        
-Implements [*endstone::Event::isCancellable*](classendstone_1_1Event.md#function-iscancellable)
-
-
-<hr>
-
-
-
 ### function setQuitMessage 
 
 _Sets the quit message to send to all online players._ 
 ```C++
 inline void endstone::PlayerQuitEvent::setQuitMessage (
-    std::string message
+    std::optional< Message > message
 ) 
 ```
 
@@ -355,19 +294,6 @@ inline void endstone::PlayerQuitEvent::setQuitMessage (
 
 
         
-
-<hr>
-
-
-
-### function ~PlayerQuitEvent 
-
-```C++
-endstone::PlayerQuitEvent::~PlayerQuitEvent () override
-```
-
-
-
 
 <hr>
 

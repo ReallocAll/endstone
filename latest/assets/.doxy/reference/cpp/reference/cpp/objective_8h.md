@@ -10,6 +10,8 @@
 
 
 
+* `#include <memory>`
+* `#include <optional>`
 * `#include <string>`
 * `#include "endstone/scoreboard/objective_sort_order.h"`
 * `#include "endstone/scoreboard/score.h"`
@@ -31,7 +33,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes

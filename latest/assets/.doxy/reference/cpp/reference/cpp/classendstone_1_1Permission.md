@@ -38,7 +38,7 @@ _Represents a unique permission that may be attached to a_ [_**Permissible**_](c
 
 | Type | Name |
 | ---: | :--- |
-|  const PermissionDefault | [**DefaultPermission**](#variable-defaultpermission)   = = PermissionDefault::Operator<br> |
+|  [**constexpr**](classendstone_1_1Identifier.md) [**auto**](classendstone_1_1Identifier.md) | [**DefaultPermission**](#variable-defaultpermission)   = `PermissionDefault::Operator`<br> |
 
 
 
@@ -57,18 +57,18 @@ _Represents a unique permission that may be attached to a_ [_**Permissible**_](c
 
 | Type | Name |
 | ---: | :--- |
-|   | [**Permission**](#function-permission) (std::string name, std::string description="", PermissionDefault default\_value=DefaultPermission, std::unordered\_map&lt; std::string, bool &gt; children={}) <br> |
-|  [**Permission**](classendstone_1_1Permission.md) \* | [**addParent**](#function-addparent-12) (std::string name, bool value) <br> |
-|  void | [**addParent**](#function-addparent-22) ([**Permission**](classendstone_1_1Permission.md) & perm, bool value) const<br> |
-|  std::unordered\_map&lt; std::string, bool &gt; & | [**getChildren**](#function-getchildren) () <br> |
-|  PermissionDefault | [**getDefault**](#function-getdefault) () const<br> |
+|   | [**Permission**](#function-permission) (std::string name, std::string description="", [**PermissionDefault**](namespaceendstone.md#enum-permissiondefault) default\_value=DefaultPermission, std::unordered\_map&lt; std::string, [**bool**](classendstone_1_1Identifier.md) &gt; children={}) <br> |
+|  [**Permission**](classendstone_1_1Permission.md) \* | [**addParent**](#function-addparent-12) (std::string name, [**bool**](classendstone_1_1Identifier.md) value) <br> |
+|  [**void**](classendstone_1_1Identifier.md) | [**addParent**](#function-addparent-22) ([**Permission**](classendstone_1_1Permission.md) & perm, [**bool**](classendstone_1_1Identifier.md) value) const<br> |
+|  std::unordered\_map&lt; std::string, [**bool**](classendstone_1_1Identifier.md) &gt; & | [**getChildren**](#function-getchildren) () <br> |
+|  [**PermissionDefault**](namespaceendstone.md#enum-permissiondefault) | [**getDefault**](#function-getdefault) () const<br> |
 |  std::string | [**getDescription**](#function-getdescription) () const<br> |
 |  std::string | [**getName**](#function-getname) () const<br> |
 |  std::unordered\_set&lt; [**Permissible**](classendstone_1_1Permissible.md) \* &gt; | [**getPermissibles**](#function-getpermissibles) () const<br> |
-|  void | [**init**](#function-init) ([**PluginManager**](classendstone_1_1PluginManager.md) & plugin\_manager) <br> |
-|  void | [**recalculatePermissibles**](#function-recalculatepermissibles) () <br> |
-|  void | [**setDefault**](#function-setdefault) (PermissionDefault value) <br> |
-|  void | [**setDescription**](#function-setdescription) (std::string value) <br> |
+|  [**void**](classendstone_1_1Identifier.md) | [**init**](#function-init) ([**PluginManager**](classendstone_1_1PluginManager.md) & plugin\_manager) <br> |
+|  [**void**](classendstone_1_1Identifier.md) | [**recalculatePermissibles**](#function-recalculatepermissibles) () <br> |
+|  [**void**](classendstone_1_1Identifier.md) | [**setDefault**](#function-setdefault) ([**PermissionDefault**](namespaceendstone.md#enum-permissiondefault) value) <br> |
+|  [**void**](classendstone_1_1Identifier.md) | [**setDescription**](#function-setdescription) (std::string value) <br> |
 
 
 
@@ -105,7 +105,7 @@ _Represents a unique permission that may be attached to a_ [_**Permissible**_](c
 ### variable DefaultPermission 
 
 ```C++
-const PermissionDefault endstone::Permission::DefaultPermission;
+constexpr auto endstone::Permission::DefaultPermission;
 ```
 
 
@@ -136,7 +136,6 @@ inline explicit endstone::Permission::Permission (
 
 
 ### function addParent [1/2]
-
 
 ```C++
 inline Permission * endstone::Permission::addParent (
@@ -179,7 +178,6 @@ Parent permission it created or loaded
 
 ### function addParent [2/2]
 
-
 ```C++
 inline void endstone::Permission::addParent (
     Permission & perm,
@@ -211,7 +209,6 @@ Adds this permission to the specified parent permission.
 
 ### function getChildren 
 
-
 ```C++
 inline std::unordered_map< std::string, bool > & endstone::Permission::getChildren () 
 ```
@@ -238,7 +235,6 @@ Gets the children of this permission. If you change this map in any form, you mu
 
 
 ### function getDefault 
-
 
 ```C++
 inline PermissionDefault endstone::Permission::getDefault () const
@@ -267,7 +263,6 @@ Default value of this permission.
 
 ### function getDescription 
 
-
 ```C++
 inline std::string endstone::Permission::getDescription () const
 ```
@@ -295,7 +290,6 @@ Brief description of this permission
 
 ### function getName 
 
-
 ```C++
 inline std::string endstone::Permission::getName () const
 ```
@@ -322,7 +316,6 @@ Fully qualified name
 
 
 ### function getPermissibles 
-
 
 ```C++
 inline std::unordered_set< Permissible * > endstone::Permission::getPermissibles () const
@@ -366,7 +359,6 @@ inline void endstone::Permission::init (
 
 ### function recalculatePermissibles 
 
-
 ```C++
 inline void endstone::Permission::recalculatePermissibles () 
 ```
@@ -386,7 +378,6 @@ This should be called after modifying the children, and is automatically called 
 
 
 ### function setDefault 
-
 
 ```C++
 inline void endstone::Permission::setDefault (
@@ -419,7 +410,6 @@ This will not be saved to disk, and is a temporary operation until the server re
 
 
 ### function setDescription 
-
 
 ```C++
 inline void endstone::Permission::setDescription (

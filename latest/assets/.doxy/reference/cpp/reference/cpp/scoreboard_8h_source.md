@@ -24,7 +24,9 @@
 
 #pragma once
 
+#include <memory>
 #include <string>
+#include <vector>
 
 #include "endstone/scoreboard/criteria.h"
 #include "endstone/scoreboard/display_slot.h"
@@ -38,13 +40,13 @@ class Scoreboard : public std::enable_shared_from_this<Scoreboard> {
 public:
     virtual ~Scoreboard() = default;
 
-    virtual Result<std::unique_ptr<Objective>> addObjective(std::string name, Criteria::Type criteria) = 0;
+    virtual std::unique_ptr<Objective> addObjective(std::string name, Criteria::Type criteria) = 0;
 
-    virtual Result<std::unique_ptr<Objective>> addObjective(std::string name, Criteria::Type criteria,
-                                                            std::string display_name) = 0;
+    virtual std::unique_ptr<Objective> addObjective(std::string name, Criteria::Type criteria,
+                                                    std::string display_name) = 0;
 
-    virtual Result<std::unique_ptr<Objective>> addObjective(std::string name, Criteria::Type criteria,
-                                                            std::string display_name, RenderType render_type) = 0;
+    virtual std::unique_ptr<Objective> addObjective(std::string name, Criteria::Type criteria, std::string display_name,
+                                                    RenderType render_type) = 0;
 
     [[nodiscard]] virtual std::unique_ptr<Objective> getObjective(std::string name) const = 0;
 

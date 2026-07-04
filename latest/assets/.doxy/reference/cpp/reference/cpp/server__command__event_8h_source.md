@@ -25,43 +25,25 @@
 #pragma once
 
 #include <string>
+#include <utility>
 
 #include "endstone/command/command_sender.h"
+#include "endstone/event/cancellable.h"
 #include "endstone/event/event.h"
-#include "endstone/event/handler_list.h"
 #include "endstone/event/server/server_event.h"
 
 namespace endstone {
 
-class ServerCommandEvent : public ServerEvent {
+class ServerCommandEvent : public Cancellable<ServerEvent> {
 public:
+    ENDSTONE_EVENT(ServerCommandEvent);
     ServerCommandEvent(CommandSender &sender, std::string command) : sender_(sender), command_(std::move(command)) {}
 
-    inline static const std::string NAME = "ServerCommandEvent";
-    [[nodiscard]] std::string getEventName() const override
-    {
-        return NAME;
-    }
+    [[nodiscard]] std::string getCommand() const { return command_; }
 
-    [[nodiscard]] bool isCancellable() const override
-    {
-        return true;
-    }
+    void setCommand(std::string message) { command_ = std::move(message); }
 
-    [[nodiscard]] std::string getCommand() const
-    {
-        return command_;
-    }
-
-    void setCommand(std::string message)
-    {
-        command_ = std::move(message);
-    }
-
-    [[nodiscard]] CommandSender &getSender() const
-    {
-        return sender_;
-    }
+    [[nodiscard]] CommandSender &getSender() const { return sender_; }
 
 private:
     CommandSender &sender_;

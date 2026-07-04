@@ -24,6 +24,9 @@
 
 #pragma once
 
+#include <memory>
+#include <utility>
+
 #include "endstone/block/block.h"
 #include "endstone/event/event.h"
 
@@ -31,16 +34,12 @@ namespace endstone {
 
 class BlockEvent : public Event {
 public:
-    explicit BlockEvent(Block &block) : block_(block){};
-    ~BlockEvent() override = default;
+    explicit BlockEvent(std::unique_ptr<Block> block) : block_(std::move(block)) {};
 
-    [[nodiscard]] Block &getBlock() const
-    {
-        return block_;
-    }
+    [[nodiscard]] Block &getBlock() const { return *block_; }
 
-private:
-    Block &block_;
+protected:
+    std::unique_ptr<Block> block_;
 };
 
 }  // namespace endstone

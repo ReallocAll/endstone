@@ -10,8 +10,13 @@
 
 
 
+* `#include <memory>`
+* `#include <stdexcept>`
+* `#include <string>`
 * `#include <utility>`
-* `#include <fmt/format.h>`
+* `#include "endstone/inventory/item_type.h"`
+* `#include "endstone/inventory/meta/item_meta.h"`
+* `#include "endstone/nbt/tag.h"`
 
 
 
@@ -29,8 +34,8 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
-| namespace | [**fmt**](namespacefmt.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
+| namespace | [**core**](namespaceendstone_1_1core.md) <br> |
 
 
 ## Classes

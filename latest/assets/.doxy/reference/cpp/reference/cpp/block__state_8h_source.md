@@ -24,6 +24,9 @@
 
 #pragma once
 
+#include <memory>
+#include <string>
+
 #include <fmt/format.h>
 
 #include "endstone/block/block.h"
@@ -31,19 +34,19 @@
 
 namespace endstone {
 
-class BlockState : public std::enable_shared_from_this<BlockState> {
+class BlockState {
 public:
     virtual ~BlockState() = default;
 
-    [[nodiscard]] virtual Result<std::unique_ptr<Block>> getBlock() const = 0;
+    [[nodiscard]] virtual std::unique_ptr<Block> getBlock() const = 0;
 
     [[nodiscard]] virtual std::string getType() const = 0;
 
-    virtual Result<void> setType(std::string type) = 0;
+    virtual void setType(std::string type) = 0;
 
-    [[nodiscard]] virtual std::shared_ptr<BlockData> getData() const = 0;
+    [[nodiscard]] virtual std::unique_ptr<BlockData> getData() const = 0;
 
-    virtual Result<void> setData(std::shared_ptr<BlockData> data) = 0;
+    virtual void setData(const BlockData &data) = 0;
 
     [[nodiscard]] virtual Dimension &getDimension() const = 0;
 
@@ -55,11 +58,11 @@ public:
 
     [[nodiscard]] virtual Location getLocation() const = 0;
 
-    virtual Result<bool> update() = 0;
+    virtual bool update() = 0;
 
-    virtual Result<bool> update(bool force) = 0;
+    virtual bool update(bool force) = 0;
 
-    virtual Result<bool> update(bool force, bool apply_physics) = 0;
+    virtual bool update(bool force, bool apply_physics) = 0;
 };
 }  // namespace endstone
 
@@ -71,8 +74,8 @@ struct formatter<endstone::BlockState> : formatter<string_view> {
     template <typename FormatContext>
     auto format(const Type &val, FormatContext &ctx) const -> format_context::iterator
     {
-        return format_to(ctx.out(), "BlockState(pos=BlockPos(x={}, y={}, z={}), type={}, data={})", val.getX(),
-                         val.getY(), val.getZ(), val.getType(), *val.getData());
+        return fmt::format_to(ctx.out(), "BlockState(pos=BlockPos(x={}, y={}, z={}), type={}, data={})", val.getX(),
+                              val.getY(), val.getZ(), val.getType(), *val.getData());
     }
 };
 }  // namespace fmt

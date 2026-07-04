@@ -24,46 +24,49 @@
 
 #pragma once
 
+#include <stdexcept>
 #include <string>
 
 namespace endstone {
 
+enum class EventResult {
+    Deny,
+    Default,
+    Allow
+};
+
 class Event {
 public:
-    explicit Event(bool async = false) : async_(async){};
-    Event(const Event &) = delete;             // deleted copy constructor
-    Event &operator=(const Event &) = delete;  // deleted copy assignment operator
+    explicit Event(bool async = false) : async_(async) {};
+    Event(const Event &) = delete;
+    Event &operator=(const Event &) = delete;
+    Event(Event &&) = default;
+    Event &operator=(Event &&) = default;
 
     virtual ~Event() = default;
 
     [[nodiscard]] virtual std::string getEventName() const = 0;
 
-    [[nodiscard]] virtual bool isCancellable() const = 0;
-
-    [[nodiscard]] bool isCancelled() const
-    {
-        if (!isCancellable()) {
-            return false;
-        }
-        return cancelled_;
-    };
-
-    void setCancelled(bool cancel)
-    {
-        if (isCancellable()) {
-            cancelled_ = cancel;
-        }
-    }
-
-    [[nodiscard]] bool isAsynchronous() const
-    {
-        return async_;
-    }
+    [[nodiscard]] bool isAsynchronous() const { return async_; }
 
 private:
+    [[nodiscard]] virtual bool isCancellable() const { return false; }
+
+    template <class T>
+    friend class Cancellable;
+    friend class EventHandler;
+
     bool async_;
     bool cancelled_{false};
 };
+
+#define ENDSTONE_EVENT(type)                                \
+public:                                                     \
+    inline static constexpr auto NAME = #type;              \
+    [[nodiscard]] std::string getEventName() const override \
+    {                                                       \
+        return NAME;                                        \
+    }
 
 }  // namespace endstone
 ```

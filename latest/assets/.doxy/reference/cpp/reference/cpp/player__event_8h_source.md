@@ -24,6 +24,8 @@
 
 #pragma once
 
+#include <functional>
+
 #include "endstone/event/event.h"
 #include "endstone/player.h"
 
@@ -31,16 +33,13 @@ namespace endstone {
 
 class PlayerEvent : public Event {
 public:
-    explicit PlayerEvent(Player &player) : player_(player){};
+    explicit PlayerEvent(Player &player) : player_(player) {};
     ~PlayerEvent() override = default;
 
-    [[nodiscard]] Player &getPlayer() const
-    {
-        return player_;
-    }
+    [[nodiscard]] Player &getPlayer() const { return player_; }
 
-private:
-    Player &player_;
+protected:
+    std::reference_wrapper<Player> player_;
 };
 
 }  // namespace endstone

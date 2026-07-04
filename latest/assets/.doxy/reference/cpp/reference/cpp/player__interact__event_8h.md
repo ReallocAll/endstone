@@ -10,6 +10,10 @@
 
 
 
+* `#include <optional>`
+* `#include <utility>`
+* `#include "endstone/block/block_face.h"`
+* `#include "endstone/event/cancellable.h"`
 * `#include "endstone/event/player/player_event.h"`
 * `#include "endstone/inventory/item_stack.h"`
 
@@ -29,7 +33,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes

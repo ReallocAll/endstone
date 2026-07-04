@@ -16,7 +16,7 @@ _Represents an event._
 
 
 
-Inherited by the following classes: [endstone::ActorEvent](classendstone_1_1ActorEvent.md),  [endstone::BlockEvent](classendstone_1_1BlockEvent.md),  [endstone::PlayerEvent](classendstone_1_1PlayerEvent.md),  [endstone::ServerEvent](classendstone_1_1ServerEvent.md),  [endstone::WeatherEvent](classendstone_1_1WeatherEvent.md)
+Inherited by the following classes: [endstone::ActorEvent](classendstone_1_1ActorEvent.md),  [endstone::ActorEvent](classendstone_1_1ActorEvent.md),  [endstone::ActorEvent](classendstone_1_1ActorEvent.md),  [endstone::BlockEvent](classendstone_1_1BlockEvent.md),  [endstone::LevelEvent](classendstone_1_1LevelEvent.md),  [endstone::PlayerEvent](classendstone_1_1PlayerEvent.md),  [endstone::ServerEvent](classendstone_1_1ServerEvent.md),  [endstone::WeatherEvent](classendstone_1_1WeatherEvent.md)
 
 
 
@@ -53,14 +53,13 @@ Inherited by the following classes: [endstone::ActorEvent](classendstone_1_1Acto
 
 | Type | Name |
 | ---: | :--- |
-|   | [**Event**](#function-event-12) (bool async=false) <br> |
-|   | [**Event**](#function-event-22) (const [**Event**](classendstone_1_1Event.md) &) = delete<br> |
+|   | [**Event**](#function-event-13) ([**bool**](classendstone_1_1Identifier.md) async=[**false**](classendstone_1_1Identifier.md)) <br> |
+|   | [**Event**](#function-event-23) ([**const**](classendstone_1_1Identifier.md) [**Event**](classendstone_1_1Event.md) &) = delete<br> |
+|   | [**Event**](#function-event-33) ([**Event**](classendstone_1_1Event.md) &&) = default<br> |
 | virtual std::string | [**getEventName**](#function-geteventname) () const = 0<br> |
-|  bool | [**isAsynchronous**](#function-isasynchronous) () const<br> |
-| virtual bool | [**isCancellable**](#function-iscancellable) () const = 0<br> |
-|  bool | [**isCancelled**](#function-iscancelled) () const<br> |
-|  [**Event**](classendstone_1_1Event.md) & | [**operator=**](#function-operator) (const [**Event**](classendstone_1_1Event.md) &) = delete<br> |
-|  void | [**setCancelled**](#function-setcancelled) (bool cancel) <br> |
+|  [**bool**](classendstone_1_1Identifier.md) | [**isAsynchronous**](#function-isasynchronous) () const<br> |
+|  [**Event**](classendstone_1_1Event.md) & | [**operator=**](#function-operator) ([**const**](classendstone_1_1Identifier.md) [**Event**](classendstone_1_1Event.md) &) = delete<br> |
+|  [**Event**](classendstone_1_1Event.md) & | [**operator=**](#function-operator_1) ([**Event**](classendstone_1_1Event.md) &&) = default<br> |
 | virtual  | [**~Event**](#function-event) () = default<br> |
 
 
@@ -95,7 +94,7 @@ Inherited by the following classes: [endstone::ActorEvent](classendstone_1_1Acto
 
 
 
-### function Event [1/2]
+### function Event [1/3]
 
 ```C++
 inline explicit endstone::Event::Event (
@@ -110,11 +109,11 @@ inline explicit endstone::Event::Event (
 
 
 
-### function Event [2/2]
+### function Event [2/3]
 
 ```C++
 endstone::Event::Event (
-    const Event &
+    const  Event &
 ) = delete
 ```
 
@@ -125,8 +124,22 @@ endstone::Event::Event (
 
 
 
-### function getEventName 
+### function Event [3/3]
 
+```C++
+endstone::Event::Event (
+    Event &&
+) = default
+```
+
+
+
+
+<hr>
+
+
+
+### function getEventName 
 
 ```C++
 virtual std::string endstone::Event::getEventName () const = 0
@@ -155,7 +168,6 @@ name of this event
 
 ### function isAsynchronous 
 
-
 ```C++
 inline bool endstone::Event::isAsynchronous () const
 ```
@@ -181,67 +193,11 @@ false by default, true if the event fires asynchronously
 
 
 
-### function isCancellable 
-
-
-```C++
-virtual bool endstone::Event::isCancellable () const = 0
-```
-
-
-
-Whether the event can be cancelled by a plugin or the server.
-
-
-
-
-**Returns:**
-
-true if this event can be cancelled 
-
-
-
-
-
-        
-
-<hr>
-
-
-
-### function isCancelled 
-
-
-```C++
-inline bool endstone::Event::isCancelled () const
-```
-
-
-
-Gets the cancellation state of this event. A cancelled event will not be executed in the server, but will still pass to other plugins
-
-
-
-
-**Returns:**
-
-true if this event is cancelled 
-
-
-
-
-
-        
-
-<hr>
-
-
-
 ### function operator= 
 
 ```C++
 Event & endstone::Event::operator= (
-    const Event &
+    const  Event &
 ) = delete
 ```
 
@@ -252,31 +208,16 @@ Event & endstone::Event::operator= (
 
 
 
-### function setCancelled 
-
+### function operator= 
 
 ```C++
-inline void endstone::Event::setCancelled (
-    bool cancel
-) 
+Event & endstone::Event::operator= (
+    Event &&
+) = default
 ```
 
 
 
-Sets the cancellation state of this event. A cancelled event will not be executed in the server, but will still pass to other plugins.
-
-
-
-
-**Parameters:**
-
-
-* `cancel` true if you wish to cancel this event 
-
-
-
-
-        
 
 <hr>
 

@@ -24,13 +24,78 @@
 
 #pragma once
 
+#include <optional>
+#include <string>
+#include <type_traits>
+#include <unordered_map>
+#include <utility>
+#include <vector>
+
+#include "endstone/util/result.h"
+
 namespace endstone {
+class ItemStack;
+class ItemType;
 class Inventory {
 public:
     virtual ~Inventory() = default;
     [[nodiscard]] virtual int getSize() const = 0;
 
     [[nodiscard]] virtual int getMaxStackSize() const = 0;
+
+    [[nodiscard]] virtual std::optional<ItemStack> getItem(int index) const = 0;
+
+    virtual void setItem(int index, std::optional<ItemStack> item) = 0;
+
+    virtual std::unordered_map<int, ItemStack> addItem(std::vector<ItemStack> items) = 0;
+
+    virtual std::unordered_map<int, ItemStack> removeItem(std::vector<ItemStack> items) = 0;
+
+    template <typename... Args, typename = std::enable_if_t<(std::is_convertible_v<Args, ItemStack> && ...)>>
+    std::unordered_map<int, ItemStack> addItem(Args &&...items)
+    {
+        return addItem(std::vector<ItemStack>{std::forward<Args>(items)...});
+    }
+
+    template <typename... Args, typename = std::enable_if_t<(std::is_convertible_v<Args, ItemStack> && ...)>>
+    std::unordered_map<int, ItemStack> removeItem(Args &&...items)
+    {
+        return removeItem(std::vector<ItemStack>{std::forward<Args>(items)...});
+    }
+
+    [[nodiscard]] virtual std::vector<std::optional<ItemStack>> getContents() const = 0;
+
+    virtual void setContents(std::vector<std::optional<ItemStack>> items) = 0;
+
+    [[nodiscard]] virtual bool contains(const std::string &type) const = 0;
+
+    [[nodiscard]] virtual bool contains(const ItemStack &item) const = 0;
+
+    [[nodiscard]] virtual bool contains(const ItemStack &item, int amount) const = 0;
+
+    [[nodiscard]] virtual bool containsAtLeast(const std::string &type, int amount) const = 0;
+
+    [[nodiscard]] virtual bool containsAtLeast(const ItemStack &item, int amount) const = 0;
+
+    [[nodiscard]] virtual std::unordered_map<int, ItemStack> all(const std::string &type) const = 0;
+
+    [[nodiscard]] virtual std::unordered_map<int, ItemStack> all(const ItemStack &item) const = 0;
+
+    [[nodiscard]] virtual int first(const std::string &type) const = 0;
+
+    [[nodiscard]] virtual int first(const ItemStack &item) const = 0;
+
+    [[nodiscard]] virtual int firstEmpty() const = 0;
+
+    [[nodiscard]] virtual bool isEmpty() const = 0;
+
+    virtual void remove(const std::string &type) = 0;
+
+    virtual void remove(const ItemStack &item) = 0;
+
+    virtual void clear(int index) = 0;
+
+    virtual void clear() = 0;
 };
 }  // namespace endstone
 ```

@@ -12,9 +12,10 @@
 
 * `#include <string>`
 * `#include <utility>`
-* `#include "endstone/event/event.h"`
+* `#include "endstone/event/cancellable.h"`
 * `#include "endstone/event/server/server_event.h"`
 * `#include "endstone/game_mode.h"`
+* `#include "endstone/util/socket_address.h"`
 
 
 
@@ -32,7 +33,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes

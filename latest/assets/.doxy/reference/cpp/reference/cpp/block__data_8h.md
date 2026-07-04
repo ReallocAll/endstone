@@ -10,11 +10,13 @@
 
 
 
+* `#include <cstdint>`
 * `#include <string>`
 * `#include <unordered_map>`
 * `#include <variant>`
 * `#include <fmt/format.h>`
-* `#include "endstone/endstone.h"`
+* `#include <fmt/ranges.h>`
+* `#include "endstone/variant.h"`
 
 
 
@@ -32,7 +34,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 | namespace | [**fmt**](namespacefmt.md) <br> |
 
 

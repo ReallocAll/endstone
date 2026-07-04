@@ -10,6 +10,9 @@
 
 
 
+* `#include <memory>`
+* `#include <utility>`
+* `#include "endstone/damage/damage_source.h"`
 * `#include "endstone/event/actor/actor_event.h"`
 
 
@@ -28,7 +31,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes

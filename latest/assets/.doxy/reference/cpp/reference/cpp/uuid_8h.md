@@ -13,6 +13,8 @@
 * `#include <algorithm>`
 * `#include <cstddef>`
 * `#include <cstdint>`
+* `#include <cstring>`
+* `#include <functional>`
 * `#include <string>`
 
 
@@ -31,7 +33,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 | namespace | [**std**](namespacestd.md) <br> |
 
 
@@ -39,7 +41,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**UUID**](classendstone_1_1UUID.md) <br>_Implementation of Universally Unique Identifier (_ [_**UUID**_](classendstone_1_1UUID.md) _)_ |
+| class | [**UUID**](classendstone_1_1UUID.md) <br>_Implementation of Universally Unique_ [_**Identifier**_](classendstone_1_1Identifier.md) _(_[_**UUID**_](classendstone_1_1UUID.md) _)_ |
 | struct | [**hash&lt; endstone::UUID &gt;**](structstd_1_1hash_3_01endstone_1_1UUID_01_4.md) &lt;&gt;<br> |
 
 

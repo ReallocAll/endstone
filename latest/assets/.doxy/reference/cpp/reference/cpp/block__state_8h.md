@@ -10,6 +10,8 @@
 
 
 
+* `#include <memory>`
+* `#include <string>`
 * `#include <fmt/format.h>`
 * `#include "endstone/block/block.h"`
 * `#include "endstone/util/result.h"`
@@ -30,7 +32,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 | namespace | [**fmt**](namespacefmt.md) <br> |
 
 

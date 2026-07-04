@@ -10,11 +10,13 @@
 
 
 
+* `#include <cstdint>`
+* `#include <stdexcept>`
 * `#include <string>`
+* `#include <string_view>`
+* `#include <type_traits>`
 * `#include <utility>`
 * `#include <fmt/format.h>`
-* `#include <fmt/std.h>`
-* `#include "endstone/util/error.h"`
 
 
 
@@ -32,7 +34,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes

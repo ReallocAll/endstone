@@ -30,12 +30,9 @@
 #include "endstone/boss/bar_color.h"
 #include "endstone/boss/bar_flag.h"
 #include "endstone/boss/bar_style.h"
-#include "endstone/util/result.h"
 
 namespace endstone {
-
 class Player;
-
 class BossBar {
 public:
     virtual ~BossBar() = default;
@@ -60,7 +57,7 @@ public:
 
     [[nodiscard]] virtual float getProgress() const = 0;
 
-    virtual Result<void> setProgress(float progress) = 0;
+    virtual void setProgress(float progress) = 0;
 
     [[nodiscard]] virtual bool isVisible() const = 0;
 

@@ -47,11 +47,6 @@ Inherits the following classes: [endstone::PlayerEvent](classendstone_1_1PlayerE
 
 
 
-## Public Static Attributes
-
-| Type | Name |
-| ---: | :--- |
-|  const std::string | [**NAME**](#variable-name)   = = "PlayerJoinEvent"<br> |
 
 
 
@@ -98,12 +93,10 @@ Inherits the following classes: [endstone::PlayerEvent](classendstone_1_1PlayerE
 
 | Type | Name |
 | ---: | :--- |
-|   | [**PlayerJoinEvent**](#function-playerjoinevent) ([**Player**](classendstone_1_1Player.md) & player, std::string join\_message) <br> |
-| virtual std::string | [**getEventName**](#function-geteventname) () override const<br> |
-|  std::string | [**getJoinMessage**](#function-getjoinmessage) () const<br>_Gets the join message to send to all online players._  |
-| virtual bool | [**isCancellable**](#function-iscancellable) () override const<br> |
-|  void | [**setJoinMessage**](#function-setjoinmessage) (std::string message) <br>_Sets the join message to send to all online players._  |
-|   | [**~PlayerJoinEvent**](#function-playerjoinevent) () override<br> |
+|   | [**ENDSTONE\_EVENT**](#function-endstone_event) ([**PlayerJoinEvent**](classendstone_1_1PlayerJoinEvent.md)) <br> |
+|   | [**PlayerJoinEvent**](#function-playerjoinevent) ([**Player**](classendstone_1_1Player.md) & player, std::optional&lt; Message &gt; join\_message) <br> |
+|  std::optional&lt; Message &gt; | [**getJoinMessage**](#function-getjoinmessage) () const<br>_Gets the join message to send to all online players._  |
+|  [**void**](classendstone_1_1Identifier.md) | [**setJoinMessage**](#function-setjoinmessage) (std::optional&lt; Message &gt; message) <br>_Sets the join message to send to all online players._  |
 
 
 ## Public Functions inherited from endstone::PlayerEvent
@@ -123,14 +116,13 @@ See [endstone::Event](classendstone_1_1Event.md)
 
 | Type | Name |
 | ---: | :--- |
-|   | [**Event**](classendstone_1_1Event.md#function-event-12) (bool async=false) <br> |
-|   | [**Event**](classendstone_1_1Event.md#function-event-22) (const [**Event**](classendstone_1_1Event.md) &) = delete<br> |
+|   | [**Event**](classendstone_1_1Event.md#function-event-13) ([**bool**](classendstone_1_1Identifier.md) async=[**false**](classendstone_1_1Identifier.md)) <br> |
+|   | [**Event**](classendstone_1_1Event.md#function-event-23) ([**const**](classendstone_1_1Identifier.md) [**Event**](classendstone_1_1Event.md) &) = delete<br> |
+|   | [**Event**](classendstone_1_1Event.md#function-event-33) ([**Event**](classendstone_1_1Event.md) &&) = default<br> |
 | virtual std::string | [**getEventName**](classendstone_1_1Event.md#function-geteventname) () const = 0<br> |
-|  bool | [**isAsynchronous**](classendstone_1_1Event.md#function-isasynchronous) () const<br> |
-| virtual bool | [**isCancellable**](classendstone_1_1Event.md#function-iscancellable) () const = 0<br> |
-|  bool | [**isCancelled**](classendstone_1_1Event.md#function-iscancelled) () const<br> |
-|  [**Event**](classendstone_1_1Event.md) & | [**operator=**](classendstone_1_1Event.md#function-operator) (const [**Event**](classendstone_1_1Event.md) &) = delete<br> |
-|  void | [**setCancelled**](classendstone_1_1Event.md#function-setcancelled) (bool cancel) <br> |
+|  [**bool**](classendstone_1_1Identifier.md) | [**isAsynchronous**](classendstone_1_1Event.md#function-isasynchronous) () const<br> |
+|  [**Event**](classendstone_1_1Event.md) & | [**operator=**](classendstone_1_1Event.md#function-operator) ([**const**](classendstone_1_1Identifier.md) [**Event**](classendstone_1_1Event.md) &) = delete<br> |
+|  [**Event**](classendstone_1_1Event.md) & | [**operator=**](classendstone_1_1Event.md#function-operator_1) ([**Event**](classendstone_1_1Event.md) &&) = default<br> |
 | virtual  | [**~Event**](classendstone_1_1Event.md#function-event) () = default<br> |
 
 
@@ -154,8 +146,13 @@ See [endstone::Event](classendstone_1_1Event.md)
 
 
 
+## Protected Attributes inherited from endstone::PlayerEvent
 
+See [endstone::PlayerEvent](classendstone_1_1PlayerEvent.md)
 
+| Type | Name |
+| ---: | :--- |
+|  std::reference\_wrapper&lt; [**Player**](classendstone_1_1Player.md) &gt; | [**player\_**](classendstone_1_1PlayerEvent.md#variable-player_)  <br> |
 
 
 
@@ -212,32 +209,18 @@ See [endstone::Event](classendstone_1_1Event.md)
 
 
 
-## Public Static Attributes Documentation
 
 
-
-
-### variable NAME 
-
-```C++
-const std::string endstone::PlayerJoinEvent::NAME;
-```
-
-
-
-
-<hr>
 ## Public Functions Documentation
 
 
 
 
-### function PlayerJoinEvent 
+### function ENDSTONE\_EVENT 
 
 ```C++
-inline explicit endstone::PlayerJoinEvent::PlayerJoinEvent (
-    Player & player,
-    std::string join_message
+endstone::PlayerJoinEvent::ENDSTONE_EVENT (
+    PlayerJoinEvent
 ) 
 ```
 
@@ -248,30 +231,16 @@ inline explicit endstone::PlayerJoinEvent::PlayerJoinEvent (
 
 
 
-### function getEventName 
-
+### function PlayerJoinEvent 
 
 ```C++
-inline virtual std::string endstone::PlayerJoinEvent::getEventName () override const
+inline explicit endstone::PlayerJoinEvent::PlayerJoinEvent (
+    Player & player,
+    std::optional< Message > join_message
+) 
 ```
 
 
-
-Gets a user-friendly identifier for this event.
-
-
-
-
-**Returns:**
-
-name of this event 
-
-
-
-
-
-        
-Implements [*endstone::Event::getEventName*](classendstone_1_1Event.md#function-geteventname)
 
 
 <hr>
@@ -282,7 +251,7 @@ Implements [*endstone::Event::getEventName*](classendstone_1_1Event.md#function-
 
 _Gets the join message to send to all online players._ 
 ```C++
-inline std::string endstone::PlayerJoinEvent::getJoinMessage () const
+inline std::optional< Message > endstone::PlayerJoinEvent::getJoinMessage () const
 ```
 
 
@@ -303,42 +272,12 @@ Message to appear to other players on the server.
 
 
 
-### function isCancellable 
-
-
-```C++
-inline virtual bool endstone::PlayerJoinEvent::isCancellable () override const
-```
-
-
-
-Whether the event can be cancelled by a plugin or the server.
-
-
-
-
-**Returns:**
-
-true if this event can be cancelled 
-
-
-
-
-
-        
-Implements [*endstone::Event::isCancellable*](classendstone_1_1Event.md#function-iscancellable)
-
-
-<hr>
-
-
-
 ### function setJoinMessage 
 
 _Sets the join message to send to all online players._ 
 ```C++
 inline void endstone::PlayerJoinEvent::setJoinMessage (
-    std::string message
+    std::optional< Message > message
 ) 
 ```
 
@@ -355,19 +294,6 @@ inline void endstone::PlayerJoinEvent::setJoinMessage (
 
 
         
-
-<hr>
-
-
-
-### function ~PlayerJoinEvent 
-
-```C++
-endstone::PlayerJoinEvent::~PlayerJoinEvent () override
-```
-
-
-
 
 <hr>
 

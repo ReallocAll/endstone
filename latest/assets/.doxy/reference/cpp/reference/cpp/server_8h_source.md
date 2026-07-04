@@ -25,17 +25,24 @@
 #pragma once
 
 #include <chrono>
+#include <cstdint>
 #include <memory>
+#include <stdexcept>
 #include <string>
 #include <string_view>
+#include <utility>
 #include <vector>
 
+#include "endstone/ban/ip_ban_list.h"
+#include "endstone/ban/player_ban_list.h"
 #include "endstone/block/block_data.h"
 #include "endstone/boss/boss_bar.h"
 #include "endstone/lang/language.h"
 #include "endstone/level/level.h"
 #include "endstone/logger.h"
+#include "endstone/map/map_view.h"
 #include "endstone/player.h"
+#include "endstone/plugin/service_manager.h"
 #include "endstone/scoreboard/scoreboard.h"
 #include "endstone/util/result.h"
 #include "endstone/util/uuid.h"
@@ -43,9 +50,16 @@
 namespace endstone {
 
 class ConsoleCommandSender;
+class Enchantment;
+class ItemFactory;
+class ItemType;
+class IRegistry;
 class Scheduler;
 class PluginCommand;
 class PluginManager;
+
+template <typename T>
+class Registry;
 
 class Server {
 public:
@@ -60,6 +74,8 @@ public:
     [[nodiscard]] virtual std::string getVersion() const = 0;
 
     [[nodiscard]] virtual std::string getMinecraftVersion() const = 0;
+
+    [[nodiscard]] virtual int getProtocolVersion() const = 0;
 
     [[nodiscard]] virtual Logger &getLogger() const = 0;
 
@@ -81,9 +97,13 @@ public:
 
     [[nodiscard]] virtual int getMaxPlayers() const = 0;
 
-    virtual Result<void> setMaxPlayers(int max_players) = 0;
+    virtual void setMaxPlayers(int max_players) = 0;
 
     [[nodiscard]] virtual Player *getPlayer(endstone::UUID id) const = 0;
+
+    [[nodiscard]] virtual int getPort() const = 0;
+
+    [[nodiscard]] virtual int getPortV6() const = 0;
 
     [[nodiscard]] virtual bool getOnlineMode() const = 0;
 
@@ -112,6 +132,8 @@ public:
 
     [[nodiscard]] virtual bool isPrimaryThread() const = 0;
 
+    [[nodiscard]] virtual ItemFactory &getItemFactory() const = 0;
+
     [[nodiscard]] virtual Scoreboard *getScoreboard() const = 0;
 
     [[nodiscard]] virtual std::shared_ptr<Scoreboard> createScoreboard() = 0;
@@ -127,18 +149,36 @@ public:
 
     virtual float getAverageTickUsage() = 0;
 
+    [[nodiscard]] virtual std::chrono::system_clock::time_point getStartTime() = 0;
+
     [[nodiscard]] virtual std::unique_ptr<BossBar> createBossBar(std::string title, BarColor color,
                                                                  BarStyle style) const = 0;
 
     [[nodiscard]] virtual std::unique_ptr<BossBar> createBossBar(std::string title, BarColor color, BarStyle style,
                                                                  std::vector<BarFlag> flags) const = 0;
 
-    [[nodiscard]] virtual Result<std::shared_ptr<BlockData>> createBlockData(std::string type) const = 0;
+    [[nodiscard]] virtual std::unique_ptr<BlockData> createBlockData(std::string type) const = 0;
 
-    [[nodiscard]] virtual Result<std::shared_ptr<BlockData>> createBlockData(std::string type,
-                                                                             BlockStates block_states) const = 0;
+    [[nodiscard]] virtual std::unique_ptr<BlockData> createBlockData(std::string type,
+                                                                     BlockStates block_states) const = 0;
 
-    [[nodiscard]] virtual std::chrono::system_clock::time_point getStartTime() = 0;
+    [[nodiscard]] virtual PlayerBanList &getBanList() const = 0;
+
+    [[nodiscard]] virtual IpBanList &getIpBanList() const = 0;
+
+    [[nodiscard]] virtual ServiceManager &getServiceManager() const = 0;
+
+    [[nodiscard]] virtual IRegistry *_getRegistry(const std::string &type) const = 0;
+
+    template <typename T>
+    [[nodiscard]] const Registry<T> &getRegistry() const
+    {
+        return *static_cast<Registry<T> *>(_getRegistry(T::RegistryType));
+    }
+
+    [[nodiscard]] virtual MapView *getMap(std::int64_t id) const = 0;
+
+    [[nodiscard]] virtual MapView &createMap(const Dimension &dimension) const = 0;
 
     inline static const std::string BroadcastChannelAdmin = "endstone.broadcast.admin";
 

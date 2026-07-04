@@ -10,8 +10,10 @@
 
 
 
+* `#include <memory>`
+* `#include <utility>`
 * `#include "endstone/event/block/block_event.h"`
-* `#include "endstone/player.h"`
+* `#include "endstone/event/cancellable.h"`
 
 
 
@@ -29,7 +31,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes

@@ -2,7 +2,7 @@
 
 # Class endstone::Form
 
-**template &lt;typename T&gt;**
+**template &lt;[**typename**](classendstone_1_1Identifier.md) [**T**](classendstone_1_1Identifier.md)&gt;**
 
 
 
@@ -34,7 +34,7 @@ _Represents a generic form._ [More...](#detailed-description)
 
 | Type | Name |
 | ---: | :--- |
-| typedef std::function&lt; void([**Player**](classendstone_1_1Player.md) \*)&gt; | [**OnCloseCallback**](#typedef-onclosecallback)  <br> |
+| typedef std::function&lt; [**void**](classendstone_1_1Identifier.md)([**Player**](classendstone_1_1Player.md) \*)&gt; | [**OnCloseCallback**](#typedef-onclosecallback)  <br> |
 
 
 
@@ -62,8 +62,8 @@ _Represents a generic form._ [More...](#detailed-description)
 |   | [**Form**](#function-form) () = default<br> |
 |  OnCloseCallback | [**getOnClose**](#function-getonclose) () const<br>_Gets the on close callback of the form._  |
 |  Message | [**getTitle**](#function-gettitle) () const<br>_Gets the title of the form._  |
-|  T & | [**setOnClose**](#function-setonclose) (OnCloseCallback on\_close) <br>_Sets the on close callback of the form._  |
-|  T & | [**setTitle**](#function-settitle) (Message title) <br>_Sets the title of the form._  |
+|  [**T**](classendstone_1_1Identifier.md) & | [**setOnClose**](#function-setonclose) (OnCloseCallback on\_close) <br>_Sets the on close callback of the form._  |
+|  [**T**](classendstone_1_1Identifier.md) & | [**setTitle**](#function-settitle) (Message title) <br>_Sets the title of the form._  |
 
 
 
@@ -98,7 +98,7 @@ _Represents a generic form._ [More...](#detailed-description)
 
 
 
-# Detailed Description
+## Detailed Description
 
 
 The [**Form**](classendstone_1_1Form.md) class provides a base abstraction for different types of forms. It supports three types of forms: Action, Message, and Modal. Each form has a title, which can be a string or a translatable object. 

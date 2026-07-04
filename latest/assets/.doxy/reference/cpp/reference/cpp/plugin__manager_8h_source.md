@@ -27,10 +27,12 @@
 #include <functional>
 #include <memory>
 #include <string>
+#include <unordered_set>
 #include <vector>
 
 #include "endstone/event/event.h"
 #include "endstone/event/event_priority.h"
+#include "endstone/permissions/permission_level.h"
 
 namespace endstone {
 
@@ -56,7 +58,11 @@ public:
 
     [[nodiscard]] virtual bool isPluginEnabled(Plugin *plugin) const = 0;
 
-    [[nodiscard]] virtual std::vector<Plugin *> loadPlugins(const std::string &directory) = 0;
+    virtual Plugin *loadPlugin(std::string file) = 0;
+
+    virtual std::vector<Plugin *> loadPlugins(std::string directory) = 0;
+
+    virtual std::vector<Plugin *> loadPlugins(std::vector<std::string> files) = 0;
 
     virtual void enablePlugin(Plugin &plugin) const = 0;
 
@@ -70,18 +76,18 @@ public:
 
     virtual void callEvent(Event &event) = 0;
 
-    virtual Result<void> registerEvent(std::string event, std::function<void(Event &)> executor, EventPriority priority,
-                                       Plugin &plugin, bool ignore_cancelled) = 0;
+    virtual void registerEvent(std::string event, std::function<void(Event &)> executor, EventPriority priority,
+                               Plugin &plugin, bool ignore_cancelled) = 0;
 
     [[nodiscard]] virtual Permission *getPermission(std::string name) const = 0;
 
-    virtual Permission *addPermission(std::unique_ptr<Permission> perm) = 0;
+    virtual Permission &addPermission(std::unique_ptr<Permission> perm) = 0;
 
     virtual void removePermission(Permission &perm) = 0;
 
     virtual void removePermission(std::string name) = 0;
 
-    [[nodiscard]] virtual std::unordered_set<Permission *> getDefaultPermissions(bool op) const = 0;
+    [[nodiscard]] virtual std::vector<Permission *> getDefaultPermissions(PermissionLevel level) const = 0;
 
     virtual void recalculatePermissionDefaults(Permission &perm) = 0;
 
@@ -92,11 +98,12 @@ public:
     [[nodiscard]] virtual std::unordered_set<Permissible *> getPermissionSubscriptions(
         std::string permission) const = 0;
 
-    virtual void subscribeToDefaultPerms(bool op, Permissible &permissible) = 0;
+    virtual void subscribeToDefaultPerms(PermissionLevel level, Permissible &permissible) = 0;
 
-    virtual void unsubscribeFromDefaultPerms(bool op, Permissible &permissible) = 0;
+    virtual void unsubscribeFromDefaultPerms(PermissionLevel level, Permissible &permissible) = 0;
 
-    [[nodiscard]] virtual std::unordered_set<Permissible *> getDefaultPermSubscriptions(bool op) const = 0;
+    [[nodiscard]] virtual std::unordered_set<Permissible *> getDefaultPermSubscriptions(
+        PermissionLevel level) const = 0;
 
     [[nodiscard]] virtual std::unordered_set<Permission *> getPermissions() const = 0;
 };

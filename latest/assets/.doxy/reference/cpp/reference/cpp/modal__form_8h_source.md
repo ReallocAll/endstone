@@ -24,11 +24,16 @@
 
 #pragma once
 
+#include <functional>
 #include <optional>
 #include <string>
 #include <utility>
+#include <variant>
+#include <vector>
 
+#include "endstone/form/controls/divider.h"
 #include "endstone/form/controls/dropdown.h"
+#include "endstone/form/controls/header.h"
 #include "endstone/form/controls/label.h"
 #include "endstone/form/controls/slider.h"
 #include "endstone/form/controls/step_slider.h"
@@ -40,7 +45,7 @@ namespace endstone {
 
 class ModalForm : public Form<ModalForm> {
 public:
-    using Control = std::variant<Dropdown, Label, Slider, StepSlider, TextInput, Toggle>;
+    using Control = std::variant<Dropdown, Label, Slider, StepSlider, TextInput, Toggle, Divider, Header>;
     using OnSubmitCallback = std::function<void(Player *, std::string)>;
 
     ModalForm &addControl(const Control &control)
@@ -49,10 +54,7 @@ public:
         return *this;
     }
 
-    [[nodiscard]] std::vector<Control> getControls() const
-    {
-        return controls_;
-    }
+    [[nodiscard]] std::vector<Control> getControls() const { return controls_; }
 
     ModalForm &setControls(std::vector<Control> controls)
     {
@@ -60,10 +62,7 @@ public:
         return *this;
     }
 
-    [[nodiscard]] std::optional<Message> getSubmitButton() const
-    {
-        return submit_button_text_;
-    }
+    [[nodiscard]] std::optional<Message> getSubmitButton() const { return submit_button_text_; }
 
     ModalForm &setSubmitButton(std::optional<Message> text)
     {
@@ -71,10 +70,7 @@ public:
         return *this;
     }
 
-    [[nodiscard]] std::optional<std::string> getIcon() const
-    {
-        return icon_;
-    }
+    [[nodiscard]] std::optional<std::string> getIcon() const { return icon_; }
 
     ModalForm &setIcon(std::optional<std::string> icon)
     {
@@ -82,10 +78,7 @@ public:
         return *this;
     }
 
-    [[nodiscard]] OnSubmitCallback getOnSubmit() const
-    {
-        return on_submit_;
-    }
+    [[nodiscard]] OnSubmitCallback getOnSubmit() const { return on_submit_; }
 
     ModalForm &setOnSubmit(OnSubmitCallback on_submit)
     {

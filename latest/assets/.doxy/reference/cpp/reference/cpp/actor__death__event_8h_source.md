@@ -24,26 +24,26 @@
 
 #pragma once
 
+#include <memory>
+#include <utility>
+
+#include "endstone/damage/damage_source.h"
 #include "endstone/event/actor/actor_event.h"
 
 namespace endstone {
 
-class ActorDeathEvent : public ActorEvent {
+class ActorDeathEvent : public ActorEvent<Mob> {
 public:
-    explicit ActorDeathEvent(Actor &actor) : ActorEvent(actor) {}
-    ~ActorDeathEvent() override = default;
-
-    inline static const std::string NAME = "ActorDeathEvent";
-    [[nodiscard]] std::string getEventName() const override
+    ENDSTONE_EVENT(ActorDeathEvent);
+    ActorDeathEvent(Mob &actor, std::unique_ptr<DamageSource> damage_source)
+        : ActorEvent(actor), damage_source_(std::move(damage_source))
     {
-        return NAME;
     }
 
-    [[nodiscard]] bool isCancellable() const override
-    {
-        return false;
-    }
+    [[nodiscard]] DamageSource &getDamageSource() const { return *damage_source_; }
 
+private:
+    std::unique_ptr<DamageSource> damage_source_;
     // TODO(event): add drops and dropExp
 };
 

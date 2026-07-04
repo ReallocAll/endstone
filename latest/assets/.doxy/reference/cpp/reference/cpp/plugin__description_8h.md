@@ -10,13 +10,13 @@
 
 
 
+* `#include <algorithm>`
 * `#include <string>`
 * `#include <utility>`
 * `#include <vector>`
 * `#include <fmt/format.h>`
 * `#include "endstone/command/command.h"`
-* `#include "endstone/detail/plugin/plugin_description_builder.h"`
-* `#include "endstone/endstone.h"`
+* `#include "endstone/detail.h"`
 * `#include "endstone/permissions/permission.h"`
 * `#include "endstone/plugin/plugin_load_order.h"`
 
@@ -36,7 +36,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes

@@ -24,41 +24,28 @@
 
 #pragma once
 
+#include <optional>
+#include <utility>
+
 #include "endstone/event/player/player_event.h"
 
 namespace endstone {
 
 class PlayerQuitEvent : public PlayerEvent {
 public:
-    explicit PlayerQuitEvent(Player &player, std::string quit_message)
+    ENDSTONE_EVENT(PlayerQuitEvent);
+
+    explicit PlayerQuitEvent(Player &player, std::optional<Message> quit_message)
         : PlayerEvent(player), quit_message_(std::move(quit_message))
     {
     }
-    ~PlayerQuitEvent() override = default;
 
-    inline static const std::string NAME = "PlayerQuitEvent";
-    [[nodiscard]] std::string getEventName() const override
-    {
-        return NAME;
-    }
+    [[nodiscard]] std::optional<Message> getQuitMessage() const { return quit_message_; }
 
-    [[nodiscard]] bool isCancellable() const override
-    {
-        return false;
-    }
-
-    [[nodiscard]] std::string getQuitMessage() const
-    {
-        return quit_message_;
-    }
-
-    void setQuitMessage(std::string message)
-    {
-        quit_message_ = std::move(message);
-    }
+    void setQuitMessage(std::optional<Message> message) { quit_message_ = std::move(message); }
 
 private:
-    std::string quit_message_;
+    std::optional<Message> quit_message_;
 };
 
 }  // namespace endstone

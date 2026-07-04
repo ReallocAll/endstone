@@ -12,6 +12,7 @@
 
 * `#include <map>`
 * `#include <string>`
+* `#include <vector>`
 * `#include "endstone/command/command.h"`
 * `#include "endstone/command/command_sender.h"`
 
@@ -31,7 +32,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes

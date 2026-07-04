@@ -24,38 +24,48 @@
 
 #pragma once
 
+#include <optional>
+#include <string>
+#include <utility>
+#include <vector>
+
+#include "endstone/event/cancellable.h"
 #include "endstone/event/player/player_event.h"
 
 namespace endstone {
 
-class PlayerChatEvent : public PlayerEvent {
+class PlayerChatEvent final : public Cancellable<PlayerEvent> {
 public:
-    explicit PlayerChatEvent(Player &player, std::string message) : PlayerEvent(player), message_(std::move(message)) {}
-    ~PlayerChatEvent() override = default;
-
-    inline static const std::string NAME = "PlayerChatEvent";
-    [[nodiscard]] std::string getEventName() const override
+    ENDSTONE_EVENT(PlayerChatEvent);
+    explicit PlayerChatEvent(Player &player, std::string message, std::optional<std::vector<Player *>> recipients,
+                             std::string format = "<{0}> {1}")
+        : Cancellable(player), message_(std::move(message)), format_(std::move(format)),
+          recipients_(std::move(recipients))
     {
-        return NAME;
     }
 
-    [[nodiscard]] bool isCancellable() const override
-    {
-        return true;
-    }
+    [[nodiscard]] std::string getMessage() const { return message_; }
 
-    [[nodiscard]] std::string getMessage() const
-    {
-        return message_;
-    }
+    void setMessage(std::string message) { message_ = std::move(message); }
 
-    void setMessage(std::string message)
+    void setPlayer(Player &player) { player_ = player; }
+
+    [[nodiscard]] std::string getFormat() const { return format_; }
+
+    void setFormat(std::string format) { format_ = std::move(format); }
+
+    [[nodiscard]] std::vector<Player *> getRecipients() const
     {
-        message_ = std::move(message);
+        if (!recipients_) {
+            recipients_ = player_.get().getServer().getOnlinePlayers();
+        }
+        return recipients_.value();
     }
 
 private:
     std::string message_;
+    std::string format_;
+    mutable std::optional<std::vector<Player *>> recipients_;
 };
 
 }  // namespace endstone

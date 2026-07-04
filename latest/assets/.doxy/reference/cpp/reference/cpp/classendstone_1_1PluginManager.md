@@ -53,34 +53,36 @@ _Represents a plugin manager that handles all plugins from the_ [_**Server**_](c
 | Type | Name |
 | ---: | :--- |
 |   | [**PluginManager**](#function-pluginmanager-12) () = default<br> |
-|   | [**PluginManager**](#function-pluginmanager-22) ([**PluginManager**](classendstone_1_1PluginManager.md) const &) = delete<br> |
-| virtual [**Permission**](classendstone_1_1Permission.md) \* | [**addPermission**](#function-addpermission) (std::unique\_ptr&lt; [**Permission**](classendstone_1_1Permission.md) &gt; perm) = 0<br> |
-| virtual void | [**callEvent**](#function-callevent) ([**Event**](classendstone_1_1Event.md) & event) = 0<br> |
-| virtual void | [**clearPlugins**](#function-clearplugins) () = 0<br> |
-| virtual void | [**disablePlugin**](#function-disableplugin) ([**Plugin**](classendstone_1_1Plugin.md) & plugin) = 0<br> |
-| virtual void | [**disablePlugins**](#function-disableplugins) () = 0<br> |
-| virtual void | [**enablePlugin**](#function-enableplugin) ([**Plugin**](classendstone_1_1Plugin.md) & plugin) const = 0<br> |
-| virtual void | [**enablePlugins**](#function-enableplugins) () const = 0<br> |
-| virtual std::unordered\_set&lt; [**Permissible**](classendstone_1_1Permissible.md) \* &gt; | [**getDefaultPermSubscriptions**](#function-getdefaultpermsubscriptions) (bool op) const = 0<br> |
-| virtual std::unordered\_set&lt; [**Permission**](classendstone_1_1Permission.md) \* &gt; | [**getDefaultPermissions**](#function-getdefaultpermissions) (bool op) const = 0<br> |
+|   | [**PluginManager**](#function-pluginmanager-22) ([**PluginManager**](classendstone_1_1PluginManager.md) [**const**](classendstone_1_1Identifier.md) &) = delete<br> |
+| virtual [**Permission**](classendstone_1_1Permission.md) & | [**addPermission**](#function-addpermission) (std::unique\_ptr&lt; [**Permission**](classendstone_1_1Permission.md) &gt; perm) = 0<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**callEvent**](#function-callevent) ([**Event**](classendstone_1_1Event.md) & event) = 0<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**clearPlugins**](#function-clearplugins) () = 0<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**disablePlugin**](#function-disableplugin) ([**Plugin**](classendstone_1_1Plugin.md) & plugin) = 0<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**disablePlugins**](#function-disableplugins) () = 0<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**enablePlugin**](#function-enableplugin) ([**Plugin**](classendstone_1_1Plugin.md) & plugin) const = 0<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**enablePlugins**](#function-enableplugins) () const = 0<br> |
+| virtual std::unordered\_set&lt; [**Permissible**](classendstone_1_1Permissible.md) \* &gt; | [**getDefaultPermSubscriptions**](#function-getdefaultpermsubscriptions) (PermissionLevel level) const = 0<br> |
+| virtual std::vector&lt; [**Permission**](classendstone_1_1Permission.md) \* &gt; | [**getDefaultPermissions**](#function-getdefaultpermissions) (PermissionLevel level) const = 0<br> |
 | virtual [**Permission**](classendstone_1_1Permission.md) \* | [**getPermission**](#function-getpermission) (std::string name) const = 0<br> |
 | virtual std::unordered\_set&lt; [**Permissible**](classendstone_1_1Permissible.md) \* &gt; | [**getPermissionSubscriptions**](#function-getpermissionsubscriptions) (std::string permission) const = 0<br> |
 | virtual std::unordered\_set&lt; [**Permission**](classendstone_1_1Permission.md) \* &gt; | [**getPermissions**](#function-getpermissions) () const = 0<br> |
-| virtual [**Plugin**](classendstone_1_1Plugin.md) \* | [**getPlugin**](#function-getplugin) (const std::string & name) const = 0<br> |
+| virtual [**Plugin**](classendstone_1_1Plugin.md) \* | [**getPlugin**](#function-getplugin) ([**const**](classendstone_1_1Identifier.md) std::string & name) const = 0<br> |
 | virtual std::vector&lt; [**Plugin**](classendstone_1_1Plugin.md) \* &gt; | [**getPlugins**](#function-getplugins) () const = 0<br> |
-| virtual bool | [**isPluginEnabled**](#function-ispluginenabled-12) (const std::string & name) const = 0<br> |
-| virtual bool | [**isPluginEnabled**](#function-ispluginenabled-22) ([**Plugin**](classendstone_1_1Plugin.md) \* plugin) const = 0<br> |
-| virtual std::vector&lt; [**Plugin**](classendstone_1_1Plugin.md) \* &gt; | [**loadPlugins**](#function-loadplugins) (const std::string & directory) = 0<br> |
-|  [**PluginManager**](classendstone_1_1PluginManager.md) & | [**operator=**](#function-operator) ([**PluginManager**](classendstone_1_1PluginManager.md) const &) = delete<br> |
-| virtual void | [**recalculatePermissionDefaults**](#function-recalculatepermissiondefaults) ([**Permission**](classendstone_1_1Permission.md) & perm) = 0<br> |
-| virtual Result&lt; void &gt; | [**registerEvent**](#function-registerevent) (std::string event, std::function&lt; void([**Event**](classendstone_1_1Event.md) &)&gt; executor, EventPriority priority, [**Plugin**](classendstone_1_1Plugin.md) & plugin, bool ignore\_cancelled) = 0<br> |
-| virtual void | [**registerLoader**](#function-registerloader) (std::unique\_ptr&lt; [**PluginLoader**](classendstone_1_1PluginLoader.md) &gt; loader) = 0<br> |
-| virtual void | [**removePermission**](#function-removepermission-12) ([**Permission**](classendstone_1_1Permission.md) & perm) = 0<br> |
-| virtual void | [**removePermission**](#function-removepermission-22) (std::string name) = 0<br> |
-| virtual void | [**subscribeToDefaultPerms**](#function-subscribetodefaultperms) (bool op, [**Permissible**](classendstone_1_1Permissible.md) & permissible) = 0<br> |
-| virtual void | [**subscribeToPermission**](#function-subscribetopermission) (std::string permission, [**Permissible**](classendstone_1_1Permissible.md) & permissible) = 0<br> |
-| virtual void | [**unsubscribeFromDefaultPerms**](#function-unsubscribefromdefaultperms) (bool op, [**Permissible**](classendstone_1_1Permissible.md) & permissible) = 0<br> |
-| virtual void | [**unsubscribeFromPermission**](#function-unsubscribefrompermission) (std::string permission, [**Permissible**](classendstone_1_1Permissible.md) & permissible) = 0<br> |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isPluginEnabled**](#function-ispluginenabled-12) ([**const**](classendstone_1_1Identifier.md) std::string & name) const = 0<br> |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isPluginEnabled**](#function-ispluginenabled-22) ([**Plugin**](classendstone_1_1Plugin.md) \* plugin) const = 0<br> |
+| virtual [**Plugin**](classendstone_1_1Plugin.md) \* | [**loadPlugin**](#function-loadplugin) (std::string file) = 0<br> |
+| virtual std::vector&lt; [**Plugin**](classendstone_1_1Plugin.md) \* &gt; | [**loadPlugins**](#function-loadplugins-12) (std::string directory) = 0<br> |
+| virtual std::vector&lt; [**Plugin**](classendstone_1_1Plugin.md) \* &gt; | [**loadPlugins**](#function-loadplugins-22) (std::vector&lt; std::string &gt; files) = 0<br> |
+|  [**PluginManager**](classendstone_1_1PluginManager.md) & | [**operator=**](#function-operator) ([**PluginManager**](classendstone_1_1PluginManager.md) [**const**](classendstone_1_1Identifier.md) &) = delete<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**recalculatePermissionDefaults**](#function-recalculatepermissiondefaults) ([**Permission**](classendstone_1_1Permission.md) & perm) = 0<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**registerEvent**](#function-registerevent) (std::string event, std::function&lt; [**void**](classendstone_1_1Identifier.md)([**Event**](classendstone_1_1Event.md) &)&gt; executor, [**EventPriority**](namespaceendstone.md#enum-eventpriority) priority, [**Plugin**](classendstone_1_1Plugin.md) & plugin, [**bool**](classendstone_1_1Identifier.md) ignore\_cancelled) = 0<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**registerLoader**](#function-registerloader) (std::unique\_ptr&lt; [**PluginLoader**](classendstone_1_1PluginLoader.md) &gt; loader) = 0<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**removePermission**](#function-removepermission-12) ([**Permission**](classendstone_1_1Permission.md) & perm) = 0<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**removePermission**](#function-removepermission-22) (std::string name) = 0<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**subscribeToDefaultPerms**](#function-subscribetodefaultperms) (PermissionLevel level, [**Permissible**](classendstone_1_1Permissible.md) & permissible) = 0<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**subscribeToPermission**](#function-subscribetopermission) (std::string permission, [**Permissible**](classendstone_1_1Permissible.md) & permissible) = 0<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**unsubscribeFromDefaultPerms**](#function-unsubscribefromdefaultperms) (PermissionLevel level, [**Permissible**](classendstone_1_1Permissible.md) & permissible) = 0<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**unsubscribeFromPermission**](#function-unsubscribefrompermission) (std::string permission, [**Permissible**](classendstone_1_1Permissible.md) & permissible) = 0<br> |
 | virtual  | [**~PluginManager**](#function-pluginmanager) () = default<br> |
 
 
@@ -132,7 +134,7 @@ endstone::PluginManager::PluginManager () = default
 
 ```C++
 endstone::PluginManager::PluginManager (
-    PluginManager const &
+    PluginManager  const &
 ) = delete
 ```
 
@@ -145,9 +147,8 @@ endstone::PluginManager::PluginManager (
 
 ### function addPermission 
 
-
 ```C++
-virtual Permission * endstone::PluginManager::addPermission (
+virtual Permission & endstone::PluginManager::addPermission (
     std::unique_ptr< Permission > perm
 ) = 0
 ```
@@ -182,7 +183,6 @@ Adds a [**Permission**](classendstone_1_1Permission.md) to this plugin manager.
 
 ### function callEvent 
 
-
 ```C++
 virtual void endstone::PluginManager::callEvent (
     Event & event
@@ -212,7 +212,6 @@ Calls an event which will be passed to plugins.
 
 ### function clearPlugins 
 
-
 ```C++
 virtual void endstone::PluginManager::clearPlugins () = 0
 ```
@@ -229,7 +228,6 @@ Disables and removes all plugins
 
 
 ### function disablePlugin 
-
 
 ```C++
 virtual void endstone::PluginManager::disablePlugin (
@@ -260,7 +258,6 @@ Disables the specified plugin Attempting to disable a plugin that is not enabled
 
 ### function disablePlugins 
 
-
 ```C++
 virtual void endstone::PluginManager::disablePlugins () = 0
 ```
@@ -277,7 +274,6 @@ Disables all the loaded plugins
 
 
 ### function enablePlugin 
-
 
 ```C++
 virtual void endstone::PluginManager::enablePlugin (
@@ -308,7 +304,6 @@ Enables the specified plugin Attempting to enable a plugin that is already enabl
 
 ### function enablePlugins 
 
-
 ```C++
 virtual void endstone::PluginManager::enablePlugins () const = 0
 ```
@@ -326,16 +321,15 @@ Enable all the loaded plugins
 
 ### function getDefaultPermSubscriptions 
 
-
 ```C++
 virtual std::unordered_set< Permissible * > endstone::PluginManager::getDefaultPermSubscriptions (
-    bool op
+    PermissionLevel level
 ) const = 0
 ```
 
 
 
-Gets a set containing all subscribed [**Permissible**](classendstone_1_1Permissible.md)s to the given default list, by op status
+Gets a set containing all subscribed Permissibles to the given default list, by permission level
 
 
 
@@ -343,7 +337,7 @@ Gets a set containing all subscribed [**Permissible**](classendstone_1_1Permissi
 **Parameters:**
 
 
-* `op` Default list to query for 
+* `level` Default list to query for 
 
 
 
@@ -363,16 +357,15 @@ Set containing all subscribed permissions
 
 ### function getDefaultPermissions 
 
-
 ```C++
-virtual std::unordered_set< Permission * > endstone::PluginManager::getDefaultPermissions (
-    bool op
+virtual std::vector< Permission * > endstone::PluginManager::getDefaultPermissions (
+    PermissionLevel level
 ) const = 0
 ```
 
 
 
-Gets the default permissions for the given op status
+Gets the default permissions for the given permission level
 
 
 
@@ -380,7 +373,7 @@ Gets the default permissions for the given op status
 **Parameters:**
 
 
-* `op` Which set of default permissions to get 
+* `level` Which set of default permissions to get 
 
 
 
@@ -399,7 +392,6 @@ The default permissions
 
 
 ### function getPermission 
-
 
 ```C++
 virtual Permission * endstone::PluginManager::getPermission (
@@ -437,7 +429,6 @@ Gets a [**Permission**](classendstone_1_1Permission.md) from its fully qualified
 
 ### function getPermissionSubscriptions 
 
-
 ```C++
 virtual std::unordered_set< Permissible * > endstone::PluginManager::getPermissionSubscriptions (
     std::string permission
@@ -474,7 +465,6 @@ Set containing all subscribed permissions
 
 ### function getPermissions 
 
-
 ```C++
 virtual std::unordered_set< Permission * > endstone::PluginManager::getPermissions () const = 0
 ```
@@ -504,7 +494,6 @@ Set containing all current registered permissions
 
 
 ### function getPlugin 
-
 
 ```C++
 virtual Plugin * endstone::PluginManager::getPlugin (
@@ -542,7 +531,6 @@ Checks if the given plugin is loaded and returns it when applicable. Please note
 
 ### function getPlugins 
 
-
 ```C++
 virtual std::vector< Plugin * > endstone::PluginManager::getPlugins () const = 0
 ```
@@ -569,7 +557,6 @@ List of Plugins
 
 
 ### function isPluginEnabled [1/2]
-
 
 ```C++
 virtual bool endstone::PluginManager::isPluginEnabled (
@@ -607,7 +594,6 @@ true if the plugin is enabled, otherwise false
 
 ### function isPluginEnabled [2/2]
 
-
 ```C++
 virtual bool endstone::PluginManager::isPluginEnabled (
     Plugin * plugin
@@ -642,12 +628,50 @@ true if the plugin is enabled, otherwise false
 
 
 
-### function loadPlugins 
+### function loadPlugin 
 
+```C++
+virtual Plugin * endstone::PluginManager::loadPlugin (
+    std::string file
+) = 0
+```
+
+
+
+Loads the plugin in the specified file
+
+
+File must be valid according to the current enabled [**Plugin**](classendstone_1_1Plugin.md) interfaces
+
+
+
+
+**Parameters:**
+
+
+* `file` File containing the plugin to load 
+
+
+
+**Returns:**
+
+The [**Plugin**](classendstone_1_1Plugin.md) loaded, or nullptr if it was invalid 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function loadPlugins [1/2]
 
 ```C++
 virtual std::vector< Plugin * > endstone::PluginManager::loadPlugins (
-    const std::string & directory
+    std::string directory
 ) = 0
 ```
 
@@ -679,11 +703,47 @@ A list of all plugins loaded
 
 
 
+### function loadPlugins [2/2]
+
+```C++
+virtual std::vector< Plugin * > endstone::PluginManager::loadPlugins (
+    std::vector< std::string > files
+) = 0
+```
+
+
+
+Loads the plugins in the list of the files
+
+
+
+
+**Parameters:**
+
+
+* `files` List of files containing plugins to load 
+
+
+
+**Returns:**
+
+A list of all plugins loaded 
+
+
+
+
+
+        
+
+<hr>
+
+
+
 ### function operator= 
 
 ```C++
 PluginManager & endstone::PluginManager::operator= (
-    PluginManager const &
+    PluginManager  const &
 ) = delete
 ```
 
@@ -696,7 +756,6 @@ PluginManager & endstone::PluginManager::operator= (
 
 ### function recalculatePermissionDefaults 
 
-
 ```C++
 virtual void endstone::PluginManager::recalculatePermissionDefaults (
     Permission & perm
@@ -705,7 +764,7 @@ virtual void endstone::PluginManager::recalculatePermissionDefaults (
 
 
 
-Recalculates the defaults for the given [**Permission**](classendstone_1_1Permission.md).
+Recalculates the defaults for the given `Permission`.
 
 
 This will have no effect if the specified permission is not registered here.
@@ -729,11 +788,10 @@ This will have no effect if the specified permission is not registered here.
 
 ### function registerEvent 
 
-
 ```C++
-virtual Result< void > endstone::PluginManager::registerEvent (
+virtual void endstone::PluginManager::registerEvent (
     std::string event,
-    std::function< void( Event &)> executor,
+    std::function< void ( Event &)> executor,
     EventPriority priority,
     Plugin & plugin,
     bool ignore_cancelled
@@ -767,7 +825,6 @@ Registers the given event
 
 ### function registerLoader 
 
-
 ```C++
 virtual void endstone::PluginManager::registerLoader (
     std::unique_ptr< PluginLoader > loader
@@ -796,7 +853,6 @@ Registers the specified plugin loader
 
 
 ### function removePermission [1/2]
-
 
 ```C++
 virtual void endstone::PluginManager::removePermission (
@@ -830,7 +886,6 @@ If the specified permission does not exist in this plugin manager, nothing will 
 
 ### function removePermission [2/2]
 
-
 ```C++
 virtual void endstone::PluginManager::removePermission (
     std::string name
@@ -863,17 +918,16 @@ If the specified permission does not exist in this plugin manager, nothing will 
 
 ### function subscribeToDefaultPerms 
 
-
 ```C++
 virtual void endstone::PluginManager::subscribeToDefaultPerms (
-    bool op,
+    PermissionLevel level,
     Permissible & permissible
 ) = 0
 ```
 
 
 
-Subscribes to the given Default permissions by operator status
+Subscribes to the given Default permissions by permission level
 
 
 If the specified defaults change in any form, the [**Permissible**](classendstone_1_1Permissible.md) will be asked to recalculate.
@@ -884,7 +938,7 @@ If the specified defaults change in any form, the [**Permissible**](classendston
 **Parameters:**
 
 
-* `op` Default list to subscribe to 
+* `level` Default list to subscribe to 
 * `permissible` [**Permissible**](classendstone_1_1Permissible.md) subscribing 
 
 
@@ -897,7 +951,6 @@ If the specified defaults change in any form, the [**Permissible**](classendston
 
 
 ### function subscribeToPermission 
-
 
 ```C++
 virtual void endstone::PluginManager::subscribeToPermission (
@@ -930,17 +983,16 @@ Subscribes the given [**Permissible**](classendstone_1_1Permissible.md) for info
 
 ### function unsubscribeFromDefaultPerms 
 
-
 ```C++
 virtual void endstone::PluginManager::unsubscribeFromDefaultPerms (
-    bool op,
+    PermissionLevel level,
     Permissible & permissible
 ) = 0
 ```
 
 
 
-Unsubscribes from the given Default permissions by operator status
+Unsubscribes from the given Default permissions by permission level
 
 
 
@@ -948,7 +1000,7 @@ Unsubscribes from the given Default permissions by operator status
 **Parameters:**
 
 
-* `op` Default list to unsubscribe from 
+* `level` Default list to unsubscribe from 
 * `permissible` [**Permissible**](classendstone_1_1Permissible.md) subscribing 
 
 
@@ -961,7 +1013,6 @@ Unsubscribes from the given Default permissions by operator status
 
 
 ### function unsubscribeFromPermission 
-
 
 ```C++
 virtual void endstone::PluginManager::unsubscribeFromPermission (

@@ -10,10 +10,15 @@
 
 
 
+* `#include <functional>`
 * `#include <optional>`
 * `#include <string>`
 * `#include <utility>`
+* `#include <variant>`
+* `#include <vector>`
+* `#include "endstone/form/controls/divider.h"`
 * `#include "endstone/form/controls/dropdown.h"`
+* `#include "endstone/form/controls/header.h"`
 * `#include "endstone/form/controls/label.h"`
 * `#include "endstone/form/controls/slider.h"`
 * `#include "endstone/form/controls/step_slider.h"`
@@ -37,7 +42,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes

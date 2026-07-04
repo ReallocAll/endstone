@@ -10,7 +10,9 @@
 
 
 
+* `#include <memory>`
 * `#include <string>`
+* `#include <vector>`
 * `#include "endstone/scoreboard/criteria.h"`
 * `#include "endstone/scoreboard/display_slot.h"`
 * `#include "endstone/scoreboard/objective.h"`
@@ -33,7 +35,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes

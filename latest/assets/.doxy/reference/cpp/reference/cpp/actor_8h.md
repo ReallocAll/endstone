@@ -10,9 +10,11 @@
 
 
 
+* `#include <cstdint>`
+* `#include <string>`
+* `#include <vector>`
 * `#include "endstone/command/command_sender.h"`
 * `#include "endstone/level/location.h"`
-* `#include "endstone/level/position.h"`
 
 
 
@@ -30,7 +32,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes
@@ -38,6 +40,7 @@
 | Type | Name |
 | ---: | :--- |
 | class | [**Actor**](classendstone_1_1Actor.md) <br>_Represents a base actor in the level._  |
+| struct | [**formatter&lt; endstone::Actor &gt;**](structfmt_1_1formatter_3_01endstone_1_1Actor_01_4.md) &lt;&gt;<br> |
 
 
 

@@ -24,56 +24,38 @@
 
 #pragma once
 
+#include <memory>
+#include <utility>
+
 #include "endstone/block/block_state.h"
 #include "endstone/event/block/block_event.h"
+#include "endstone/event/cancellable.h"
 #include "endstone/player.h"
 
 namespace endstone {
 
-class BlockPlaceEvent : public BlockEvent {
+class BlockPlaceEvent : public Cancellable<BlockEvent> {
 public:
-    explicit BlockPlaceEvent(std::unique_ptr<BlockState> placed_block, Block &replaced_block, Block &placed_against,
-                             Player &player)
-        : BlockEvent(replaced_block), placed_block_(std::move(placed_block)), placed_against_(placed_against),
-          player_(player)
+    ENDSTONE_EVENT(BlockPlaceEvent);
+    explicit BlockPlaceEvent(std::unique_ptr<BlockState> placed_block, std::unique_ptr<Block> replaced_block,
+                             std::unique_ptr<Block> placed_against, Player &player)
+        : Cancellable(std::move(replaced_block)), placed_block_(std::move(placed_block)),
+          placed_against_(std::move(placed_against)), player_(player)
     {
     }
     ~BlockPlaceEvent() override = default;
 
-    inline static const std::string NAME = "BlockPlaceEvent";
-    [[nodiscard]] std::string getEventName() const override
-    {
-        return NAME;
-    }
+    [[nodiscard]] Player &getPlayer() const { return player_; }
 
-    [[nodiscard]] bool isCancellable() const override
-    {
-        return true;
-    }
+    [[nodiscard]] BlockState &getBlockPlacedState() const { return *placed_block_; }
 
-    [[nodiscard]] Player &getPlayer() const
-    {
-        return player_;
-    }
+    [[nodiscard]] Block &getBlockReplaced() const { return getBlock(); }
 
-    [[nodiscard]] BlockState &getBlockPlacedState() const
-    {
-        return *placed_block_;
-    }
-
-    [[nodiscard]] Block &getBlockReplaced() const
-    {
-        return getBlock();
-    }
-
-    [[nodiscard]] Block &getBlockAgainst() const
-    {
-        return placed_against_;
-    }
+    [[nodiscard]] Block &getBlockAgainst() const { return *placed_against_; }
 
 private:
     std::unique_ptr<BlockState> placed_block_;
-    Block &placed_against_;
+    std::unique_ptr<Block> placed_against_;
     Player &player_;
     // TODO(event): add ItemStack item
     // TODO(event): add BlockState placedBlockState

@@ -10,6 +10,9 @@
 
 
 
+* `#include <string>`
+* `#include <utility>`
+* `#include "endstone/event/cancellable.h"`
 * `#include "endstone/event/server/server_event.h"`
 
 
@@ -28,7 +31,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes

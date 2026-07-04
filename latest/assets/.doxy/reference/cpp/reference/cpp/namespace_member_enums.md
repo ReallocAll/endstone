@@ -18,7 +18,9 @@
 
 ## e
 
+* **EquipmentSlot** ([**endstone**](namespaceendstone.md))
 * **EventPriority** ([**endstone**](namespaceendstone.md))
+* **EventResult** ([**endstone**](namespaceendstone.md))
 
 
 ## g
@@ -33,14 +35,24 @@
 
 ## p
 
-* **PacketType** ([**endstone**](namespaceendstone.md))
 * **PermissionDefault** ([**endstone**](namespaceendstone.md))
+* **PermissionLevel** ([**endstone**](namespaceendstone.md))
 * **PluginLoadOrder** ([**endstone**](namespaceendstone.md))
 
 
 ## r
 
 * **RenderType** ([**endstone**](namespaceendstone.md))
+
+
+## s
+
+* **ServicePriority** ([**endstone**](namespaceendstone.md))
+
+
+## t
+
+* **Type** ([**endstone::nbt**](namespaceendstone_1_1nbt.md))
 
 
 

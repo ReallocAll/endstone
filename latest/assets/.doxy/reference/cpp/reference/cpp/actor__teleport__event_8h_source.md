@@ -24,46 +24,30 @@
 
 #pragma once
 
+#include <utility>
+
 #include "endstone/event/actor/actor_event.h"
+#include "endstone/event/cancellable.h"
 #include "endstone/level/location.h"
 
 namespace endstone {
 
-class ActorTeleportEvent : public ActorEvent {
+class ActorTeleportEvent : public Cancellable<ActorEvent<Actor>> {
 public:
-    explicit ActorTeleportEvent(Actor &actor, Location from, Location to) : ActorEvent(actor), from_(from), to_(to) {}
+    ENDSTONE_EVENT(ActorTeleportEvent);
+    explicit ActorTeleportEvent(Actor &actor, Location from, Location to)
+        : Cancellable(actor), from_(std::move(from)), to_(std::move(to))
+    {
+    }
     ~ActorTeleportEvent() override = default;
 
-    inline static const std::string NAME = "ActorTeleportEvent";
-    [[nodiscard]] std::string getEventName() const override
-    {
-        return NAME;
-    }
+    [[nodiscard]] const Location &getFrom() const { return from_; }
 
-    [[nodiscard]] bool isCancellable() const override
-    {
-        return true;
-    }
+    void setFrom(const Location &from) { from_ = from; }
 
-    [[nodiscard]] const Location &getFrom() const
-    {
-        return from_;
-    }
+    [[nodiscard]] const Location &getTo() const { return to_; }
 
-    void setFrom(const Location &from)
-    {
-        from_ = from;
-    }
-
-    [[nodiscard]] const Location &getTo() const
-    {
-        return to_;
-    }
-
-    void setTo(const Location &to)
-    {
-        to_ = to;
-    }
+    void setTo(const Location &to) { to_ = to; }
 
 private:
     Location from_;

@@ -10,8 +10,10 @@
 
 
 
+* `#include <cmath>`
 * `#include <memory>`
-* `#include "endstone/level/position.h"`
+* `#include <numbers>`
+* `#include "endstone/util/result.h"`
 * `#include "endstone/util/vector.h"`
 
 
@@ -30,7 +32,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes
@@ -38,6 +40,7 @@
 | Type | Name |
 | ---: | :--- |
 | class | [**Location**](classendstone_1_1Location.md) <br>_Represents a 3-dimensional location in a dimension within a level._  |
+| struct | [**formatter&lt; endstone::Location &gt;**](structfmt_1_1formatter_3_01endstone_1_1Location_01_4.md) &lt;&gt;<br> |
 
 
 

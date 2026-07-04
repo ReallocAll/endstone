@@ -10,7 +10,9 @@
 
 
 
+* `#include <algorithm>`
 * `#include <map>`
+* `#include <memory>`
 * `#include <mutex>`
 * `#include <string>`
 * `#include <utility>`
@@ -34,7 +36,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes

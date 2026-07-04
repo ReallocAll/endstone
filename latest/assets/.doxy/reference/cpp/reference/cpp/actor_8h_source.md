@@ -24,25 +24,30 @@
 
 #pragma once
 
+#include <cstdint>
+#include <string>
+#include <vector>
+
 #include "endstone/command/command_sender.h"
 #include "endstone/level/location.h"
-#include "endstone/level/position.h"
 
 namespace endstone {
-
+class Item;
+class Mob;
+class Level;
 class Actor : public CommandSender {
 public:
-    // CommandSender
-    [[nodiscard]] Actor *asActor() const override
-    {
-        return const_cast<Actor *>(this);
-    }
+    [[nodiscard]] virtual Mob *asMob() const = 0;
+
+    [[nodiscard]] virtual Item *asItem() const = 0;
+
+    [[nodiscard]] virtual std::string getType() const = 0;
 
     [[nodiscard]] virtual std::uint64_t getRuntimeId() const = 0;
 
     [[nodiscard]] virtual Location getLocation() const = 0;
 
-    [[nodiscard]] virtual Vector<float> getVelocity() const = 0;
+    [[nodiscard]] virtual Vector getVelocity() const = 0;
 
     [[nodiscard]] virtual bool isOnGround() const = 0;
 
@@ -56,28 +61,53 @@ public:
 
     virtual void setRotation(float yaw, float pitch) = 0;
 
-    virtual void teleport(Location location) = 0;
+    virtual bool teleport(const Location &location) = 0;
 
-    virtual void teleport(Actor &target) = 0;
+    virtual bool teleport(const Actor &target) = 0;
 
     [[nodiscard]] virtual std::int64_t getId() const = 0;
 
+    virtual void remove() = 0;
+
     [[nodiscard]] virtual bool isDead() const = 0;
 
-    [[nodiscard]] virtual int getHealth() const = 0;
-
-    [[nodiscard]] virtual Result<void> setHealth(int health) const = 0;
-
-    [[nodiscard]] virtual int getMaxHealth() const = 0;
+    [[nodiscard]] virtual bool isValid() const = 0;
 
     [[nodiscard]] virtual std::vector<std::string> getScoreboardTags() const = 0;
 
     [[nodiscard]] virtual bool addScoreboardTag(std::string tag) const = 0;
 
     [[nodiscard]] virtual bool removeScoreboardTag(std::string tag) const = 0;
+
+    [[nodiscard]] virtual bool isNameTagVisible() const = 0;
+
+    virtual void setNameTagVisible(bool visible) = 0;
+
+    [[nodiscard]] virtual bool isNameTagAlwaysVisible() const = 0;
+
+    virtual void setNameTagAlwaysVisible(bool visible) = 0;
+
+    [[nodiscard]] virtual std::string getNameTag() const = 0;
+
+    virtual void setNameTag(std::string name) = 0;
+
+    [[nodiscard]] virtual std::string getScoreTag() const = 0;
+
+    virtual void setScoreTag(std::string score) = 0;
 };
 
 }  // namespace endstone
+
+template <>
+struct fmt::formatter<endstone::Actor> : formatter<string_view> {
+    using Type = endstone::Actor;
+
+    template <typename FormatContext>
+    auto format(const Type &val, FormatContext &ctx) const -> format_context::iterator
+    {
+        return fmt::format_to(ctx.out(), "{}", val.getName());
+    }
+};  // namespace fmt
 ```
 
 

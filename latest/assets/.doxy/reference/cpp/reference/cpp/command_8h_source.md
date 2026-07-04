@@ -25,7 +25,6 @@
 #pragma once
 
 #include <algorithm>
-#include <optional>
 #include <string>
 #include <utility>
 #include <vector>
@@ -56,10 +55,7 @@ public:
         return false;
     }
 
-    [[nodiscard]] std::string getName() const
-    {
-        return name_;
-    }
+    [[nodiscard]] std::string getName() const { return name_; }
 
     void setName(std::string name)
     {
@@ -69,10 +65,7 @@ public:
         }
     }
 
-    [[nodiscard]] std::string getDescription() const
-    {
-        return description_;
-    }
+    [[nodiscard]] std::string getDescription() const { return description_; }
 
     void setDescription(std::string description)
     {
@@ -81,16 +74,13 @@ public:
         }
     }
 
-    [[nodiscard]] std::vector<std::string> getAliases() const
-    {
-        return aliases_;
-    }
+    [[nodiscard]] std::vector<std::string> getAliases() const { return aliases_; }
 
     template <typename... Alias>
     void setAliases(Alias... aliases)
     {
         if (!isRegistered()) {
-            std::vector<std::string> all_aliases = {aliases...};
+            std::vector<std::string> all_aliases = {std::move(aliases)...};
             aliases_.clear();
             for (auto alias : all_aliases) {
                 std::transform(alias.begin(), alias.end(), alias.begin(),
@@ -100,16 +90,13 @@ public:
         }
     }
 
-    [[nodiscard]] std::vector<std::string> getUsages() const
-    {
-        return usages_;
-    }
+    [[nodiscard]] std::vector<std::string> getUsages() const { return usages_; }
 
     template <typename... Usage>
     void setUsages(Usage... usages)
     {
         if (!isRegistered()) {
-            std::vector<std::string> all_usages = {usages...};
+            std::vector<std::string> all_usages = {std::move(usages)...};
             if (all_usages.empty()) {
                 all_usages.push_back("/" + getName());
             }
@@ -117,15 +104,12 @@ public:
         }
     }
 
-    [[nodiscard]] std::vector<std::string> getPermissions() const
-    {
-        return permissions_;
-    }
+    [[nodiscard]] std::vector<std::string> getPermissions() const { return permissions_; }
 
     template <typename... Permission>
     void setPermissions(Permission... permissions)
     {
-        permissions_ = std::move(std::vector<std::string>{permissions...});
+        permissions_ = std::move(std::vector<std::string>{std::move(permissions)...});
     }
 
     [[nodiscard]] bool testPermission(const CommandSender &target) const
@@ -134,7 +118,7 @@ public:
             return true;
         }
 
-        target.sendErrorMessage(Translatable("commands.generic.unknown", {getName()}));
+        target.sendErrorMessage(Translatable("commands.generic.error.permissions", {getName()}));
         return false;
     }
 
@@ -144,11 +128,10 @@ public:
             return true;
         }
 
-        return std::any_of(permissions_.begin(), permissions_.end(),
-                           [&target](const auto &p) { return target.hasPermission(p); });
+        return std::any_of(permissions_.begin(), permissions_.end(), [&target](const auto &p) { return target.hasPermission(p); });
     }
 
-    bool registerTo(CommandMap &command_map)
+    bool registerTo(const CommandMap &command_map)
     {
         if (allowChangesFrom(command_map)) {
             command_map_ = &command_map;
@@ -168,18 +151,12 @@ public:
         return false;
     }
 
-    [[nodiscard]] bool isRegistered() const
-    {
-        return command_map_ != nullptr;
-    }
+    [[nodiscard]] bool isRegistered() const { return command_map_ != nullptr; }
 
-    [[nodiscard]] virtual PluginCommand *asPluginCommand() const
-    {
-        return nullptr;
-    }
+    [[nodiscard]] virtual PluginCommand *asPluginCommand() const { return nullptr; }
 
 private:
-    bool allowChangesFrom(const CommandMap &command_map) const
+    [[nodiscard]] bool allowChangesFrom(const CommandMap &command_map) const
     {
         return (!isRegistered() || command_map_ == &command_map);
     }
@@ -189,7 +166,7 @@ private:
     std::vector<std::string> aliases_;
     std::vector<std::string> usages_;
     std::vector<std::string> permissions_;
-    CommandMap *command_map_ = nullptr;
+    const CommandMap *command_map_ = nullptr;
 };
 }  // namespace endstone
 ```

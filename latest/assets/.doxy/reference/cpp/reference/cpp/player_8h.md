@@ -11,6 +11,9 @@
 
 
 * `#include <chrono>`
+* `#include <optional>`
+* `#include <string>`
+* `#include <string_view>`
 * `#include <variant>`
 * `#include "endstone/actor/mob.h"`
 * `#include "endstone/form/action_form.h"`
@@ -18,7 +21,8 @@
 * `#include "endstone/form/modal_form.h"`
 * `#include "endstone/game_mode.h"`
 * `#include "endstone/inventory/player_inventory.h"`
-* `#include "endstone/network/spawn_particle_effect_packet.h"`
+* `#include "endstone/map/map_view.h"`
+* `#include "endstone/offline_player.h"`
 * `#include "endstone/scoreboard/scoreboard.h"`
 * `#include "endstone/skin.h"`
 * `#include "endstone/util/socket_address.h"`
@@ -40,7 +44,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes

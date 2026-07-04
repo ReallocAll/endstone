@@ -10,8 +10,10 @@
 
 
 
+* `#include <cstdint>`
 * `#include <memory>`
 * `#include <string>`
+* `#include <vector>`
 * `#include "endstone/actor/actor.h"`
 
 
@@ -30,7 +32,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**endstone**](namespaceendstone.md) <br> |
+| namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
 
 
 ## Classes

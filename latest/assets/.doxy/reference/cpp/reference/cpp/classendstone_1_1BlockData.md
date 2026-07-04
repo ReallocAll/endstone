@@ -14,7 +14,6 @@ _Represents the data related to a live block._
 
 
 
-Inherits the following classes: std::enable_shared_from_this< BlockData >
 
 
 
@@ -54,6 +53,7 @@ Inherits the following classes: std::enable_shared_from_this< BlockData >
 | Type | Name |
 | ---: | :--- |
 | virtual BlockStates | [**getBlockStates**](#function-getblockstates) () const = 0<br>_Gets the block states, which when passed into a method such as Server::createBlockData(type, block\_states) will unambiguously recreate this instance._  |
+| virtual std::uint32\_t | [**getRuntimeId**](#function-getruntimeid) () const = 0<br>_Get the runtime ID for this block._  |
 | virtual std::string | [**getType**](#function-gettype) () const = 0<br>_Get the block type represented by this block data._  |
 | virtual  | [**~BlockData**](#function-blockdata) () = default<br> |
 
@@ -103,6 +103,31 @@ virtual BlockStates endstone::BlockData::getBlockStates () const = 0
 **Returns:**
 
 the block states for this block 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function getRuntimeId 
+
+_Get the runtime ID for this block._ 
+```C++
+virtual std::uint32_t endstone::BlockData::getRuntimeId () const = 0
+```
+
+
+
+
+
+**Returns:**
+
+the runtime id for this block 
 
 
 

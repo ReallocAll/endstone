@@ -14,7 +14,7 @@ _Called when a player sends a chat message._
 
 
 
-Inherits the following classes: [endstone::PlayerEvent](classendstone_1_1PlayerEvent.md)
+Inherits the following classes: [endstone::Cancellable](classendstone_1_1Cancellable.md)
 
 
 
@@ -47,11 +47,6 @@ Inherits the following classes: [endstone::PlayerEvent](classendstone_1_1PlayerE
 
 
 
-## Public Static Attributes
-
-| Type | Name |
-| ---: | :--- |
-|  const std::string | [**NAME**](#variable-name)   = = "PlayerChatEvent"<br> |
 
 
 
@@ -98,44 +93,37 @@ Inherits the following classes: [endstone::PlayerEvent](classendstone_1_1PlayerE
 
 | Type | Name |
 | ---: | :--- |
-|   | [**PlayerChatEvent**](#function-playerchatevent) ([**Player**](classendstone_1_1Player.md) & player, std::string message) <br> |
-| virtual std::string | [**getEventName**](#function-geteventname) () override const<br> |
-|  std::string | [**getMessage**](#function-getmessage) () const<br> |
-| virtual bool | [**isCancellable**](#function-iscancellable) () override const<br> |
-|  void | [**setMessage**](#function-setmessage) (std::string message) <br> |
-|   | [**~PlayerChatEvent**](#function-playerchatevent) () override<br> |
+|   | [**ENDSTONE\_EVENT**](#function-endstone_event) ([**PlayerChatEvent**](classendstone_1_1PlayerChatEvent.md)) <br> |
+|   | [**PlayerChatEvent**](#function-playerchatevent) ([**Player**](classendstone_1_1Player.md) & player, std::string message, std::optional&lt; std::vector&lt; [**Player**](classendstone_1_1Player.md) \* &gt; &gt; recipients, std::string format="&lt;{0}&gt; {1}") <br> |
+|  std::string | [**getFormat**](#function-getformat) () const<br>_Gets the format to use to display this chat message._  |
+|  std::string | [**getMessage**](#function-getmessage) () const<br>_Gets the message that the player is attempting to send._  |
+|  std::vector&lt; [**Player**](classendstone_1_1Player.md) \* &gt; | [**getRecipients**](#function-getrecipients) () const<br>_Gets a set of recipients that this chat message will be displayed to._  |
+|  [**void**](classendstone_1_1Identifier.md) | [**setFormat**](#function-setformat) (std::string format) <br>_Sets the format to use to display this chat message._  |
+|  [**void**](classendstone_1_1Identifier.md) | [**setMessage**](#function-setmessage) (std::string message) <br>_Sets the message that the player will send._  |
+|  [**void**](classendstone_1_1Identifier.md) | [**setPlayer**](#function-setplayer) ([**Player**](classendstone_1_1Player.md) & player) <br>_Sets the player that this message will display as._  |
 
 
-## Public Functions inherited from endstone::PlayerEvent
+## Public Functions inherited from endstone::Cancellable
 
-See [endstone::PlayerEvent](classendstone_1_1PlayerEvent.md)
-
-| Type | Name |
-| ---: | :--- |
-|   | [**PlayerEvent**](classendstone_1_1PlayerEvent.md#function-playerevent) ([**Player**](classendstone_1_1Player.md) & player) <br> |
-|  [**Player**](classendstone_1_1Player.md) & | [**getPlayer**](classendstone_1_1PlayerEvent.md#function-getplayer) () const<br> |
-|   | [**~PlayerEvent**](classendstone_1_1PlayerEvent.md#function-playerevent) () override<br> |
-
-
-## Public Functions inherited from endstone::Event
-
-See [endstone::Event](classendstone_1_1Event.md)
+See [endstone::Cancellable](classendstone_1_1Cancellable.md)
 
 | Type | Name |
 | ---: | :--- |
-|   | [**Event**](classendstone_1_1Event.md#function-event-12) (bool async=false) <br> |
-|   | [**Event**](classendstone_1_1Event.md#function-event-22) (const [**Event**](classendstone_1_1Event.md) &) = delete<br> |
-| virtual std::string | [**getEventName**](classendstone_1_1Event.md#function-geteventname) () const = 0<br> |
-|  bool | [**isAsynchronous**](classendstone_1_1Event.md#function-isasynchronous) () const<br> |
-| virtual bool | [**isCancellable**](classendstone_1_1Event.md#function-iscancellable) () const = 0<br> |
-|  bool | [**isCancelled**](classendstone_1_1Event.md#function-iscancelled) () const<br> |
-|  [**Event**](classendstone_1_1Event.md) & | [**operator=**](classendstone_1_1Event.md#function-operator) (const [**Event**](classendstone_1_1Event.md) &) = delete<br> |
-|  void | [**setCancelled**](classendstone_1_1Event.md#function-setcancelled) (bool cancel) <br> |
-| virtual  | [**~Event**](classendstone_1_1Event.md#function-event) () = default<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**cancel**](classendstone_1_1Cancellable.md#function-cancel) () <br>_Cancel this event. A cancelled event will not be executed in the server, but will still pass to other plugins._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isCancelled**](classendstone_1_1Cancellable.md#function-iscancelled) () override const<br>_Gets the cancellation state of this event. A cancelled event will not be executed in the server, but will still pass to other plugins._  |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**setCancelled**](classendstone_1_1Cancellable.md#function-setcancelled) ([**bool**](classendstone_1_1Identifier.md) cancel) override<br>_Sets the cancellation state of this event. A cancelled event will not be executed in the server, but will still pass to other plugins._  |
 
 
+## Public Functions inherited from endstone::ICancellable
 
+See [endstone::ICancellable](classendstone_1_1ICancellable.md)
 
+| Type | Name |
+| ---: | :--- |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**cancel**](classendstone_1_1ICancellable.md#function-cancel) () = 0<br> |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isCancelled**](classendstone_1_1ICancellable.md#function-iscancelled) () const = 0<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**setCancelled**](classendstone_1_1ICancellable.md#function-setcancelled) ([**bool**](classendstone_1_1Identifier.md) cancel) = 0<br> |
+| virtual  | [**~ICancellable**](classendstone_1_1ICancellable.md#function-icancellable) () = default<br> |
 
 
 
@@ -212,32 +200,20 @@ See [endstone::Event](classendstone_1_1Event.md)
 
 
 
-## Public Static Attributes Documentation
 
 
 
 
-### variable NAME 
-
-```C++
-const std::string endstone::PlayerChatEvent::NAME;
-```
-
-
-
-
-<hr>
 ## Public Functions Documentation
 
 
 
 
-### function PlayerChatEvent 
+### function ENDSTONE\_EVENT 
 
 ```C++
-inline explicit endstone::PlayerChatEvent::PlayerChatEvent (
-    Player & player,
-    std::string message
+endstone::PlayerChatEvent::ENDSTONE_EVENT (
+    PlayerChatEvent
 ) 
 ```
 
@@ -248,31 +224,47 @@ inline explicit endstone::PlayerChatEvent::PlayerChatEvent (
 
 
 
-### function getEventName 
-
+### function PlayerChatEvent 
 
 ```C++
-inline virtual std::string endstone::PlayerChatEvent::getEventName () override const
+inline explicit endstone::PlayerChatEvent::PlayerChatEvent (
+    Player & player,
+    std::string message,
+    std::optional< std::vector< Player * > > recipients,
+    std::string format="<{0}> {1}"
+) 
 ```
 
 
 
-Gets a user-friendly identifier for this event.
+
+<hr>
+
+
+
+### function getFormat 
+
+_Gets the format to use to display this chat message._ 
+```C++
+inline std::string endstone::PlayerChatEvent::getFormat () const
+```
+
+
+
+See [the format string syntax](https://en.cppreference.com/w/cpp/utility/format/spec.html)
 
 
 
 
 **Returns:**
 
-name of this event 
+format string 
 
 
 
 
 
         
-Implements [*endstone::Event::getEventName*](classendstone_1_1Event.md#function-geteventname)
-
 
 <hr>
 
@@ -280,14 +272,11 @@ Implements [*endstone::Event::getEventName*](classendstone_1_1Event.md#function-
 
 ### function getMessage 
 
-
+_Gets the message that the player is attempting to send._ 
 ```C++
 inline std::string endstone::PlayerChatEvent::getMessage () const
 ```
 
-
-
-Gets the message that the player is attempting to send.
 
 
 
@@ -306,31 +295,53 @@ Message the player is attempting to send
 
 
 
-### function isCancellable 
+### function getRecipients 
 
-
+_Gets a set of recipients that this chat message will be displayed to._ 
 ```C++
-inline virtual bool endstone::PlayerChatEvent::isCancellable () override const
+inline std::vector< Player * > endstone::PlayerChatEvent::getRecipients () const
 ```
 
-
-
-Whether the event can be cancelled by a plugin or the server.
 
 
 
 
 **Returns:**
 
-true if this event can be cancelled 
+All Players who will see this chat message 
 
 
 
 
 
         
-Implements [*endstone::Event::isCancellable*](classendstone_1_1Event.md#function-iscancellable)
 
+<hr>
+
+
+
+### function setFormat 
+
+_Sets the format to use to display this chat message._ 
+```C++
+inline void endstone::PlayerChatEvent::setFormat (
+    std::string format
+) 
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `format` format string 
+
+
+
+
+        
 
 <hr>
 
@@ -338,16 +349,13 @@ Implements [*endstone::Event::isCancellable*](classendstone_1_1Event.md#function
 
 ### function setMessage 
 
-
+_Sets the message that the player will send._ 
 ```C++
 inline void endstone::PlayerChatEvent::setMessage (
     std::string message
 ) 
 ```
 
-
-
-Sets the message that the player will send.
 
 
 
@@ -366,14 +374,28 @@ Sets the message that the player will send.
 
 
 
-### function ~PlayerChatEvent 
+### function setPlayer 
 
+_Sets the player that this message will display as._ 
 ```C++
-endstone::PlayerChatEvent::~PlayerChatEvent () override
+inline void endstone::PlayerChatEvent::setPlayer (
+    Player & player
+) 
 ```
 
 
 
+
+
+**Parameters:**
+
+
+* `player` New player which this event will execute as 
+
+
+
+
+        
 
 <hr>
 

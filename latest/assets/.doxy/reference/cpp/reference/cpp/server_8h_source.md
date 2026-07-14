@@ -26,10 +26,12 @@
 
 #include <chrono>
 #include <cstdint>
+#include <format>
 #include <memory>
 #include <stdexcept>
 #include <string>
 #include <string_view>
+#include <typeinfo>
 #include <utility>
 #include <vector>
 
@@ -37,29 +39,37 @@
 #include "endstone/ban/player_ban_list.h"
 #include "endstone/block/block_data.h"
 #include "endstone/boss/boss_bar.h"
+#include "endstone/command/command_sender.h"
+#include "endstone/identifier.h"
 #include "endstone/lang/language.h"
-#include "endstone/level/level.h"
 #include "endstone/logger.h"
 #include "endstone/map/map_view.h"
-#include "endstone/player.h"
+#include "endstone/message.h"
 #include "endstone/plugin/service_manager.h"
 #include "endstone/scoreboard/scoreboard.h"
-#include "endstone/util/result.h"
+#include "endstone/util/pointers.h"
 #include "endstone/util/uuid.h"
 
 namespace endstone {
 
+class BlockType;
 class ConsoleCommandSender;
 class Enchantment;
 class ItemFactory;
 class ItemType;
 class IRegistry;
+class Level;
 class Scheduler;
+class Player;
 class PluginCommand;
 class PluginManager;
 
 template <typename T>
 class Registry;
+
+// Mirrors the alias in block/block_type.h; redeclared here because that header
+// (via registry.h) includes this one, so it cannot be included before Server.
+using BlockTypeId = Identifier<BlockType>;
 
 class Server {
 public:
@@ -83,7 +93,7 @@ public:
 
     [[nodiscard]] virtual PluginManager &getPluginManager() const = 0;
 
-    [[nodiscard]] virtual PluginCommand *getPluginCommand(std::string name) const = 0;
+    [[nodiscard]] virtual Nullable<PluginCommand> getPluginCommand(std::string name) const = 0;
 
     [[nodiscard]] virtual ConsoleCommandSender &getCommandSender() const = 0;
 
@@ -91,7 +101,7 @@ public:
 
     [[nodiscard]] virtual Scheduler &getScheduler() const = 0;
 
-    [[nodiscard]] virtual Level *getLevel() const = 0;
+    [[nodiscard]] virtual Level &getLevel() const = 0;
 
     [[nodiscard]] virtual std::vector<Player *> getOnlinePlayers() const = 0;
 
@@ -99,7 +109,7 @@ public:
 
     virtual void setMaxPlayers(int max_players) = 0;
 
-    [[nodiscard]] virtual Player *getPlayer(endstone::UUID id) const = 0;
+    [[nodiscard]] virtual Nullable<Player> getPlayer(endstone::UUID id) const = 0;
 
     [[nodiscard]] virtual int getPort() const = 0;
 
@@ -107,7 +117,7 @@ public:
 
     [[nodiscard]] virtual bool getOnlineMode() const = 0;
 
-    [[nodiscard]] virtual Player *getPlayer(std::string name) const = 0;
+    [[nodiscard]] virtual Nullable<Player> getPlayer(std::string name) const = 0;
 
     virtual void shutdown() = 0;
 
@@ -120,10 +130,10 @@ public:
     virtual void broadcastMessage(const Message &message) const = 0;
 
     template <typename... Args>
-    void broadcastMessage(const fmt::format_string<Args...> format, Args &&...args) const
+    void broadcastMessage(const std::format_string<Args...> format, Args &&...args) const
     {
         try {
-            broadcastMessage(fmt::format(format, std::forward<Args>(args)...));
+            broadcastMessage(std::format(format, std::forward<Args>(args)...));
         }
         catch (std::exception &e) {
             getLogger().log(Logger::Error, e.what());
@@ -134,7 +144,7 @@ public:
 
     [[nodiscard]] virtual ItemFactory &getItemFactory() const = 0;
 
-    [[nodiscard]] virtual Scoreboard *getScoreboard() const = 0;
+    [[nodiscard]] virtual Nullable<Scoreboard> getScoreboard() const = 0;
 
     [[nodiscard]] virtual std::shared_ptr<Scoreboard> createScoreboard() = 0;
 
@@ -157,9 +167,9 @@ public:
     [[nodiscard]] virtual std::unique_ptr<BossBar> createBossBar(std::string title, BarColor color, BarStyle style,
                                                                  std::vector<BarFlag> flags) const = 0;
 
-    [[nodiscard]] virtual std::unique_ptr<BlockData> createBlockData(std::string type) const = 0;
+    [[nodiscard]] virtual std::unique_ptr<BlockData> createBlockData(BlockTypeId type) const = 0;
 
-    [[nodiscard]] virtual std::unique_ptr<BlockData> createBlockData(std::string type,
+    [[nodiscard]] virtual std::unique_ptr<BlockData> createBlockData(BlockTypeId type,
                                                                      BlockStates block_states) const = 0;
 
     [[nodiscard]] virtual PlayerBanList &getBanList() const = 0;
@@ -168,12 +178,12 @@ public:
 
     [[nodiscard]] virtual ServiceManager &getServiceManager() const = 0;
 
-    [[nodiscard]] virtual IRegistry *_getRegistry(const std::string &type) const = 0;
+    [[nodiscard]] virtual IRegistry *_getRegistry(const std::type_info &type) const = 0;
 
     template <typename T>
     [[nodiscard]] const Registry<T> &getRegistry() const
     {
-        return *static_cast<Registry<T> *>(_getRegistry(T::RegistryType));
+        return *static_cast<Registry<T> *>(_getRegistry(typeid(T)));
     }
 
     [[nodiscard]] virtual MapView *getMap(std::int64_t id) const = 0;

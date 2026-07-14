@@ -52,8 +52,8 @@ _Represent a service manager that manages services and service providers._ [More
 
 | Type | Name |
 | ---: | :--- |
-| virtual std::shared\_ptr&lt; [**Service**](classendstone_1_1Service.md) &gt; | [**get**](#function-get) (std::string name) const = 0<br>_Queries for a provider. This may return null if no provider has been registered for a service. The highest priority provider is returned._  |
-|  std::shared\_ptr&lt; [**T**](classendstone_1_1Identifier.md) &gt; | [**load**](#function-load) (std::string name) const<br> |
+| virtual std::shared\_ptr&lt; [**Service**](classendstone_1_1Service.md) &gt; | [**get**](#function-get) (std::string name) const = 0<br>_Queries for a provider._  |
+|  std::shared\_ptr&lt; [**T**](classendstone_1_1Identifier.md) &gt; | [**load**](#function-load) (std::string name) const<br>_Queries for a provider and casts it to the requested service type._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**registerService**](#function-registerservice) (std::string name, std::shared\_ptr&lt; [**Service**](classendstone_1_1Service.md) &gt; provider, [**const**](classendstone_1_1Identifier.md) [**Plugin**](classendstone_1_1Plugin.md) & plugin, [**ServicePriority**](namespaceendstone.md#enum-servicepriority) priority) = 0<br>_Register a provider of a service._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**unregister**](#function-unregister-12) (std::string name, [**const**](classendstone_1_1Identifier.md) [**Service**](classendstone_1_1Service.md) & provider) = 0<br>_Unregister a particular provider for a particular service._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**unregister**](#function-unregister-22) ([**const**](classendstone_1_1Identifier.md) [**Service**](classendstone_1_1Service.md) & provider) = 0<br>_Unregister a particular provider._  |
@@ -101,13 +101,16 @@ Services are an interface specifying a list of methods that a provider must impl
 
 ### function get 
 
-_Queries for a provider. This may return null if no provider has been registered for a service. The highest priority provider is returned._ 
+_Queries for a provider._ 
 ```C++
 virtual std::shared_ptr< Service > endstone::ServiceManager::get (
     std::string name
 ) const = 0
 ```
 
+
+
+This may return an empty shared\_ptr if no provider has been registered for the service. The highest priority provider is returned.
 
 
 
@@ -121,7 +124,7 @@ virtual std::shared_ptr< Service > endstone::ServiceManager::get (
 
 **Returns:**
 
-provider or null 
+The highest priority provider, or an empty shared\_ptr if none is registered. 
 
 
 
@@ -135,6 +138,7 @@ provider or null
 
 ### function load 
 
+_Queries for a provider and casts it to the requested service type._ 
 ```C++
 template<typename  T>
 inline std::shared_ptr< T > endstone::ServiceManager::load (
@@ -144,6 +148,34 @@ inline std::shared_ptr< T > endstone::ServiceManager::load (
 
 
 
+The highest priority provider is returned.
+
+
+
+
+**Template parameters:**
+
+
+* `T` The service type to cast the provider to 
+
+
+
+**Parameters:**
+
+
+* `name` The service name 
+
+
+
+**Returns:**
+
+The highest priority provider cast to T, or an empty shared\_ptr if none is registered. 
+
+
+
+
+
+        
 
 <hr>
 

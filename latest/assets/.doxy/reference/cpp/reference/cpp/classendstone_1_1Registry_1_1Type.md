@@ -16,7 +16,7 @@ _CRTP base for registry-backed types identified by an_ [_**Identifier**_](classe
 
 
 
-Inherited by the following classes: [endstone::BlockType](classendstone_1_1BlockType.md),  [endstone::Enchantment](classendstone_1_1Enchantment.md),  [endstone::ItemType](classendstone_1_1ItemType.md)
+Inherited by the following classes: [endstone::ActorType](classendstone_1_1ActorType.md),  [endstone::Biome](classendstone_1_1Biome.md),  [endstone::BlockType](classendstone_1_1BlockType.md),  [endstone::Enchantment](classendstone_1_1Enchantment.md),  [endstone::ItemType](classendstone_1_1ItemType.md)
 
 
 
@@ -33,7 +33,7 @@ Inherited by the following classes: [endstone::BlockType](classendstone_1_1Block
 
 | Type | Name |
 | ---: | :--- |
-| typedef [**Identifier**](classendstone_1_1Identifier.md)&lt; [**T**](classendstone_1_1Identifier.md) &gt; | [**Id**](#typedef-id)  <br> |
+| typedef [**Identifier**](classendstone_1_1Identifier.md)&lt; [**T**](classendstone_1_1Identifier.md) &gt; | [**Id**](#typedef-id)  <br>_The identifier type used to look up this object in its registry._  |
 
 
 
@@ -58,12 +58,12 @@ Inherited by the following classes: [endstone::BlockType](classendstone_1_1Block
 
 | Type | Name |
 | ---: | :--- |
-| virtual [**Id**](classendstone_1_1Identifier.md) | [**getId**](#function-getid) () const = 0<br>_Return the identifier of this object._  |
+| virtual [**Id**](classendstone_1_1Registry_1_1Type.md#typedef-id) | [**getId**](#function-getid) () const = 0<br>_Return the identifier of this object._  |
 | virtual std::string | [**getTranslationKey**](#function-gettranslationkey) () const = 0<br>_Get the translation key, suitable for use in a translation component._  |
 |   | [**operator Id**](#function-operator-id) () const<br> |
-|  [**bool**](classendstone_1_1Identifier.md) | [**operator!=**](#function-operator) ([**const**](classendstone_1_1Identifier.md) [**Id**](classendstone_1_1Identifier.md) & other) const<br> |
+|  [**bool**](classendstone_1_1Identifier.md) | [**operator!=**](#function-operator) ([**const**](classendstone_1_1Identifier.md) [**Id**](classendstone_1_1Registry_1_1Type.md#typedef-id) & other) const<br> |
 |  [**bool**](classendstone_1_1Identifier.md) | [**operator!=**](#function-operator_1) ([**const**](classendstone_1_1Identifier.md) [**T**](classendstone_1_1Identifier.md) & other) const<br> |
-|  [**bool**](classendstone_1_1Identifier.md) | [**operator==**](#function-operator_2) ([**const**](classendstone_1_1Identifier.md) [**Id**](classendstone_1_1Identifier.md) & other) const<br> |
+|  [**bool**](classendstone_1_1Identifier.md) | [**operator==**](#function-operator_2) ([**const**](classendstone_1_1Identifier.md) [**Id**](classendstone_1_1Registry_1_1Type.md#typedef-id) & other) const<br> |
 |  [**bool**](classendstone_1_1Identifier.md) | [**operator==**](#function-operator_3) ([**const**](classendstone_1_1Identifier.md) [**T**](classendstone_1_1Identifier.md) & other) const<br> |
 | virtual  | [**~Type**](#function-type) () = default<br> |
 
@@ -72,7 +72,7 @@ Inherited by the following classes: [endstone::BlockType](classendstone_1_1Block
 
 | Type | Name |
 | ---: | :--- |
-|  [**const**](classendstone_1_1Identifier.md) [**T**](classendstone_1_1Identifier.md) \* | [**get**](#function-get) ([**Id**](classendstone_1_1Identifier.md) id) <br>_Look up a registry entry by identifier._  |
+|  [**const**](classendstone_1_1Identifier.md) [**T**](classendstone_1_1Identifier.md) \* | [**get**](#function-get) ([**Id**](classendstone_1_1Registry_1_1Type.md#typedef-id) id) <br>_Look up a registry entry by identifier._  |
 
 
 
@@ -113,6 +113,7 @@ Provides [**getId()**](classendstone_1_1Registry_1_1Type.md#function-getid), [**
 
 ### typedef Id 
 
+_The identifier type used to look up this object in its registry._ 
 ```C++
 using endstone::Registry< T >::Type::Id =  Identifier<T>;
 ```

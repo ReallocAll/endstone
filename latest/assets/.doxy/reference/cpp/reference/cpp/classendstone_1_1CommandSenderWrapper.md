@@ -33,7 +33,27 @@ Inherits the following classes: [endstone::CommandSender](classendstone_1_1Comma
 
 | Type | Name |
 | ---: | :--- |
-| typedef std::function&lt; [**void**](classendstone_1_1Identifier.md)([**const**](classendstone_1_1Identifier.md) Message &)&gt; | [**Callback**](#typedef-callback)  <br> |
+| typedef std::function&lt; [**void**](classendstone_1_1Identifier.md)([**const**](classendstone_1_1Identifier.md) [**Message**](namespaceendstone.md#typedef-message) &)&gt; | [**Callback**](#typedef-callback)  <br> |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -101,22 +121,22 @@ Inherits the following classes: [endstone::CommandSender](classendstone_1_1Comma
 |   | [**CommandSenderWrapper**](#function-commandsenderwrapper) ([**CommandSender**](classendstone_1_1CommandSender.md) & sender, Callback on\_message={}, Callback on\_error={}) <br> |
 | virtual [**PermissionAttachment**](classendstone_1_1PermissionAttachment.md) \* | [**addAttachment**](#function-addattachment-12) ([**Plugin**](classendstone_1_1Plugin.md) & plugin, [**const**](classendstone_1_1Identifier.md) std::string & name, [**bool**](classendstone_1_1Identifier.md) value) override<br>_Adds a new_ [_**PermissionAttachment**_](classendstone_1_1PermissionAttachment.md) _with a single permission by name and value._ |
 | virtual [**PermissionAttachment**](classendstone_1_1PermissionAttachment.md) \* | [**addAttachment**](#function-addattachment-22) ([**Plugin**](classendstone_1_1Plugin.md) & plugin) override<br>_Adds a new empty_ [_**PermissionAttachment**_](classendstone_1_1PermissionAttachment.md) _to this object._ |
-| virtual [**Actor**](classendstone_1_1Actor.md) \* | [**asActor**](#function-asactor) () override const<br>_Gets a_ [_**CommandSender**_](classendstone_1_1CommandSender.md) _as_[_**Actor**_](classendstone_1_1Actor.md) _._ |
-| virtual [**BlockCommandSender**](classendstone_1_1BlockCommandSender.md) \* | [**asBlock**](#function-asblock) () override const<br>_Gets a_ [_**CommandSender**_](classendstone_1_1CommandSender.md) _as_[_**BlockCommandSender**_](classendstone_1_1BlockCommandSender.md) _._ |
-| virtual [**ConsoleCommandSender**](classendstone_1_1ConsoleCommandSender.md) \* | [**asConsole**](#function-asconsole) () override const<br>_Gets a_ [_**CommandSender**_](classendstone_1_1CommandSender.md) _as_[_**ConsoleCommandSender**_](classendstone_1_1ConsoleCommandSender.md) _._ |
-| virtual [**Player**](classendstone_1_1Player.md) \* | [**asPlayer**](#function-asplayer) () override const<br>_Gets a_ [_**CommandSender**_](classendstone_1_1CommandSender.md) _as_[_**Player**_](classendstone_1_1Player.md) _._ |
+| virtual [**const**](classendstone_1_1Identifier.md) std::type\_info & | [**getClassTypeId**](#function-getclasstypeid) () override const<br> |
 | virtual std::unordered\_set&lt; [**PermissionAttachmentInfo**](classendstone_1_1PermissionAttachmentInfo.md) \* &gt; | [**getEffectivePermissions**](#function-geteffectivepermissions) () override const<br>_Gets a set containing all the permissions currently in effect by this object._  |
 | virtual std::string | [**getName**](#function-getname) () override const<br>_Gets the name of this command sender._  |
-| virtual PermissionLevel | [**getPermissionLevel**](#function-getpermissionlevel) () override const<br>_Gets the permission level of this object._  |
+| virtual [**PermissionLevel**](namespaceendstone.md#enum-permissionlevel) | [**getPermissionLevel**](#function-getpermissionlevel) () override const<br>_Gets the permission level of this object._  |
 | virtual [**Server**](classendstone_1_1Server.md) & | [**getServer**](#function-getserver) () override const<br>_Returns the server instance that this command is running on._  |
-| virtual [**bool**](classendstone_1_1Identifier.md) | [**hasPermission**](#function-haspermission-12) (std::string name) override const<br>_Gets the value of the specified permission, if set. If a permission override is not set on this object, the default value of the permission will be returned._  |
-| virtual [**bool**](classendstone_1_1Identifier.md) | [**hasPermission**](#function-haspermission-22) ([**const**](classendstone_1_1Identifier.md) [**Permission**](classendstone_1_1Permission.md) & perm) override const<br>_Gets the value of the specified permission, if set. If a permission override is not set on this object, the default value of the permission will be returned._  |
+|  [**CommandSender**](classendstone_1_1CommandSender.md) & | [**getWrapped**](#function-getwrapped-12) () <br>_Returns a reference to the wrapped_ [_**CommandSender**_](classendstone_1_1CommandSender.md) _._ |
+|  [**const**](classendstone_1_1Identifier.md) [**CommandSender**](classendstone_1_1CommandSender.md) & | [**getWrapped**](#function-getwrapped-22) () const<br>_Returns a reference to the wrapped_ [_**CommandSender**_](classendstone_1_1CommandSender.md) _._ |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**hasPermission**](#function-haspermission-12) (std::string name) override const<br>_Gets the value of the specified permission, if set._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**hasPermission**](#function-haspermission-22) ([**const**](classendstone_1_1Identifier.md) [**Permission**](classendstone_1_1Permission.md) & perm) override const<br>_Gets the value of the specified permission, if set._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isInstanceOf**](#function-isinstanceof) ([**const**](classendstone_1_1Identifier.md) std::type\_info & target) override const<br> |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**isPermissionSet**](#function-ispermissionset-12) (std::string name) override const<br>_Checks if this object contains an override for the specified permission, by fully qualified name._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**isPermissionSet**](#function-ispermissionset-22) ([**const**](classendstone_1_1Identifier.md) [**Permission**](classendstone_1_1Permission.md) & perm) override const<br>_Checks if this object contains an override for the specified_ [_**Permission**_](classendstone_1_1Permission.md) _._ |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**recalculatePermissions**](#function-recalculatepermissions) () override<br>_Recalculates the permissions for this object, if the attachments have changed values. This should very rarely need to be called from a plugin._  |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**recalculatePermissions**](#function-recalculatepermissions) () override<br>_Recalculates the permissions for this object, if the attachments have changed values._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**removeAttachment**](#function-removeattachment) ([**PermissionAttachment**](classendstone_1_1PermissionAttachment.md) & attachment) override<br>_Removes the given_ [_**PermissionAttachment**_](classendstone_1_1PermissionAttachment.md) _from this object._ |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**sendErrorMessage**](#function-senderrormessage) ([**const**](classendstone_1_1Identifier.md) Message & message) override const<br>_Sends this sender a error message._  |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**sendMessage**](#function-sendmessage) ([**const**](classendstone_1_1Identifier.md) Message & message) override const<br>_Sends this sender a message._  |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**sendErrorMessage**](#function-senderrormessage) ([**const**](classendstone_1_1Identifier.md) [**Message**](namespaceendstone.md#typedef-message) & message) override const<br>_Sends this sender a error message._  |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**sendMessage**](#function-sendmessage) ([**const**](classendstone_1_1Identifier.md) [**Message**](namespaceendstone.md#typedef-message) & message) override const<br>_Sends this sender a message._  |
 
 
 ## Public Functions inherited from endstone::CommandSender
@@ -125,17 +145,12 @@ See [endstone::CommandSender](classendstone_1_1CommandSender.md)
 
 | Type | Name |
 | ---: | :--- |
-| virtual [**Actor**](classendstone_1_1Actor.md) \* | [**asActor**](classendstone_1_1CommandSender.md#function-asactor) () const = 0<br>_Gets a_ [_**CommandSender**_](classendstone_1_1CommandSender.md) _as_[_**Actor**_](classendstone_1_1Actor.md) _._ |
-| virtual [**BlockCommandSender**](classendstone_1_1BlockCommandSender.md) \* | [**asBlock**](classendstone_1_1CommandSender.md#function-asblock) () const = 0<br>_Gets a_ [_**CommandSender**_](classendstone_1_1CommandSender.md) _as_[_**BlockCommandSender**_](classendstone_1_1BlockCommandSender.md) _._ |
-| virtual [**CommandSender**](classendstone_1_1CommandSender.md) \* | [**asCommandSender**](classendstone_1_1CommandSender.md#function-ascommandsender) () override const<br>_Casts a_ [_**Permissible**_](classendstone_1_1Permissible.md) _as_[_**CommandSender**_](classendstone_1_1CommandSender.md) _._ |
-| virtual [**ConsoleCommandSender**](classendstone_1_1ConsoleCommandSender.md) \* | [**asConsole**](classendstone_1_1CommandSender.md#function-asconsole) () const = 0<br>_Gets a_ [_**CommandSender**_](classendstone_1_1CommandSender.md) _as_[_**ConsoleCommandSender**_](classendstone_1_1ConsoleCommandSender.md) _._ |
-| virtual [**Player**](classendstone_1_1Player.md) \* | [**asPlayer**](classendstone_1_1CommandSender.md#function-asplayer) () const = 0<br>_Gets a_ [_**CommandSender**_](classendstone_1_1CommandSender.md) _as_[_**Player**_](classendstone_1_1Player.md) _._ |
 | virtual std::string | [**getName**](classendstone_1_1CommandSender.md#function-getname) () const = 0<br>_Gets the name of this command sender._  |
 | virtual [**Server**](classendstone_1_1Server.md) & | [**getServer**](classendstone_1_1CommandSender.md#function-getserver) () const = 0<br>_Returns the server instance that this command is running on._  |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**sendErrorMessage**](classendstone_1_1CommandSender.md#function-senderrormessage-12) ([**const**](classendstone_1_1Identifier.md) Message & message) const = 0<br>_Sends this sender a error message._  |
-|  [**void**](classendstone_1_1Identifier.md) | [**sendErrorMessage**](classendstone_1_1CommandSender.md#function-senderrormessage-22) ([**const**](classendstone_1_1Identifier.md) fmt::format\_string&lt; Args... &gt; format, [**Args**](classendstone_1_1Identifier.md) &&... args) const<br> |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**sendMessage**](classendstone_1_1CommandSender.md#function-sendmessage-12) ([**const**](classendstone_1_1Identifier.md) Message & message) const = 0<br>_Sends this sender a message._  |
-|  [**void**](classendstone_1_1Identifier.md) | [**sendMessage**](classendstone_1_1CommandSender.md#function-sendmessage-22) ([**const**](classendstone_1_1Identifier.md) fmt::format\_string&lt; Args... &gt; format, [**Args**](classendstone_1_1Identifier.md) &&... args) const<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**sendErrorMessage**](classendstone_1_1CommandSender.md#function-senderrormessage-12) ([**const**](classendstone_1_1Identifier.md) [**Message**](namespaceendstone.md#typedef-message) & message) const = 0<br>_Sends this sender a error message._  |
+|  [**void**](classendstone_1_1Identifier.md) | [**sendErrorMessage**](classendstone_1_1CommandSender.md#function-senderrormessage-22) ([**const**](classendstone_1_1Identifier.md) std::format\_string&lt; Args... &gt; format, [**Args**](classendstone_1_1Identifier.md) &&... args) const<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**sendMessage**](classendstone_1_1CommandSender.md#function-sendmessage-12) ([**const**](classendstone_1_1Identifier.md) [**Message**](namespaceendstone.md#typedef-message) & message) const = 0<br>_Sends this sender a message._  |
+|  [**void**](classendstone_1_1Identifier.md) | [**sendMessage**](classendstone_1_1CommandSender.md#function-sendmessage-22) ([**const**](classendstone_1_1Identifier.md) std::format\_string&lt; Args... &gt; format, [**Args**](classendstone_1_1Identifier.md) &&... args) const<br> |
 
 
 ## Public Functions inherited from endstone::Permissible
@@ -146,16 +161,54 @@ See [endstone::Permissible](classendstone_1_1Permissible.md)
 | ---: | :--- |
 | virtual [**PermissionAttachment**](classendstone_1_1PermissionAttachment.md) \* | [**addAttachment**](classendstone_1_1Permissible.md#function-addattachment-12) ([**Plugin**](classendstone_1_1Plugin.md) & plugin, [**const**](classendstone_1_1Identifier.md) std::string & name, [**bool**](classendstone_1_1Identifier.md) value) = 0<br>_Adds a new_ [_**PermissionAttachment**_](classendstone_1_1PermissionAttachment.md) _with a single permission by name and value._ |
 | virtual [**PermissionAttachment**](classendstone_1_1PermissionAttachment.md) \* | [**addAttachment**](classendstone_1_1Permissible.md#function-addattachment-22) ([**Plugin**](classendstone_1_1Plugin.md) & plugin) = 0<br>_Adds a new empty_ [_**PermissionAttachment**_](classendstone_1_1PermissionAttachment.md) _to this object._ |
-| virtual [**CommandSender**](classendstone_1_1CommandSender.md) \* | [**asCommandSender**](classendstone_1_1Permissible.md#function-ascommandsender) () const = 0<br>_Casts a_ [_**Permissible**_](classendstone_1_1Permissible.md) _as_[_**CommandSender**_](classendstone_1_1CommandSender.md) _._ |
 | virtual std::unordered\_set&lt; [**PermissionAttachmentInfo**](classendstone_1_1PermissionAttachmentInfo.md) \* &gt; | [**getEffectivePermissions**](classendstone_1_1Permissible.md#function-geteffectivepermissions) () const = 0<br>_Gets a set containing all the permissions currently in effect by this object._  |
-| virtual PermissionLevel | [**getPermissionLevel**](classendstone_1_1Permissible.md#function-getpermissionlevel) () const = 0<br>_Gets the permission level of this object._  |
-| virtual [**bool**](classendstone_1_1Identifier.md) | [**hasPermission**](classendstone_1_1Permissible.md#function-haspermission-12) (std::string name) const = 0<br>_Gets the value of the specified permission, if set. If a permission override is not set on this object, the default value of the permission will be returned._  |
-| virtual [**bool**](classendstone_1_1Identifier.md) | [**hasPermission**](classendstone_1_1Permissible.md#function-haspermission-22) ([**const**](classendstone_1_1Identifier.md) [**Permission**](classendstone_1_1Permission.md) & perm) const = 0<br>_Gets the value of the specified permission, if set. If a permission override is not set on this object, the default value of the permission will be returned._  |
+| virtual [**PermissionLevel**](namespaceendstone.md#enum-permissionlevel) | [**getPermissionLevel**](classendstone_1_1Permissible.md#function-getpermissionlevel) () const = 0<br>_Gets the permission level of this object._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**hasPermission**](classendstone_1_1Permissible.md#function-haspermission-12) (std::string name) const = 0<br>_Gets the value of the specified permission, if set._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**hasPermission**](classendstone_1_1Permissible.md#function-haspermission-22) ([**const**](classendstone_1_1Identifier.md) [**Permission**](classendstone_1_1Permission.md) & perm) const = 0<br>_Gets the value of the specified permission, if set._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**isPermissionSet**](classendstone_1_1Permissible.md#function-ispermissionset-12) (std::string name) const = 0<br>_Checks if this object contains an override for the specified permission, by fully qualified name._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**isPermissionSet**](classendstone_1_1Permissible.md#function-ispermissionset-22) ([**const**](classendstone_1_1Identifier.md) [**Permission**](classendstone_1_1Permission.md) & perm) const = 0<br>_Checks if this object contains an override for the specified_ [_**Permission**_](classendstone_1_1Permission.md) _._ |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**recalculatePermissions**](classendstone_1_1Permissible.md#function-recalculatepermissions) () = 0<br>_Recalculates the permissions for this object, if the attachments have changed values. This should very rarely need to be called from a plugin._  |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**recalculatePermissions**](classendstone_1_1Permissible.md#function-recalculatepermissions) () = 0<br>_Recalculates the permissions for this object, if the attachments have changed values._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**removeAttachment**](classendstone_1_1Permissible.md#function-removeattachment) ([**PermissionAttachment**](classendstone_1_1PermissionAttachment.md) & attachment) = 0<br>_Removes the given_ [_**PermissionAttachment**_](classendstone_1_1PermissionAttachment.md) _from this object._ |
-| virtual  | [**~Permissible**](classendstone_1_1Permissible.md#function-permissible) () = default<br> |
+
+
+## Public Functions inherited from endstone::Object
+
+See [endstone::Object](classendstone_1_1Object.md)
+
+| Type | Name |
+| ---: | :--- |
+|  [**T**](classendstone_1_1Identifier.md) \* | [**as**](classendstone_1_1Object.md#function-as-12) () <br>_Attempts to cast this object to the given type T._  |
+|  [**const**](classendstone_1_1Identifier.md) [**T**](classendstone_1_1Identifier.md) \* | [**as**](classendstone_1_1Object.md#function-as-22) () const<br>_Attempts to cast this object to the given type T._  |
+| virtual [**const**](classendstone_1_1Identifier.md) std::type\_info & | [**getClassTypeId**](classendstone_1_1Object.md#function-getclasstypeid) () const = 0<br> |
+|  [**bool**](classendstone_1_1Identifier.md) | [**is**](classendstone_1_1Object.md#function-is) () const<br>_Checks if this object is an instance of the given type T (or a subclass of T)._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isInstanceOf**](classendstone_1_1Object.md#function-isinstanceof) ([**const**](classendstone_1_1Identifier.md) std::type\_info & target) const = 0<br> |
+| virtual  | [**~Object**](classendstone_1_1Object.md#function-object) () = default<br> |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -291,7 +344,7 @@ inline virtual PermissionAttachment * endstone::CommandSenderWrapper::addAttachm
 **Parameters:**
 
 
-* `plugin` [**Plugin**](classendstone_1_1Plugin.md) responsible for this attachment, may not be null or disabled 
+* `plugin` [**Plugin**](classendstone_1_1Plugin.md) responsible for this attachment; must not be disabled. 
 * `name` Name of the permission to attach 
 * `value` Value of the permission 
 
@@ -329,7 +382,7 @@ inline virtual PermissionAttachment * endstone::CommandSenderWrapper::addAttachm
 **Parameters:**
 
 
-* `plugin` [**Plugin**](classendstone_1_1Plugin.md) responsible for this attachment, may not be null or disabled 
+* `plugin` [**Plugin**](classendstone_1_1Plugin.md) responsible for this attachment; must not be disabled. 
 
 
 
@@ -349,108 +402,15 @@ Implements [*endstone::Permissible::addAttachment*](classendstone_1_1Permissible
 
 
 
-### function asActor 
+### function getClassTypeId 
 
-_Gets a_ [_**CommandSender**_](classendstone_1_1CommandSender.md) _as_[_**Actor**_](classendstone_1_1Actor.md) _._
 ```C++
-inline virtual Actor * endstone::CommandSenderWrapper::asActor () override const
+inline virtual const std::type_info & endstone::CommandSenderWrapper::getClassTypeId () override const
 ```
 
 
 
-
-
-**Returns:**
-
-[**Actor**](classendstone_1_1Actor.md), nullptr if not an [**Actor**](classendstone_1_1Actor.md) 
-
-
-
-
-
-        
-Implements [*endstone::CommandSender::asActor*](classendstone_1_1CommandSender.md#function-asactor)
-
-
-<hr>
-
-
-
-### function asBlock 
-
-_Gets a_ [_**CommandSender**_](classendstone_1_1CommandSender.md) _as_[_**BlockCommandSender**_](classendstone_1_1BlockCommandSender.md) _._
-```C++
-inline virtual BlockCommandSender * endstone::CommandSenderWrapper::asBlock () override const
-```
-
-
-
-
-
-**Returns:**
-
-[**CommandSender**](classendstone_1_1CommandSender.md), nullptr if not a [**BlockCommandSender**](classendstone_1_1BlockCommandSender.md) 
-
-
-
-
-
-        
-Implements [*endstone::CommandSender::asBlock*](classendstone_1_1CommandSender.md#function-asblock)
-
-
-<hr>
-
-
-
-### function asConsole 
-
-_Gets a_ [_**CommandSender**_](classendstone_1_1CommandSender.md) _as_[_**ConsoleCommandSender**_](classendstone_1_1ConsoleCommandSender.md) _._
-```C++
-inline virtual ConsoleCommandSender * endstone::CommandSenderWrapper::asConsole () override const
-```
-
-
-
-
-
-**Returns:**
-
-[**CommandSender**](classendstone_1_1CommandSender.md), nullptr if not a [**ConsoleCommandSender**](classendstone_1_1ConsoleCommandSender.md) 
-
-
-
-
-
-        
-Implements [*endstone::CommandSender::asConsole*](classendstone_1_1CommandSender.md#function-asconsole)
-
-
-<hr>
-
-
-
-### function asPlayer 
-
-_Gets a_ [_**CommandSender**_](classendstone_1_1CommandSender.md) _as_[_**Player**_](classendstone_1_1Player.md) _._
-```C++
-inline virtual Player * endstone::CommandSenderWrapper::asPlayer () override const
-```
-
-
-
-
-
-**Returns:**
-
-[**Player**](classendstone_1_1Player.md), nullptr if not a [**Player**](classendstone_1_1Player.md) 
-
-
-
-
-
-        
-Implements [*endstone::CommandSender::asPlayer*](classendstone_1_1CommandSender.md#function-asplayer)
+Implements [*endstone::Object::getClassTypeId*](classendstone_1_1Object.md#function-getclasstypeid)
 
 
 <hr>
@@ -565,15 +525,68 @@ Implements [*endstone::CommandSender::getServer*](classendstone_1_1CommandSender
 
 
 
+### function getWrapped [1/2]
+
+_Returns a reference to the wrapped_ [_**CommandSender**_](classendstone_1_1CommandSender.md) _._
+```C++
+inline CommandSender & endstone::CommandSenderWrapper::getWrapped () 
+```
+
+
+
+
+
+**Returns:**
+
+The underlying command sender 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function getWrapped [2/2]
+
+_Returns a reference to the wrapped_ [_**CommandSender**_](classendstone_1_1CommandSender.md) _._
+```C++
+inline const  CommandSender & endstone::CommandSenderWrapper::getWrapped () const
+```
+
+
+
+
+
+**Returns:**
+
+The underlying command sender   
+
+
+
+
+
+        
+
+<hr>
+
+
+
 ### function hasPermission [1/2]
 
-_Gets the value of the specified permission, if set. If a permission override is not set on this object, the default value of the permission will be returned._ 
+_Gets the value of the specified permission, if set._ 
 ```C++
 inline virtual bool endstone::CommandSenderWrapper::hasPermission (
     std::string name
 ) override const
 ```
 
+
+
+If a permission override is not set on this object, the default value of the permission will be returned.
 
 
 
@@ -603,13 +616,16 @@ Implements [*endstone::Permissible::hasPermission*](classendstone_1_1Permissible
 
 ### function hasPermission [2/2]
 
-_Gets the value of the specified permission, if set. If a permission override is not set on this object, the default value of the permission will be returned._ 
+_Gets the value of the specified permission, if set._ 
 ```C++
 inline virtual bool endstone::CommandSenderWrapper::hasPermission (
     const  Permission & perm
 ) override const
 ```
 
+
+
+If a permission override is not set on this object, the default value of the permission will be returned.
 
 
 
@@ -631,6 +647,23 @@ Value of the permission
 
         
 Implements [*endstone::Permissible::hasPermission*](classendstone_1_1Permissible.md#function-haspermission-22)
+
+
+<hr>
+
+
+
+### function isInstanceOf 
+
+```C++
+inline virtual bool endstone::CommandSenderWrapper::isInstanceOf (
+    const std::type_info & target
+) override const
+```
+
+
+
+Implements [*endstone::Object::isInstanceOf*](classendstone_1_1Object.md#function-isinstanceof)
 
 
 <hr>
@@ -711,13 +744,17 @@ Implements [*endstone::Permissible::isPermissionSet*](classendstone_1_1Permissib
 
 ### function recalculatePermissions 
 
-_Recalculates the permissions for this object, if the attachments have changed values. This should very rarely need to be called from a plugin._ 
+_Recalculates the permissions for this object, if the attachments have changed values._ 
 ```C++
 inline virtual void endstone::CommandSenderWrapper::recalculatePermissions () override
 ```
 
 
 
+This should very rarely need to be called from a plugin. 
+
+
+        
 Implements [*endstone::Permissible::recalculatePermissions*](classendstone_1_1Permissible.md#function-recalculatepermissions)
 
 
@@ -766,7 +803,7 @@ Implements [*endstone::Permissible::removeAttachment*](classendstone_1_1Permissi
 _Sends this sender a error message._ 
 ```C++
 inline virtual void endstone::CommandSenderWrapper::sendErrorMessage (
-    const Message & message
+    const  Message & message
 ) override const
 ```
 
@@ -795,7 +832,7 @@ Implements [*endstone::CommandSender::sendErrorMessage*](classendstone_1_1Comman
 _Sends this sender a message._ 
 ```C++
 inline virtual void endstone::CommandSenderWrapper::sendMessage (
-    const Message & message
+    const  Message & message
 ) override const
 ```
 

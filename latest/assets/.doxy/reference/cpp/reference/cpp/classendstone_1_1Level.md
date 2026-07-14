@@ -52,8 +52,9 @@ _Represents a level, which may contain actors, chunks and blocks._
 
 | Type | Name |
 | ---: | :--- |
+| virtual [**Dimension**](classendstone_1_1Dimension.md) \* | [**createDimension**](#function-createdimension) ([**const**](classendstone_1_1Identifier.md) [**DimensionCreator**](classendstone_1_1DimensionCreator.md) & creator) = 0<br>_Creates a new custom dimension within this level._  |
 | virtual std::vector&lt; [**Actor**](classendstone_1_1Actor.md) \* &gt; | [**getActors**](#function-getactors) () const = 0<br>_Get a list of all actors in this level._  |
-| virtual [**Dimension**](classendstone_1_1Dimension.md) \* | [**getDimension**](#function-getdimension) (std::string name) const = 0<br>_Gets the dimension with the given name._  |
+| virtual [**Dimension**](classendstone_1_1Dimension.md) \* | [**getDimension**](#function-getdimension) ([**DimensionId**](classendstone_1_1Identifier.md) id) const = 0<br>_Gets the dimension with the given id._  |
 | virtual std::vector&lt; [**Dimension**](classendstone_1_1Dimension.md) \* &gt; | [**getDimensions**](#function-getdimensions) () const = 0<br>_Gets a list of all dimensions within this level._  |
 | virtual std::string | [**getName**](#function-getname) () const = 0<br>_Gets the unique name of this level._  |
 | virtual std::int64\_t | [**getSeed**](#function-getseed) () const = 0<br>_Gets the Seed for this level._  |
@@ -93,6 +94,46 @@ _Represents a level, which may contain actors, chunks and blocks._
 
 
 
+### function createDimension 
+
+_Creates a new custom dimension within this level._ 
+```C++
+virtual Dimension * endstone::Level::createDimension (
+    const  DimensionCreator & creator
+) = 0
+```
+
+
+
+The dimension is created from the options described by the given [**DimensionCreator**](classendstone_1_1DimensionCreator.md). Custom dimensions are empty (void) dimensions identified by a namespaced id, e.g. `myplugin:void_realm`; populate them with blocks, structures or actors afterward. Custom dimensions persist across server restarts. 
+
+
+If a dimension with the requested name already exists, that existing dimension is returned instead.
+
+
+
+
+**Parameters:**
+
+
+* `creator` the options to use when creating the dimension 
+
+
+
+**Returns:**
+
+the newly created (or existing) [**Dimension**](classendstone_1_1Dimension.md), or nullptr if it could not be created 
+
+
+
+
+
+        
+
+<hr>
+
+
+
 ### function getActors 
 
 _Get a list of all actors in this level._ 
@@ -120,10 +161,10 @@ A List of all actors currently residing in this level
 
 ### function getDimension 
 
-_Gets the dimension with the given name._ 
+_Gets the dimension with the given id._ 
 ```C++
 virtual Dimension * endstone::Level::getDimension (
-    std::string name
+    DimensionId id
 ) const = 0
 ```
 
@@ -134,13 +175,13 @@ virtual Dimension * endstone::Level::getDimension (
 **Parameters:**
 
 
-* `name` the name of the dimension to retrieve. For example, "overworld", "nether" or "the\_end".
+* `id` the id of the dimension to retrieve.
 
 
 
 **Returns:**
 
-The [**Dimension**](classendstone_1_1Dimension.md) with the given name, or nullptr if none exists 
+The [**Dimension**](classendstone_1_1Dimension.md) with the given id, or nullptr if none exists 
 
 
 

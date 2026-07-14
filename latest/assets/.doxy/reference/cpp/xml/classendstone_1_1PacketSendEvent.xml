@@ -192,8 +192,15 @@
 <para>Sets the raw packet data <bold>excluding</bold> the header. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>The packet payload data. </para>
-</simplesect>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>payload</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new packet payload data. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
 </para>
         </detaileddescription>
         <inbodydescription>
@@ -210,7 +217,7 @@
 <para>Returns the player involved in this event. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="note"><para>This may return nullptr if the packet is sent before the player completes the login process.</para>
+<para><simplesect kind="note"><para>This may return <computeroutput>nullptr</computeroutput> if the packet is sent before the player completes the login process.</para>
 </simplesect>
 <simplesect kind="return"><para><ref refid="classendstone_1_1Player" kindref="compound">Player</ref> who is involved in this event </para>
 </simplesect>

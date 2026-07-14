@@ -2,9 +2,9 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="check_8h" kind="file" language="C++">
     <compoundname>check.h</compoundname>
+    <includes local="no">format</includes>
     <includes local="no">stdexcept</includes>
     <includes local="no">utility</includes>
-    <includes local="no">fmt/format.h</includes>
     <includedby refid="map__cursor_8h" local="yes">include/endstone/map/map_cursor.h</includedby>
     <includedby refid="pointers_8h" local="yes">include/endstone/util/pointers.h</includedby>
     <incdepgraph>
@@ -18,90 +18,290 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="4">
-        <label>fmt/format.h</label>
-      </node>
       <node id="2">
-        <label>stdexcept</label>
+        <label>format</label>
       </node>
       <node id="3">
+        <label>stdexcept</label>
+      </node>
+      <node id="4">
         <label>utility</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="51">
+      <node id="47">
+        <label>include/endstone/actor/actor.h</label>
+        <link refid="actor_8h_source"/>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>include/endstone/actor/actor_type.h</label>
+        <link refid="actor__type_8h_source"/>
+        <childnode refid="47" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
         <label>include/endstone/actor/item.h</label>
         <link refid="item_8h_source"/>
         <childnode refid="31" relation="include">
         </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
       </node>
-      <node id="64">
+      <node id="59">
+        <label>include/endstone/actor/mob.h</label>
+        <link refid="mob_8h_source"/>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="107">
         <label>include/endstone/ban/ban_list.h</label>
         <link refid="ban__list_8h_source"/>
-        <childnode refid="65" relation="include">
+        <childnode refid="108" relation="include">
         </childnode>
-        <childnode refid="66" relation="include">
+        <childnode refid="109" relation="include">
         </childnode>
       </node>
-      <node id="65">
+      <node id="108">
         <label>include/endstone/ban/ip_ban_list.h</label>
         <link refid="ip__ban__list_8h_source"/>
         <childnode refid="35" relation="include">
         </childnode>
       </node>
-      <node id="66">
+      <node id="109">
         <label>include/endstone/ban/player_ban_list.h</label>
         <link refid="player__ban__list_8h_source"/>
         <childnode refid="35" relation="include">
         </childnode>
       </node>
-      <node id="46">
+      <node id="78">
+        <label>include/endstone/block/biome.h</label>
+        <link refid="biome_8h_source"/>
+      </node>
+      <node id="80">
+        <label>include/endstone/block/block.h</label>
+        <link refid="block_8h_source"/>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+      </node>
+      <node id="81">
+        <label>include/endstone/block/block_state.h</label>
+        <link refid="block__state_8h_source"/>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="79">
         <label>include/endstone/block/block_type.h</label>
         <link refid="block__type_8h_source"/>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+      </node>
+      <node id="82">
+        <label>include/endstone/block/container.h</label>
+        <link refid="container_8h_source"/>
       </node>
       <node id="1">
         <label>include/endstone/check.h</label>
         <link refid="check_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="63" relation="include">
+        <childnode refid="106" relation="include">
         </childnode>
+      </node>
+      <node id="83">
+        <label>include/endstone/command/block_command_sender.h</label>
+        <link refid="block__command__sender_8h_source"/>
       </node>
       <node id="37">
         <label>include/endstone/command/plugin_command.h</label>
         <link refid="plugin__command_8h_source"/>
       </node>
-      <node id="47">
+      <node id="62">
+        <label>include/endstone/damage/damage_source.h</label>
+        <link refid="damage__source_8h_source"/>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+      </node>
+      <node id="95">
         <label>include/endstone/enchantments/enchantment.h</label>
         <link refid="enchantment_8h_source"/>
-        <childnode refid="48" relation="include">
+        <childnode refid="96" relation="include">
         </childnode>
+      </node>
+      <node id="63">
+        <label>include/endstone/event/actor/actor_damage_event.h</label>
+        <link refid="actor__damage__event_8h_source"/>
+      </node>
+      <node id="60">
+        <label>include/endstone/event/actor/actor_death_event.h</label>
+        <link refid="actor__death__event_8h_source"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="64">
+        <label>include/endstone/event/actor/actor_event.h</label>
+        <link refid="actor__event_8h_source"/>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+      </node>
+      <node id="65">
+        <label>include/endstone/event/actor/actor_explode_event.h</label>
+        <link refid="actor__explode__event_8h_source"/>
+      </node>
+      <node id="61">
+        <label>include/endstone/event/actor/actor_knockback_event.h</label>
+        <link refid="actor__knockback__event_8h_source"/>
+      </node>
+      <node id="66">
+        <label>include/endstone/event/actor/actor_remove_event.h</label>
+        <link refid="actor__remove__event_8h_source"/>
+      </node>
+      <node id="67">
+        <label>include/endstone/event/actor/actor_spawn_event.h</label>
+        <link refid="actor__spawn__event_8h_source"/>
+      </node>
+      <node id="68">
+        <label>include/endstone/event/actor/actor_teleport_event.h</label>
+        <link refid="actor__teleport__event_8h_source"/>
       </node>
       <node id="11">
         <label>include/endstone/event/actor/player_death_event.h</label>
         <link refid="player__death__event_8h_source"/>
       </node>
-      <node id="52">
+      <node id="85">
+        <label>include/endstone/event/block/block_break_event.h</label>
+        <link refid="block__break__event_8h_source"/>
+      </node>
+      <node id="86">
         <label>include/endstone/event/block/block_cook_event.h</label>
         <link refid="block__cook__event_8h_source"/>
+      </node>
+      <node id="84">
+        <label>include/endstone/event/block/block_event.h</label>
+        <link refid="block__event_8h_source"/>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+      </node>
+      <node id="87">
+        <label>include/endstone/event/block/block_explode_event.h</label>
+        <link refid="block__explode__event_8h_source"/>
+      </node>
+      <node id="90">
+        <label>include/endstone/event/block/block_form_event.h</label>
+        <link refid="block__form__event_8h_source"/>
+      </node>
+      <node id="88">
+        <label>include/endstone/event/block/block_from_to_event.h</label>
+        <link refid="block__from__to__event_8h_source"/>
+      </node>
+      <node id="89">
+        <label>include/endstone/event/block/block_grow_event.h</label>
+        <link refid="block__grow__event_8h_source"/>
+        <childnode refid="90" relation="include">
+        </childnode>
+      </node>
+      <node id="91">
+        <label>include/endstone/event/block/block_piston_event.h</label>
+        <link refid="block__piston__event_8h_source"/>
+        <childnode refid="92" relation="include">
+        </childnode>
+        <childnode refid="93" relation="include">
+        </childnode>
+      </node>
+      <node id="92">
+        <label>include/endstone/event/block/block_piston_extend_event.h</label>
+        <link refid="block__piston__extend__event_8h_source"/>
+      </node>
+      <node id="93">
+        <label>include/endstone/event/block/block_piston_retract_event.h</label>
+        <link refid="block__piston__retract__event_8h_source"/>
       </node>
       <node id="9">
         <label>include/endstone/event/block/block_place_event.h</label>
         <link refid="block__place__event_8h_source"/>
       </node>
-      <node id="56">
+      <node id="94">
+        <label>include/endstone/event/block/leaves_decay_event.h</label>
+        <link refid="leaves__decay__event_8h_source"/>
+      </node>
+      <node id="51">
         <label>include/endstone/event/chunk/chunk_event.h</label>
         <link refid="chunk__event_8h_source"/>
-        <childnode refid="57" relation="include">
+        <childnode refid="52" relation="include">
         </childnode>
-        <childnode refid="58" relation="include">
+        <childnode refid="53" relation="include">
         </childnode>
       </node>
-      <node id="57">
+      <node id="52">
         <label>include/endstone/event/chunk/chunk_load_event.h</label>
         <link refid="chunk__load__event_8h_source"/>
       </node>
-      <node id="58">
+      <node id="53">
         <label>include/endstone/event/chunk/chunk_unload_event.h</label>
         <link refid="chunk__unload__event_8h_source"/>
       </node>
@@ -115,10 +315,16 @@
         <label>include/endstone/event/handler_list.h</label>
         <link refid="handler__list_8h_source"/>
       </node>
-      <node id="55">
+      <node id="50">
         <label>include/endstone/event/level/dimension_event.h</label>
         <link refid="dimension__event_8h_source"/>
-        <childnode refid="56" relation="include">
+        <childnode refid="51" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>include/endstone/event/level/level_event.h</label>
+        <link refid="level__event_8h_source"/>
+        <childnode refid="50" relation="include">
         </childnode>
       </node>
       <node id="12">
@@ -265,9 +471,21 @@
         <childnode refid="30" relation="include">
         </childnode>
       </node>
+      <node id="70">
+        <label>include/endstone/event/server/broadcast_message_event.h</label>
+        <link refid="broadcast__message__event_8h_source"/>
+      </node>
       <node id="6">
         <label>include/endstone/event/server/map_initialize_event.h</label>
         <link refid="map__initialize__event_8h_source"/>
+      </node>
+      <node id="71">
+        <label>include/endstone/event/server/packet_receive_event.h</label>
+        <link refid="packet__receive__event_8h_source"/>
+      </node>
+      <node id="72">
+        <label>include/endstone/event/server/packet_send_event.h</label>
+        <link refid="packet__send__event_8h_source"/>
       </node>
       <node id="40">
         <label>include/endstone/event/server/plugin_disable_event.h</label>
@@ -281,16 +499,80 @@
         <childnode refid="41" relation="include">
         </childnode>
       </node>
-      <node id="49">
+      <node id="73">
+        <label>include/endstone/event/server/script_message_event.h</label>
+        <link refid="script__message__event_8h_source"/>
+      </node>
+      <node id="74">
+        <label>include/endstone/event/server/server_command_event.h</label>
+        <link refid="server__command__event_8h_source"/>
+      </node>
+      <node id="69">
+        <label>include/endstone/event/server/server_event.h</label>
+        <link refid="server__event_8h_source"/>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+      </node>
+      <node id="75">
+        <label>include/endstone/event/server/server_list_ping_event.h</label>
+        <link refid="server__list__ping__event_8h_source"/>
+      </node>
+      <node id="76">
+        <label>include/endstone/event/server/server_load_event.h</label>
+        <link refid="server__load__event_8h_source"/>
+      </node>
+      <node id="57">
+        <label>include/endstone/event/weather/thunder_change_event.h</label>
+        <link refid="thunder__change__event_8h_source"/>
+      </node>
+      <node id="58">
+        <label>include/endstone/event/weather/weather_change_event.h</label>
+        <link refid="weather__change__event_8h_source"/>
+      </node>
+      <node id="56">
+        <label>include/endstone/event/weather/weather_event.h</label>
+        <link refid="weather__event_8h_source"/>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+      </node>
+      <node id="104">
+        <label>include/endstone/inventory/inventory.h</label>
+        <link refid="inventory_8h_source"/>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
+      </node>
+      <node id="97">
         <label>include/endstone/inventory/item_factory.h</label>
         <link refid="item__factory_8h_source"/>
       </node>
-      <node id="50">
+      <node id="98">
         <label>include/endstone/inventory/item_stack.h</label>
         <link refid="item__stack_8h_source"/>
-        <childnode refid="51" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
-        <childnode refid="52" relation="include">
+        <childnode refid="86" relation="include">
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
@@ -298,59 +580,101 @@
         </childnode>
         <childnode refid="22" relation="include">
         </childnode>
-        <childnode refid="53" relation="include">
+        <childnode refid="99" relation="include">
         </childnode>
-        <childnode refid="54" relation="include">
-        </childnode>
-      </node>
-      <node id="62">
-        <label>include/endstone/inventory/item_type.h</label>
-        <link refid="item__type_8h_source"/>
         <childnode refid="49" relation="include">
         </childnode>
-        <childnode refid="50" relation="include">
+      </node>
+      <node id="103">
+        <label>include/endstone/inventory/item_type.h</label>
+        <link refid="item__type_8h_source"/>
+        <childnode refid="104" relation="include">
+        </childnode>
+        <childnode refid="97" relation="include">
+        </childnode>
+        <childnode refid="98" relation="include">
         </childnode>
       </node>
-      <node id="61">
+      <node id="102">
         <label>include/endstone/inventory/meta/book_meta.h</label>
         <link refid="book__meta_8h_source"/>
       </node>
-      <node id="59">
+      <node id="100">
         <label>include/endstone/inventory/meta/crossbow_meta.h</label>
         <link refid="crossbow__meta_8h_source"/>
       </node>
-      <node id="48">
+      <node id="96">
         <label>include/endstone/inventory/meta/item_meta.h</label>
         <link refid="item__meta_8h_source"/>
-        <childnode refid="49" relation="include">
+        <childnode refid="97" relation="include">
         </childnode>
-        <childnode refid="50" relation="include">
+        <childnode refid="98" relation="include">
         </childnode>
-        <childnode refid="59" relation="include">
+        <childnode refid="100" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="60" relation="include">
+        <childnode refid="101" relation="include">
         </childnode>
       </node>
       <node id="7">
         <label>include/endstone/inventory/meta/map_meta.h</label>
         <link refid="map__meta_8h_source"/>
       </node>
-      <node id="60">
+      <node id="101">
         <label>include/endstone/inventory/meta/writable_book_meta.h</label>
         <link refid="writable__book__meta_8h_source"/>
-        <childnode refid="61" relation="include">
+        <childnode refid="102" relation="include">
         </childnode>
       </node>
-      <node id="53">
+      <node id="105">
+        <label>include/endstone/inventory/player_inventory.h</label>
+        <link refid="player__inventory_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="99">
         <label>include/endstone/inventory/recipe.h</label>
         <link refid="recipe_8h_source"/>
       </node>
-      <node id="54">
+      <node id="77">
+        <label>include/endstone/level/chunk.h</label>
+        <link refid="chunk_8h_source"/>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
         <label>include/endstone/level/dimension.h</label>
         <link refid="dimension_8h_source"/>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>include/endstone/level/level.h</label>
+        <link refid="level_8h_source"/>
         <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+      </node>
+      <node id="110">
+        <label>include/endstone/level/location.h</label>
+        <link refid="location_8h_source"/>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
         </childnode>
       </node>
       <node id="3">
@@ -390,8 +714,6 @@
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
       </node>
       <node id="36">
         <label>include/endstone/plugin/plugin.h</label>
@@ -418,9 +740,13 @@
         <link refid="registry_8h_source"/>
         <childnode refid="46" relation="include">
         </childnode>
-        <childnode refid="47" relation="include">
+        <childnode refid="78" relation="include">
         </childnode>
-        <childnode refid="62" relation="include">
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="95" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
         </childnode>
       </node>
       <node id="44">
@@ -443,10 +769,16 @@
         <childnode refid="45" relation="include">
         </childnode>
       </node>
-      <node id="63">
+      <node id="106">
         <label>include/endstone/util/pointers.h</label>
         <link refid="pointers_8h_source"/>
-        <childnode refid="64" relation="include">
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -473,33 +805,32 @@
 <codeline lineno="14"><highlight class="normal"></highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="16"><highlight class="normal"></highlight></codeline>
-<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdexcept&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utility&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fmt/format.h&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceendstone" kindref="compound">endstone</ref><sp/>{</highlight></codeline>
-<codeline lineno="23" refid="classendstone_1_1Preconditions" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classendstone_1_1Preconditions" kindref="compound">Preconditions</ref><sp/>{</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal">...<sp/><ref refid="classendstone_1_1Identifier" kindref="compound">Args</ref>&gt;</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>checkArgument(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classendstone_1_1Identifier" kindref="compound">condition</ref>,<sp/>fmt::format_string&lt;Args...&gt;<sp/>format,<sp/><ref refid="classendstone_1_1Identifier" kindref="compound">Args</ref><sp/>&amp;&amp;...<ref refid="classendstone_1_1Identifier" kindref="compound">args</ref>)</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classendstone_1_1Identifier" kindref="compound">condition</ref>)<sp/>{</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classendstone_1_1Identifier" kindref="compound">message</ref><sp/>=<sp/>fmt::format(format,<sp/>std::forward&lt;Args&gt;(<ref refid="classendstone_1_1Identifier" kindref="compound">args</ref>)...);</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(<ref refid="classendstone_1_1Identifier" kindref="compound">message</ref>);</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"></highlight></codeline>
-<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal">...<sp/><ref refid="classendstone_1_1Identifier" kindref="compound">Args</ref>&gt;</highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>checkState(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classendstone_1_1Identifier" kindref="compound">condition</ref>,<sp/>fmt::format_string&lt;Args...&gt;<sp/>format,<sp/><ref refid="classendstone_1_1Identifier" kindref="compound">Args</ref><sp/>&amp;&amp;...<ref refid="classendstone_1_1Identifier" kindref="compound">args</ref>)</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classendstone_1_1Identifier" kindref="compound">condition</ref>)<sp/>{</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classendstone_1_1Identifier" kindref="compound">message</ref><sp/>=<sp/>fmt::format(format,<sp/>std::forward&lt;Args&gt;(<ref refid="classendstone_1_1Identifier" kindref="compound">args</ref>)...);</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(<ref refid="classendstone_1_1Identifier" kindref="compound">message</ref>);</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="42"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="43"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>endstone</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;format&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdexcept&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utility&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceendstone" kindref="compound">endstone</ref><sp/>{</highlight></codeline>
+<codeline lineno="25" refid="classendstone_1_1Preconditions" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classendstone_1_1Preconditions" kindref="compound">Preconditions</ref><sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal">...<sp/><ref refid="classendstone_1_1Identifier" kindref="compound">Args</ref>&gt;</highlight></codeline>
+<codeline lineno="36" refid="classendstone_1_1Preconditions_1a67ef7267ef07164ae88052ed43750426" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classendstone_1_1Preconditions_1a67ef7267ef07164ae88052ed43750426" kindref="member">checkArgument</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classendstone_1_1Identifier" kindref="compound">condition</ref>,<sp/>std::format_string&lt;Args...&gt;<sp/>format,<sp/><ref refid="classendstone_1_1Identifier" kindref="compound">Args</ref><sp/>&amp;&amp;...<ref refid="classendstone_1_1Identifier" kindref="compound">args</ref>)</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classendstone_1_1Identifier" kindref="compound">condition</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classendstone_1_1Identifier" kindref="compound">message</ref><sp/>=<sp/>std::format(format,<sp/>std::forward&lt;Args&gt;(<ref refid="classendstone_1_1Identifier" kindref="compound">args</ref>)...);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(<ref refid="classendstone_1_1Identifier" kindref="compound">message</ref>);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal">...<sp/><ref refid="classendstone_1_1Identifier" kindref="compound">Args</ref>&gt;</highlight></codeline>
+<codeline lineno="53" refid="classendstone_1_1Preconditions_1a5fb6820ed9c6e4629a00776f25d11ef5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classendstone_1_1Preconditions_1a5fb6820ed9c6e4629a00776f25d11ef5" kindref="member">checkState</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classendstone_1_1Identifier" kindref="compound">condition</ref>,<sp/>std::format_string&lt;Args...&gt;<sp/>format,<sp/><ref refid="classendstone_1_1Identifier" kindref="compound">Args</ref><sp/>&amp;&amp;...<ref refid="classendstone_1_1Identifier" kindref="compound">args</ref>)</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classendstone_1_1Identifier" kindref="compound">condition</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classendstone_1_1Identifier" kindref="compound">message</ref><sp/>=<sp/>std::format(format,<sp/>std::forward&lt;Args&gt;(<ref refid="classendstone_1_1Identifier" kindref="compound">args</ref>)...);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(<ref refid="classendstone_1_1Identifier" kindref="compound">message</ref>);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="61"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>endstone</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="include/endstone/check.h"/>
   </compounddef>

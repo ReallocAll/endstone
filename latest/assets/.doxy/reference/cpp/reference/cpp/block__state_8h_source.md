@@ -24,25 +24,26 @@
 
 #pragma once
 
+#include <format>
 #include <memory>
 #include <string>
 
-#include <fmt/format.h>
-
 #include "endstone/block/block.h"
+#include "endstone/block/block_type.h"
+#include "endstone/object.h"
 #include "endstone/util/result.h"
 
 namespace endstone {
 
-class BlockState {
+class BlockState : public Object {
 public:
-    virtual ~BlockState() = default;
+    ~BlockState() override = default;
 
     [[nodiscard]] virtual std::unique_ptr<Block> getBlock() const = 0;
 
-    [[nodiscard]] virtual std::string getType() const = 0;
+    [[nodiscard]] virtual const BlockType &getType() const = 0;
 
-    virtual void setType(std::string type) = 0;
+    virtual void setType(BlockTypeId type) = 0;
 
     [[nodiscard]] virtual std::unique_ptr<BlockData> getData() const = 0;
 
@@ -66,19 +67,17 @@ public:
 };
 }  // namespace endstone
 
-namespace fmt {
 template <>
-struct formatter<endstone::BlockState> : formatter<string_view> {
+struct std::formatter<endstone::BlockState> : std::formatter<std::string_view> {
     using Type = endstone::BlockState;
 
     template <typename FormatContext>
     auto format(const Type &val, FormatContext &ctx) const -> format_context::iterator
     {
-        return fmt::format_to(ctx.out(), "BlockState(pos=BlockPos(x={}, y={}, z={}), type={}, data={})", val.getX(),
+        return std::format_to(ctx.out(), "BlockState(pos=BlockPos(x={}, y={}, z={}), type={}, data={})", val.getX(),
                               val.getY(), val.getZ(), val.getType(), *val.getData());
     }
 };
-}  // namespace fmt
 ```
 
 

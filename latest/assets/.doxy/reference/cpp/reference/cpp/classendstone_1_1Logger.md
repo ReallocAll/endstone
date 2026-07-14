@@ -58,23 +58,23 @@
 | Type | Name |
 | ---: | :--- |
 |   | [**Logger**](#function-logger) () = default<br> |
-|  [**void**](classendstone_1_1Identifier.md) | [**critical**](#function-critical-12) ([**const**](classendstone_1_1Identifier.md) std::string\_view message) const<br> |
-|  [**void**](classendstone_1_1Identifier.md) | [**critical**](#function-critical-22) ([**const**](classendstone_1_1Identifier.md) fmt::format\_string&lt; Args... &gt; format, [**Args**](classendstone_1_1Identifier.md) &&... args) const<br> |
-|  [**void**](classendstone_1_1Identifier.md) | [**debug**](#function-debug-12) ([**const**](classendstone_1_1Identifier.md) std::string\_view message) const<br> |
-|  [**void**](classendstone_1_1Identifier.md) | [**debug**](#function-debug-22) ([**const**](classendstone_1_1Identifier.md) fmt::format\_string&lt; Args... &gt; format, [**Args**](classendstone_1_1Identifier.md) &&... args) const<br> |
-|  [**void**](classendstone_1_1Identifier.md) | [**error**](#function-error-12) ([**const**](classendstone_1_1Identifier.md) std::string\_view message) const<br> |
-|  [**void**](classendstone_1_1Identifier.md) | [**error**](#function-error-22) ([**const**](classendstone_1_1Identifier.md) fmt::format\_string&lt; Args... &gt; format, [**Args**](classendstone_1_1Identifier.md) &&... args) const<br> |
+|  [**void**](classendstone_1_1Identifier.md) | [**critical**](#function-critical-12) ([**const**](classendstone_1_1Identifier.md) std::string\_view message) const<br>_Log a message at the Critical level._  |
+|  [**void**](classendstone_1_1Identifier.md) | [**critical**](#function-critical-22) ([**const**](classendstone_1_1Identifier.md) std::format\_string&lt; Args... &gt; format, [**Args**](classendstone_1_1Identifier.md) &&... args) const<br>_Log a formatted message at the Critical level._  |
+|  [**void**](classendstone_1_1Identifier.md) | [**debug**](#function-debug-12) ([**const**](classendstone_1_1Identifier.md) std::string\_view message) const<br>_Log a message at the Debug level._  |
+|  [**void**](classendstone_1_1Identifier.md) | [**debug**](#function-debug-22) ([**const**](classendstone_1_1Identifier.md) std::format\_string&lt; Args... &gt; format, [**Args**](classendstone_1_1Identifier.md) &&... args) const<br>_Log a formatted message at the Debug level._  |
+|  [**void**](classendstone_1_1Identifier.md) | [**error**](#function-error-12) ([**const**](classendstone_1_1Identifier.md) std::string\_view message) const<br>_Log a message at the Error level._  |
+|  [**void**](classendstone_1_1Identifier.md) | [**error**](#function-error-22) ([**const**](classendstone_1_1Identifier.md) std::format\_string&lt; Args... &gt; format, [**Args**](classendstone_1_1Identifier.md) &&... args) const<br>_Log a formatted message at the Error level._  |
 | virtual std::string\_view | [**getName**](#function-getname) () const = 0<br>_Get the name of this_ [_**Logger**_](classendstone_1_1Logger.md) _instance._ |
-|  [**void**](classendstone_1_1Identifier.md) | [**info**](#function-info-12) ([**const**](classendstone_1_1Identifier.md) std::string\_view message) const<br> |
-|  [**void**](classendstone_1_1Identifier.md) | [**info**](#function-info-22) ([**const**](classendstone_1_1Identifier.md) fmt::format\_string&lt; Args... &gt; format, [**Args**](classendstone_1_1Identifier.md) &&... args) const<br> |
+|  [**void**](classendstone_1_1Identifier.md) | [**info**](#function-info-12) ([**const**](classendstone_1_1Identifier.md) std::string\_view message) const<br>_Log a message at the Info level._  |
+|  [**void**](classendstone_1_1Identifier.md) | [**info**](#function-info-22) ([**const**](classendstone_1_1Identifier.md) std::format\_string&lt; Args... &gt; format, [**Args**](classendstone_1_1Identifier.md) &&... args) const<br>_Log a formatted message at the Info level._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**isEnabledFor**](#function-isenabledfor) ([**Level**](classendstone_1_1Logger.md#enum-level) level) const = 0<br>_Check if the_ [_**Logger**_](classendstone_1_1Logger.md) _instance is enabled for the given log_[_**Level**_](classendstone_1_1Level.md) _._ |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**log**](#function-log-12) ([**Level**](classendstone_1_1Logger.md#enum-level) level, std::string\_view message) const = 0<br>_Log a message at the given level._  |
-|  [**void**](classendstone_1_1Identifier.md) | [**log**](#function-log-22) ([**Level**](classendstone_1_1Logger.md#enum-level) level, [**const**](classendstone_1_1Identifier.md) fmt::format\_string&lt; Args... &gt; format, [**Args**](classendstone_1_1Identifier.md) &&... args) const<br> |
+|  [**void**](classendstone_1_1Identifier.md) | [**log**](#function-log-22) ([**Level**](classendstone_1_1Logger.md#enum-level) level, [**const**](classendstone_1_1Identifier.md) std::format\_string&lt; Args... &gt; format, [**Args**](classendstone_1_1Identifier.md) &&... args) const<br>_Log a formatted message at the given level._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setLevel**](#function-setlevel) ([**Level**](classendstone_1_1Logger.md#enum-level) level) = 0<br>_Set the logging level for this_ [_**Logger**_](classendstone_1_1Logger.md) _instance._ |
-|  [**void**](classendstone_1_1Identifier.md) | [**trace**](#function-trace-12) ([**const**](classendstone_1_1Identifier.md) std::string\_view message) const<br> |
-|  [**void**](classendstone_1_1Identifier.md) | [**trace**](#function-trace-22) ([**const**](classendstone_1_1Identifier.md) fmt::format\_string&lt; Args... &gt; format, [**Args**](classendstone_1_1Identifier.md) &&... args) const<br> |
-|  [**void**](classendstone_1_1Identifier.md) | [**warning**](#function-warning-12) ([**const**](classendstone_1_1Identifier.md) std::string\_view message) const<br> |
-|  [**void**](classendstone_1_1Identifier.md) | [**warning**](#function-warning-22) ([**const**](classendstone_1_1Identifier.md) fmt::format\_string&lt; Args... &gt; format, [**Args**](classendstone_1_1Identifier.md) &&... args) const<br> |
+|  [**void**](classendstone_1_1Identifier.md) | [**trace**](#function-trace-12) ([**const**](classendstone_1_1Identifier.md) std::string\_view message) const<br>_Log a message at the Trace level._  |
+|  [**void**](classendstone_1_1Identifier.md) | [**trace**](#function-trace-22) ([**const**](classendstone_1_1Identifier.md) std::format\_string&lt; Args... &gt; format, [**Args**](classendstone_1_1Identifier.md) &&... args) const<br>_Log a formatted message at the Trace level._  |
+|  [**void**](classendstone_1_1Identifier.md) | [**warning**](#function-warning-12) ([**const**](classendstone_1_1Identifier.md) std::string\_view message) const<br>_Log a message at the Warning level._  |
+|  [**void**](classendstone_1_1Identifier.md) | [**warning**](#function-warning-22) ([**const**](classendstone_1_1Identifier.md) std::format\_string&lt; Args... &gt; format, [**Args**](classendstone_1_1Identifier.md) &&... args) const<br>_Log a formatted message at the Warning level._  |
 | virtual  | [**~Logger**](#function-logger) () = default<br> |
 
 
@@ -148,6 +148,7 @@ endstone::Logger::Logger () = default
 
 ### function critical [1/2]
 
+_Log a message at the Critical level._ 
 ```C++
 inline void endstone::Logger::critical (
     const std::string_view message
@@ -156,6 +157,17 @@ inline void endstone::Logger::critical (
 
 
 
+
+
+**Parameters:**
+
+
+* `message` The message to log. 
+
+
+
+
+        
 
 <hr>
 
@@ -163,16 +175,29 @@ inline void endstone::Logger::critical (
 
 ### function critical [2/2]
 
+_Log a formatted message at the Critical level._ 
 ```C++
 template<typename... Args, std::enable_if_t<(sizeof...( Args ) > 0), int >>
 inline void endstone::Logger::critical (
-    const fmt::format_string< Args... > format,
+    const std::format_string< Args... > format,
     Args &&... args
 ) const
 ```
 
 
 
+
+
+**Parameters:**
+
+
+* `format` The format string. 
+* `args` The arguments to substitute into the format string. 
+
+
+
+
+        
 
 <hr>
 
@@ -180,6 +205,7 @@ inline void endstone::Logger::critical (
 
 ### function debug [1/2]
 
+_Log a message at the Debug level._ 
 ```C++
 inline void endstone::Logger::debug (
     const std::string_view message
@@ -188,6 +214,17 @@ inline void endstone::Logger::debug (
 
 
 
+
+
+**Parameters:**
+
+
+* `message` The message to log. 
+
+
+
+
+        
 
 <hr>
 
@@ -195,10 +232,11 @@ inline void endstone::Logger::debug (
 
 ### function debug [2/2]
 
+_Log a formatted message at the Debug level._ 
 ```C++
 template<typename... Args, std::enable_if_t<(sizeof...( Args ) > 0), int >>
 inline void endstone::Logger::debug (
-    const fmt::format_string< Args... > format,
+    const std::format_string< Args... > format,
     Args &&... args
 ) const
 ```
@@ -206,12 +244,25 @@ inline void endstone::Logger::debug (
 
 
 
+
+**Parameters:**
+
+
+* `format` The format string. 
+* `args` The arguments to substitute into the format string. 
+
+
+
+
+        
+
 <hr>
 
 
 
 ### function error [1/2]
 
+_Log a message at the Error level._ 
 ```C++
 inline void endstone::Logger::error (
     const std::string_view message
@@ -221,22 +272,46 @@ inline void endstone::Logger::error (
 
 
 
+
+**Parameters:**
+
+
+* `message` The message to log. 
+
+
+
+
+        
+
 <hr>
 
 
 
 ### function error [2/2]
 
+_Log a formatted message at the Error level._ 
 ```C++
 template<typename... Args, std::enable_if_t<(sizeof...( Args ) > 0), int >>
 inline void endstone::Logger::error (
-    const fmt::format_string< Args... > format,
+    const std::format_string< Args... > format,
     Args &&... args
 ) const
 ```
 
 
 
+
+
+**Parameters:**
+
+
+* `format` The format string. 
+* `args` The arguments to substitute into the format string. 
+
+
+
+
+        
 
 <hr>
 
@@ -269,6 +344,7 @@ The name of this [**Logger**](classendstone_1_1Logger.md) instance.
 
 ### function info [1/2]
 
+_Log a message at the Info level._ 
 ```C++
 inline void endstone::Logger::info (
     const std::string_view message
@@ -278,22 +354,46 @@ inline void endstone::Logger::info (
 
 
 
+
+**Parameters:**
+
+
+* `message` The message to log. 
+
+
+
+
+        
+
 <hr>
 
 
 
 ### function info [2/2]
 
+_Log a formatted message at the Info level._ 
 ```C++
 template<typename... Args, std::enable_if_t<(sizeof...( Args ) > 0), int >>
 inline void endstone::Logger::info (
-    const fmt::format_string< Args... > format,
+    const std::format_string< Args... > format,
     Args &&... args
 ) const
 ```
 
 
 
+
+
+**Parameters:**
+
+
+* `format` The format string. 
+* `args` The arguments to substitute into the format string. 
+
+
+
+
+        
 
 <hr>
 
@@ -321,7 +421,7 @@ virtual bool endstone::Logger::isEnabledFor (
 
 **Returns:**
 
-true if the logger is enabled for the [**Level**](classendstone_1_1Level.md), false otherwise. 
+`true` if the logger is enabled for the [**Level**](classendstone_1_1Level.md), `false` otherwise. 
 
 
 
@@ -364,17 +464,34 @@ virtual void endstone::Logger::log (
 
 ### function log [2/2]
 
+_Log a formatted message at the given level._ 
 ```C++
 template<typename... Args, std::enable_if_t<(sizeof...( Args ) > 0), int >>
 inline void endstone::Logger::log (
     Level level,
-    const fmt::format_string< Args... > format,
+    const std::format_string< Args... > format,
     Args &&... args
 ) const
 ```
 
 
 
+Formats the message using std::format and logs the result. If formatting throws, the exception message is logged at the Error level instead.
+
+
+
+
+**Parameters:**
+
+
+* `level` The level at which the message should be logged. 
+* `format` The format string. 
+* `args` The arguments to substitute into the format string. 
+
+
+
+
+        
 
 <hr>
 
@@ -409,6 +526,7 @@ virtual void endstone::Logger::setLevel (
 
 ### function trace [1/2]
 
+_Log a message at the Trace level._ 
 ```C++
 inline void endstone::Logger::trace (
     const std::string_view message
@@ -417,6 +535,17 @@ inline void endstone::Logger::trace (
 
 
 
+
+
+**Parameters:**
+
+
+* `message` The message to log. 
+
+
+
+
+        
 
 <hr>
 
@@ -424,10 +553,11 @@ inline void endstone::Logger::trace (
 
 ### function trace [2/2]
 
+_Log a formatted message at the Trace level._ 
 ```C++
 template<typename... Args, std::enable_if_t<(sizeof...( Args ) > 0), int >>
 inline void endstone::Logger::trace (
-    const fmt::format_string< Args... > format,
+    const std::format_string< Args... > format,
     Args &&... args
 ) const
 ```
@@ -435,12 +565,25 @@ inline void endstone::Logger::trace (
 
 
 
+
+**Parameters:**
+
+
+* `format` The format string. 
+* `args` The arguments to substitute into the format string. 
+
+
+
+
+        
+
 <hr>
 
 
 
 ### function warning [1/2]
 
+_Log a message at the Warning level._ 
 ```C++
 inline void endstone::Logger::warning (
     const std::string_view message
@@ -450,22 +593,46 @@ inline void endstone::Logger::warning (
 
 
 
+
+**Parameters:**
+
+
+* `message` The message to log. 
+
+
+
+
+        
+
 <hr>
 
 
 
 ### function warning [2/2]
 
+_Log a formatted message at the Warning level._ 
 ```C++
 template<typename... Args, std::enable_if_t<(sizeof...( Args ) > 0), int >>
 inline void endstone::Logger::warning (
-    const fmt::format_string< Args... > format,
+    const std::format_string< Args... > format,
     Args &&... args
 ) const
 ```
 
 
 
+
+
+**Parameters:**
+
+
+* `format` The format string. 
+* `args` The arguments to substitute into the format string. 
+
+
+
+
+        
 
 <hr>
 

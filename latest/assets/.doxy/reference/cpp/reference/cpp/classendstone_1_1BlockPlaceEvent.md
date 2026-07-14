@@ -93,11 +93,11 @@ Inherits the following classes: [endstone::Cancellable](classendstone_1_1Cancell
 
 | Type | Name |
 | ---: | :--- |
-|   | [**BlockPlaceEvent**](#function-blockplaceevent) (std::unique\_ptr&lt; [**BlockState**](classendstone_1_1BlockState.md) &gt; placed\_block, std::unique\_ptr&lt; [**Block**](classendstone_1_1Block.md) &gt; replaced\_block, std::unique\_ptr&lt; [**Block**](classendstone_1_1Block.md) &gt; placed\_against, [**Player**](classendstone_1_1Player.md) & player) <br> |
+|   | [**BlockPlaceEvent**](#function-blockplaceevent) (std::unique\_ptr&lt; [**Block**](classendstone_1_1Block.md) &gt; placed\_block, std::unique\_ptr&lt; [**BlockState**](classendstone_1_1BlockState.md) &gt; replaced\_state, std::unique\_ptr&lt; [**Block**](classendstone_1_1Block.md) &gt; placed\_against, [**Player**](classendstone_1_1Player.md) & player) <br> |
 |   | [**ENDSTONE\_EVENT**](#function-endstone_event) ([**BlockPlaceEvent**](classendstone_1_1BlockPlaceEvent.md)) <br> |
 |  [**Block**](classendstone_1_1Block.md) & | [**getBlockAgainst**](#function-getblockagainst) () const<br>_Gets the block that this block was placed against._  |
-|  [**BlockState**](classendstone_1_1BlockState.md) & | [**getBlockPlacedState**](#function-getblockplacedstate) () const<br>_Gets the_ [_**BlockState**_](classendstone_1_1BlockState.md) _for the block which was placed._ |
-|  [**Block**](classendstone_1_1Block.md) & | [**getBlockReplaced**](#function-getblockreplaced) () const<br>_Gets the block which was replaced._  |
+|  [**Block**](classendstone_1_1Block.md) & | [**getBlockPlaced**](#function-getblockplaced) () const<br>_Gets the block placed._  |
+|  [**BlockState**](classendstone_1_1BlockState.md) & | [**getBlockReplacedState**](#function-getblockreplacedstate) () const<br>_Gets the_ [_**BlockState**_](classendstone_1_1BlockState.md) _for the block which was replaced._ |
 |  [**Player**](classendstone_1_1Player.md) & | [**getPlayer**](#function-getplayer) () const<br>_Gets the player who placed the block involved in this event._  |
 |   | [**~BlockPlaceEvent**](#function-blockplaceevent) () override<br> |
 
@@ -108,9 +108,9 @@ See [endstone::Cancellable](classendstone_1_1Cancellable.md)
 
 | Type | Name |
 | ---: | :--- |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**cancel**](classendstone_1_1Cancellable.md#function-cancel) () <br>_Cancel this event. A cancelled event will not be executed in the server, but will still pass to other plugins._  |
-| virtual [**bool**](classendstone_1_1Identifier.md) | [**isCancelled**](classendstone_1_1Cancellable.md#function-iscancelled) () override const<br>_Gets the cancellation state of this event. A cancelled event will not be executed in the server, but will still pass to other plugins._  |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**setCancelled**](classendstone_1_1Cancellable.md#function-setcancelled) ([**bool**](classendstone_1_1Identifier.md) cancel) override<br>_Sets the cancellation state of this event. A cancelled event will not be executed in the server, but will still pass to other plugins._  |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**cancel**](classendstone_1_1Cancellable.md#function-cancel) () <br>_Cancel this event._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isCancelled**](classendstone_1_1Cancellable.md#function-iscancelled) () override const<br>_Gets the cancellation state of this event._  |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**setCancelled**](classendstone_1_1Cancellable.md#function-setcancelled) ([**bool**](classendstone_1_1Identifier.md) cancel) override<br>_Sets the cancellation state of this event._  |
 
 
 ## Public Functions inherited from endstone::ICancellable
@@ -119,9 +119,9 @@ See [endstone::ICancellable](classendstone_1_1ICancellable.md)
 
 | Type | Name |
 | ---: | :--- |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**cancel**](classendstone_1_1ICancellable.md#function-cancel) () = 0<br> |
-| virtual [**bool**](classendstone_1_1Identifier.md) | [**isCancelled**](classendstone_1_1ICancellable.md#function-iscancelled) () const = 0<br> |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**setCancelled**](classendstone_1_1ICancellable.md#function-setcancelled) ([**bool**](classendstone_1_1Identifier.md) cancel) = 0<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**cancel**](classendstone_1_1ICancellable.md#function-cancel) () = 0<br>_Cancels this event._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isCancelled**](classendstone_1_1ICancellable.md#function-iscancelled) () const = 0<br>_Gets the cancellation state of this event._  |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**setCancelled**](classendstone_1_1ICancellable.md#function-setcancelled) ([**bool**](classendstone_1_1Identifier.md) cancel) = 0<br>_Sets the cancellation state of this event._  |
 | virtual  | [**~ICancellable**](classendstone_1_1ICancellable.md#function-icancellable) () = default<br> |
 
 
@@ -219,8 +219,8 @@ If a [**BlockPlaceEvent**](classendstone_1_1BlockPlaceEvent.md) is cancelled, th
 
 ```C++
 inline explicit endstone::BlockPlaceEvent::BlockPlaceEvent (
-    std::unique_ptr< BlockState > placed_block,
-    std::unique_ptr< Block > replaced_block,
+    std::unique_ptr< Block > placed_block,
+    std::unique_ptr< BlockState > replaced_state,
     std::unique_ptr< Block > placed_against,
     Player & player
 ) 
@@ -273,11 +273,11 @@ inline Block & endstone::BlockPlaceEvent::getBlockAgainst () const
 
 
 
-### function getBlockPlacedState 
+### function getBlockPlaced 
 
-_Gets the_ [_**BlockState**_](classendstone_1_1BlockState.md) _for the block which was placed._
+_Gets the block placed._ 
 ```C++
-inline BlockState & endstone::BlockPlaceEvent::getBlockPlacedState () const
+inline Block & endstone::BlockPlaceEvent::getBlockPlaced () const
 ```
 
 
@@ -286,7 +286,7 @@ inline BlockState & endstone::BlockPlaceEvent::getBlockPlacedState () const
 
 **Returns:**
 
-The [**BlockState**](classendstone_1_1BlockState.md) for the block which was placed. 
+The [**Block**](classendstone_1_1Block.md) that was placed. 
 
 
 
@@ -298,11 +298,11 @@ The [**BlockState**](classendstone_1_1BlockState.md) for the block which was pla
 
 
 
-### function getBlockReplaced 
+### function getBlockReplacedState 
 
-_Gets the block which was replaced._ 
+_Gets the_ [_**BlockState**_](classendstone_1_1BlockState.md) _for the block which was replaced._
 ```C++
-inline Block & endstone::BlockPlaceEvent::getBlockReplaced () const
+inline BlockState & endstone::BlockPlaceEvent::getBlockReplacedState () const
 ```
 
 
@@ -311,7 +311,7 @@ inline Block & endstone::BlockPlaceEvent::getBlockReplaced () const
 
 **Returns:**
 
-The [**Block**](classendstone_1_1Block.md) which was replaced. 
+The [**BlockState**](classendstone_1_1BlockState.md) of the block that was replaced. 
 
 
 

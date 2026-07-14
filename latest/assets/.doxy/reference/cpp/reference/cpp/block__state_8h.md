@@ -10,10 +10,12 @@
 
 
 
+* `#include <format>`
 * `#include <memory>`
 * `#include <string>`
-* `#include <fmt/format.h>`
 * `#include "endstone/block/block.h"`
+* `#include "endstone/block/block_type.h"`
+* `#include "endstone/object.h"`
 * `#include "endstone/util/result.h"`
 
 
@@ -33,7 +35,6 @@
 | Type | Name |
 | ---: | :--- |
 | namespace | [**endstone**](namespaceendstone.md) <br>_Represents a button with text and an optional icon._  |
-| namespace | [**fmt**](namespacefmt.md) <br> |
 
 
 ## Classes
@@ -41,7 +42,7 @@
 | Type | Name |
 | ---: | :--- |
 | class | [**BlockState**](classendstone_1_1BlockState.md) <br>_Represents a captured state of a block, which will not update automatically._  |
-| struct | [**formatter&lt; endstone::BlockState &gt;**](structfmt_1_1formatter_3_01endstone_1_1BlockState_01_4.md) &lt;&gt;<br> |
+| struct | [**formatter&lt; endstone::BlockState &gt;**](structstd_1_1formatter_3_01endstone_1_1BlockState_01_4.md) &lt;&gt;<br> |
 
 
 

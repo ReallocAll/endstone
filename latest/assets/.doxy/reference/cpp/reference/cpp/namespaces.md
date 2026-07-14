@@ -8,6 +8,7 @@ Here is a list of all namespaces with brief descriptions:
     * **namespace** [**core**](namespaceendstone_1_1core.md) 
     * **namespace** [**detail**](namespaceendstone_1_1detail.md)     
     * **namespace** [**nbt**](namespaceendstone_1_1nbt.md)     
-* **namespace** [**fmt**](namespacefmt.md)     
+        * **namespace** [**detail**](namespaceendstone_1_1nbt_1_1detail.md)     
+    * **namespace** [**python**](namespaceendstone_1_1python.md) 
 * **namespace** [**std**](namespacestd.md)     
 

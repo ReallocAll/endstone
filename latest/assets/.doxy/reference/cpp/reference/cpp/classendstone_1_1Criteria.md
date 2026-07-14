@@ -32,7 +32,7 @@ _Represents a scoreboard criteria._
 
 | Type | Name |
 | ---: | :--- |
-| enum  | [**Type**](#enum-type)  <br> |
+| enum  | [**Type**](#enum-type)  <br>_Represents the built-in criteria types._  |
 
 
 
@@ -57,9 +57,9 @@ _Represents a scoreboard criteria._
 
 | Type | Name |
 | ---: | :--- |
-| virtual [**RenderType**](namespaceendstone.md#enum-rendertype) | [**getDefaultRenderType**](#function-getdefaultrendertype) () const = 0<br> |
+| virtual [**RenderType**](namespaceendstone.md#enum-rendertype) | [**getDefaultRenderType**](#function-getdefaultrendertype) () const = 0<br>_Get the RenderType used by default for this criteria._  |
 | virtual std::string | [**getName**](#function-getname) () const = 0<br>_Get the name of this criteria (its unique id)._  |
-| virtual [**bool**](classendstone_1_1Identifier.md) | [**isReadOnly**](#function-isreadonly) () const = 0<br>_Get whether or not this criteria is read only. If read only, scoreboards with this criteria cannot have their scores changed._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isReadOnly**](#function-isreadonly) () const = 0<br>_Get whether or not this criteria is read only._  |
 | virtual  | [**~Criteria**](#function-criteria) () = default<br> |
 
 
@@ -96,6 +96,7 @@ _Represents a scoreboard criteria._
 
 ### enum Type 
 
+_Represents the built-in criteria types._ 
 ```C++
 enum endstone::Criteria::Type {
     Dummy
@@ -113,13 +114,11 @@ enum endstone::Criteria::Type {
 
 ### function getDefaultRenderType 
 
+_Get the RenderType used by default for this criteria._ 
 ```C++
 virtual RenderType endstone::Criteria::getDefaultRenderType () const = 0
 ```
 
-
-
-Get the RenderType used by default for this criteria.
 
 
 
@@ -165,11 +164,14 @@ the name
 
 ### function isReadOnly 
 
-_Get whether or not this criteria is read only. If read only, scoreboards with this criteria cannot have their scores changed._ 
+_Get whether or not this criteria is read only._ 
 ```C++
 virtual bool endstone::Criteria::isReadOnly () const = 0
 ```
 
+
+
+If read only, scoreboards with this criteria cannot have their scores changed.
 
 
 

@@ -54,7 +54,7 @@ _Represents a boss bar that is displayed to players._
 | ---: | :--- |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**addFlag**](#function-addflag) ([**BarFlag**](namespaceendstone.md#enum-barflag) flag) = 0<br>_Add an optional flag to this boss bar._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**addPlayer**](#function-addplayer) ([**Player**](classendstone_1_1Player.md) & player) = 0<br>_Adds the player to this boss bar causing it to display on their screen._  |
-| virtual BarColor | [**getColor**](#function-getcolor) () const = 0<br>_Returns the color of this boss bar._  |
+| virtual [**BarColor**](namespaceendstone.md#enum-barcolor) | [**getColor**](#function-getcolor) () const = 0<br>_Returns the color of this boss bar._  |
 | virtual std::vector&lt; [**Player**](classendstone_1_1Player.md) \* &gt; | [**getPlayers**](#function-getplayers) () const = 0<br>_Returns all players viewing this boss bar._  |
 | virtual [**float**](classendstone_1_1Identifier.md) | [**getProgress**](#function-getprogress) () const = 0<br>_Returns the progress of the bar between 0.0 and 1.0._  |
 | virtual [**BarStyle**](namespaceendstone.md#enum-barstyle) | [**getStyle**](#function-getstyle) () const = 0<br>_Returns the style of this boss bar._  |
@@ -64,8 +64,8 @@ _Represents a boss bar that is displayed to players._
 | virtual [**void**](classendstone_1_1Identifier.md) | [**removeAll**](#function-removeall) () = 0<br>_Removes all players from this boss bar._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**removeFlag**](#function-removeflag) ([**BarFlag**](namespaceendstone.md#enum-barflag) flag) = 0<br>_Remove an existing flag on this boss bar._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**removePlayer**](#function-removeplayer) ([**Player**](classendstone_1_1Player.md) & player) = 0<br>_Removes the player from this boss bar causing it to be removed from their screen._  |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**setColor**](#function-setcolor) (BarColor color) = 0<br>_Sets the color of this boss bar._  |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**setProgress**](#function-setprogress) ([**float**](classendstone_1_1Identifier.md) progress) = 0<br>_Sets the progress of the bar. Values should be between 0.0 (empty) and 1.0 (full)_  |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**setColor**](#function-setcolor) ([**BarColor**](namespaceendstone.md#enum-barcolor) color) = 0<br>_Sets the color of this boss bar._  |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**setProgress**](#function-setprogress) ([**float**](classendstone_1_1Identifier.md) progress) = 0<br>_Sets the progress of the bar._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setStyle**](#function-setstyle) ([**BarStyle**](namespaceendstone.md#enum-barstyle) style) = 0<br>_Sets the bar style of this boss bar._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setTitle**](#function-settitle) (std::string title) = 0<br>_Sets the title of this boss bar._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setVisible**](#function-setvisible) ([**bool**](classendstone_1_1Identifier.md) visible) = 0<br>_Set if the boss bar is displayed to attached players._  |
@@ -438,7 +438,7 @@ virtual void endstone::BossBar::setColor (
 
 ### function setProgress 
 
-_Sets the progress of the bar. Values should be between 0.0 (empty) and 1.0 (full)_ 
+_Sets the progress of the bar._ 
 ```C++
 virtual void endstone::BossBar::setProgress (
     float progress
@@ -447,7 +447,7 @@ virtual void endstone::BossBar::setProgress (
 
 
 
-
+Values should be between 0.0 (empty) and 1.0 (full). 
 
 **Parameters:**
 

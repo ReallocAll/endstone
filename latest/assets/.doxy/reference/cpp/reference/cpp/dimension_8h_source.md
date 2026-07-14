@@ -24,33 +24,38 @@
 
 #pragma once
 
+#include <format>
 #include <memory>
 #include <string>
 #include <vector>
 
+#include "endstone/actor/actor.h"
+#include "endstone/actor/item.h"
 #include "endstone/block/block.h"
+#include "endstone/identifier.h"
 #include "endstone/inventory/item_stack.h"
 #include "endstone/level/chunk.h"
-#include "endstone/util/result.h"
 
 namespace endstone {
 
-class Dimension {
+class Dimension;
+using DimensionId = Identifier<Dimension>;
+
+class Dimension : public std::enable_shared_from_this<Dimension> {
 public:
-    enum class Type {
-        Overworld = 0,
-        Nether = 1,
-        TheEnd = 2,
-        Custom = 999
-    };
+    static constexpr auto Overworld = DimensionId::minecraft("overworld");
+    static constexpr auto Nether = DimensionId::minecraft("nether");
+    static constexpr auto TheEnd = DimensionId::minecraft("the_end");
 
     virtual ~Dimension() = default;
 
-    [[nodiscard]] virtual std::string getName() const = 0;
+    [[nodiscard]] virtual DimensionId getId() const = 0;
 
-    [[nodiscard]] virtual Type getType() const = 0;
+    [[nodiscard]] virtual std::string getTranslationKey() const = 0;
 
     [[nodiscard]] virtual Level &getLevel() const = 0;
+
+    [[nodiscard]] virtual bool isValid() const = 0;
 
     [[nodiscard]] virtual std::unique_ptr<Block> getBlockAt(int x, int y, int z) const = 0;
 
@@ -64,33 +69,64 @@ public:
 
     [[nodiscard]] virtual std::vector<std::unique_ptr<Chunk>> getLoadedChunks() = 0;
 
+    [[nodiscard]] virtual bool isChunkLoaded(int x, int z) const = 0;
+
+    virtual bool loadChunk(int x, int z) = 0;
+
+    virtual bool unloadChunk(int x, int z) = 0;
+
     [[nodiscard]] virtual Item &dropItem(Location location, const ItemStack &item) = 0;
 
-    [[nodiscard]] virtual Actor *spawnActor(Location location, std::string type) = 0;
+    [[nodiscard]] virtual Actor *spawnActor(Location location, ActorTypeId type) = 0;
 
     [[nodiscard]] virtual std::vector<Actor *> getActors() const = 0;
 };
 
+inline Nullable<Dimension> Location::getDimension() const
+{
+    auto dimension = dimension_.lock();
+    if (!dimension) {
+        // The wrapper is gone: tell "never set" (empty weak_ptr) apart from a wrapper that has expired.
+        const std::weak_ptr<Dimension> unset;
+        const bool was_set = dimension_.owner_before(unset) || unset.owner_before(dimension_);
+        Preconditions::checkArgument(!was_set, "Dimension unloaded");
+        return nullptr;
+    }
+    // The wrapper is alive, but the underlying dimension it points to may have been unloaded.
+    Preconditions::checkArgument(dimension->isValid(), "Dimension unloaded");
+    return dimension;
+}
+
+inline bool Location::isDimensionLoaded() const
+{
+    const auto dimension = dimension_.lock();
+    return dimension && dimension->isValid();
+}
+
 inline std::unique_ptr<Block> Location::getBlock() const
 {
-    return getDimension().getBlockAt(*this);
+    return getDimension().value().getBlockAt(*this);
 }
 
 inline float Location::distanceSquared(const Location &other) const
 {
-    Preconditions::checkArgument(dimension_ == other.dimension_, "Cannot measure distance between {} and {}.",
-                                 dimension_->getName(), other.dimension_->getName());
+    const auto dimension = getDimension();
+    const auto other_dimension = other.getDimension();
+    Preconditions::checkArgument(dimension != nullptr && other_dimension != nullptr,
+                                 "Cannot measure distance to a null dimension.");
+    Preconditions::checkArgument(dimension == other_dimension, "Cannot measure distance between {} and {}.",
+                                 dimension.value().getId(), other_dimension.value().getId());
     return ((x_ - other.x_) * (x_ - other.x_)) + ((y_ - other.y_) * (y_ - other.y_)) +
            ((z_ - other.z_) * (z_ - other.z_));
 }
 }  // namespace endstone
 
 template <>
-struct fmt::formatter<endstone::Dimension> : formatter<string_view> {
+struct std::formatter<endstone::Dimension> : std::formatter<std::string_view> {
     template <typename FormatContext>
     auto format(const endstone::Dimension &self, FormatContext &ctx) const -> format_context::iterator
     {
-        return fmt::format_to(ctx.out(), "Dimension(name={})", self.getName());
+        return std::format_to(ctx.out(), "Dimension(id={})", self.getId());
     }
 };
 ```

@@ -14,9 +14,30 @@ _Represents an object that may become a server operator and can be assigned perm
 
 
 
+Inherits the following classes: [endstone::Object](classendstone_1_1Object.md),  std::enable_shared_from_this< Permissible >
 
 
 Inherited by the following classes: [endstone::CommandSender](classendstone_1_1CommandSender.md)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -55,16 +76,54 @@ Inherited by the following classes: [endstone::CommandSender](classendstone_1_1C
 | ---: | :--- |
 | virtual [**PermissionAttachment**](classendstone_1_1PermissionAttachment.md) \* | [**addAttachment**](#function-addattachment-12) ([**Plugin**](classendstone_1_1Plugin.md) & plugin, [**const**](classendstone_1_1Identifier.md) std::string & name, [**bool**](classendstone_1_1Identifier.md) value) = 0<br>_Adds a new_ [_**PermissionAttachment**_](classendstone_1_1PermissionAttachment.md) _with a single permission by name and value._ |
 | virtual [**PermissionAttachment**](classendstone_1_1PermissionAttachment.md) \* | [**addAttachment**](#function-addattachment-22) ([**Plugin**](classendstone_1_1Plugin.md) & plugin) = 0<br>_Adds a new empty_ [_**PermissionAttachment**_](classendstone_1_1PermissionAttachment.md) _to this object._ |
-| virtual [**CommandSender**](classendstone_1_1CommandSender.md) \* | [**asCommandSender**](#function-ascommandsender) () const = 0<br>_Casts a_ [_**Permissible**_](classendstone_1_1Permissible.md) _as_[_**CommandSender**_](classendstone_1_1CommandSender.md) _._ |
 | virtual std::unordered\_set&lt; [**PermissionAttachmentInfo**](classendstone_1_1PermissionAttachmentInfo.md) \* &gt; | [**getEffectivePermissions**](#function-geteffectivepermissions) () const = 0<br>_Gets a set containing all the permissions currently in effect by this object._  |
-| virtual PermissionLevel | [**getPermissionLevel**](#function-getpermissionlevel) () const = 0<br>_Gets the permission level of this object._  |
-| virtual [**bool**](classendstone_1_1Identifier.md) | [**hasPermission**](#function-haspermission-12) (std::string name) const = 0<br>_Gets the value of the specified permission, if set. If a permission override is not set on this object, the default value of the permission will be returned._  |
-| virtual [**bool**](classendstone_1_1Identifier.md) | [**hasPermission**](#function-haspermission-22) ([**const**](classendstone_1_1Identifier.md) [**Permission**](classendstone_1_1Permission.md) & perm) const = 0<br>_Gets the value of the specified permission, if set. If a permission override is not set on this object, the default value of the permission will be returned._  |
+| virtual [**PermissionLevel**](namespaceendstone.md#enum-permissionlevel) | [**getPermissionLevel**](#function-getpermissionlevel) () const = 0<br>_Gets the permission level of this object._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**hasPermission**](#function-haspermission-12) (std::string name) const = 0<br>_Gets the value of the specified permission, if set._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**hasPermission**](#function-haspermission-22) ([**const**](classendstone_1_1Identifier.md) [**Permission**](classendstone_1_1Permission.md) & perm) const = 0<br>_Gets the value of the specified permission, if set._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**isPermissionSet**](#function-ispermissionset-12) (std::string name) const = 0<br>_Checks if this object contains an override for the specified permission, by fully qualified name._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**isPermissionSet**](#function-ispermissionset-22) ([**const**](classendstone_1_1Identifier.md) [**Permission**](classendstone_1_1Permission.md) & perm) const = 0<br>_Checks if this object contains an override for the specified_ [_**Permission**_](classendstone_1_1Permission.md) _._ |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**recalculatePermissions**](#function-recalculatepermissions) () = 0<br>_Recalculates the permissions for this object, if the attachments have changed values. This should very rarely need to be called from a plugin._  |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**recalculatePermissions**](#function-recalculatepermissions) () = 0<br>_Recalculates the permissions for this object, if the attachments have changed values._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**removeAttachment**](#function-removeattachment) ([**PermissionAttachment**](classendstone_1_1PermissionAttachment.md) & attachment) = 0<br>_Removes the given_ [_**PermissionAttachment**_](classendstone_1_1PermissionAttachment.md) _from this object._ |
-| virtual  | [**~Permissible**](#function-permissible) () = default<br> |
+
+
+## Public Functions inherited from endstone::Object
+
+See [endstone::Object](classendstone_1_1Object.md)
+
+| Type | Name |
+| ---: | :--- |
+|  [**T**](classendstone_1_1Identifier.md) \* | [**as**](classendstone_1_1Object.md#function-as-12) () <br>_Attempts to cast this object to the given type T._  |
+|  [**const**](classendstone_1_1Identifier.md) [**T**](classendstone_1_1Identifier.md) \* | [**as**](classendstone_1_1Object.md#function-as-22) () const<br>_Attempts to cast this object to the given type T._  |
+| virtual [**const**](classendstone_1_1Identifier.md) std::type\_info & | [**getClassTypeId**](classendstone_1_1Object.md#function-getclasstypeid) () const = 0<br> |
+|  [**bool**](classendstone_1_1Identifier.md) | [**is**](classendstone_1_1Object.md#function-is) () const<br>_Checks if this object is an instance of the given type T (or a subclass of T)._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isInstanceOf**](classendstone_1_1Object.md#function-isinstanceof) ([**const**](classendstone_1_1Identifier.md) std::type\_info & target) const = 0<br> |
+| virtual  | [**~Object**](classendstone_1_1Object.md#function-object) () = default<br> |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -116,7 +175,7 @@ virtual PermissionAttachment * endstone::Permissible::addAttachment (
 **Parameters:**
 
 
-* `plugin` [**Plugin**](classendstone_1_1Plugin.md) responsible for this attachment, may not be null or disabled 
+* `plugin` [**Plugin**](classendstone_1_1Plugin.md) responsible for this attachment; must not be disabled. 
 * `name` Name of the permission to attach 
 * `value` Value of the permission 
 
@@ -152,38 +211,13 @@ virtual PermissionAttachment * endstone::Permissible::addAttachment (
 **Parameters:**
 
 
-* `plugin` [**Plugin**](classendstone_1_1Plugin.md) responsible for this attachment, may not be null or disabled 
+* `plugin` [**Plugin**](classendstone_1_1Plugin.md) responsible for this attachment; must not be disabled. 
 
 
 
 **Returns:**
 
 The [**PermissionAttachment**](classendstone_1_1PermissionAttachment.md) that was just created 
-
-
-
-
-
-        
-
-<hr>
-
-
-
-### function asCommandSender 
-
-_Casts a_ [_**Permissible**_](classendstone_1_1Permissible.md) _as_[_**CommandSender**_](classendstone_1_1CommandSender.md) _._
-```C++
-virtual CommandSender * endstone::Permissible::asCommandSender () const = 0
-```
-
-
-
-
-
-**Returns:**
-
-[**CommandSender**](classendstone_1_1CommandSender.md), nullptr if not a [**CommandSender**](classendstone_1_1CommandSender.md) 
 
 
 
@@ -247,13 +281,16 @@ The permission level
 
 ### function hasPermission [1/2]
 
-_Gets the value of the specified permission, if set. If a permission override is not set on this object, the default value of the permission will be returned._ 
+_Gets the value of the specified permission, if set._ 
 ```C++
 virtual bool endstone::Permissible::hasPermission (
     std::string name
 ) const = 0
 ```
 
+
+
+If a permission override is not set on this object, the default value of the permission will be returned.
 
 
 
@@ -281,13 +318,16 @@ Value of the permission
 
 ### function hasPermission [2/2]
 
-_Gets the value of the specified permission, if set. If a permission override is not set on this object, the default value of the permission will be returned._ 
+_Gets the value of the specified permission, if set._ 
 ```C++
 virtual bool endstone::Permissible::hasPermission (
     const  Permission & perm
 ) const = 0
 ```
 
+
+
+If a permission override is not set on this object, the default value of the permission will be returned.
 
 
 
@@ -383,13 +423,17 @@ true if the permission is set, otherwise false
 
 ### function recalculatePermissions 
 
-_Recalculates the permissions for this object, if the attachments have changed values. This should very rarely need to be called from a plugin._ 
+_Recalculates the permissions for this object, if the attachments have changed values._ 
 ```C++
 virtual void endstone::Permissible::recalculatePermissions () = 0
 ```
 
 
 
+This should very rarely need to be called from a plugin. 
+
+
+        
 
 <hr>
 
@@ -424,19 +468,6 @@ true if the specified attachment was removed successfully, false when it isn't p
 
 
         
-
-<hr>
-
-
-
-### function ~Permissible 
-
-```C++
-virtual endstone::Permissible::~Permissible () = default
-```
-
-
-
 
 <hr>
 

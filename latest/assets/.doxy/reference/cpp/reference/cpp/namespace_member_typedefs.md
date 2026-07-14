@@ -5,11 +5,14 @@
 
 ## a
 
+* **ActorTypeId** ([**endstone**](namespaceendstone.md))
 * **AttributeId** ([**endstone**](namespaceendstone.md))
+* **AttributeModifierId** ([**endstone**](namespaceendstone.md))
 
 
 ## b
 
+* **BiomeId** ([**endstone**](namespaceendstone.md))
 * **BlockStates** ([**endstone**](namespaceendstone.md))
 * **BlockTypeId** ([**endstone**](namespaceendstone.md))
 * **ByteArrayTag** ([**endstone**](namespaceendstone.md))
@@ -18,6 +21,7 @@
 
 ## d
 
+* **DimensionId** ([**endstone**](namespaceendstone.md))
 * **DoubleTag** ([**endstone**](namespaceendstone.md))
 
 

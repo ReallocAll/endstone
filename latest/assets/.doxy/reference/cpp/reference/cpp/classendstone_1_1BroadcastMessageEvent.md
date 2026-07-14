@@ -8,7 +8,7 @@
 
 
 
-[_**Event**_](classendstone_1_1Event.md) _triggered for server broadcast messages such as from_[_**Server::broadcast**_](classendstone_1_1Server.md#function-broadcast) _._[More...](#detailed-description)
+[_**Event**_](classendstone_1_1Event.md) _triggered for server broadcast messages such as from_[_**Server::broadcast()**_](classendstone_1_1Server.md#function-broadcast) _._[More...](#detailed-description)
 
 * `#include <endstone/event/server/broadcast_message_event.h>`
 
@@ -93,11 +93,11 @@ Inherits the following classes: [endstone::Cancellable](classendstone_1_1Cancell
 
 | Type | Name |
 | ---: | :--- |
-|   | [**BroadcastMessageEvent**](#function-broadcastmessageevent) ([**bool**](classendstone_1_1Identifier.md) async, Message message, std::unordered\_set&lt; [**const**](classendstone_1_1Identifier.md) [**CommandSender**](classendstone_1_1CommandSender.md) \* &gt; recipients) <br> |
+|   | [**BroadcastMessageEvent**](#function-broadcastmessageevent) ([**bool**](classendstone_1_1Identifier.md) async, [**Message**](namespaceendstone.md#typedef-message) message, std::unordered\_set&lt; [**const**](classendstone_1_1Identifier.md) [**CommandSender**](classendstone_1_1CommandSender.md) \* &gt; recipients) <br> |
 |   | [**ENDSTONE\_EVENT**](#function-endstone_event) ([**BroadcastMessageEvent**](classendstone_1_1BroadcastMessageEvent.md)) <br> |
-|  [**const**](classendstone_1_1Identifier.md) Message & | [**getMessage**](#function-getmessage) () const<br> |
-|  [**const**](classendstone_1_1Identifier.md) std::unordered\_set&lt; [**const**](classendstone_1_1Identifier.md) [**CommandSender**](classendstone_1_1CommandSender.md) \* &gt; & | [**getRecipients**](#function-getrecipients) () const<br> |
-|  [**void**](classendstone_1_1Identifier.md) | [**setMessage**](#function-setmessage) (Message message) <br> |
+|  [**const**](classendstone_1_1Identifier.md) [**Message**](namespaceendstone.md#typedef-message) & | [**getMessage**](#function-getmessage) () const<br>_Get the message to broadcast._  |
+|  [**const**](classendstone_1_1Identifier.md) std::unordered\_set&lt; [**const**](classendstone_1_1Identifier.md) [**CommandSender**](classendstone_1_1CommandSender.md) \* &gt; & | [**getRecipients**](#function-getrecipients) () const<br>_Gets a set of recipients that this broadcast message will be displayed to._  |
+|  [**void**](classendstone_1_1Identifier.md) | [**setMessage**](#function-setmessage) ([**Message**](namespaceendstone.md#typedef-message) message) <br>_Set the message to broadcast._  |
 
 
 ## Public Functions inherited from endstone::Cancellable
@@ -106,9 +106,9 @@ See [endstone::Cancellable](classendstone_1_1Cancellable.md)
 
 | Type | Name |
 | ---: | :--- |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**cancel**](classendstone_1_1Cancellable.md#function-cancel) () <br>_Cancel this event. A cancelled event will not be executed in the server, but will still pass to other plugins._  |
-| virtual [**bool**](classendstone_1_1Identifier.md) | [**isCancelled**](classendstone_1_1Cancellable.md#function-iscancelled) () override const<br>_Gets the cancellation state of this event. A cancelled event will not be executed in the server, but will still pass to other plugins._  |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**setCancelled**](classendstone_1_1Cancellable.md#function-setcancelled) ([**bool**](classendstone_1_1Identifier.md) cancel) override<br>_Sets the cancellation state of this event. A cancelled event will not be executed in the server, but will still pass to other plugins._  |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**cancel**](classendstone_1_1Cancellable.md#function-cancel) () <br>_Cancel this event._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isCancelled**](classendstone_1_1Cancellable.md#function-iscancelled) () override const<br>_Gets the cancellation state of this event._  |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**setCancelled**](classendstone_1_1Cancellable.md#function-setcancelled) ([**bool**](classendstone_1_1Identifier.md) cancel) override<br>_Sets the cancellation state of this event._  |
 
 
 ## Public Functions inherited from endstone::ICancellable
@@ -117,9 +117,9 @@ See [endstone::ICancellable](classendstone_1_1ICancellable.md)
 
 | Type | Name |
 | ---: | :--- |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**cancel**](classendstone_1_1ICancellable.md#function-cancel) () = 0<br> |
-| virtual [**bool**](classendstone_1_1Identifier.md) | [**isCancelled**](classendstone_1_1ICancellable.md#function-iscancelled) () const = 0<br> |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**setCancelled**](classendstone_1_1ICancellable.md#function-setcancelled) ([**bool**](classendstone_1_1Identifier.md) cancel) = 0<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**cancel**](classendstone_1_1ICancellable.md#function-cancel) () = 0<br>_Cancels this event._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isCancelled**](classendstone_1_1ICancellable.md#function-iscancelled) () const = 0<br>_Gets the cancellation state of this event._  |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**setCancelled**](classendstone_1_1ICancellable.md#function-setcancelled) ([**bool**](classendstone_1_1Identifier.md) cancel) = 0<br>_Sets the cancellation state of this event._  |
 | virtual  | [**~ICancellable**](classendstone_1_1ICancellable.md#function-icancellable) () = default<br> |
 
 
@@ -247,13 +247,11 @@ endstone::BroadcastMessageEvent::ENDSTONE_EVENT (
 
 ### function getMessage 
 
+_Get the message to broadcast._ 
 ```C++
-inline const Message & endstone::BroadcastMessageEvent::getMessage () const
+inline const  Message & endstone::BroadcastMessageEvent::getMessage () const
 ```
 
-
-
-Get the message to broadcast.
 
 
 
@@ -274,13 +272,11 @@ Message to broadcast
 
 ### function getRecipients 
 
+_Gets a set of recipients that this broadcast message will be displayed to._ 
 ```C++
 inline const std::unordered_set< const  CommandSender * > & endstone::BroadcastMessageEvent::getRecipients () const
 ```
 
-
-
-Gets a set of recipients that this broadcast message will be displayed to.
 
 
 
@@ -301,15 +297,13 @@ All CommandSenders who will see this broadcast message
 
 ### function setMessage 
 
+_Set the message to broadcast._ 
 ```C++
 inline void endstone::BroadcastMessageEvent::setMessage (
     Message message
 ) 
 ```
 
-
-
-Set the message to broadcast.
 
 
 

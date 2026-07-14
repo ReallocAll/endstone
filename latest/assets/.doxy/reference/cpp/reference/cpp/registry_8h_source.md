@@ -25,20 +25,31 @@
 #pragma once
 
 #include <concepts>
+#include <format>
 #include <functional>
 #include <stdexcept>
 #include <string>
-
-#include <fmt/format.h>
 
 #include "detail.h"
 #include "identifier.h"
 #include "server.h"
 
 namespace endstone {
+namespace python {
+class PyRegistry;
+}
+
 class IRegistry {
 public:
     virtual ~IRegistry() = default;
+
+    [[nodiscard]] virtual std::size_t size() const = 0;
+
+protected:
+    friend class python::PyRegistry;
+    [[nodiscard]] virtual const void *get0(std::string_view id) const noexcept = 0;
+    virtual void forEach0(std::function<bool(const void *)> func) const = 0;
+    [[nodiscard]] virtual const std::type_info &getTypeId() const noexcept = 0;
 };
 
 template <typename T>
@@ -54,10 +65,7 @@ public:
 
         [[nodiscard]] virtual std::string getTranslationKey() const = 0;
 
-        static const T *get(Id id)
-        {
-            return detail::getServer().getRegistry<T>().get(id);
-        }
+        static const T *get(Id id) { return detail::getServer().getRegistry<T>().get(id); }
 
         bool operator==(const Id &other) const { return getId() == other; }
         bool operator!=(const Id &other) const { return !(*this == other); }
@@ -75,7 +83,7 @@ public:
         if (auto *p = get(id)) {
             return *p;
         }
-        throw std::invalid_argument(fmt::format("No registry entry found for identifier: {}", id));
+        throw std::invalid_argument(std::format("No registry entry found for identifier: {}", id));
     }
 
     virtual const T &getOrThrow(Identifier<T> id) const
@@ -83,23 +91,34 @@ public:
         if (auto *p = get(id)) {
             return *p;
         }
-        throw std::invalid_argument(fmt::format("No registry entry found for identifier: {}", id));
+        throw std::invalid_argument(std::format("No registry entry found for identifier: {}", id));
     }
 
     virtual void forEach(std::function<bool(const T &)> func) const = 0;
+
+    [[nodiscard]] std::size_t size() const override = 0;
+
+private:
+    [[nodiscard]] const void *get0(std::string_view id) const noexcept override { return get(Identifier<T>(id)); }
+
+    void forEach0(std::function<bool(const void *)> func) const override
+    {
+        forEach([&func](const T &elem) { return func(&elem); });
+    }
+
+    [[nodiscard]] const std::type_info &getTypeId() const noexcept override { return typeid(T); }
 };
-
-#define ENDSTONE_REGISTRY_TYPE(type) static constexpr auto RegistryType = #type;
-
 }  // namespace endstone
 
 template <typename T>
-    requires requires(const T &t) { { t.getId() } -> std::convertible_to<endstone::Identifier<T>>; }
-struct fmt::formatter<T> : formatter<string_view> {
+    requires requires(const T &t) {
+        { t.getId() } -> std::convertible_to<endstone::Identifier<T>>;
+    }
+struct std::formatter<T> : std::formatter<std::string_view> {
     template <typename FormatContext>
     auto format(const T &val, FormatContext &ctx) const -> format_context::iterator
     {
-        return fmt::format_to(ctx.out(), "{}", val.getId());
+        return std::format_to(ctx.out(), "{}", val.getId());
     }
 };
 ```

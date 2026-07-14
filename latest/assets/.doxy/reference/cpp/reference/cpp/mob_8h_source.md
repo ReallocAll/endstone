@@ -24,7 +24,13 @@
 
 #pragma once
 
+#include <memory>
+#include <optional>
+#include <vector>
+
 #include "endstone/actor/actor.h"
+#include "endstone/attribute/attribute_instance.h"
+#include "endstone/potion/effect.h"
 
 namespace endstone {
 class Mob : public Actor {
@@ -38,6 +44,22 @@ public:
     [[nodiscard]] virtual int getMaxHealth() const = 0;
 
     virtual void setMaxHealth(int health) const = 0;
+
+    [[nodiscard]] virtual bool hasAttribute(AttributeId id) const = 0;
+
+    [[nodiscard]] virtual std::unique_ptr<AttributeInstance> getAttribute(AttributeId id) = 0;
+
+    [[nodiscard]] virtual std::vector<std::unique_ptr<AttributeInstance>> getAttributes() = 0;
+
+    virtual void addEffect(const Effect &effect) = 0;
+
+    virtual void removeEffect(EffectId type) = 0;
+
+    [[nodiscard]] virtual bool hasEffect(EffectId type) const = 0;
+
+    [[nodiscard]] virtual std::optional<Effect> getEffect(EffectId type) const = 0;
+
+    [[nodiscard]] virtual std::vector<Effect> getActiveEffects() const = 0;
 };
 }  // namespace endstone
 ```

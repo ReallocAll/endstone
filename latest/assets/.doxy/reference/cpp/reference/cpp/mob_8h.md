@@ -10,7 +10,12 @@
 
 
 
+* `#include <memory>`
+* `#include <optional>`
+* `#include <vector>`
 * `#include "endstone/actor/actor.h"`
+* `#include "endstone/attribute/attribute_instance.h"`
+* `#include "endstone/potion/effect.h"`
 
 
 
@@ -35,7 +40,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**Mob**](classendstone_1_1Mob.md) <br>_Represents a mobile entity (i.e. living entity), such as a monster or player._  |
+| class | [**Mob**](classendstone_1_1Mob.md) <br>_Represents a mobile entity (i.e._  |
 
 
 

@@ -14,6 +14,28 @@ _Represents a captured state of a block, which will not update automatically._ [
 
 
 
+Inherits the following classes: [endstone::Object](classendstone_1_1Object.md)
+
+
+Inherited by the following classes: [endstone::Container](classendstone_1_1Container.md)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -56,16 +78,56 @@ _Represents a captured state of a block, which will not update automatically._ [
 | virtual std::unique\_ptr&lt; [**BlockData**](classendstone_1_1BlockData.md) &gt; | [**getData**](#function-getdata) () const = 0<br>_Gets the data for this block state._  |
 | virtual [**Dimension**](classendstone_1_1Dimension.md) & | [**getDimension**](#function-getdimension) () const = 0<br>_Gets the dimension which contains the block represented by this block state._  |
 | virtual [**Location**](classendstone_1_1Location.md) | [**getLocation**](#function-getlocation) () const = 0<br>_Gets the location of this block state._  |
-| virtual std::string | [**getType**](#function-gettype) () const = 0<br>_Gets the type of this block state._  |
+| virtual [**const**](classendstone_1_1Identifier.md) [**BlockType**](classendstone_1_1BlockType.md) & | [**getType**](#function-gettype) () const = 0<br>_Gets the type of this block state._  |
 | virtual [**int**](classendstone_1_1Identifier.md) | [**getX**](#function-getx) () const = 0<br>_Gets the x-coordinate of this block state._  |
 | virtual [**int**](classendstone_1_1Identifier.md) | [**getY**](#function-gety) () const = 0<br>_Gets the y-coordinate of this block state._  |
 | virtual [**int**](classendstone_1_1Identifier.md) | [**getZ**](#function-getz) () const = 0<br>_Gets the z-coordinate of this block state._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setData**](#function-setdata) ([**const**](classendstone_1_1Identifier.md) [**BlockData**](classendstone_1_1BlockData.md) & data) = 0<br>_Sets the data for this block state._  |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**setType**](#function-settype) (std::string type) = 0<br>_Sets the type of this block state._  |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**setType**](#function-settype) ([**BlockTypeId**](classendstone_1_1Identifier.md) type) = 0<br>_Sets the type of this block state._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**update**](#function-update-13) () = 0<br>_Attempts to update the block represented by this state, setting it to yhe new values as defined by this state._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**update**](#function-update-23) ([**bool**](classendstone_1_1Identifier.md) force) = 0<br>_Attempts to update the block represented by this state, setting it to the new values as defined by this state._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**update**](#function-update-33) ([**bool**](classendstone_1_1Identifier.md) force, [**bool**](classendstone_1_1Identifier.md) apply\_physics) = 0<br>_Attempts to update the block represented by this state, setting it to the new values as defined by this state._  |
-| virtual  | [**~BlockState**](#function-blockstate) () = default<br> |
+|   | [**~BlockState**](#function-blockstate) () override<br> |
+
+
+## Public Functions inherited from endstone::Object
+
+See [endstone::Object](classendstone_1_1Object.md)
+
+| Type | Name |
+| ---: | :--- |
+|  [**T**](classendstone_1_1Identifier.md) \* | [**as**](classendstone_1_1Object.md#function-as-12) () <br>_Attempts to cast this object to the given type T._  |
+|  [**const**](classendstone_1_1Identifier.md) [**T**](classendstone_1_1Identifier.md) \* | [**as**](classendstone_1_1Object.md#function-as-22) () const<br>_Attempts to cast this object to the given type T._  |
+| virtual [**const**](classendstone_1_1Identifier.md) std::type\_info & | [**getClassTypeId**](classendstone_1_1Object.md#function-getclasstypeid) () const = 0<br> |
+|  [**bool**](classendstone_1_1Identifier.md) | [**is**](classendstone_1_1Object.md#function-is) () const<br>_Checks if this object is an instance of the given type T (or a subclass of T)._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isInstanceOf**](classendstone_1_1Object.md#function-isinstanceof) ([**const**](classendstone_1_1Identifier.md) std::type\_info & target) const = 0<br> |
+| virtual  | [**~Object**](classendstone_1_1Object.md#function-object) () = default<br> |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -210,7 +272,7 @@ the location
 
 _Gets the type of this block state._ 
 ```C++
-virtual std::string endstone::BlockState::getType () const = 0
+virtual const  BlockType & endstone::BlockState::getType () const = 0
 ```
 
 
@@ -338,7 +400,7 @@ virtual void endstone::BlockState::setData (
 _Sets the type of this block state._ 
 ```C++
 virtual void endstone::BlockState::setType (
-    std::string type
+    BlockTypeId type
 ) = 0
 ```
 
@@ -369,14 +431,14 @@ virtual bool endstone::BlockState::update () = 0
 
 
 
-This has the same effect as calling [**update(false)**](classendstone_1_1BlockState.md#function-update-23). That is to say, this will not modify the state of a block if it is no longer the same type as it was when this state was taken. It will return false in this eventuality.
+This has the same effect as calling [**update(false)**](classendstone_1_1BlockState.md#function-update-23). That is to say, this will not modify the state of a block if it is no longer the same type as it was when this state was taken. It will return `false` in this eventuality.
 
 
 
 
 **Returns:**
 
-true if the update was successful, otherwise false 
+`true` if the update was successful, otherwise `false` 
 
 
 
@@ -407,13 +469,13 @@ This has the same effect as calling [**update(force, true)**](classendstone_1_1B
 **Parameters:**
 
 
-* `force` true to forcefully set the state 
+* `force` `true` to forcefully set the state 
 
 
 
 **Returns:**
 
-true if the update was successful, otherwise false 
+`true` if the update was successful, otherwise `false` 
 
 
 
@@ -437,13 +499,13 @@ virtual bool endstone::BlockState::update (
 
 
 
-Unless force is true, this will not modify the state of a block if it is no longer the same type as it was when this state was taken. It will return false in this eventuality. 
+Unless force is `true`, this will not modify the state of a block if it is no longer the same type as it was when this state was taken. It will return `false` in this eventuality. 
 
 
-If force is true, it will set the type of the block to match the new state, set the state data and then return true. 
+If force is `true`, it will set the type of the block to match the new state, set the state data and then return `true`. 
 
 
-If apply\_physics is true, it will trigger a physics update on surrounding blocks which could cause them to update or disappear.
+If apply\_physics is `true`, it will trigger a physics update on surrounding blocks which could cause them to update or disappear.
 
 
 
@@ -451,14 +513,14 @@ If apply\_physics is true, it will trigger a physics update on surrounding block
 **Parameters:**
 
 
-* `force` true to forcefully set the state 
-* `apply_physics` false to cancel updating physics on surrounding blocks 
+* `force` `true` to forcefully set the state 
+* `apply_physics` `false` to cancel updating physics on surrounding blocks 
 
 
 
 **Returns:**
 
-true if the update was successful, otherwise false 
+`true` if the update was successful, otherwise `false` 
 
 
 
@@ -473,7 +535,7 @@ true if the update was successful, otherwise false
 ### function ~BlockState 
 
 ```C++
-virtual endstone::BlockState::~BlockState () = default
+endstone::BlockState::~BlockState () override
 ```
 
 

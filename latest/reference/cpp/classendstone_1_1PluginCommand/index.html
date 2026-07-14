@@ -442,6 +442,8 @@ For latest updates join the chat on
       
         
       
+        
+      
     
     
     
@@ -586,6 +588,34 @@ For latest updates join the chat on
     
   
     Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
   
 
     
@@ -2577,6 +2607,17 @@ For latest updates join the chat on
 </li>
       
         <li class="md-nav__item">
+    <a href="#public-functions-inherited-from-endstoneobject" class="md-nav__link">
+      <span class="md-ellipsis">
+        Public Functions inherited from endstone::Object
+      </span>
+    </a>
+
+    <!-- Table of contents list -->
+    
+</li>
+      
+        <li class="md-nav__item">
     <a href="#public-functions-documentation" class="md-nav__link">
       <span class="md-ellipsis">
         Public Functions Documentation
@@ -2603,9 +2644,9 @@ For latest updates join the chat on
             
                 
                     <li class="md-nav__item">
-    <a href="#function-asplugincommand" class="md-nav__link">
+    <a href="#function-execute" class="md-nav__link">
       <span class="md-ellipsis">
-        function asPluginCommand
+        function execute
       </span>
     </a>
 
@@ -2616,9 +2657,9 @@ For latest updates join the chat on
             
                 
                     <li class="md-nav__item">
-    <a href="#function-execute" class="md-nav__link">
+    <a href="#function-getclasstypeid" class="md-nav__link">
       <span class="md-ellipsis">
-        function execute
+        function getClassTypeId
       </span>
     </a>
 
@@ -2645,6 +2686,19 @@ For latest updates join the chat on
     <a href="#function-getplugin" class="md-nav__link">
       <span class="md-ellipsis">
         function getPlugin
+      </span>
+    </a>
+
+    <!-- Table of contents list -->
+    
+</li>
+                
+            
+                
+                    <li class="md-nav__item">
+    <a href="#function-isinstanceof" class="md-nav__link">
+      <span class="md-ellipsis">
+        function isInstanceOf
       </span>
     </a>
 
@@ -2688,7 +2742,7 @@ For latest updates join the chat on
 
 
   
-    <a href="https://github.com/EndstoneMC/endstone/edit/main/docs/reference/cpp/classendstone_1_1PluginCommand.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/EndstoneMC/endstone/edit/develop/docs/reference/cpp/classendstone_1_1PluginCommand.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2697,7 +2751,7 @@ For latest updates join the chat on
     
       
     
-    <a href="https://github.com/EndstoneMC/endstone/raw/main/docs/reference/cpp/classendstone_1_1PluginCommand.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/EndstoneMC/endstone/raw/develop/docs/reference/cpp/classendstone_1_1PluginCommand.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
@@ -2725,24 +2779,28 @@ For latest updates join the chat on
 <td style="text-align: left;"><a href="#function-plugincommand"><strong>PluginCommand</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1Command/"><strong>Command</strong></a> &amp; command, <a href="../classendstone_1_1Plugin/"><strong>Plugin</strong></a> &amp; owner) <br></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="./"><strong>PluginCommand</strong></a> *</td>
-<td style="text-align: left;"><a href="#function-asplugincommand"><strong>asPluginCommand</strong></a> () override const<br></td>
+<td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
+<td style="text-align: left;"><a href="#function-execute"><strong>execute</strong></a> (<a href="../classendstone_1_1CommandSender/"><strong>CommandSender</strong></a> &amp; sender, <a href="../classendstone_1_1Identifier/"><strong>const</strong></a> std::vector&lt; std::string &gt; &amp; args) override const<br><em>Executes the command, returning its success.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="#function-execute"><strong>execute</strong></a> (<a href="../classendstone_1_1CommandSender/"><strong>CommandSender</strong></a> &amp; sender, <a href="../classendstone_1_1Identifier/"><strong>const</strong></a> std::vector&lt; std::string &gt; &amp; args) override const<br></td>
+<td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>const</strong></a> std::type_info &amp;</td>
+<td style="text-align: left;"><a href="#function-getclasstypeid"><strong>getClassTypeId</strong></a> () override const<br></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classendstone_1_1CommandExecutor/"><strong>CommandExecutor</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#function-getexecutor"><strong>getExecutor</strong></a> () const<br></td>
+<td style="text-align: left;"><a href="#function-getexecutor"><strong>getExecutor</strong></a> () const<br><em>Gets the</em> <a href="../classendstone_1_1CommandExecutor/"><em><strong>CommandExecutor</strong></em></a> <em>associated with this command.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Plugin/"><strong>Plugin</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#function-getplugin"><strong>getPlugin</strong></a> () const<br></td>
+<td style="text-align: left;"><a href="#function-getplugin"><strong>getPlugin</strong></a> () const<br><em>Gets the owner of this</em> <a href="./"><em><strong>PluginCommand</strong></em></a> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
+<td style="text-align: left;"><a href="#function-isinstanceof"><strong>isInstanceOf</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> std::type_info &amp; target) override const<br></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-setexecutor"><strong>setExecutor</strong></a> (std::shared_ptr&lt; <a href="../classendstone_1_1CommandExecutor/"><strong>CommandExecutor</strong></a> &gt; executor) <br></td>
+<td style="text-align: left;"><a href="#function-setexecutor"><strong>setExecutor</strong></a> (std::shared_ptr&lt; <a href="../classendstone_1_1CommandExecutor/"><strong>CommandExecutor</strong></a> &gt; executor) <br><em>Sets the</em> <a href="../classendstone_1_1CommandExecutor/"><em><strong>CommandExecutor</strong></em></a> <em>to run when parsing this command.</em></td>
 </tr>
 </tbody>
 </table>
@@ -2761,76 +2819,116 @@ For latest updates join the chat on
 <td style="text-align: left;"><a href="../classendstone_1_1Command/#function-command"><strong>Command</strong></a> (std::string name, std::string description="", std::vector&lt; std::string &gt; usages={}, std::vector&lt; std::string &gt; aliases={}, std::vector&lt; std::string &gt; permissions={}) <br></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="./"><strong>PluginCommand</strong></a> *</td>
-<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-asplugincommand"><strong>asPluginCommand</strong></a> () const<br></td>
+<td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
+<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-execute"><strong>execute</strong></a> (<a href="../classendstone_1_1CommandSender/"><strong>CommandSender</strong></a> &amp; sender, <a href="../classendstone_1_1Identifier/"><strong>const</strong></a> std::vector&lt; std::string &gt; &amp; args) const<br><em>Executes the command, returning its success.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::vector&lt; std::string &gt;</td>
+<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-getaliases"><strong>getAliases</strong></a> () const<br><em>Returns a list of aliases of this command.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>const</strong></a> std::type_info &amp;</td>
+<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-getclasstypeid"><strong>getClassTypeId</strong></a> () override const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::string</td>
+<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-getdescription"><strong>getDescription</strong></a> () const<br><em>Gets a brief description of this command.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::string</td>
+<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-getname"><strong>getName</strong></a> () const<br><em>Returns the name of this command.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::vector&lt; std::string &gt;</td>
+<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-getpermissions"><strong>getPermissions</strong></a> () const<br><em>Gets the permissions required by users to be able to perform this command.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::vector&lt; std::string &gt;</td>
+<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-getusages"><strong>getUsages</strong></a> () const<br><em>Returns a list of usages of this command.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-execute"><strong>execute</strong></a> (<a href="../classendstone_1_1CommandSender/"><strong>CommandSender</strong></a> &amp; sender, <a href="../classendstone_1_1Identifier/"><strong>const</strong></a> std::vector&lt; std::string &gt; &amp; args) const<br></td>
-</tr>
-<tr>
-<td style="text-align: right;">std::vector&lt; std::string &gt;</td>
-<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-getaliases"><strong>getAliases</strong></a> () const<br></td>
-</tr>
-<tr>
-<td style="text-align: right;">std::string</td>
-<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-getdescription"><strong>getDescription</strong></a> () const<br></td>
-</tr>
-<tr>
-<td style="text-align: right;">std::string</td>
-<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-getname"><strong>getName</strong></a> () const<br></td>
-</tr>
-<tr>
-<td style="text-align: right;">std::vector&lt; std::string &gt;</td>
-<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-getpermissions"><strong>getPermissions</strong></a> () const<br></td>
-</tr>
-<tr>
-<td style="text-align: right;">std::vector&lt; std::string &gt;</td>
-<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-getusages"><strong>getUsages</strong></a> () const<br></td>
+<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-isinstanceof"><strong>isInstanceOf</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> std::type_info &amp; target) override const<br></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-isregistered"><strong>isRegistered</strong></a> () const<br></td>
+<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-isregistered"><strong>isRegistered</strong></a> () const<br><em>Returns the current registered state of this command.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-registerto"><strong>registerTo</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1CommandMap/"><strong>CommandMap</strong></a> &amp; command_map) <br></td>
+<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-registerto"><strong>registerTo</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1CommandMap/"><strong>CommandMap</strong></a> &amp; command_map) <br><em>Registers this command to a</em> <a href="../classendstone_1_1CommandMap/"><em><strong>CommandMap</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-setaliases"><strong>setAliases</strong></a> (Alias... aliases) <br></td>
+<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-setaliases"><strong>setAliases</strong></a> (Alias... aliases) <br><em>Sets the list of aliases to request on registration for this command.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-setdescription"><strong>setDescription</strong></a> (std::string description) <br></td>
+<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-setdescription"><strong>setDescription</strong></a> (std::string description) <br><em>Sets a brief description of this command.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-setname"><strong>setName</strong></a> (std::string name) <br></td>
+<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-setname"><strong>setName</strong></a> (std::string name) <br><em>Sets the name of this command.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-setpermissions"><strong>setPermissions</strong></a> (Permission... permissions) <br></td>
+<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-setpermissions"><strong>setPermissions</strong></a> (Permission... permissions) <br><em>Sets the permissions required by users to be able to perform this command.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-setusages"><strong>setUsages</strong></a> (Usage... usages) <br></td>
+<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-setusages"><strong>setUsages</strong></a> (Usage... usages) <br><em>Sets the usages of this command.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-testpermission"><strong>testPermission</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1CommandSender/"><strong>CommandSender</strong></a> &amp; target) const<br></td>
+<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-testpermission"><strong>testPermission</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1CommandSender/"><strong>CommandSender</strong></a> &amp; target) const<br><em>Tests the given</em> <a href="../classendstone_1_1CommandSender/"><em><strong>CommandSender</strong></em></a> <em>to see if they can perform this command.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-testpermissionsilently"><strong>testPermissionSilently</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1CommandSender/"><strong>CommandSender</strong></a> &amp; target) const<br></td>
+<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-testpermissionsilently"><strong>testPermissionSilently</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1CommandSender/"><strong>CommandSender</strong></a> &amp; target) const<br><em>Tests the given</em> <a href="../classendstone_1_1CommandSender/"><em><strong>CommandSender</strong></em></a> <em>to see if they can perform this command.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-unregisterfrom"><strong>unregisterFrom</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1CommandMap/"><strong>CommandMap</strong></a> &amp; command_map) <br></td>
+<td style="text-align: left;"><a href="../classendstone_1_1Command/#function-unregisterfrom"><strong>unregisterFrom</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1CommandMap/"><strong>CommandMap</strong></a> &amp; command_map) <br><em>Unregisters this command from a</em> <a href="../classendstone_1_1CommandMap/"><em><strong>CommandMap</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual</td>
 <td style="text-align: left;"><a href="../classendstone_1_1Command/#function-command"><strong>~Command</strong></a> () = default<br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-inherited-from-endstoneobject">Public Functions inherited from endstone::Object<a class="headerlink" href="#public-functions-inherited-from-endstoneobject" title="Permanent link">&para;</a></h2>
+<p>See <a href="../classendstone_1_1Object/">endstone::Object</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>T</strong></a> *</td>
+<td style="text-align: left;"><a href="../classendstone_1_1Object/#function-as-12"><strong>as</strong></a> () <br><em>Attempts to cast this object to the given type T.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1Identifier/"><strong>T</strong></a> *</td>
+<td style="text-align: left;"><a href="../classendstone_1_1Object/#function-as-22"><strong>as</strong></a> () const<br><em>Attempts to cast this object to the given type T.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>const</strong></a> std::type_info &amp;</td>
+<td style="text-align: left;"><a href="../classendstone_1_1Object/#function-getclasstypeid"><strong>getClassTypeId</strong></a> () const = 0<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
+<td style="text-align: left;"><a href="../classendstone_1_1Object/#function-is"><strong>is</strong></a> () const<br><em>Checks if this object is an instance of the given type T (or a subclass of T).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
+<td style="text-align: left;"><a href="../classendstone_1_1Object/#function-isinstanceof"><strong>isInstanceOf</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> std::type_info &amp; target) const = 0<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual</td>
+<td style="text-align: left;"><a href="../classendstone_1_1Object/#function-object"><strong>~Object</strong></a> () = default<br></td>
 </tr>
 </tbody>
 </table>
@@ -2843,19 +2941,13 @@ For latest updates join the chat on
 </span></code></pre></div>
 <hr>
 
-<h3 id="function-asplugincommand">function asPluginCommand<a class="headerlink" href="#function-asplugincommand" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="n">PluginCommand</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">PluginCommand</span><span class="o">::</span><span class="n">asPluginCommand</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div>
-<p>Implements <a href="../classendstone_1_1Command/#function-asplugincommand"><em>endstone::Command::asPluginCommand</em></a></p>
-<hr>
-
 <h3 id="function-execute">function execute<a class="headerlink" href="#function-execute" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">PluginCommand</span><span class="o">::</span><span class="n">execute</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="n">CommandSender</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">sender</span><span class="p">,</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">args</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div>
-<p>Executes the command, returning its success</p>
+<p><em>Executes the command, returning its success.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">PluginCommand</span><span class="o">::</span><span class="n">execute</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">CommandSender</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">sender</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">args</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+</span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>sender</code> Source of the command </li>
@@ -2866,28 +2958,42 @@ For latest updates join the chat on
 <p>Implements <a href="../classendstone_1_1Command/#function-execute"><em>endstone::Command::execute</em></a></p>
 <hr>
 
-<h3 id="function-getexecutor">function getExecutor<a class="headerlink" href="#function-getexecutor" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="n">CommandExecutor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">PluginCommand</span><span class="o">::</span><span class="n">getExecutor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<h3 id="function-getclasstypeid">function getClassTypeId<a class="headerlink" href="#function-getclasstypeid" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">type_info</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">PluginCommand</span><span class="o">::</span><span class="n">getClassTypeId</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div>
-<p>Gets the <a href="../classendstone_1_1CommandExecutor/"><strong>CommandExecutor</strong></a> associated with this command</p>
+<p>Implements <a href="../classendstone_1_1Command/#function-getclasstypeid"><em>endstone::Command::getClassTypeId</em></a></p>
+<hr>
+
+<h3 id="function-getexecutor">function getExecutor<a class="headerlink" href="#function-getexecutor" title="Permanent link">&para;</a></h3>
+<p><em>Gets the</em> <a href="../classendstone_1_1CommandExecutor/"><em><strong>CommandExecutor</strong></em></a> <em>associated with this command.</em>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="n">CommandExecutor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">PluginCommand</span><span class="o">::</span><span class="n">getExecutor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p><a href="../classendstone_1_1CommandExecutor/"><strong>CommandExecutor</strong></a> object linked to this command </p>
 <hr>
 
 <h3 id="function-getplugin">function getPlugin<a class="headerlink" href="#function-getplugin" title="Permanent link">&para;</a></h3>
+<p><em>Gets the owner of this</em> <a href="./"><em><strong>PluginCommand</strong></em></a> <em>.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">Plugin</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">PluginCommand</span><span class="o">::</span><span class="n">getPlugin</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div>
-<p>Gets the owner of this <a href="./"><strong>PluginCommand</strong></a></p>
+</span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p><a href="../classendstone_1_1Plugin/"><strong>Plugin</strong></a> that owns this command </p>
 <hr>
 
-<h3 id="function-setexecutor">function setExecutor<a class="headerlink" href="#function-setexecutor" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">PluginCommand</span><span class="o">::</span><span class="n">setExecutor</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="w"> </span><span class="n">CommandExecutor</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">executor</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="p">)</span><span class="w"> </span>
+<h3 id="function-isinstanceof">function isInstanceOf<a class="headerlink" href="#function-isinstanceof" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">PluginCommand</span><span class="o">::</span><span class="n">isInstanceOf</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">type_info</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">target</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div>
-<p>Sets the <a href="../classendstone_1_1CommandExecutor/"><strong>CommandExecutor</strong></a> to run when parsing this command</p>
+<p>Implements <a href="../classendstone_1_1Command/#function-isinstanceof"><em>endstone::Command::isInstanceOf</em></a></p>
+<hr>
+
+<h3 id="function-setexecutor">function setExecutor<a class="headerlink" href="#function-setexecutor" title="Permanent link">&para;</a></h3>
+<p><em>Sets the</em> <a href="../classendstone_1_1CommandExecutor/"><em><strong>CommandExecutor</strong></em></a> <em>to run when parsing this command.</em>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">PluginCommand</span><span class="o">::</span><span class="n">setExecutor</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="w"> </span><span class="n">CommandExecutor</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">executor</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>executor</code> New executor to run </li>
@@ -2935,7 +3041,7 @@ For latest updates join the chat on
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2023 - 2025 EndstoneMC
+      Copyright &copy; 2023 - 2026 EndstoneMC
     </div>
   
   

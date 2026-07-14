@@ -14,7 +14,7 @@ _Represents a player._
 
 
 
-Inherits the following classes: [endstone::Mob](classendstone_1_1Mob.md),  [endstone::OfflinePlayer](classendstone_1_1OfflinePlayer.md)
+Inherits the following classes: [endstone::Mob](classendstone_1_1Mob.md)
 
 
 
@@ -171,6 +171,7 @@ Inherits the following classes: [endstone::Mob](classendstone_1_1Mob.md),  [ends
 | virtual [**Scoreboard**](classendstone_1_1Scoreboard.md) & | [**getScoreboard**](#function-getscoreboard) () const = 0<br>_Gets the_ [_**Scoreboard**_](classendstone_1_1Scoreboard.md) _displayed to this player._ |
 | virtual [**Skin**](classendstone_1_1Skin.md) | [**getSkin**](#function-getskin) () const = 0<br>_Gets the player's skin._  |
 | virtual [**int**](classendstone_1_1Identifier.md) | [**getTotalExp**](#function-gettotalexp) () const = 0<br>_Gets the players total experience points._  |
+| virtual [**UUID**](classendstone_1_1UUID.md) | [**getUniqueId**](#function-getuniqueid) () const = 0<br>_Returns the_ [_**UUID**_](classendstone_1_1UUID.md) _of this player._ |
 | virtual [**float**](classendstone_1_1Identifier.md) | [**getWalkSpeed**](#function-getwalkspeed) () const = 0<br>_Gets the current allowed speed that a client can walk._  |
 | virtual std::string | [**getXuid**](#function-getxuid) () const = 0<br>_Returns the Xbox User ID (XUID) of this player._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**giveExp**](#function-giveexp) ([**int**](classendstone_1_1Identifier.md) amount) = 0<br>_Gives the player the amount of experience specified._  |
@@ -182,26 +183,26 @@ Inherits the following classes: [endstone::Mob](classendstone_1_1Mob.md),  [ends
 | virtual [**void**](classendstone_1_1Identifier.md) | [**kick**](#function-kick) (std::string message) const = 0<br>_Kicks player with custom kick message._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**performCommand**](#function-performcommand) (std::string command) const = 0<br>_Makes the player perform the given command._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**playSound**](#function-playsound) ([**Location**](classendstone_1_1Location.md) location, std::string sound, [**float**](classendstone_1_1Identifier.md) volume, [**float**](classendstone_1_1Identifier.md) pitch) = 0<br>_Play a sound for a player at the location._  |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**resetTitle**](#function-resettitle) () const = 0<br>_Resets the title displayed to the player. This will clear the displayed title / subtitle and reset timings to their default values._  |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**resetTitle**](#function-resettitle) () const = 0<br>_Resets the title displayed to the player._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**sendForm**](#function-sendform) (FormVariant form) = 0<br>_Sends a form to the player._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**sendMap**](#function-sendmap) ([**MapView**](classendstone_1_1MapView.md) & map) = 0<br>_Render a map and send it to the player in its entirety._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**sendPacket**](#function-sendpacket) ([**int**](classendstone_1_1Identifier.md) packet\_id, std::string\_view payload) const = 0<br>_Sends a packet to the player._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**sendPopup**](#function-sendpopup) (std::string message) const = 0<br>_Sends this player a popup message._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**sendTip**](#function-sendtip) (std::string message) const = 0<br>_Sends this player a tip message._  |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**sendTitle**](#function-sendtitle-12) (std::string title, std::string subtitle) const = 0<br>_Sends a title and a subtitle message to the player. If they are empty strings, the display will be updated as such. The titles will be displayed with the default timings._  |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**sendTitle**](#function-sendtitle-22) (std::string title, std::string subtitle, [**int**](classendstone_1_1Identifier.md) fade\_in, [**int**](classendstone_1_1Identifier.md) stay, [**int**](classendstone_1_1Identifier.md) fade\_out) const = 0<br>_Sends a title and a subtitle message to the player. If they are empty strings, the display will be updated as such._  |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**sendTitle**](#function-sendtitle-12) (std::string title, std::string subtitle) const = 0<br>_Sends a title and a subtitle message to the player._  |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**sendTitle**](#function-sendtitle-22) (std::string title, std::string subtitle, [**int**](classendstone_1_1Identifier.md) fade\_in, [**int**](classendstone_1_1Identifier.md) stay, [**int**](classendstone_1_1Identifier.md) fade\_out) const = 0<br>_Sends a title and a subtitle message to the player._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**sendToast**](#function-sendtoast) (std::string title, std::string content) const = 0<br>_Sends this player a toast notification._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setAllowFlight**](#function-setallowflight) ([**bool**](classendstone_1_1Identifier.md) flight) = 0<br>_Sets if the_ [_**Player**_](classendstone_1_1Player.md) _is allowed to fly via jump key double-tap._ |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setExpLevel**](#function-setexplevel) ([**int**](classendstone_1_1Identifier.md) level) = 0<br>_Sets the players current experience level._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setExpProgress**](#function-setexpprogress) ([**float**](classendstone_1_1Identifier.md) progress) = 0<br>_Sets the players current experience progress towards the next level._  |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**setFlySpeed**](#function-setflyspeed) ([**float**](classendstone_1_1Identifier.md) value) const = 0<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**setFlySpeed**](#function-setflyspeed) ([**float**](classendstone_1_1Identifier.md) value) const = 0<br>_Sets the speed at which a client will fly._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setFlying**](#function-setflying) ([**bool**](classendstone_1_1Identifier.md) value) = 0<br>_Makes this player start or stop flying._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setGameMode**](#function-setgamemode) ([**GameMode**](namespaceendstone.md#enum-gamemode) mode) = 0<br>_Sets this player's current GameMode._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setOp**](#function-setop) ([**bool**](classendstone_1_1Identifier.md) value) = 0<br>_Sets the operator status of this player._  |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**setScoreboard**](#function-setscoreboard) ([**Scoreboard**](classendstone_1_1Scoreboard.md) & scoreboard) = 0<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**setScoreboard**](#function-setscoreboard) ([**Scoreboard**](classendstone_1_1Scoreboard.md) & scoreboard) = 0<br>_Sets the player's visible_ [_**Scoreboard**_](classendstone_1_1Scoreboard.md) _._ |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setSneaking**](#function-setsneaking) ([**bool**](classendstone_1_1Identifier.md) sneak) = 0<br>_Sets the sneak mode of the player._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setSprinting**](#function-setsprinting) ([**bool**](classendstone_1_1Identifier.md) sprinting) = 0<br>_Sets whether the player is sprinting or not._  |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**setWalkSpeed**](#function-setwalkspeed) ([**float**](classendstone_1_1Identifier.md) value) const = 0<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**setWalkSpeed**](#function-setwalkspeed) ([**float**](classendstone_1_1Identifier.md) value) const = 0<br>_Sets the speed at which a client will walk._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**spawnParticle**](#function-spawnparticle-14) (std::string name, [**Location**](classendstone_1_1Location.md) location) const = 0<br>_Spawns the particle at the target location._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**spawnParticle**](#function-spawnparticle-24) (std::string name, [**float**](classendstone_1_1Identifier.md) x, [**float**](classendstone_1_1Identifier.md) y, [**float**](classendstone_1_1Identifier.md) z) const = 0<br>_Spawns the particle at the target location._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**spawnParticle**](#function-spawnparticle-34) (std::string name, [**Location**](classendstone_1_1Location.md) location, std::optional&lt; std::string &gt; molang\_variables\_json) const = 0<br>_Spawns the particle at the target location._  |
@@ -218,10 +219,18 @@ See [endstone::Mob](classendstone_1_1Mob.md)
 
 | Type | Name |
 | ---: | :--- |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**addEffect**](classendstone_1_1Mob.md#function-addeffect) ([**const**](classendstone_1_1Identifier.md) [**Effect**](classendstone_1_1Effect.md) & effect) = 0<br>_Adds the given_ [_**Effect**_](classendstone_1_1Effect.md) _to this entity._ |
+| virtual std::vector&lt; [**Effect**](classendstone_1_1Effect.md) &gt; | [**getActiveEffects**](classendstone_1_1Mob.md#function-getactiveeffects) () const = 0<br>_Returns all currently active Effects on this entity._  |
+| virtual std::unique\_ptr&lt; [**AttributeInstance**](classendstone_1_1AttributeInstance.md) &gt; | [**getAttribute**](classendstone_1_1Mob.md#function-getattribute) ([**AttributeId**](classendstone_1_1Identifier.md) id) = 0<br>_Gets the specified attribute instance from the object._  |
+| virtual std::vector&lt; std::unique\_ptr&lt; [**AttributeInstance**](classendstone_1_1AttributeInstance.md) &gt; &gt; | [**getAttributes**](classendstone_1_1Mob.md#function-getattributes) () = 0<br>_Gets all attribute instances from the object._  |
+| virtual std::optional&lt; [**Effect**](classendstone_1_1Effect.md) &gt; | [**getEffect**](classendstone_1_1Mob.md#function-geteffect) ([**EffectId**](classendstone_1_1Identifier.md) type) const = 0<br>_Returns the active_ [_**Effect**_](classendstone_1_1Effect.md) _of the specified type._ |
 | virtual [**int**](classendstone_1_1Identifier.md) | [**getHealth**](classendstone_1_1Mob.md#function-gethealth) () const = 0<br>_Gets the entity's health from 0 to its max possible value, where 0 is dead._  |
 | virtual [**int**](classendstone_1_1Identifier.md) | [**getMaxHealth**](classendstone_1_1Mob.md#function-getmaxhealth) () const = 0<br>_Gets the maximum health this entity has._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**hasAttribute**](classendstone_1_1Mob.md#function-hasattribute) ([**AttributeId**](classendstone_1_1Identifier.md) id) const = 0<br>_Checks whether the given attribute is present on the object._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**hasEffect**](classendstone_1_1Mob.md#function-haseffect) ([**EffectId**](classendstone_1_1Identifier.md) type) const = 0<br>_Returns whether the entity already has an existing effect of the given type applied to it._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**isGliding**](classendstone_1_1Mob.md#function-isgliding) () const = 0<br>_Checks to see if an actor is gliding, such as using an Elytra._  |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**setHealth**](classendstone_1_1Mob.md#function-sethealth) ([**int**](classendstone_1_1Identifier.md) health) const = 0<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**removeEffect**](classendstone_1_1Mob.md#function-removeeffect) ([**EffectId**](classendstone_1_1Identifier.md) type) = 0<br>_Removes any effects of the given type that are present on this entity._  |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**setHealth**](classendstone_1_1Mob.md#function-sethealth) ([**int**](classendstone_1_1Identifier.md) health) const = 0<br>_Sets the entity's health from 0 to its possible value, where 0 is dead._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setMaxHealth**](classendstone_1_1Mob.md#function-setmaxhealth) ([**int**](classendstone_1_1Identifier.md) health) const = 0<br>_Sets the maximum health this entity can have._  |
 
 
@@ -232,34 +241,32 @@ See [endstone::Actor](classendstone_1_1Actor.md)
 | Type | Name |
 | ---: | :--- |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**addScoreboardTag**](classendstone_1_1Actor.md#function-addscoreboardtag) (std::string tag) const = 0<br>_Adds a tag to this actor._  |
-| virtual [**Item**](classendstone_1_1Item.md) \* | [**asItem**](classendstone_1_1Actor.md#function-asitem) () const = 0<br>_Gets an_ [_**Actor**_](classendstone_1_1Actor.md) _as_[_**Item**_](classendstone_1_1Item.md) _._ |
-| virtual [**Mob**](classendstone_1_1Mob.md) \* | [**asMob**](classendstone_1_1Actor.md#function-asmob) () const = 0<br>_Gets an_ [_**Actor**_](classendstone_1_1Actor.md) _as_[_**Mob**_](classendstone_1_1Mob.md) _._ |
-| virtual [**Dimension**](classendstone_1_1Dimension.md) & | [**getDimension**](classendstone_1_1Actor.md#function-getdimension) () const = 0<br> |
+| virtual [**Dimension**](classendstone_1_1Dimension.md) & | [**getDimension**](classendstone_1_1Actor.md#function-getdimension) () const = 0<br>_Gets the current_ [_**Dimension**_](classendstone_1_1Dimension.md) _this actor resides in._ |
 | virtual std::int64\_t | [**getId**](classendstone_1_1Actor.md#function-getid) () const = 0<br>_Returns a unique id for this actor._  |
-| virtual [**Level**](classendstone_1_1Level.md) & | [**getLevel**](classendstone_1_1Actor.md#function-getlevel) () const = 0<br> |
-| virtual [**Location**](classendstone_1_1Location.md) | [**getLocation**](classendstone_1_1Actor.md#function-getlocation) () const = 0<br> |
+| virtual [**Level**](classendstone_1_1Level.md) & | [**getLevel**](classendstone_1_1Actor.md#function-getlevel) () const = 0<br>_Gets the current_ [_**Level**_](classendstone_1_1Level.md) _this actor resides in._ |
+| virtual [**Location**](classendstone_1_1Location.md) | [**getLocation**](classendstone_1_1Actor.md#function-getlocation) () const = 0<br>_Gets the actor's current position._  |
 | virtual std::string | [**getNameTag**](classendstone_1_1Actor.md#function-getnametag) () const = 0<br>_Gets the current name tag of the actor._  |
-| virtual std::uint64\_t | [**getRuntimeId**](classendstone_1_1Actor.md#function-getruntimeid) () const = 0<br> |
+| virtual std::uint64\_t | [**getRuntimeId**](classendstone_1_1Actor.md#function-getruntimeid) () const = 0<br>_Returns the runtime id for this actor._  |
 | virtual std::string | [**getScoreTag**](classendstone_1_1Actor.md#function-getscoretag) () const = 0<br>_Gets the current score tag of the actor._  |
 | virtual std::vector&lt; std::string &gt; | [**getScoreboardTags**](classendstone_1_1Actor.md#function-getscoreboardtags) () const = 0<br>_Returns a list of scoreboard tags for this actor._  |
-| virtual std::string | [**getType**](classendstone_1_1Actor.md#function-gettype) () const = 0<br>_Get the type of the actor._  |
-| virtual [**Vector**](classendstone_1_1Vector.md) | [**getVelocity**](classendstone_1_1Actor.md#function-getvelocity) () const = 0<br> |
+| virtual [**const**](classendstone_1_1Identifier.md) [**ActorType**](classendstone_1_1ActorType.md) & | [**getType**](classendstone_1_1Actor.md#function-gettype) () const = 0<br>_Get the type of the actor._  |
+| virtual [**Vector**](classendstone_1_1Vector.md) | [**getVelocity**](classendstone_1_1Actor.md#function-getvelocity) () const = 0<br>_Gets this actor's current velocity._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**isDead**](classendstone_1_1Actor.md#function-isdead) () const = 0<br>_Returns true if this actor has been marked for removal._  |
-| virtual [**bool**](classendstone_1_1Identifier.md) | [**isInLava**](classendstone_1_1Actor.md#function-isinlava) () const = 0<br> |
-| virtual [**bool**](classendstone_1_1Identifier.md) | [**isInWater**](classendstone_1_1Actor.md#function-isinwater) () const = 0<br> |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isInLava**](classendstone_1_1Actor.md#function-isinlava) () const = 0<br>_Returns true if the actor is in lava._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isInWater**](classendstone_1_1Actor.md#function-isinwater) () const = 0<br>_Returns true if the actor is in water._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**isNameTagAlwaysVisible**](classendstone_1_1Actor.md#function-isnametagalwaysvisible) () const = 0<br>_Checks if the actor's name tag is always visible._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**isNameTagVisible**](classendstone_1_1Actor.md#function-isnametagvisible) () const = 0<br>_Checks if the actor's name tag is currently visible._  |
-| virtual [**bool**](classendstone_1_1Identifier.md) | [**isOnGround**](classendstone_1_1Actor.md#function-isonground) () const = 0<br> |
-| virtual [**bool**](classendstone_1_1Identifier.md) | [**isValid**](classendstone_1_1Actor.md#function-isvalid) () const = 0<br> |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**remove**](classendstone_1_1Actor.md#function-remove) () = 0<br> |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isOnGround**](classendstone_1_1Actor.md#function-isonground) () const = 0<br>_Returns true if the actor is supported by a block._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isValid**](classendstone_1_1Actor.md#function-isvalid) () const = 0<br>_Returns false if the entity has died, been despawned for some other reason, or has not been added to the level._  |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**remove**](classendstone_1_1Actor.md#function-remove) () = 0<br>_Remove this actor from the level._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**removeScoreboardTag**](classendstone_1_1Actor.md#function-removescoreboardtag) (std::string tag) const = 0<br>_Removes a given tag from this actor._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setNameTag**](classendstone_1_1Actor.md#function-setnametag) (std::string name) = 0<br>_Sets the name tag for the actor._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setNameTagAlwaysVisible**](classendstone_1_1Actor.md#function-setnametagalwaysvisible) ([**bool**](classendstone_1_1Identifier.md) visible) = 0<br>_Sets whether the actor's name tag should always be visible._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setNameTagVisible**](classendstone_1_1Actor.md#function-setnametagvisible) ([**bool**](classendstone_1_1Identifier.md) visible) = 0<br>_Sets if the actor's name tag is visible or not._  |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**setRotation**](classendstone_1_1Actor.md#function-setrotation) ([**float**](classendstone_1_1Identifier.md) yaw, [**float**](classendstone_1_1Identifier.md) pitch) = 0<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**setRotation**](classendstone_1_1Actor.md#function-setrotation) ([**float**](classendstone_1_1Identifier.md) yaw, [**float**](classendstone_1_1Identifier.md) pitch) = 0<br>_Sets the actor's rotation._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setScoreTag**](classendstone_1_1Actor.md#function-setscoretag) (std::string score) = 0<br>_Sets the score tag for the actor._  |
-| virtual [**bool**](classendstone_1_1Identifier.md) | [**teleport**](classendstone_1_1Actor.md#function-teleport-12) ([**const**](classendstone_1_1Identifier.md) [**Location**](classendstone_1_1Location.md) & location) = 0<br> |
-| virtual [**bool**](classendstone_1_1Identifier.md) | [**teleport**](classendstone_1_1Actor.md#function-teleport-22) ([**const**](classendstone_1_1Identifier.md) [**Actor**](classendstone_1_1Actor.md) & target) = 0<br> |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**teleport**](classendstone_1_1Actor.md#function-teleport-12) ([**const**](classendstone_1_1Identifier.md) [**Location**](classendstone_1_1Location.md) & location) = 0<br>_Teleports this actor to the given location._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**teleport**](classendstone_1_1Actor.md#function-teleport-22) ([**const**](classendstone_1_1Identifier.md) [**Actor**](classendstone_1_1Actor.md) & target) = 0<br>_Teleports this actor to the target_ [_**Actor**_](classendstone_1_1Actor.md) _._ |
 
 
 ## Public Functions inherited from endstone::CommandSender
@@ -268,17 +275,12 @@ See [endstone::CommandSender](classendstone_1_1CommandSender.md)
 
 | Type | Name |
 | ---: | :--- |
-| virtual [**Actor**](classendstone_1_1Actor.md) \* | [**asActor**](classendstone_1_1CommandSender.md#function-asactor) () const = 0<br>_Gets a_ [_**CommandSender**_](classendstone_1_1CommandSender.md) _as_[_**Actor**_](classendstone_1_1Actor.md) _._ |
-| virtual [**BlockCommandSender**](classendstone_1_1BlockCommandSender.md) \* | [**asBlock**](classendstone_1_1CommandSender.md#function-asblock) () const = 0<br>_Gets a_ [_**CommandSender**_](classendstone_1_1CommandSender.md) _as_[_**BlockCommandSender**_](classendstone_1_1BlockCommandSender.md) _._ |
-| virtual [**CommandSender**](classendstone_1_1CommandSender.md) \* | [**asCommandSender**](classendstone_1_1CommandSender.md#function-ascommandsender) () override const<br>_Casts a_ [_**Permissible**_](classendstone_1_1Permissible.md) _as_[_**CommandSender**_](classendstone_1_1CommandSender.md) _._ |
-| virtual [**ConsoleCommandSender**](classendstone_1_1ConsoleCommandSender.md) \* | [**asConsole**](classendstone_1_1CommandSender.md#function-asconsole) () const = 0<br>_Gets a_ [_**CommandSender**_](classendstone_1_1CommandSender.md) _as_[_**ConsoleCommandSender**_](classendstone_1_1ConsoleCommandSender.md) _._ |
-| virtual [**Player**](classendstone_1_1Player.md) \* | [**asPlayer**](classendstone_1_1CommandSender.md#function-asplayer) () const = 0<br>_Gets a_ [_**CommandSender**_](classendstone_1_1CommandSender.md) _as_[_**Player**_](classendstone_1_1Player.md) _._ |
 | virtual std::string | [**getName**](classendstone_1_1CommandSender.md#function-getname) () const = 0<br>_Gets the name of this command sender._  |
 | virtual [**Server**](classendstone_1_1Server.md) & | [**getServer**](classendstone_1_1CommandSender.md#function-getserver) () const = 0<br>_Returns the server instance that this command is running on._  |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**sendErrorMessage**](classendstone_1_1CommandSender.md#function-senderrormessage-12) ([**const**](classendstone_1_1Identifier.md) Message & message) const = 0<br>_Sends this sender a error message._  |
-|  [**void**](classendstone_1_1Identifier.md) | [**sendErrorMessage**](classendstone_1_1CommandSender.md#function-senderrormessage-22) ([**const**](classendstone_1_1Identifier.md) fmt::format\_string&lt; Args... &gt; format, [**Args**](classendstone_1_1Identifier.md) &&... args) const<br> |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**sendMessage**](classendstone_1_1CommandSender.md#function-sendmessage-12) ([**const**](classendstone_1_1Identifier.md) Message & message) const = 0<br>_Sends this sender a message._  |
-|  [**void**](classendstone_1_1Identifier.md) | [**sendMessage**](classendstone_1_1CommandSender.md#function-sendmessage-22) ([**const**](classendstone_1_1Identifier.md) fmt::format\_string&lt; Args... &gt; format, [**Args**](classendstone_1_1Identifier.md) &&... args) const<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**sendErrorMessage**](classendstone_1_1CommandSender.md#function-senderrormessage-12) ([**const**](classendstone_1_1Identifier.md) [**Message**](namespaceendstone.md#typedef-message) & message) const = 0<br>_Sends this sender a error message._  |
+|  [**void**](classendstone_1_1Identifier.md) | [**sendErrorMessage**](classendstone_1_1CommandSender.md#function-senderrormessage-22) ([**const**](classendstone_1_1Identifier.md) std::format\_string&lt; Args... &gt; format, [**Args**](classendstone_1_1Identifier.md) &&... args) const<br> |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**sendMessage**](classendstone_1_1CommandSender.md#function-sendmessage-12) ([**const**](classendstone_1_1Identifier.md) [**Message**](namespaceendstone.md#typedef-message) & message) const = 0<br>_Sends this sender a message._  |
+|  [**void**](classendstone_1_1Identifier.md) | [**sendMessage**](classendstone_1_1CommandSender.md#function-sendmessage-22) ([**const**](classendstone_1_1Identifier.md) std::format\_string&lt; Args... &gt; format, [**Args**](classendstone_1_1Identifier.md) &&... args) const<br> |
 
 
 ## Public Functions inherited from endstone::Permissible
@@ -289,27 +291,28 @@ See [endstone::Permissible](classendstone_1_1Permissible.md)
 | ---: | :--- |
 | virtual [**PermissionAttachment**](classendstone_1_1PermissionAttachment.md) \* | [**addAttachment**](classendstone_1_1Permissible.md#function-addattachment-12) ([**Plugin**](classendstone_1_1Plugin.md) & plugin, [**const**](classendstone_1_1Identifier.md) std::string & name, [**bool**](classendstone_1_1Identifier.md) value) = 0<br>_Adds a new_ [_**PermissionAttachment**_](classendstone_1_1PermissionAttachment.md) _with a single permission by name and value._ |
 | virtual [**PermissionAttachment**](classendstone_1_1PermissionAttachment.md) \* | [**addAttachment**](classendstone_1_1Permissible.md#function-addattachment-22) ([**Plugin**](classendstone_1_1Plugin.md) & plugin) = 0<br>_Adds a new empty_ [_**PermissionAttachment**_](classendstone_1_1PermissionAttachment.md) _to this object._ |
-| virtual [**CommandSender**](classendstone_1_1CommandSender.md) \* | [**asCommandSender**](classendstone_1_1Permissible.md#function-ascommandsender) () const = 0<br>_Casts a_ [_**Permissible**_](classendstone_1_1Permissible.md) _as_[_**CommandSender**_](classendstone_1_1CommandSender.md) _._ |
 | virtual std::unordered\_set&lt; [**PermissionAttachmentInfo**](classendstone_1_1PermissionAttachmentInfo.md) \* &gt; | [**getEffectivePermissions**](classendstone_1_1Permissible.md#function-geteffectivepermissions) () const = 0<br>_Gets a set containing all the permissions currently in effect by this object._  |
-| virtual PermissionLevel | [**getPermissionLevel**](classendstone_1_1Permissible.md#function-getpermissionlevel) () const = 0<br>_Gets the permission level of this object._  |
-| virtual [**bool**](classendstone_1_1Identifier.md) | [**hasPermission**](classendstone_1_1Permissible.md#function-haspermission-12) (std::string name) const = 0<br>_Gets the value of the specified permission, if set. If a permission override is not set on this object, the default value of the permission will be returned._  |
-| virtual [**bool**](classendstone_1_1Identifier.md) | [**hasPermission**](classendstone_1_1Permissible.md#function-haspermission-22) ([**const**](classendstone_1_1Identifier.md) [**Permission**](classendstone_1_1Permission.md) & perm) const = 0<br>_Gets the value of the specified permission, if set. If a permission override is not set on this object, the default value of the permission will be returned._  |
+| virtual [**PermissionLevel**](namespaceendstone.md#enum-permissionlevel) | [**getPermissionLevel**](classendstone_1_1Permissible.md#function-getpermissionlevel) () const = 0<br>_Gets the permission level of this object._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**hasPermission**](classendstone_1_1Permissible.md#function-haspermission-12) (std::string name) const = 0<br>_Gets the value of the specified permission, if set._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**hasPermission**](classendstone_1_1Permissible.md#function-haspermission-22) ([**const**](classendstone_1_1Identifier.md) [**Permission**](classendstone_1_1Permission.md) & perm) const = 0<br>_Gets the value of the specified permission, if set._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**isPermissionSet**](classendstone_1_1Permissible.md#function-ispermissionset-12) (std::string name) const = 0<br>_Checks if this object contains an override for the specified permission, by fully qualified name._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**isPermissionSet**](classendstone_1_1Permissible.md#function-ispermissionset-22) ([**const**](classendstone_1_1Identifier.md) [**Permission**](classendstone_1_1Permission.md) & perm) const = 0<br>_Checks if this object contains an override for the specified_ [_**Permission**_](classendstone_1_1Permission.md) _._ |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**recalculatePermissions**](classendstone_1_1Permissible.md#function-recalculatepermissions) () = 0<br>_Recalculates the permissions for this object, if the attachments have changed values. This should very rarely need to be called from a plugin._  |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**recalculatePermissions**](classendstone_1_1Permissible.md#function-recalculatepermissions) () = 0<br>_Recalculates the permissions for this object, if the attachments have changed values._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**removeAttachment**](classendstone_1_1Permissible.md#function-removeattachment) ([**PermissionAttachment**](classendstone_1_1PermissionAttachment.md) & attachment) = 0<br>_Removes the given_ [_**PermissionAttachment**_](classendstone_1_1PermissionAttachment.md) _from this object._ |
-| virtual  | [**~Permissible**](classendstone_1_1Permissible.md#function-permissible) () = default<br> |
 
 
-## Public Functions inherited from endstone::OfflinePlayer
+## Public Functions inherited from endstone::Object
 
-See [endstone::OfflinePlayer](classendstone_1_1OfflinePlayer.md)
+See [endstone::Object](classendstone_1_1Object.md)
 
 | Type | Name |
 | ---: | :--- |
-| virtual std::string | [**getName**](classendstone_1_1OfflinePlayer.md#function-getname) () const = 0<br>_Returns the name of this player._  |
-| virtual [**UUID**](classendstone_1_1UUID.md) | [**getUniqueId**](classendstone_1_1OfflinePlayer.md#function-getuniqueid) () const = 0<br>_Returns the_ [_**UUID**_](classendstone_1_1UUID.md) _of this player._ |
-| virtual  | [**~OfflinePlayer**](classendstone_1_1OfflinePlayer.md#function-offlineplayer) () = default<br> |
+|  [**T**](classendstone_1_1Identifier.md) \* | [**as**](classendstone_1_1Object.md#function-as-12) () <br>_Attempts to cast this object to the given type T._  |
+|  [**const**](classendstone_1_1Identifier.md) [**T**](classendstone_1_1Identifier.md) \* | [**as**](classendstone_1_1Object.md#function-as-22) () const<br>_Attempts to cast this object to the given type T._  |
+| virtual [**const**](classendstone_1_1Identifier.md) std::type\_info & | [**getClassTypeId**](classendstone_1_1Object.md#function-getclasstypeid) () const = 0<br> |
+|  [**bool**](classendstone_1_1Identifier.md) | [**is**](classendstone_1_1Object.md#function-is) () const<br>_Checks if this object is an instance of the given type T (or a subclass of T)._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isInstanceOf**](classendstone_1_1Object.md#function-isinstanceof) ([**const**](classendstone_1_1Identifier.md) std::type\_info & target) const = 0<br> |
+| virtual  | [**~Object**](classendstone_1_1Object.md#function-object) () = default<br> |
 
 
 
@@ -530,7 +533,7 @@ virtual bool endstone::Player::getAllowFlight () const = 0
 
 **Returns:**
 
-True if the player is allowed to fly. 
+`true` if the player is allowed to fly. 
 
 
 
@@ -651,14 +654,14 @@ virtual float endstone::Player::getExpProgress () const = 0
 
 
 
-This is a percentage value. 0.0 is "no progress" and 1.0 is "next level".
+This is a percentage value. `0.0` is "no progress" and `1.0` is "next level".
 
 
 
 
 **Returns:**
 
-Current experience points 
+Current experience progress, between `0.0` and `1.0`. 
 
 
 
@@ -683,7 +686,7 @@ virtual float endstone::Player::getFlySpeed () const = 0
 
 **Returns:**
 
-The current allowed speed, default is 0.05. 
+The current allowed speed, default is `0.05`. 
 
 
 
@@ -808,7 +811,7 @@ virtual std::string endstone::Player::getName () override const = 0
 
 **Returns:**
 
-[**Player**](classendstone_1_1Player.md) name or null if we have not seen a name for this player yet 
+[**Player**](classendstone_1_1Player.md) name, or an empty string if we have not seen a name for this player yet. 
 
 
 
@@ -925,6 +928,31 @@ Current total experience points
 
 
 
+### function getUniqueId 
+
+_Returns the_ [_**UUID**_](classendstone_1_1UUID.md) _of this player._
+```C++
+virtual UUID endstone::Player::getUniqueId () const = 0
+```
+
+
+
+
+
+**Returns:**
+
+[**Player**](classendstone_1_1Player.md) [**UUID**](classendstone_1_1UUID.md) 
+
+
+
+
+
+        
+
+<hr>
+
+
+
 ### function getWalkSpeed 
 
 _Gets the current allowed speed that a client can walk._ 
@@ -938,7 +966,7 @@ virtual float endstone::Player::getWalkSpeed () const = 0
 
 **Returns:**
 
-The current allowed speed, default is 0.10. 
+The current allowed speed, default is `0.10`. 
 
 
 
@@ -1042,7 +1070,7 @@ virtual bool endstone::Player::isFlying () const = 0
 
 **Returns:**
 
-True if the player is flying, else false. 
+`true` if the player is flying, else `false`. 
 
 
 
@@ -1067,7 +1095,7 @@ virtual bool endstone::Player::isOp () const = 0
 
 **Returns:**
 
-true if this is an operator, otherwise false 
+`true` if this is an operator, otherwise `false` 
 
 
 
@@ -1092,7 +1120,7 @@ virtual bool endstone::Player::isSneaking () const = 0
 
 **Returns:**
 
-true if player is in sneak mode 
+`true` if player is in sneak mode 
 
 
 
@@ -1117,7 +1145,7 @@ virtual bool endstone::Player::isSprinting () const = 0
 
 **Returns:**
 
-true if player is sprinting. 
+`true` if player is sprinting. 
 
 
 
@@ -1178,7 +1206,7 @@ virtual bool endstone::Player::performCommand (
 
 **Returns:**
 
-true if the command was successful, otherwise false 
+`true` if the command was successful, otherwise `false` 
 
 
 
@@ -1225,13 +1253,17 @@ virtual void endstone::Player::playSound (
 
 ### function resetTitle 
 
-_Resets the title displayed to the player. This will clear the displayed title / subtitle and reset timings to their default values._ 
+_Resets the title displayed to the player._ 
 ```C++
 virtual void endstone::Player::resetTitle () const = 0
 ```
 
 
 
+This will clear the displayed title / subtitle and reset timings to their default values. 
+
+
+        
 
 <hr>
 
@@ -1379,7 +1411,7 @@ virtual void endstone::Player::sendTip (
 
 ### function sendTitle [1/2]
 
-_Sends a title and a subtitle message to the player. If they are empty strings, the display will be updated as such. The titles will be displayed with the default timings._ 
+_Sends a title and a subtitle message to the player._ 
 ```C++
 virtual void endstone::Player::sendTitle (
     std::string title,
@@ -1387,6 +1419,9 @@ virtual void endstone::Player::sendTitle (
 ) const = 0
 ```
 
+
+
+If they are empty strings, the display will be updated as such. The titles will be displayed with the default timings.
 
 
 
@@ -1408,7 +1443,7 @@ virtual void endstone::Player::sendTitle (
 
 ### function sendTitle [2/2]
 
-_Sends a title and a subtitle message to the player. If they are empty strings, the display will be updated as such._ 
+_Sends a title and a subtitle message to the player._ 
 ```C++
 virtual void endstone::Player::sendTitle (
     std::string title,
@@ -1421,6 +1456,9 @@ virtual void endstone::Player::sendTitle (
 
 
 
+If they are empty strings, the display will be updated as such.
+
+
 
 
 **Parameters:**
@@ -1428,9 +1466,9 @@ virtual void endstone::Player::sendTitle (
 
 * `title` Title text 
 * `subtitle` Subtitle text 
-* `fade_in` time in ticks for titles to fade in. Defaults to 10. 
-* `stay` time in ticks for titles to stay. Defaults to 70. 
-* `fade_out` time in ticks for titles to fade out. Defaults to 20. 
+* `fade_in` time in ticks for titles to fade in. Defaults to `10`. 
+* `stay` time in ticks for titles to stay. Defaults to `70`. 
+* `fade_out` time in ticks for titles to fade out. Defaults to `20`. 
 
 
 
@@ -1535,7 +1573,7 @@ virtual void endstone::Player::setExpProgress (
 
 
 
-This is a percentage value. 0.0 is "no progress" and 1.0 is "next level".
+This is a percentage value. `0.0` is "no progress" and `1.0` is "next level".
 
 
 
@@ -1556,15 +1594,13 @@ This is a percentage value. 0.0 is "no progress" and 1.0 is "next level".
 
 ### function setFlySpeed 
 
+_Sets the speed at which a client will fly._ 
 ```C++
 virtual void endstone::Player::setFlySpeed (
     float value
 ) const = 0
 ```
 
-
-
-Sets the speed at which a client will fly.
 
 
 
@@ -1599,7 +1635,7 @@ virtual void endstone::Player::setFlying (
 **Parameters:**
 
 
-* `value` True to fly. 
+* `value` `true` to fly. 
 
 
 
@@ -1666,15 +1702,13 @@ virtual void endstone::Player::setOp (
 
 ### function setScoreboard 
 
+_Sets the player's visible_ [_**Scoreboard**_](classendstone_1_1Scoreboard.md) _._
 ```C++
 virtual void endstone::Player::setScoreboard (
     Scoreboard & scoreboard
 ) = 0
 ```
 
-
-
-@breif Sets the player's visible [**Scoreboard**](classendstone_1_1Scoreboard.md).
 
 
 
@@ -1709,7 +1743,7 @@ virtual void endstone::Player::setSneaking (
 **Parameters:**
 
 
-* `sneak` true if player should appear sneaking 
+* `sneak` `true` if player should appear sneaking 
 
 
 
@@ -1736,7 +1770,7 @@ virtual void endstone::Player::setSprinting (
 **Parameters:**
 
 
-* `sprinting` true if the player should be sprinting 
+* `sprinting` `true` if the player should be sprinting 
 
 
 
@@ -1749,15 +1783,13 @@ virtual void endstone::Player::setSprinting (
 
 ### function setWalkSpeed 
 
+_Sets the speed at which a client will walk._ 
 ```C++
 virtual void endstone::Player::setWalkSpeed (
     float value
 ) const = 0
 ```
 
-
-
-Sets the speed at which a client will walk.
 
 
 

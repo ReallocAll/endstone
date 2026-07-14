@@ -442,6 +442,8 @@ For latest updates join the chat on
       
         
       
+        
+      
     
     
     
@@ -586,6 +588,34 @@ For latest updates join the chat on
     
   
     Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
   
 
     
@@ -2664,7 +2694,7 @@ For latest updates join the chat on
 
 
   
-    <a href="https://github.com/EndstoneMC/endstone/edit/main/docs/reference/cpp/classendstone_1_1PermissionAttachmentInfo.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/EndstoneMC/endstone/edit/develop/docs/reference/cpp/classendstone_1_1PermissionAttachmentInfo.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2673,7 +2703,7 @@ For latest updates join the chat on
     
       
     
-    <a href="https://github.com/EndstoneMC/endstone/raw/main/docs/reference/cpp/classendstone_1_1PermissionAttachmentInfo.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/EndstoneMC/endstone/raw/develop/docs/reference/cpp/classendstone_1_1PermissionAttachmentInfo.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
@@ -2701,19 +2731,19 @@ For latest updates join the chat on
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1PermissionAttachment/"><strong>PermissionAttachment</strong></a> *</td>
-<td style="text-align: left;"><a href="#function-getattachment"><strong>getAttachment</strong></a> () const<br></td>
+<td style="text-align: left;"><a href="#function-getattachment"><strong>getAttachment</strong></a> () const<br><em>Gets the attachment providing this permission.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Permissible/"><strong>Permissible</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#function-getpermissible"><strong>getPermissible</strong></a> () const<br></td>
+<td style="text-align: left;"><a href="#function-getpermissible"><strong>getPermissible</strong></a> () const<br><em>Gets the permissible this is attached to.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">std::string</td>
-<td style="text-align: left;"><a href="#function-getpermission"><strong>getPermission</strong></a> () const<br></td>
+<td style="text-align: left;"><a href="#function-getpermission"><strong>getPermission</strong></a> () const<br><em>Gets the permission being set.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="#function-getvalue"><strong>getValue</strong></a> () const<br></td>
+<td style="text-align: left;"><a href="#function-getvalue"><strong>getValue</strong></a> () const<br><em>Gets the value of this permission.</em></td>
 </tr>
 </tbody>
 </table>
@@ -2729,33 +2759,34 @@ For latest updates join the chat on
 <hr>
 
 <h3 id="function-getattachment">function getAttachment<a class="headerlink" href="#function-getattachment" title="Permanent link">&para;</a></h3>
+<p><em>Gets the attachment providing this permission.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">PermissionAttachment</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">PermissionAttachmentInfo</span><span class="o">::</span><span class="n">getAttachment</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div>
-<p>Gets the attachment providing this permission. This may be null for default permissions (usually parent permissions).</p>
+</span></code></pre></div></p>
+<p>This may be nullptr for default permissions (usually parent permissions).</p>
 <p><strong>Returns:</strong></p>
 <p>Attachment </p>
 <hr>
 
 <h3 id="function-getpermissible">function getPermissible<a class="headerlink" href="#function-getpermissible" title="Permanent link">&para;</a></h3>
+<p><em>Gets the permissible this is attached to.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">Permissible</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">PermissionAttachmentInfo</span><span class="o">::</span><span class="n">getPermissible</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div>
-<p>Gets the permissible this is attached to</p>
+</span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p><a href="../classendstone_1_1Permissible/"><strong>Permissible</strong></a> this permission is for </p>
 <hr>
 
 <h3 id="function-getpermission">function getPermission<a class="headerlink" href="#function-getpermission" title="Permanent link">&para;</a></h3>
+<p><em>Gets the permission being set.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">PermissionAttachmentInfo</span><span class="o">::</span><span class="n">getPermission</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div>
-<p>Gets the permission being set</p>
+</span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>Name of the permission </p>
 <hr>
 
 <h3 id="function-getvalue">function getValue<a class="headerlink" href="#function-getvalue" title="Permanent link">&para;</a></h3>
+<p><em>Gets the value of this permission.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">PermissionAttachmentInfo</span><span class="o">::</span><span class="n">getValue</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div>
-<p>Gets the value of this permission</p>
+</span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>Value of the permission </p>
 <hr>
@@ -2801,7 +2832,7 @@ For latest updates join the chat on
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2023 - 2025 EndstoneMC
+      Copyright &copy; 2023 - 2026 EndstoneMC
     </div>
   
   

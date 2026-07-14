@@ -442,6 +442,8 @@ For latest updates join the chat on
       
         
       
+        
+      
     
     
     
@@ -586,6 +588,34 @@ For latest updates join the chat on
     
   
     Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
   
 
     
@@ -2792,7 +2822,7 @@ For latest updates join the chat on
 
 
   
-    <a href="https://github.com/EndstoneMC/endstone/edit/main/docs/reference/cpp/classendstone_1_1PlayerInventory.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/EndstoneMC/endstone/edit/develop/docs/reference/cpp/classendstone_1_1PlayerInventory.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2801,7 +2831,7 @@ For latest updates join the chat on
     
       
     
-    <a href="https://github.com/EndstoneMC/endstone/raw/main/docs/reference/cpp/classendstone_1_1PlayerInventory.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/EndstoneMC/endstone/raw/develop/docs/reference/cpp/classendstone_1_1PlayerInventory.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
@@ -2902,7 +2932,7 @@ For latest updates join the chat on
 </tr>
 <tr>
 <td style="text-align: right;">virtual std::unordered_map&lt; <a href="../classendstone_1_1Identifier/"><strong>int</strong></a>, <a href="../classendstone_1_1ItemStack/"><strong>ItemStack</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="../classendstone_1_1Inventory/#function-all-12"><strong>all</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> std::string &amp; type) const = 0<br><em>Finds all slots in the inventory containing any ItemStacks with the given</em> <a href="../classendstone_1_1ItemType/"><em><strong>ItemType</strong></em></a> <em>.</em></td>
+<td style="text-align: left;"><a href="../classendstone_1_1Inventory/#function-all-12"><strong>all</strong></a> (<a href="../namespaceendstone/#typedef-itemtypeid"><strong>ItemTypeId</strong></a> type) const = 0<br><em>Finds all slots in the inventory containing any ItemStacks with the given</em> <a href="../classendstone_1_1ItemType/"><em><strong>ItemType</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual std::unordered_map&lt; <a href="../classendstone_1_1Identifier/"><strong>int</strong></a>, <a href="../classendstone_1_1ItemStack/"><strong>ItemStack</strong></a> &gt;</td>
@@ -2918,7 +2948,7 @@ For latest updates join the chat on
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="../classendstone_1_1Inventory/#function-contains-13"><strong>contains</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> std::string &amp; type) const = 0<br><em>Checks if the inventory contains any ItemStacks with the given</em> <a href="../classendstone_1_1ItemType/"><em><strong>ItemType</strong></em></a> <em>.</em></td>
+<td style="text-align: left;"><a href="../classendstone_1_1Inventory/#function-contains-13"><strong>contains</strong></a> (<a href="../namespaceendstone/#typedef-itemtypeid"><strong>ItemTypeId</strong></a> type) const = 0<br><em>Checks if the inventory contains any ItemStacks with the given</em> <a href="../classendstone_1_1ItemType/"><em><strong>ItemType</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
@@ -2930,7 +2960,7 @@ For latest updates join the chat on
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="../classendstone_1_1Inventory/#function-containsatleast-12"><strong>containsAtLeast</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> std::string &amp; type, <a href="../classendstone_1_1Identifier/"><strong>int</strong></a> amount) const = 0<br><em>Checks if the inventory contains any ItemStacks with the given</em> <a href="../classendstone_1_1ItemType/"><em><strong>ItemType</strong></em></a> <em>, adding to at least the minimum amount specified.</em></td>
+<td style="text-align: left;"><a href="../classendstone_1_1Inventory/#function-containsatleast-12"><strong>containsAtLeast</strong></a> (<a href="../namespaceendstone/#typedef-itemtypeid"><strong>ItemTypeId</strong></a> type, <a href="../classendstone_1_1Identifier/"><strong>int</strong></a> amount) const = 0<br><em>Checks if the inventory contains any ItemStacks with the given</em> <a href="../classendstone_1_1ItemType/"><em><strong>ItemType</strong></em></a> <em>, adding to at least the minimum amount specified.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
@@ -2938,7 +2968,7 @@ For latest updates join the chat on
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>int</strong></a></td>
-<td style="text-align: left;"><a href="../classendstone_1_1Inventory/#function-first-12"><strong>first</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> std::string &amp; type) const = 0<br><em>Finds the first slot in the inventory containing an</em> <a href="../classendstone_1_1ItemStack/"><em><strong>ItemStack</strong></em></a> <em>with the given</em><a href="../classendstone_1_1ItemType/"><em><strong>ItemType</strong></em></a> <em>.</em></td>
+<td style="text-align: left;"><a href="../classendstone_1_1Inventory/#function-first-12"><strong>first</strong></a> (<a href="../namespaceendstone/#typedef-itemtypeid"><strong>ItemTypeId</strong></a> type) const = 0<br><em>Finds the first slot in the inventory containing an</em> <a href="../classendstone_1_1ItemStack/"><em><strong>ItemStack</strong></em></a> <em>with the given</em><a href="../classendstone_1_1ItemType/"><em><strong>ItemType</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>int</strong></a></td>
@@ -2966,11 +2996,11 @@ For latest updates join the chat on
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="../classendstone_1_1Inventory/#function-isempty"><strong>isEmpty</strong></a> () const = 0<br><em>Check whether this inventory is empty. An inventory is considered to be empty if there are no ItemStacks in any slot of this inventory.</em></td>
+<td style="text-align: left;"><a href="../classendstone_1_1Inventory/#function-isempty"><strong>isEmpty</strong></a> () const = 0<br><em>Check whether this inventory is empty.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="../classendstone_1_1Inventory/#function-remove-12"><strong>remove</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> std::string &amp; type) = 0<br><em>Removes all stacks in the inventory matching the given</em> <a href="../classendstone_1_1ItemType/"><em><strong>ItemType</strong></em></a> <em>.</em></td>
+<td style="text-align: left;"><a href="../classendstone_1_1Inventory/#function-remove-12"><strong>remove</strong></a> (<a href="../namespaceendstone/#typedef-itemtypeid"><strong>ItemTypeId</strong></a> type) = 0<br><em>Removes all stacks in the inventory matching the given</em> <a href="../classendstone_1_1ItemType/"><em><strong>ItemType</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>void</strong></a></td>
@@ -2986,7 +3016,7 @@ For latest updates join the chat on
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="../classendstone_1_1Inventory/#function-setcontents"><strong>setContents</strong></a> (std::vector&lt; std::optional&lt; <a href="../classendstone_1_1ItemStack/"><strong>ItemStack</strong></a> &gt; &gt; items) = 0<br><em>Completely replaces the inventory's contents. Removes all existing contents and replaces it with the ItemStacks given in the array.</em></td>
+<td style="text-align: left;"><a href="../classendstone_1_1Inventory/#function-setcontents"><strong>setContents</strong></a> (std::vector&lt; std::optional&lt; <a href="../classendstone_1_1ItemStack/"><strong>ItemStack</strong></a> &gt; &gt; items) = 0<br><em>Completely replaces the inventory's contents.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>void</strong></a></td>
@@ -3185,7 +3215,7 @@ For latest updates join the chat on
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2023 - 2025 EndstoneMC
+      Copyright &copy; 2023 - 2026 EndstoneMC
     </div>
   
   

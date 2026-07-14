@@ -21,11 +21,13 @@
 
 | Type | Name |
 | ---: | :--- |
+| file | [**biome.h**](biome_8h.md) <br> |
 | file | [**block.h**](block_8h.md) <br> |
 | file | [**block\_data.h**](block__data_8h.md) <br> |
 | file | [**block\_face.h**](block__face_8h.md) <br> |
 | file | [**block\_state.h**](block__state_8h.md) <br> |
 | file | [**block\_type.h**](block__type_8h.md) <br> |
+| file | [**container.h**](container_8h.md) <br> |
 
 
 

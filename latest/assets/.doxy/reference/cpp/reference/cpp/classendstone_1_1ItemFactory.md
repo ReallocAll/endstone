@@ -8,8 +8,9 @@
 
 
 
+_An interface to the methods used to create item metadata._ 
 
-
+* `#include <endstone/inventory/item_factory.h>`
 
 
 
@@ -145,8 +146,8 @@ virtual bool endstone::ItemFactory::equals (
 **Parameters:**
 
 
-* `meta1` First meta to compare, and may be null to indicate no data 
-* `meta2` Second meta to compare, and may be null to indicate no data 
+* `meta1` First meta to compare; may be nullptr to indicate no data. 
+* `meta2` Second meta to compare; may be nullptr to indicate no data. 
 
 
 

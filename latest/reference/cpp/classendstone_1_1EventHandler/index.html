@@ -442,6 +442,8 @@ For latest updates join the chat on
       
         
       
+        
+      
     
     
     
@@ -586,6 +588,34 @@ For latest updates join the chat on
     
   
     Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
   
 
     
@@ -2677,7 +2707,7 @@ For latest updates join the chat on
 
 
   
-    <a href="https://github.com/EndstoneMC/endstone/edit/main/docs/reference/cpp/classendstone_1_1EventHandler.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/EndstoneMC/endstone/edit/develop/docs/reference/cpp/classendstone_1_1EventHandler.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2686,7 +2716,7 @@ For latest updates join the chat on
     
       
     
-    <a href="https://github.com/EndstoneMC/endstone/raw/main/docs/reference/cpp/classendstone_1_1EventHandler.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/EndstoneMC/endstone/raw/develop/docs/reference/cpp/classendstone_1_1EventHandler.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
@@ -2714,23 +2744,23 @@ For latest updates join the chat on
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-callevent"><strong>callEvent</strong></a> (<a href="../classendstone_1_1Event/"><strong>Event</strong></a> &amp; event) const<br></td>
+<td style="text-align: left;"><a href="#function-callevent"><strong>callEvent</strong></a> (<a href="../classendstone_1_1Event/"><strong>Event</strong></a> &amp; event) const<br><em>Calls the event executor.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">std::string</td>
-<td style="text-align: left;"><a href="#function-geteventtype"><strong>getEventType</strong></a> () const<br></td>
+<td style="text-align: left;"><a href="#function-geteventtype"><strong>getEventType</strong></a> () const<br><em>Gets the event type for this registration.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Plugin/"><strong>Plugin</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#function-getplugin"><strong>getPlugin</strong></a> () const<br></td>
+<td style="text-align: left;"><a href="#function-getplugin"><strong>getPlugin</strong></a> () const<br><em>Gets the plugin for this registration.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../namespaceendstone/#enum-eventpriority"><strong>EventPriority</strong></a></td>
-<td style="text-align: left;"><a href="#function-getpriority"><strong>getPriority</strong></a> () const<br></td>
+<td style="text-align: left;"><a href="#function-getpriority"><strong>getPriority</strong></a> () const<br><em>Gets the priority for this registration.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="#function-isignorecancelled"><strong>isIgnoreCancelled</strong></a> () const<br></td>
+<td style="text-align: left;"><a href="#function-isignorecancelled"><strong>isIgnoreCancelled</strong></a> () const<br><em>Whether this listener accepts cancelled events.</em></td>
 </tr>
 </tbody>
 </table>
@@ -2747,11 +2777,11 @@ For latest updates join the chat on
 <hr>
 
 <h3 id="function-callevent">function callEvent<a class="headerlink" href="#function-callevent" title="Permanent link">&para;</a></h3>
+<p><em>Calls the event executor.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">EventHandler</span><span class="o">::</span><span class="n">callEvent</span><span class="w"> </span><span class="p">(</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">Event</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">event</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div>
-<p>Calls the event executor</p>
+</span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>event</code> The event </li>
@@ -2759,33 +2789,33 @@ For latest updates join the chat on
 <hr>
 
 <h3 id="function-geteventtype">function getEventType<a class="headerlink" href="#function-geteventtype" title="Permanent link">&para;</a></h3>
+<p><em>Gets the event type for this registration.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">EventHandler</span><span class="o">::</span><span class="n">getEventType</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div>
-<p>Gets the event type for this registration</p>
+</span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>Registered event type </p>
 <hr>
 
 <h3 id="function-getplugin">function getPlugin<a class="headerlink" href="#function-getplugin" title="Permanent link">&para;</a></h3>
+<p><em>Gets the plugin for this registration.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">Plugin</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">EventHandler</span><span class="o">::</span><span class="n">getPlugin</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div>
-<p>Gets the plugin for this registration</p>
+</span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>Registered <a href="../classendstone_1_1Plugin/"><strong>Plugin</strong></a> </p>
 <hr>
 
 <h3 id="function-getpriority">function getPriority<a class="headerlink" href="#function-getpriority" title="Permanent link">&para;</a></h3>
+<p><em>Gets the priority for this registration.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">EventPriority</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">EventHandler</span><span class="o">::</span><span class="n">getPriority</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div>
-<p>Gets the priority for this registration</p>
+</span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>Registered Priority </p>
 <hr>
 
 <h3 id="function-isignorecancelled">function isIgnoreCancelled<a class="headerlink" href="#function-isignorecancelled" title="Permanent link">&para;</a></h3>
+<p><em>Whether this listener accepts cancelled events.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">EventHandler</span><span class="o">::</span><span class="n">isIgnoreCancelled</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div>
-<p>Whether this listener accepts cancelled events</p>
+</span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>True when ignoring cancelled events </p>
 <hr>
@@ -2831,7 +2861,7 @@ For latest updates join the chat on
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2023 - 2025 EndstoneMC
+      Copyright &copy; 2023 - 2026 EndstoneMC
     </div>
   
   

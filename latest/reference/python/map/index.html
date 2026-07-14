@@ -448,6 +448,8 @@ For latest updates join the chat on
       
         
       
+        
+      
     
     
     
@@ -592,6 +594,34 @@ For latest updates join the chat on
     
   
     Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
   
 
     
@@ -4453,7 +4483,7 @@ For latest updates join the chat on
 
 
   
-    <a href="https://github.com/EndstoneMC/endstone/edit/main/docs/reference/python/map.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/EndstoneMC/endstone/edit/develop/docs/reference/python/map.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -4462,7 +4492,7 @@ For latest updates join the chat on
     
       
     
-    <a href="https://github.com/EndstoneMC/endstone/raw/main/docs/reference/python/map.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/EndstoneMC/endstone/raw/develop/docs/reference/python/map.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
@@ -4507,7 +4537,7 @@ For latest updates join the chat on
             <td><code><a class="autorefs autorefs-internal" title="            MapCanvas (endstone.map.MapCanvas)" href="#endstone.map.MapCanvas">MapCanvas</a></code></td>
             <td>
               <div class="doc-md-description">
-                <p>Represents a canvas for drawing to a map. Each canvas is associated with a specific MapRenderer and represents that renderer's layer on the map.</p>
+                <p>Represents a canvas for drawing to a map.</p>
               </div>
             </td>
           </tr>
@@ -4569,7 +4599,9 @@ For latest updates join the chat on
 
 
 
-        <p>Represents a canvas for drawing to a map. Each canvas is associated with a specific MapRenderer and represents that renderer's layer on the map.</p>
+        <p>Represents a canvas for drawing to a map.</p>
+<p>Each canvas is associated with a specific <code>MapRenderer</code> and represents that
+renderer's layer on the map.</p>
 
 
 
@@ -4660,7 +4692,7 @@ For latest updates join the chat on
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Get the cursorS associated with this canvas.</p>
+                <p>The cursors associated with this canvas.</p>
               </div>
             </td>
           </tr>
@@ -4676,7 +4708,7 @@ For latest updates join the chat on
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Get the map this canvas is attached to.</p>
+                <p>The <code>MapView</code> this canvas is attached to.</p>
               </div>
             </td>
           </tr>
@@ -4713,7 +4745,7 @@ For latest updates join the chat on
 
     <div class="doc doc-contents ">
 
-        <p>Get the cursorS associated with this canvas.</p>
+        <p>The cursors associated with this canvas.</p>
 
     </div>
 
@@ -4737,7 +4769,7 @@ For latest updates join the chat on
 
     <div class="doc doc-contents ">
 
-        <p>Get the map this canvas is attached to.</p>
+        <p>The <code>MapView</code> this canvas is attached to.</p>
 
     </div>
 
@@ -4762,6 +4794,69 @@ For latest updates join the chat on
         <p>Draw an image to the map. The image will be clipped if necessary.</p>
 
 
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>x</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The x coordinate of the image.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>y</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The y coordinate of the image.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>image</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a>[<a class="autorefs autorefs-external" title="numpy.uint8" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uint8">uint8</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The <code>Image</code> to draw.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
     </div>
 
 </div>
@@ -4780,6 +4875,76 @@ For latest updates join the chat on
     <div class="doc doc-contents ">
 
         <p>Get a pixel from the canvas.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>x</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The x coordinate, from 0 to 127.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>y</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The y coordinate, from 0 to 127.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The color.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -4802,6 +4967,76 @@ For latest updates join the chat on
         <p>Get a pixel from the canvas.</p>
 
 
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>x</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The x coordinate, from 0 to 127.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>y</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The y coordinate, from 0 to 127.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a>, ...]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The color.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
     </div>
 
 </div>
@@ -4820,6 +5055,69 @@ For latest updates join the chat on
     <div class="doc doc-contents ">
 
         <p>Draw a pixel to the canvas.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>x</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The x coordinate, from 0 to 127.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>y</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The y coordinate, from 0 to 127.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>color</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The color.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -4842,6 +5140,69 @@ For latest updates join the chat on
     <div class="doc doc-contents ">
 
         <p>Draw a pixel to the canvas.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>x</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The x coordinate, from 0 to 127.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>y</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The y coordinate, from 0 to 127.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>color</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a>, ...]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The color.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -4938,7 +5299,7 @@ For latest updates join the chat on
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Get or set the caption on this cursor.</p>
+                <p>The caption on this cursor.</p>
               </div>
             </td>
           </tr>
@@ -4955,7 +5316,7 @@ For latest updates join the chat on
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Get or set the direction of this cursor</p>
+                <p>The facing of the cursor, from 0 to 15.</p>
               </div>
             </td>
           </tr>
@@ -4972,7 +5333,7 @@ For latest updates join the chat on
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Get or set the visibility statis of this cursor.</p>
+                <p>The visibility status of this cursor.</p>
               </div>
             </td>
           </tr>
@@ -4989,7 +5350,7 @@ For latest updates join the chat on
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Get or set the type of this cursor.</p>
+                <p>The type (color/style) of this map cursor.</p>
               </div>
             </td>
           </tr>
@@ -5006,7 +5367,7 @@ For latest updates join the chat on
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Get or set the X position of this cursor.</p>
+                <p>The X position of this cursor.</p>
               </div>
             </td>
           </tr>
@@ -5023,7 +5384,7 @@ For latest updates join the chat on
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Get or set the Y position of this cursor.</p>
+                <p>The Y position of this cursor.</p>
               </div>
             </td>
           </tr>
@@ -5060,7 +5421,7 @@ For latest updates join the chat on
 
     <div class="doc doc-contents ">
 
-        <p>Get or set the caption on this cursor.</p>
+        <p>The caption on this cursor.</p>
 
     </div>
 
@@ -5085,7 +5446,7 @@ For latest updates join the chat on
 
     <div class="doc doc-contents ">
 
-        <p>Get or set the direction of this cursor</p>
+        <p>The facing of the cursor, from 0 to 15.</p>
 
     </div>
 
@@ -5110,7 +5471,7 @@ For latest updates join the chat on
 
     <div class="doc doc-contents ">
 
-        <p>Get or set the visibility statis of this cursor.</p>
+        <p>The visibility status of this cursor.</p>
 
     </div>
 
@@ -5135,7 +5496,7 @@ For latest updates join the chat on
 
     <div class="doc doc-contents ">
 
-        <p>Get or set the type of this cursor.</p>
+        <p>The type (color/style) of this map cursor.</p>
 
     </div>
 
@@ -5160,7 +5521,7 @@ For latest updates join the chat on
 
     <div class="doc doc-contents ">
 
-        <p>Get or set the X position of this cursor.</p>
+        <p>The X position of this cursor.</p>
 
     </div>
 
@@ -5185,7 +5546,7 @@ For latest updates join the chat on
 
     <div class="doc doc-contents ">
 
-        <p>Get or set the Y position of this cursor.</p>
+        <p>The Y position of this cursor.</p>
 
     </div>
 
@@ -6249,7 +6610,7 @@ For latest updates join the chat on
               <td><code><a class="autorefs autorefs-internal" title="            initialize (endstone.map.MapRenderer.initialize)" href="#endstone.map.MapRenderer.initialize">initialize</a></code></td>
               <td>
                 <div class="doc-md-description">
-                  <p>Initialize this MapRenderer for the given map.</p>
+                  <p>Initialize this <code>MapRenderer</code> for the given map.</p>
                 </div>
               </td>
             </tr>
@@ -6293,7 +6654,38 @@ For latest updates join the chat on
 
     <div class="doc doc-contents ">
 
-        <p>Initialize this MapRenderer for the given map.</p>
+        <p>Initialize this <code>MapRenderer</code> for the given map.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>view</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="            MapView (endstone.map.MapView)" href="#endstone.map.MapView">MapView</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The <code>MapView</code> being initialized.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -6316,6 +6708,69 @@ For latest updates join the chat on
     <div class="doc doc-contents ">
 
         <p>Render to the given map.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>view</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="            MapView (endstone.map.MapView)" href="#endstone.map.MapView">MapView</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The <code>MapView</code> being rendered to.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>canvas</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="            MapCanvas (endstone.map.MapCanvas)" href="#endstone.map.MapCanvas">MapCanvas</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The canvas to use for rendering.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>player</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="            endstone.Player" href="../player/#endstone.Player">Player</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The player who triggered the rendering.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -6513,7 +6968,7 @@ For latest updates join the chat on
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Get or set the center X position of this map.</p>
+                <p>The center X position of this map.</p>
               </div>
             </td>
           </tr>
@@ -6530,7 +6985,7 @@ For latest updates join the chat on
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Get or set the center Z position of this map.</p>
+                <p>The center Z position of this map.</p>
               </div>
             </td>
           </tr>
@@ -6547,7 +7002,7 @@ For latest updates join the chat on
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Get or set the dimension that this map is associated with.</p>
+                <p>The dimension that this map is associated with.</p>
               </div>
             </td>
           </tr>
@@ -6563,7 +7018,7 @@ For latest updates join the chat on
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Get the ID of this map item for use with MapMeta.</p>
+                <p>The unique ID of this map item for use with <code>MapMeta</code>.</p>
               </div>
             </td>
           </tr>
@@ -6580,7 +7035,7 @@ For latest updates join the chat on
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Whether the map will show a smaller position cursor (true), or no position cursor (false) when cursor is outside of map's range.</p>
+                <p>Whether the map will show a smaller position cursor (<code>True</code>), or no position cursor (<code>False</code>) when cursor is</p>
               </div>
             </td>
           </tr>
@@ -6596,7 +7051,7 @@ For latest updates join the chat on
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Check whether this map is virtual.</p>
+                <p>Whether this map is virtual.</p>
               </div>
             </td>
           </tr>
@@ -6629,7 +7084,7 @@ For latest updates join the chat on
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Get a copied list of MapRenderers currently in effect.</p>
+                <p>A list of <code>MapRenderer</code>s currently in effect.</p>
               </div>
             </td>
           </tr>
@@ -6646,7 +7101,7 @@ For latest updates join the chat on
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Get or set the scale of this map.</p>
+                <p>The scale of this map.</p>
               </div>
             </td>
           </tr>
@@ -6828,7 +7283,7 @@ For latest updates join the chat on
 
     <div class="doc doc-contents ">
 
-        <p>Get or set the center X position of this map.</p>
+        <p>The center X position of this map.</p>
 
     </div>
 
@@ -6853,7 +7308,7 @@ For latest updates join the chat on
 
     <div class="doc doc-contents ">
 
-        <p>Get or set the center Z position of this map.</p>
+        <p>The center Z position of this map.</p>
 
     </div>
 
@@ -6878,7 +7333,7 @@ For latest updates join the chat on
 
     <div class="doc doc-contents ">
 
-        <p>Get or set the dimension that this map is associated with.</p>
+        <p>The dimension that this map is associated with.</p>
 
     </div>
 
@@ -6902,7 +7357,7 @@ For latest updates join the chat on
 
     <div class="doc doc-contents ">
 
-        <p>Get the ID of this map item for use with MapMeta.</p>
+        <p>The unique ID of this map item for use with <code>MapMeta</code>.</p>
 
     </div>
 
@@ -6927,7 +7382,8 @@ For latest updates join the chat on
 
     <div class="doc doc-contents ">
 
-        <p>Whether the map will show a smaller position cursor (true), or no position cursor (false) when cursor is outside of map's range.</p>
+        <p>Whether the map will show a smaller position cursor (<code>True</code>), or no position cursor (<code>False</code>) when cursor is
+outside of map's range.</p>
 
     </div>
 
@@ -6951,7 +7407,8 @@ For latest updates join the chat on
 
     <div class="doc doc-contents ">
 
-        <p>Check whether this map is virtual.</p>
+        <p>Whether this map is virtual.</p>
+<p>A map is virtual if its lowermost <code>MapRenderer</code> is plugin-provided.</p>
 
     </div>
 
@@ -7000,7 +7457,7 @@ For latest updates join the chat on
 
     <div class="doc doc-contents ">
 
-        <p>Get a copied list of MapRenderers currently in effect.</p>
+        <p>A list of <code>MapRenderer</code>s currently in effect.</p>
 
     </div>
 
@@ -7025,7 +7482,7 @@ For latest updates join the chat on
 
     <div class="doc doc-contents ">
 
-        <p>Get or set the scale of this map.</p>
+        <p>The scale of this map.</p>
 
     </div>
 
@@ -7312,6 +7769,37 @@ For latest updates join the chat on
         <p>Add a renderer to this map.</p>
 
 
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>renderer</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="            MapRenderer (endstone.map.MapRenderer)" href="#endstone.map.MapRenderer">MapRenderer</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The <code>MapRenderer</code> to add.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
     </div>
 
 </div>
@@ -7330,6 +7818,60 @@ For latest updates join the chat on
     <div class="doc doc-contents ">
 
         <p>Remove a renderer from this map.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>renderer</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="            MapRenderer (endstone.map.MapRenderer)" href="#endstone.map.MapRenderer">MapRenderer</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The <code>MapRenderer</code> to remove.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p><code>True</code> if the renderer was successfully removed.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -7484,7 +8026,7 @@ For latest updates join the chat on
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2023 - 2025 EndstoneMC
+      Copyright &copy; 2023 - 2026 EndstoneMC
     </div>
   
   

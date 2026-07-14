@@ -3,10 +3,11 @@
   <compounddef id="namespaceendstone_1_1detail" kind="namespace" language="C++">
     <compoundname>endstone::detail</compoundname>
     <innerclass refid="classendstone_1_1detail_1_1CommandBuilder" prot="private">endstone::detail::CommandBuilder</innerclass>
+    <innerclass refid="structendstone_1_1detail_1_1JoinView" prot="public">endstone::detail::JoinView</innerclass>
     <innerclass refid="classendstone_1_1detail_1_1PermissionBuilder" prot="private">endstone::detail::PermissionBuilder</innerclass>
     <innerclass refid="structendstone_1_1detail_1_1PluginDescriptionBuilder" prot="private">endstone::detail::PluginDescriptionBuilder</innerclass>
     <sectiondef kind="var">
-      <memberdef kind="variable" id="detail_8h_1af3be710d43440fb182f40428a8ed98dc" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="detail_8h_1aaafbe643bff247c7b278b6b70eb12953" prot="public" static="no" mutable="no">
         <templateparamlist>
           <param>
             <type>typename Return</type>
@@ -18,18 +19,17 @@
           </param>
         </templateparamlist>
         <type><ref refid="classendstone_1_1Identifier" kindref="compound">Return</ref>(*)(Arg...)</type>
-        <definition>Return(Class::*)(Arg...) endstone::detail::fp_cast(Return(Class::*fp)(Arg...) const, void *address)</definition>
+        <definition>Return(*)(Arg...) endstone::detail::fp_cast(Return(*fp)(Arg...), void *func)</definition>
         <argsstring>(Return(*fp)(Arg...), void *func)</argsstring>
         <name>fp_cast</name>
         <qualifiedname>endstone::detail::fp_cast</qualifiedname>
         <briefdescription>
-<para>Gets the original member function pointer from a detour member function pointer (const, no ref-qualifier) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/endstone/detail.h" line="124" column="1" bodyfile="include/endstone/detail.h" bodystart="124" bodyend="127"/>
+        <location file="include/endstone/detail.h" line="97" column="1" bodyfile="include/endstone/detail.h" bodystart="97" bodyend="102"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="func">
@@ -89,7 +89,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/endstone/detail.h" line="69" column="6" bodyfile="include/endstone/detail.h" bodystart="69" bodyend="77"/>
+        <location file="include/endstone/detail.h" line="51" column="6" bodyfile="include/endstone/detail.h" bodystart="51" bodyend="56"/>
       </memberdef>
       <memberdef kind="function" id="detail_8h_1acf4444f81858c5237ba18a115b01108e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -195,7 +195,42 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/endstone/detail.h" line="91" column="6" bodyfile="include/endstone/detail.h" bodystart="91" bodyend="99"/>
+        <location file="include/endstone/detail.h" line="70" column="6" bodyfile="include/endstone/detail.h" bodystart="70" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="detail_8h_1af83da4fec3c079e4ffa8c6145c1ee256" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Return</type>
+          </param>
+          <param>
+            <type>typename Class</type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>Arg</declname>
+            <defname>Arg</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classendstone_1_1Identifier" kindref="compound">auto</ref></type>
+        <definition>auto endstone::detail::fp_cast</definition>
+        <argsstring>(Return(Class::*)(Arg...) const, void *address)</argsstring>
+        <name>fp_cast</name>
+        <qualifiedname>endstone::detail::fp_cast</qualifiedname>
+        <param>
+          <type><ref refid="classendstone_1_1Identifier" kindref="compound">Return</ref>(Class::*)(Arg...)</type>
+        </param>
+        <param>
+          <type><ref refid="classendstone_1_1Identifier" kindref="compound">void</ref> *</type>
+          <declname>address</declname>
+        </param>
+        <briefdescription>
+<para>Gets the original member function pointer from a detour member function pointer (const, no ref-qualifier) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/endstone/detail.h" line="105" column="6" bodyfile="include/endstone/detail.h" bodystart="105" bodyend="111"/>
       </memberdef>
       <memberdef kind="function" id="detail_8h_1aecf7182420334f85f53fac02ff6ca4c6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classendstone_1_1Server" kindref="compound">Server</ref> &amp;</type>
@@ -204,22 +239,103 @@
         <name>getServer</name>
         <qualifiedname>endstone::detail::getServer</qualifiedname>
         <briefdescription>
+<para>Gets the current <ref refid="classendstone_1_1Server" kindref="compound">Server</ref> singleton. </para>
         </briefdescription>
         <detaileddescription>
-<para>Gets the current <ref refid="classendstone_1_1Server" kindref="compound">Server</ref> singleton</para>
 <para><simplesect kind="return"><para><ref refid="classendstone_1_1Server" kindref="compound">Server</ref> instance being run </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/endstone/detail.h" line="159" column="15" bodyfile="include/endstone/detail.h" bodystart="159" bodyend="188"/>
+        <location file="include/endstone/detail.h" line="130" column="15" bodyfile="include/endstone/detail.h" bodystart="130" bodyend="159"/>
+      </memberdef>
+      <memberdef kind="function" id="format_8h_1a2b4e26cb3a0bd4ab7f195af6db0356ec" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string endstone::detail::quoted</definition>
+        <argsstring>(std::string_view value)</argsstring>
+        <name>quoted</name>
+        <qualifiedname>endstone::detail::quoted</qualifiedname>
+        <param>
+          <type>std::string_view</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Quotes and escapes a string the way the <computeroutput>{:?}</computeroutput> debug presentation does. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>std::format</computeroutput> only gained the <computeroutput>?</computeroutput> (debug) specifier in C++23, so this provides equivalent behaviour under C++20. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/endstone/util/format.h" line="29" column="20" bodyfile="include/endstone/util/format.h" bodystart="29" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="format_8h_1a0fd5d820edbc381835bfa26afc697ad4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename It</type>
+          </param>
+          <param>
+            <type>typename Sentinel</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="structendstone_1_1detail_1_1JoinView" kindref="compound">JoinView</ref>&lt; <ref refid="classendstone_1_1Identifier" kindref="compound">It</ref>, <ref refid="classendstone_1_1Identifier" kindref="compound">Sentinel</ref> &gt;</type>
+        <definition>JoinView&lt; It, Sentinel &gt; endstone::detail::join</definition>
+        <argsstring>(It begin, Sentinel end, std::string_view sep)</argsstring>
+        <name>join</name>
+        <qualifiedname>endstone::detail::join</qualifiedname>
+        <param>
+          <type><ref refid="classendstone_1_1Identifier" kindref="compound">It</ref></type>
+          <declname>begin</declname>
+        </param>
+        <param>
+          <type><ref refid="classendstone_1_1Identifier" kindref="compound">Sentinel</ref></type>
+          <declname>end</declname>
+        </param>
+        <param>
+          <type>std::string_view</type>
+          <declname>sep</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/endstone/util/format.h" line="74" column="10" bodyfile="include/endstone/util/format.h" bodystart="74" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="format_8h_1ab25d3bd650bb9cb12773ae3b185a5546" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Range</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classendstone_1_1Identifier" kindref="compound">auto</ref></type>
+        <definition>auto endstone::detail::join</definition>
+        <argsstring>(const Range &amp;range, std::string_view sep)</argsstring>
+        <name>join</name>
+        <qualifiedname>endstone::detail::join</qualifiedname>
+        <param>
+          <type><ref refid="classendstone_1_1Identifier" kindref="compound">const</ref> <ref refid="classendstone_1_1Identifier" kindref="compound">Range</ref> &amp;</type>
+          <declname>range</declname>
+        </param>
+        <param>
+          <type>std::string_view</type>
+          <declname>sep</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/endstone/util/format.h" line="80" column="6" bodyfile="include/endstone/util/format.h" bodystart="80" bodyend="83"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="include/endstone/detail.h" line="57" column="1"/>
+    <location file="include/endstone/detail.h" line="39" column="1"/>
   </compounddef>
 </doxygen>

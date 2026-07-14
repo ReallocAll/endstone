@@ -24,6 +24,11 @@
 * **Operation** ([**endstone::AttributeModifier**](classendstone_1_1AttributeModifier.md))
 
 
+## r
+
+* **RespawnReason** ([**endstone::PlayerRespawnEvent**](classendstone_1_1PlayerRespawnEvent.md))
+
+
 ## s
 
 * **Scale** ([**endstone::MapView**](classendstone_1_1MapView.md))
@@ -31,7 +36,7 @@
 
 ## t
 
-* **Type** ([**endstone::Criteria**](classendstone_1_1Criteria.md), [**endstone::Dimension**](classendstone_1_1Dimension.md), [**endstone::Image**](classendstone_1_1Image.md), [**endstone::ItemMeta**](classendstone_1_1ItemMeta.md), [**endstone::MapCursor**](classendstone_1_1MapCursor.md))
+* **Type** ([**endstone::Criteria**](classendstone_1_1Criteria.md), [**endstone::Image**](classendstone_1_1Image.md), [**endstone::MapCursor**](classendstone_1_1MapCursor.md))
 
 
 

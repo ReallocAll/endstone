@@ -442,6 +442,8 @@ For latest updates join the chat on
       
         
       
+        
+      
     
     
     
@@ -586,6 +588,34 @@ For latest updates join the chat on
     
   
     Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
   
 
     
@@ -2566,6 +2596,17 @@ For latest updates join the chat on
 </li>
       
         <li class="md-nav__item">
+    <a href="#public-functions-inherited-from-endstoneobject" class="md-nav__link">
+      <span class="md-ellipsis">
+        Public Functions inherited from endstone::Object
+      </span>
+    </a>
+
+    <!-- Table of contents list -->
+    
+</li>
+      
+        <li class="md-nav__item">
     <a href="#public-functions-documentation" class="md-nav__link">
       <span class="md-ellipsis">
         Public Functions Documentation
@@ -2592,19 +2633,6 @@ For latest updates join the chat on
             
                 
                     <li class="md-nav__item">
-    <a href="#function-asplugincommand" class="md-nav__link">
-      <span class="md-ellipsis">
-        function asPluginCommand
-      </span>
-    </a>
-
-    <!-- Table of contents list -->
-    
-</li>
-                
-            
-                
-                    <li class="md-nav__item">
     <a href="#function-execute" class="md-nav__link">
       <span class="md-ellipsis">
         function execute
@@ -2621,6 +2649,19 @@ For latest updates join the chat on
     <a href="#function-getaliases" class="md-nav__link">
       <span class="md-ellipsis">
         function getAliases
+      </span>
+    </a>
+
+    <!-- Table of contents list -->
+    
+</li>
+                
+            
+                
+                    <li class="md-nav__item">
+    <a href="#function-getclasstypeid" class="md-nav__link">
+      <span class="md-ellipsis">
+        function getClassTypeId
       </span>
     </a>
 
@@ -2673,6 +2714,19 @@ For latest updates join the chat on
     <a href="#function-getusages" class="md-nav__link">
       <span class="md-ellipsis">
         function getUsages
+      </span>
+    </a>
+
+    <!-- Table of contents list -->
+    
+</li>
+                
+            
+                
+                    <li class="md-nav__item">
+    <a href="#function-isinstanceof" class="md-nav__link">
+      <span class="md-ellipsis">
+        function isInstanceOf
       </span>
     </a>
 
@@ -2846,7 +2900,7 @@ For latest updates join the chat on
 
 
   
-    <a href="https://github.com/EndstoneMC/endstone/edit/main/docs/reference/cpp/classendstone_1_1Command.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/EndstoneMC/endstone/edit/develop/docs/reference/cpp/classendstone_1_1Command.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2855,7 +2909,7 @@ For latest updates join the chat on
     
       
     
-    <a href="https://github.com/EndstoneMC/endstone/raw/main/docs/reference/cpp/classendstone_1_1Command.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/EndstoneMC/endstone/raw/develop/docs/reference/cpp/classendstone_1_1Command.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
@@ -2868,6 +2922,7 @@ For latest updates join the chat on
 <ul>
 <li><code>#include &lt;endstone/command/command.h&gt;</code></li>
 </ul>
+<p>Inherits the following classes: <a href="../classendstone_1_1Object/">endstone::Object</a></p>
 <p>Inherited by the following classes: <a href="../classendstone_1_1PluginCommand/">endstone::PluginCommand</a></p>
 <h2 id="public-functions">Public Functions<a class="headerlink" href="#public-functions" title="Permanent link">&para;</a></h2>
 <table>
@@ -2883,76 +2938,116 @@ For latest updates join the chat on
 <td style="text-align: left;"><a href="#function-command"><strong>Command</strong></a> (std::string name, std::string description="", std::vector&lt; std::string &gt; usages={}, std::vector&lt; std::string &gt; aliases={}, std::vector&lt; std::string &gt; permissions={}) <br></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classendstone_1_1PluginCommand/"><strong>PluginCommand</strong></a> *</td>
-<td style="text-align: left;"><a href="#function-asplugincommand"><strong>asPluginCommand</strong></a> () const<br></td>
+<td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
+<td style="text-align: left;"><a href="#function-execute"><strong>execute</strong></a> (<a href="../classendstone_1_1CommandSender/"><strong>CommandSender</strong></a> &amp; sender, <a href="../classendstone_1_1Identifier/"><strong>const</strong></a> std::vector&lt; std::string &gt; &amp; args) const<br><em>Executes the command, returning its success.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::vector&lt; std::string &gt;</td>
+<td style="text-align: left;"><a href="#function-getaliases"><strong>getAliases</strong></a> () const<br><em>Returns a list of aliases of this command.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>const</strong></a> std::type_info &amp;</td>
+<td style="text-align: left;"><a href="#function-getclasstypeid"><strong>getClassTypeId</strong></a> () override const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::string</td>
+<td style="text-align: left;"><a href="#function-getdescription"><strong>getDescription</strong></a> () const<br><em>Gets a brief description of this command.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::string</td>
+<td style="text-align: left;"><a href="#function-getname"><strong>getName</strong></a> () const<br><em>Returns the name of this command.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::vector&lt; std::string &gt;</td>
+<td style="text-align: left;"><a href="#function-getpermissions"><strong>getPermissions</strong></a> () const<br><em>Gets the permissions required by users to be able to perform this command.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::vector&lt; std::string &gt;</td>
+<td style="text-align: left;"><a href="#function-getusages"><strong>getUsages</strong></a> () const<br><em>Returns a list of usages of this command.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="#function-execute"><strong>execute</strong></a> (<a href="../classendstone_1_1CommandSender/"><strong>CommandSender</strong></a> &amp; sender, <a href="../classendstone_1_1Identifier/"><strong>const</strong></a> std::vector&lt; std::string &gt; &amp; args) const<br></td>
-</tr>
-<tr>
-<td style="text-align: right;">std::vector&lt; std::string &gt;</td>
-<td style="text-align: left;"><a href="#function-getaliases"><strong>getAliases</strong></a> () const<br></td>
-</tr>
-<tr>
-<td style="text-align: right;">std::string</td>
-<td style="text-align: left;"><a href="#function-getdescription"><strong>getDescription</strong></a> () const<br></td>
-</tr>
-<tr>
-<td style="text-align: right;">std::string</td>
-<td style="text-align: left;"><a href="#function-getname"><strong>getName</strong></a> () const<br></td>
-</tr>
-<tr>
-<td style="text-align: right;">std::vector&lt; std::string &gt;</td>
-<td style="text-align: left;"><a href="#function-getpermissions"><strong>getPermissions</strong></a> () const<br></td>
-</tr>
-<tr>
-<td style="text-align: right;">std::vector&lt; std::string &gt;</td>
-<td style="text-align: left;"><a href="#function-getusages"><strong>getUsages</strong></a> () const<br></td>
+<td style="text-align: left;"><a href="#function-isinstanceof"><strong>isInstanceOf</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> std::type_info &amp; target) override const<br></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="#function-isregistered"><strong>isRegistered</strong></a> () const<br></td>
+<td style="text-align: left;"><a href="#function-isregistered"><strong>isRegistered</strong></a> () const<br><em>Returns the current registered state of this command.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="#function-registerto"><strong>registerTo</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1CommandMap/"><strong>CommandMap</strong></a> &amp; command_map) <br></td>
+<td style="text-align: left;"><a href="#function-registerto"><strong>registerTo</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1CommandMap/"><strong>CommandMap</strong></a> &amp; command_map) <br><em>Registers this command to a</em> <a href="../classendstone_1_1CommandMap/"><em><strong>CommandMap</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-setaliases"><strong>setAliases</strong></a> (Alias... aliases) <br></td>
+<td style="text-align: left;"><a href="#function-setaliases"><strong>setAliases</strong></a> (Alias... aliases) <br><em>Sets the list of aliases to request on registration for this command.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-setdescription"><strong>setDescription</strong></a> (std::string description) <br></td>
+<td style="text-align: left;"><a href="#function-setdescription"><strong>setDescription</strong></a> (std::string description) <br><em>Sets a brief description of this command.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-setname"><strong>setName</strong></a> (std::string name) <br></td>
+<td style="text-align: left;"><a href="#function-setname"><strong>setName</strong></a> (std::string name) <br><em>Sets the name of this command.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-setpermissions"><strong>setPermissions</strong></a> (Permission... permissions) <br></td>
+<td style="text-align: left;"><a href="#function-setpermissions"><strong>setPermissions</strong></a> (Permission... permissions) <br><em>Sets the permissions required by users to be able to perform this command.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-setusages"><strong>setUsages</strong></a> (Usage... usages) <br></td>
+<td style="text-align: left;"><a href="#function-setusages"><strong>setUsages</strong></a> (Usage... usages) <br><em>Sets the usages of this command.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="#function-testpermission"><strong>testPermission</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1CommandSender/"><strong>CommandSender</strong></a> &amp; target) const<br></td>
+<td style="text-align: left;"><a href="#function-testpermission"><strong>testPermission</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1CommandSender/"><strong>CommandSender</strong></a> &amp; target) const<br><em>Tests the given</em> <a href="../classendstone_1_1CommandSender/"><em><strong>CommandSender</strong></em></a> <em>to see if they can perform this command.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="#function-testpermissionsilently"><strong>testPermissionSilently</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1CommandSender/"><strong>CommandSender</strong></a> &amp; target) const<br></td>
+<td style="text-align: left;"><a href="#function-testpermissionsilently"><strong>testPermissionSilently</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1CommandSender/"><strong>CommandSender</strong></a> &amp; target) const<br><em>Tests the given</em> <a href="../classendstone_1_1CommandSender/"><em><strong>CommandSender</strong></em></a> <em>to see if they can perform this command.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="#function-unregisterfrom"><strong>unregisterFrom</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1CommandMap/"><strong>CommandMap</strong></a> &amp; command_map) <br></td>
+<td style="text-align: left;"><a href="#function-unregisterfrom"><strong>unregisterFrom</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1CommandMap/"><strong>CommandMap</strong></a> &amp; command_map) <br><em>Unregisters this command from a</em> <a href="../classendstone_1_1CommandMap/"><em><strong>CommandMap</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual</td>
 <td style="text-align: left;"><a href="#function-command"><strong>~Command</strong></a> () = default<br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-inherited-from-endstoneobject">Public Functions inherited from endstone::Object<a class="headerlink" href="#public-functions-inherited-from-endstoneobject" title="Permanent link">&para;</a></h2>
+<p>See <a href="../classendstone_1_1Object/">endstone::Object</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>T</strong></a> *</td>
+<td style="text-align: left;"><a href="../classendstone_1_1Object/#function-as-12"><strong>as</strong></a> () <br><em>Attempts to cast this object to the given type T.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1Identifier/"><strong>T</strong></a> *</td>
+<td style="text-align: left;"><a href="../classendstone_1_1Object/#function-as-22"><strong>as</strong></a> () const<br><em>Attempts to cast this object to the given type T.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>const</strong></a> std::type_info &amp;</td>
+<td style="text-align: left;"><a href="../classendstone_1_1Object/#function-getclasstypeid"><strong>getClassTypeId</strong></a> () const = 0<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
+<td style="text-align: left;"><a href="../classendstone_1_1Object/#function-is"><strong>is</strong></a> () const<br><em>Checks if this object is an instance of the given type T (or a subclass of T).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
+<td style="text-align: left;"><a href="../classendstone_1_1Object/#function-isinstanceof"><strong>isInstanceOf</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> std::type_info &amp; target) const = 0<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual</td>
+<td style="text-align: left;"><a href="../classendstone_1_1Object/#function-object"><strong>~Object</strong></a> () = default<br></td>
 </tr>
 </tbody>
 </table>
@@ -2968,18 +3063,13 @@ For latest updates join the chat on
 </span></code></pre></div>
 <hr>
 
-<h3 id="function-asplugincommand">function asPluginCommand<a class="headerlink" href="#function-asplugincommand" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="n">PluginCommand</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">asPluginCommand</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div>
-<hr>
-
 <h3 id="function-execute">function execute<a class="headerlink" href="#function-execute" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">execute</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="n">CommandSender</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">sender</span><span class="p">,</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">args</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div>
-<p>Executes the command, returning its success</p>
+<p><em>Executes the command, returning its success.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">execute</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">CommandSender</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">sender</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">args</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+</span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>sender</code> Source of the command </li>
@@ -2990,59 +3080,73 @@ For latest updates join the chat on
 <hr>
 
 <h3 id="function-getaliases">function getAliases<a class="headerlink" href="#function-getaliases" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">getAliases</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div>
-<p>Returns a list of aliases of this command</p>
+<p><em>Returns a list of aliases of this command.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">getAliases</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>List of aliases </p>
 <hr>
 
-<h3 id="function-getdescription">function getDescription<a class="headerlink" href="#function-getdescription" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">getDescription</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<h3 id="function-getclasstypeid">function getClassTypeId<a class="headerlink" href="#function-getclasstypeid" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">type_info</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">getClassTypeId</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div>
-<p>Gets a brief description of this command</p>
+<p>Implements <a href="../classendstone_1_1Object/#function-getclasstypeid"><em>endstone::Object::getClassTypeId</em></a></p>
+<hr>
+
+<h3 id="function-getdescription">function getDescription<a class="headerlink" href="#function-getdescription" title="Permanent link">&para;</a></h3>
+<p><em>Gets a brief description of this command.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">getDescription</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>Description of this command </p>
 <hr>
 
 <h3 id="function-getname">function getName<a class="headerlink" href="#function-getname" title="Permanent link">&para;</a></h3>
+<p><em>Returns the name of this command.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">getName</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div>
-<p>Returns the name of this command</p>
+</span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>Name of this command </p>
 <hr>
 
 <h3 id="function-getpermissions">function getPermissions<a class="headerlink" href="#function-getpermissions" title="Permanent link">&para;</a></h3>
+<p><em>Gets the permissions required by users to be able to perform this command.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">getPermissions</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div>
-<p>Gets the permissions required by users to be able to perform this command</p>
+</span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>List of permission names, or empty if none </p>
 <hr>
 
 <h3 id="function-getusages">function getUsages<a class="headerlink" href="#function-getusages" title="Permanent link">&para;</a></h3>
+<p><em>Returns a list of usages of this command.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">getUsages</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div>
-<p>Returns a list of usages of this command</p>
+</span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>List of usages </p>
 <hr>
 
-<h3 id="function-isregistered">function isRegistered<a class="headerlink" href="#function-isregistered" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">isRegistered</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<h3 id="function-isinstanceof">function isInstanceOf<a class="headerlink" href="#function-isinstanceof" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">isInstanceOf</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">type_info</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">target</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div>
-<p>Returns the current registered state of this command</p>
+<p>Implements <a href="../classendstone_1_1Object/#function-isinstanceof"><em>endstone::Object::isInstanceOf</em></a></p>
+<hr>
+
+<h3 id="function-isregistered">function isRegistered<a class="headerlink" href="#function-isregistered" title="Permanent link">&para;</a></h3>
+<p><em>Returns the current registered state of this command.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">isRegistered</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>true if this command is currently registered false otherwise </p>
 <hr>
 
 <h3 id="function-registerto">function registerTo<a class="headerlink" href="#function-registerto" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">registerTo</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">CommandMap</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">command_map</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="p">)</span><span class="w"> </span>
-</span></code></pre></div>
-<p>Registers this command to a <a href="../classendstone_1_1CommandMap/"><strong>CommandMap</strong></a>.</p>
+<p><em>Registers this command to a</em> <a href="../classendstone_1_1CommandMap/"><em><strong>CommandMap</strong></em></a> <em>.</em>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">registerTo</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">CommandMap</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">command_map</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>command_map</code> the <a href="../classendstone_1_1CommandMap/"><strong>CommandMap</strong></a> to register to </li>
@@ -3052,12 +3156,12 @@ For latest updates join the chat on
 <hr>
 
 <h3 id="function-setaliases">function setAliases<a class="headerlink" href="#function-setaliases" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Alias</span><span class="o">&gt;</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">setAliases</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="n">Alias</span><span class="p">...</span><span class="w"> </span><span class="n">aliases</span>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="p">)</span><span class="w"> </span>
-</span></code></pre></div>
-<p>Sets the list of aliases to request on registration for this command.</p>
+<p><em>Sets the list of aliases to request on registration for this command.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Alias</span><span class="o">&gt;</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">setAliases</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="n">Alias</span><span class="p">...</span><span class="w"> </span><span class="n">aliases</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>aliases</code> aliases to register to this command </li>
@@ -3065,11 +3169,11 @@ For latest updates join the chat on
 <hr>
 
 <h3 id="function-setdescription">function setDescription<a class="headerlink" href="#function-setdescription" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">setDescription</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">description</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="p">)</span><span class="w"> </span>
-</span></code></pre></div>
-<p>Sets a brief description of this command.</p>
+<p><em>Sets a brief description of this command.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">setDescription</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">description</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>description</code> new command description </li>
@@ -3077,11 +3181,11 @@ For latest updates join the chat on
 <hr>
 
 <h3 id="function-setname">function setName<a class="headerlink" href="#function-setname" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">setName</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span>
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="p">)</span><span class="w"> </span>
-</span></code></pre></div>
-<p>Sets the name of this command.</p>
+<p><em>Sets the name of this command.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">setName</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
 <p>May only be used before registering the command.</p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -3090,12 +3194,12 @@ For latest updates join the chat on
 <hr>
 
 <h3 id="function-setpermissions">function setPermissions<a class="headerlink" href="#function-setpermissions" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Permission</span><span class="o">&gt;</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">setPermissions</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="n">Permission</span><span class="p">...</span><span class="w"> </span><span class="n">permissions</span>
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="p">)</span><span class="w"> </span>
-</span></code></pre></div>
-<p>Sets the permissions required by users to be able to perform this command</p>
+<p><em>Sets the permissions required by users to be able to perform this command.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Permission</span><span class="o">&gt;</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">setPermissions</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="n">Permission</span><span class="p">...</span><span class="w"> </span><span class="n">permissions</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>permissions</code> List of permission names </li>
@@ -3103,12 +3207,12 @@ For latest updates join the chat on
 <hr>
 
 <h3 id="function-setusages">function setUsages<a class="headerlink" href="#function-setusages" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Usage</span><span class="o">&gt;</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">setUsages</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="n">Usage</span><span class="p">...</span><span class="w"> </span><span class="n">usages</span>
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="p">)</span><span class="w"> </span>
-</span></code></pre></div>
-<p>Sets the usages of this command</p>
+<p><em>Sets the usages of this command.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Usage</span><span class="o">&gt;</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">setUsages</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="n">Usage</span><span class="p">...</span><span class="w"> </span><span class="n">usages</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>usages</code> List of usages </li>
@@ -3116,11 +3220,12 @@ For latest updates join the chat on
 <hr>
 
 <h3 id="function-testpermission">function testPermission<a class="headerlink" href="#function-testpermission" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">testPermission</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">CommandSender</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">target</span>
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div>
-<p>Tests the given <a href="../classendstone_1_1CommandSender/"><strong>CommandSender</strong></a> to see if they can perform this command. If they do not have permission, they will be informed that they cannot do this.</p>
+<p><em>Tests the given</em> <a href="../classendstone_1_1CommandSender/"><em><strong>CommandSender</strong></em></a> <em>to see if they can perform this command.</em>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">testPermission</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">CommandSender</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">target</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+</span></code></pre></div></p>
+<p>If they do not have permission, they will be informed that they cannot do this.</p>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>target</code> User to test </li>
@@ -3130,11 +3235,12 @@ For latest updates join the chat on
 <hr>
 
 <h3 id="function-testpermissionsilently">function testPermissionSilently<a class="headerlink" href="#function-testpermissionsilently" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">testPermissionSilently</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">CommandSender</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">target</span>
-</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div>
-<p>Tests the given <a href="../classendstone_1_1CommandSender/"><strong>CommandSender</strong></a> to see if they can perform this command. No error is sent to the sender.</p>
+<p><em>Tests the given</em> <a href="../classendstone_1_1CommandSender/"><em><strong>CommandSender</strong></em></a> <em>to see if they can perform this command.</em>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">testPermissionSilently</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">CommandSender</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">target</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+</span></code></pre></div></p>
+<p>No error is sent to the sender.</p>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>target</code> User to test </li>
@@ -3144,11 +3250,11 @@ For latest updates join the chat on
 <hr>
 
 <h3 id="function-unregisterfrom">function unregisterFrom<a class="headerlink" href="#function-unregisterfrom" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">unregisterFrom</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">CommandMap</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">command_map</span>
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="p">)</span><span class="w"> </span>
-</span></code></pre></div>
-<p>Unregisters this command from a <a href="../classendstone_1_1CommandMap/"><strong>CommandMap</strong></a></p>
+<p><em>Unregisters this command from a</em> <a href="../classendstone_1_1CommandMap/"><em><strong>CommandMap</strong></em></a> <em>.</em>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::</span><span class="n">unregisterFrom</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">CommandMap</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">command_map</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>command_map</code> the <a href="../classendstone_1_1CommandMap/"><strong>CommandMap</strong></a> to unregister from </li>
@@ -3158,7 +3264,7 @@ For latest updates join the chat on
 <hr>
 
 <h3 id="function-command_1">function ~Command<a class="headerlink" href="#function-command_1" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::~</span><span class="n">Command</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Command</span><span class="o">::~</span><span class="n">Command</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span>
 </span></code></pre></div>
 <hr>
 
@@ -3203,7 +3309,7 @@ For latest updates join the chat on
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2023 - 2025 EndstoneMC
+      Copyright &copy; 2023 - 2026 EndstoneMC
     </div>
   
   

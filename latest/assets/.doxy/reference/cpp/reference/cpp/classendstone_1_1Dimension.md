@@ -14,6 +14,7 @@ _Represents a dimension within a_ [_**Level**_](classendstone_1_1Level.md) _._
 
 
 
+Inherits the following classes: std::enable_shared_from_this< Dimension >
 
 
 
@@ -28,17 +29,19 @@ _Represents a dimension within a_ [_**Level**_](classendstone_1_1Level.md) _._
 
 
 
-## Public Types
+
+
+
+
+
+
+## Public Static Attributes
 
 | Type | Name |
 | ---: | :--- |
-| enum  | [**Type**](#enum-type)  <br>_Represents various dimension types._  |
-
-
-
-
-
-
+|  [**constexpr**](classendstone_1_1Identifier.md) [**auto**](classendstone_1_1Identifier.md) | [**Nether**](#variable-nether)   = `[**DimensionId::minecraft**](classendstone_1_1Identifier.md#function-minecraft)("nether")`<br> |
+|  [**constexpr**](classendstone_1_1Identifier.md) [**auto**](classendstone_1_1Identifier.md) | [**Overworld**](#variable-overworld)   = `[**DimensionId::minecraft**](classendstone_1_1Identifier.md#function-minecraft)("overworld")`<br> |
+|  [**constexpr**](classendstone_1_1Identifier.md) [**auto**](classendstone_1_1Identifier.md) | [**TheEnd**](#variable-theend)   = `[**DimensionId::minecraft**](classendstone_1_1Identifier.md#function-minecraft)("the\_end")`<br> |
 
 
 
@@ -64,11 +67,15 @@ _Represents a dimension within a_ [_**Level**_](classendstone_1_1Level.md) _._
 | virtual std::unique\_ptr&lt; [**Block**](classendstone_1_1Block.md) &gt; | [**getHighestBlockAt**](#function-gethighestblockat-12) ([**int**](classendstone_1_1Identifier.md) x, [**int**](classendstone_1_1Identifier.md) z) const = 0<br>_Gets the highest non-empty (impassable) block at the given coordinates._  |
 | virtual std::unique\_ptr&lt; [**Block**](classendstone_1_1Block.md) &gt; | [**getHighestBlockAt**](#function-gethighestblockat-22) ([**Location**](classendstone_1_1Location.md) location) const = 0<br>_Gets the highest non-empty (impassable) block at the given_ [_**Location**_](classendstone_1_1Location.md) _._ |
 | virtual [**int**](classendstone_1_1Identifier.md) | [**getHighestBlockYAt**](#function-gethighestblockyat) ([**int**](classendstone_1_1Identifier.md) x, [**int**](classendstone_1_1Identifier.md) z) const = 0<br>_Gets the highest non-empty (impassable) coordinate at the given coordinates._  |
+| virtual [**DimensionId**](classendstone_1_1Identifier.md) | [**getId**](#function-getid) () const = 0<br>_Return the identifier of this dimension._  |
 | virtual [**Level**](classendstone_1_1Level.md) & | [**getLevel**](#function-getlevel) () const = 0<br>_Gets the level to which this dimension belongs._  |
 | virtual std::vector&lt; std::unique\_ptr&lt; [**Chunk**](classendstone_1_1Chunk.md) &gt; &gt; | [**getLoadedChunks**](#function-getloadedchunks) () = 0<br>_Gets a list of all loaded Chunks._  |
-| virtual std::string | [**getName**](#function-getname) () const = 0<br>_Gets the name of this dimension._  |
-| virtual [**Type**](classendstone_1_1Dimension.md#enum-type) | [**getType**](#function-gettype) () const = 0<br>_Gets the type of this dimension._  |
-| virtual [**Actor**](classendstone_1_1Actor.md) \* | [**spawnActor**](#function-spawnactor) ([**Location**](classendstone_1_1Location.md) location, std::string type) = 0<br>_Creates an actor at the given_ [_**Location**_](classendstone_1_1Location.md) _._ |
+| virtual std::string | [**getTranslationKey**](#function-gettranslationkey) () const = 0<br>_Get the translation key, suitable for use in a translation component._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isChunkLoaded**](#function-ischunkloaded) ([**int**](classendstone_1_1Identifier.md) x, [**int**](classendstone_1_1Identifier.md) z) const = 0<br>_Checks if the_ [_**Chunk**_](classendstone_1_1Chunk.md) _at the given coordinates is loaded._ |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isValid**](#function-isvalid) () const = 0<br>_Checks whether this dimension is still valid (loaded)._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**loadChunk**](#function-loadchunk) ([**int**](classendstone_1_1Identifier.md) x, [**int**](classendstone_1_1Identifier.md) z) = 0<br>_Requests the_ [_**Chunk**_](classendstone_1_1Chunk.md) _at the given coordinates to be loaded, and keeps it loaded until it is unloaded again._ |
+| virtual [**Actor**](classendstone_1_1Actor.md) \* | [**spawnActor**](#function-spawnactor) ([**Location**](classendstone_1_1Location.md) location, [**ActorTypeId**](classendstone_1_1Identifier.md) type) = 0<br>_Creates an actor at the given_ [_**Location**_](classendstone_1_1Location.md) _._ |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**unloadChunk**](#function-unloadchunk) ([**int**](classendstone_1_1Identifier.md) x, [**int**](classendstone_1_1Identifier.md) z) = 0<br>_Releases the plugin-owned ticket that_ `loadChunk()` _placed on the_[_**Chunk**_](classendstone_1_1Chunk.md) _at the given coordinates._ |
 | virtual  | [**~Dimension**](#function-dimension) () = default<br> |
 
 
@@ -98,21 +105,41 @@ _Represents a dimension within a_ [_**Level**_](classendstone_1_1Level.md) _._
 
 
 
-## Public Types Documentation
+## Public Static Attributes Documentation
 
 
 
 
-### enum Type 
+### variable Nether 
 
-_Represents various dimension types._ 
 ```C++
-enum endstone::Dimension::Type {
-    Overworld = 0,
-    Nether = 1,
-    TheEnd = 2,
-    Custom = 999
-};
+constexpr auto endstone::Dimension::Nether;
+```
+
+
+
+
+<hr>
+
+
+
+### variable Overworld 
+
+```C++
+constexpr auto endstone::Dimension::Overworld;
+```
+
+
+
+
+<hr>
+
+
+
+### variable TheEnd 
+
+```C++
+constexpr auto endstone::Dimension::TheEnd;
 ```
 
 
@@ -363,6 +390,31 @@ Y-coordinate of the highest non-empty block
 
 
 
+### function getId 
+
+_Return the identifier of this dimension._ 
+```C++
+virtual DimensionId endstone::Dimension::getId () const = 0
+```
+
+
+
+
+
+**Returns:**
+
+this dimension's identifier 
+
+
+
+
+
+        
+
+<hr>
+
+
+
 ### function getLevel 
 
 _Gets the level to which this dimension belongs._ 
@@ -413,11 +465,11 @@ All loaded chunks
 
 
 
-### function getName 
+### function getTranslationKey 
 
-_Gets the name of this dimension._ 
+_Get the translation key, suitable for use in a translation component._ 
 ```C++
-virtual std::string endstone::Dimension::getName () const = 0
+virtual std::string endstone::Dimension::getTranslationKey () const = 0
 ```
 
 
@@ -426,7 +478,7 @@ virtual std::string endstone::Dimension::getName () const = 0
 
 **Returns:**
 
-Name of this dimension 
+the translation key 
 
 
 
@@ -438,20 +490,98 @@ Name of this dimension
 
 
 
-### function getType 
+### function isChunkLoaded 
 
-_Gets the type of this dimension._ 
+_Checks if the_ [_**Chunk**_](classendstone_1_1Chunk.md) _at the given coordinates is loaded._
 ```C++
-virtual Type endstone::Dimension::getType () const = 0
+virtual bool endstone::Dimension::isChunkLoaded (
+    int x,
+    int z
+) const = 0
 ```
 
 
 
 
 
+**Parameters:**
+
+
+* `x` X-coordinate of the chunk 
+* `z` Z-coordinate of the chunk 
+
+
+
 **Returns:**
 
-Type of this dimension 
+`true` if the chunk is loaded, otherwise `false` 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function isValid 
+
+_Checks whether this dimension is still valid (loaded)._ 
+```C++
+virtual bool endstone::Dimension::isValid () const = 0
+```
+
+
+
+A [**Dimension**](classendstone_1_1Dimension.md) handle can outlive the underlying dimension if it is unloaded; this returns false once that happens, after which accessing the dimension throws.
+
+
+
+
+**Returns:**
+
+`true` if the dimension is still loaded, `false` otherwise 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function loadChunk 
+
+_Requests the_ [_**Chunk**_](classendstone_1_1Chunk.md) _at the given coordinates to be loaded, and keeps it loaded until it is unloaded again._
+```C++
+virtual bool endstone::Dimension::loadChunk (
+    int x,
+    int z
+) = 0
+```
+
+
+
+Unlike Java Edition, Bedrock has no synchronous chunk load: this registers a plugin-owned ticking ticket for the chunk, which is honoured on the next server tick (so the chunk may not be available within this call). The chunk is then kept loaded and ticking until removed with `unloadChunk()`, the server restarts, or the ticket limit is reached. Intended for keeping a handful of chunks resident; it is not suited to loading large regions.
+
+
+
+
+**Parameters:**
+
+
+* `x` X-coordinate of the chunk 
+* `z` Z-coordinate of the chunk 
+
+
+
+**Returns:**
+
+`true` if the ticket was registered (or already present), otherwise `false` 
 
 
 
@@ -469,7 +599,7 @@ _Creates an actor at the given_ [_**Location**_](classendstone_1_1Location.md) _
 ```C++
 virtual Actor * endstone::Dimension::spawnActor (
     Location location,
-    std::string type
+    ActorTypeId type
 ) = 0
 ```
 
@@ -481,13 +611,52 @@ virtual Actor * endstone::Dimension::spawnActor (
 
 
 * `location` The location to spawn the actor 
-* `type` The actor to spawn 
+* `type` The actor type to spawn 
 
 
 
 **Returns:**
 
 Resulting [**Actor**](classendstone_1_1Actor.md) of this method 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function unloadChunk 
+
+_Releases the plugin-owned ticket that_ `loadChunk()` _placed on the_[_**Chunk**_](classendstone_1_1Chunk.md) _at the given coordinates._
+```C++
+virtual bool endstone::Dimension::unloadChunk (
+    int x,
+    int z
+) = 0
+```
+
+
+
+This only removes Endstone's own ticket; it never affects `/tickingarea`s or other holders. The chunk is unloaded once nothing else keeps it loaded (a nearby player, the spawn area, etc.), so this is a no-op in effect while the chunk is still in use.
+
+
+
+
+**Parameters:**
+
+
+* `x` X-coordinate of the chunk 
+* `z` Z-coordinate of the chunk 
+
+
+
+**Returns:**
+
+`true` once the ticket has been released 
 
 
 

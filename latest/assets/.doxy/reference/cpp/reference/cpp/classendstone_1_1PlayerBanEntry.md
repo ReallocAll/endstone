@@ -87,7 +87,7 @@ See [endstone::BanEntry](classendstone_1_1BanEntry.md)
 
 | Type | Name |
 | ---: | :--- |
-|   | [**PlayerBanEntry**](#function-playerbanentry) (std::string name, std::optional&lt; [**UUID**](classendstone_1_1UUID.md) &gt; uuid=std::nullopt, std::optional&lt; std::string &gt; xuid=std::nullopt) <br> |
+|   | [**PlayerBanEntry**](#function-playerbanentry) (std::string name, std::optional&lt; [**UUID**](classendstone_1_1UUID.md) &gt; uuid=std::nullopt, std::optional&lt; std::string &gt; xuid=std::nullopt) <br>_Construct a ban entry for the given player._  |
 |  std::string | [**getName**](#function-getname) () const<br>_Gets the banned player's name._  |
 |  std::optional&lt; [**UUID**](classendstone_1_1UUID.md) &gt; | [**getUniqueId**](#function-getuniqueid) () const<br>_Gets the banned player's unique id._  |
 |  std::optional&lt; std::string &gt; | [**getXuid**](#function-getxuid) () const<br>_Gets the banned player's xbox user id (xuid)._  |
@@ -104,7 +104,7 @@ See [endstone::BanEntry](classendstone_1_1BanEntry.md)
 |  std::string | [**getReason**](classendstone_1_1BanEntry.md#function-getreason) () const<br>_Gets the reason for this ban._  |
 |  std::string | [**getSource**](classendstone_1_1BanEntry.md#function-getsource) () const<br>_Gets the source of this ban._  |
 |  [**void**](classendstone_1_1Identifier.md) | [**setCreated**](classendstone_1_1BanEntry.md#function-setcreated) (Date created) <br>_Sets the date this ban entry was created._  |
-|  [**void**](classendstone_1_1Identifier.md) | [**setExpiration**](classendstone_1_1BanEntry.md#function-setexpiration) (std::optional&lt; Date &gt; expiration) <br>_Sets the date this ban expires on. std::nullopt values are considered "infinite" bans._  |
+|  [**void**](classendstone_1_1Identifier.md) | [**setExpiration**](classendstone_1_1BanEntry.md#function-setexpiration) (std::optional&lt; Date &gt; expiration) <br>_Sets the date this ban expires on._  |
 |  [**void**](classendstone_1_1Identifier.md) | [**setReason**](classendstone_1_1BanEntry.md#function-setreason) (std::string reason) <br>_Sets the reason for this ban._  |
 |  [**void**](classendstone_1_1Identifier.md) | [**setSource**](classendstone_1_1BanEntry.md#function-setsource) (std::string source) <br>_Sets the source of this ban._  |
 
@@ -168,6 +168,7 @@ See [endstone::BanEntry](classendstone_1_1BanEntry.md)
 
 ### function PlayerBanEntry 
 
+_Construct a ban entry for the given player._ 
 ```C++
 inline explicit endstone::PlayerBanEntry::PlayerBanEntry (
     std::string name,
@@ -178,6 +179,19 @@ inline explicit endstone::PlayerBanEntry::PlayerBanEntry (
 
 
 
+
+
+**Parameters:**
+
+
+* `name` the name of the player being banned 
+* `uuid` the unique id of the player, or std::nullopt if not available 
+* `xuid` the xbox user id (xuid) of the player, or std::nullopt if not available 
+
+
+
+
+        
 
 <hr>
 

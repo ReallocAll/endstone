@@ -17,7 +17,7 @@ _Represents the metadata of a generic item._
 Inherits the following classes: [endstone::Object](classendstone_1_1Object.md)
 
 
-Inherited by the following classes: [endstone::CrossbowMeta](classendstone_1_1CrossbowMeta.md),  [endstone::MapMeta](classendstone_1_1MapMeta.md),  [endstone::WritableBookMeta](classendstone_1_1WritableBookMeta.md)
+Inherited by the following classes: [endstone::CrossbowMeta](classendstone_1_1CrossbowMeta.md),  [endstone::MapMeta](classendstone_1_1MapMeta.md),  [endstone::PotionMeta](classendstone_1_1PotionMeta.md),  [endstone::WritableBookMeta](classendstone_1_1WritableBookMeta.md)
 
 
 
@@ -75,7 +75,7 @@ Inherited by the following classes: [endstone::CrossbowMeta](classendstone_1_1Cr
 | Type | Name |
 | ---: | :--- |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**addEnchant**](#function-addenchant) ([**EnchantmentId**](classendstone_1_1Identifier.md) id, [**int**](classendstone_1_1Identifier.md) level, [**bool**](classendstone_1_1Identifier.md) force) = 0<br>_Adds the specified enchantment to this item meta._  |
-| virtual std::unique\_ptr&lt; [**ItemMeta**](classendstone_1_1ItemMeta.md) &gt; | [**clone**](#function-clone) () const = 0<br>_Creates a clone of the current metadata._  |
+| virtual [**NotNull**](classendstone_1_1NotNull.md)&lt; [**ItemMeta**](classendstone_1_1ItemMeta.md) &gt; | [**clone**](#function-clone) () const = 0<br>_Creates a clone of the current metadata._  |
 | virtual [**int**](classendstone_1_1Identifier.md) | [**getDamage**](#function-getdamage) () const = 0<br>_Gets the damage._  |
 | virtual std::string | [**getDisplayName**](#function-getdisplayname) () const = 0<br>_Gets the display name that is set._  |
 | virtual [**int**](classendstone_1_1Identifier.md) | [**getEnchantLevel**](#function-getenchantlevel) ([**EnchantmentId**](classendstone_1_1Identifier.md) id) const = 0<br>_Checks for the level of the specified enchantment._  |
@@ -213,7 +213,7 @@ true if the item meta changed as a result of this call, false otherwise
 
 _Creates a clone of the current metadata._ 
 ```C++
-virtual std::unique_ptr< ItemMeta > endstone::ItemMeta::clone () const = 0
+virtual NotNull < ItemMeta > endstone::ItemMeta::clone () const = 0
 ```
 
 

@@ -60,7 +60,7 @@ public:
 
     [[nodiscard]] virtual std::string getXuid() const = 0;
 
-    [[nodiscard]] virtual SocketAddress getAddress() const = 0;
+    [[nodiscard]] virtual const SocketAddress &getAddress() const = 0;
 
     virtual void transfer(std::string host, int port) const = 0;
 
@@ -77,6 +77,8 @@ public:
     [[nodiscard]] virtual bool isSprinting() const = 0;
 
     virtual void setSprinting(bool sprinting) = 0;
+
+    [[nodiscard]] virtual bool isCrawling() const = 0;
 
     // TODO: playNote
 
@@ -118,9 +120,11 @@ public:
 
     virtual void setWalkSpeed(float value) const = 0;
 
-    [[nodiscard]] virtual Scoreboard &getScoreboard() const = 0;
+    [[nodiscard]] virtual NotNull<Scoreboard> getScoreboard() const = 0;
 
-    void virtual setScoreboard(Scoreboard &scoreboard) = 0;
+    void virtual setScoreboard(NotNull<Scoreboard> scoreboard) = 0;
+
+    virtual void sendActionBar(std::string message) const = 0;
 
     virtual void sendPopup(std::string message) const = 0;
 

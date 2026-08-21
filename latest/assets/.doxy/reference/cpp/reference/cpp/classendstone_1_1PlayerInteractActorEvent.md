@@ -8,7 +8,7 @@
 
 
 
-_Represents an event that is called when a player right-clicks an actor._ 
+_Called when a player right-clicks an actor._ 
 
 * `#include <endstone/event/player/player_interact_actor_event.h>`
 
@@ -17,6 +17,7 @@ _Represents an event that is called when a player right-clicks an actor._
 Inherits the following classes: [endstone::Cancellable](classendstone_1_1Cancellable.md)
 
 
+Inherited by the following classes: [endstone::PlayerArmorStandManipulateEvent](classendstone_1_1PlayerArmorStandManipulateEvent.md)
 
 
 
@@ -94,8 +95,8 @@ Inherits the following classes: [endstone::Cancellable](classendstone_1_1Cancell
 | Type | Name |
 | ---: | :--- |
 |   | [**ENDSTONE\_EVENT**](#function-endstone_event) ([**PlayerInteractActorEvent**](classendstone_1_1PlayerInteractActorEvent.md)) <br> |
-|   | [**PlayerInteractActorEvent**](#function-playerinteractactorevent) ([**Player**](classendstone_1_1Player.md) & player, [**Actor**](classendstone_1_1Actor.md) & actor) <br> |
-|  [**Actor**](classendstone_1_1Actor.md) & | [**getActor**](#function-getactor) () const<br>_Gets the actor that was right-clicked by the player._  |
+|   | [**PlayerInteractActorEvent**](#function-playerinteractactorevent) ([**const**](classendstone_1_1Identifier.md) [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Player**](classendstone_1_1Player.md) &gt; & player, [**const**](classendstone_1_1Identifier.md) [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Actor**](classendstone_1_1Actor.md) &gt; & actor) <br> |
+|  [**const**](classendstone_1_1Identifier.md) [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Actor**](classendstone_1_1Actor.md) &gt; & | [**getActor**](#function-getactor) () const<br>_Gets the actor that was right-clicked by the player._  |
 |   | [**~PlayerInteractActorEvent**](#function-playerinteractactorevent) () override<br> |
 
 
@@ -224,8 +225,8 @@ endstone::PlayerInteractActorEvent::ENDSTONE_EVENT (
 
 ```C++
 inline explicit endstone::PlayerInteractActorEvent::PlayerInteractActorEvent (
-    Player & player,
-    Actor & actor
+    const  NotNull < Player > & player,
+    const  NotNull < Actor > & actor
 ) 
 ```
 
@@ -240,7 +241,7 @@ inline explicit endstone::PlayerInteractActorEvent::PlayerInteractActorEvent (
 
 _Gets the actor that was right-clicked by the player._ 
 ```C++
-inline Actor & endstone::PlayerInteractActorEvent::getActor () const
+inline const  NotNull < Actor > & endstone::PlayerInteractActorEvent::getActor () const
 ```
 
 

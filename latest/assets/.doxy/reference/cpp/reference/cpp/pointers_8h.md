@@ -16,6 +16,7 @@
 * `#include <type_traits>`
 * `#include <utility>`
 * `#include "endstone/check.h"`
+* `#include "endstone/object.h"`
 
 
 
@@ -40,7 +41,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**NotNull**](classendstone_1_1NotNull.md) &lt;[**class**](classendstone_1_1Identifier.md) [**T**](classendstone_1_1Identifier.md)&gt;<br>_A wrapper around a std::shared\_ptr that is guaranteed never to be null._  |
+| class | [**NotNull**](classendstone_1_1NotNull.md) &lt;[**class**](classendstone_1_1Identifier.md) [**T**](classendstone_1_1Identifier.md)&gt;<br>_A wrapper around a std::shared\_ptr that documents that it is never null._  |
 | class | [**Nullable**](classendstone_1_1Nullable.md) &lt;[**class**](classendstone_1_1Identifier.md) [**T**](classendstone_1_1Identifier.md)&gt;<br>_A wrapper around a std::shared\_ptr that may be null._  |
 | struct | [**hash&lt; endstone::NotNull&lt; T &gt; &gt;**](structstd_1_1hash_3_01endstone_1_1NotNull_3_01T_01_4_01_4.md) &lt;class T&gt;<br> |
 | struct | [**hash&lt; endstone::Nullable&lt; T &gt; &gt;**](structstd_1_1hash_3_01endstone_1_1Nullable_3_01T_01_4_01_4.md) &lt;class T&gt;<br> |
@@ -97,7 +98,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| define  | [**ENDSTONE\_DEFINE\_PTR\_COMPARISONS**](pointers_8h.md#define-endstone_define_ptr_comparisons) (Wrapper) `/* multi line expression */`<br> |
+| define  | [**ENDSTONE\_DEFINE\_PTR\_COMPARISONS**](pointers_8h.md#define-endstone_define_ptr_comparisons) (Wrapper) <br> |
 
 ## Macro Definition Documentation
 
@@ -110,7 +111,7 @@
 ```C++
 #define ENDSTONE_DEFINE_PTR_COMPARISONS (
     Wrapper
-) `/* multi line expression */`
+) 
 ```
 
 

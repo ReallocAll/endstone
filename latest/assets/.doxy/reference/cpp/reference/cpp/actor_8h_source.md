@@ -53,13 +53,13 @@ public:
 
     [[nodiscard]] virtual Level &getLevel() const = 0;
 
-    [[nodiscard]] virtual Dimension &getDimension() const = 0;
+    [[nodiscard]] virtual NotNull<Dimension> getDimension() const = 0;
 
     virtual void setRotation(float yaw, float pitch) = 0;
 
     virtual bool teleport(const Location &location) = 0;
 
-    virtual bool teleport(const Actor &target) = 0;
+    virtual bool teleport(const NotNull<Actor> &target) = 0;
 
     [[nodiscard]] virtual std::int64_t getId() const = 0;
 
@@ -99,7 +99,7 @@ struct std::formatter<endstone::Actor> : std::formatter<std::string_view> {
     using Type = endstone::Actor;
 
     template <typename FormatContext>
-    auto format(const Type &val, FormatContext &ctx) const -> format_context::iterator
+    auto format(const Type &val, FormatContext &ctx) const
     {
         return std::format_to(ctx.out(), "{}", val.getName());
     }

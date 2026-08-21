@@ -56,11 +56,12 @@ _Represents a command map that manages all commands of the_ [_**Server**_](class
 |   | [**CommandMap**](#function-commandmap-23) ([**const**](classendstone_1_1Identifier.md) [**CommandMap**](classendstone_1_1CommandMap.md) &) = delete<br> |
 |   | [**CommandMap**](#function-commandmap-33) ([**CommandMap**](classendstone_1_1CommandMap.md) &&) = default<br> |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**clearCommands**](#function-clearcommands) () = 0<br>_Clears all registered commands._  |
-| virtual [**bool**](classendstone_1_1Identifier.md) | [**dispatch**](#function-dispatch) ([**CommandSender**](classendstone_1_1CommandSender.md) & sender, std::string command\_line) const = 0<br>_Looks for the requested command and executes it if found._  |
-| virtual std::shared\_ptr&lt; [**Command**](classendstone_1_1Command.md) &gt; | [**getCommand**](#function-getcommand) (std::string name) const = 0<br>_Gets the command registered to the specified name._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**dispatch**](#function-dispatch) ([**const**](classendstone_1_1Identifier.md) [**NotNull**](classendstone_1_1NotNull.md)&lt; [**CommandSender**](classendstone_1_1CommandSender.md) &gt; & sender, std::string command\_line) const = 0<br>_Looks for the requested command and executes it if found._  |
+| virtual [**Nullable**](classendstone_1_1Nullable.md)&lt; [**Command**](classendstone_1_1Command.md) &gt; | [**getCommand**](#function-getcommand) (std::string name) const = 0<br>_Gets the command registered to the specified name._  |
 |  [**CommandMap**](classendstone_1_1CommandMap.md) & | [**operator=**](#function-operator) ([**const**](classendstone_1_1Identifier.md) [**CommandMap**](classendstone_1_1CommandMap.md) &) = delete<br> |
 |  [**CommandMap**](classendstone_1_1CommandMap.md) & | [**operator=**](#function-operator_1) ([**CommandMap**](classendstone_1_1CommandMap.md) &&) = default<br> |
-| virtual [**bool**](classendstone_1_1Identifier.md) | [**registerCommand**](#function-registercommand) (std::shared\_ptr&lt; [**Command**](classendstone_1_1Command.md) &gt; command) = 0<br>_Registers a command._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**registerCommand**](#function-registercommand-12) ([**NotNull**](classendstone_1_1NotNull.md)&lt; [**Command**](classendstone_1_1Command.md) &gt; command) = 0<br>_Registers a command._  |
+|  [**bool**](classendstone_1_1Identifier.md) | [**registerCommand**](#function-registercommand-22) ([**Args**](classendstone_1_1Identifier.md) &&... args) <br>_Constructs a command of the given type and registers it._  |
 | virtual  | [**~CommandMap**](#function-commandmap) () = default<br> |
 
 
@@ -157,7 +158,7 @@ virtual void endstone::CommandMap::clearCommands () = 0
 _Looks for the requested command and executes it if found._ 
 ```C++
 virtual bool endstone::CommandMap::dispatch (
-    CommandSender & sender,
+    const  NotNull < CommandSender > & sender,
     std::string command_line
 ) const = 0
 ```
@@ -192,7 +193,7 @@ true if execution is successful, false otherwise
 
 _Gets the command registered to the specified name._ 
 ```C++
-virtual std::shared_ptr< Command > endstone::CommandMap::getCommand (
+virtual Nullable < Command > endstone::CommandMap::getCommand (
     std::string name
 ) const = 0
 ```
@@ -210,7 +211,7 @@ virtual std::shared_ptr< Command > endstone::CommandMap::getCommand (
 
 **Returns:**
 
-[**Command**](classendstone_1_1Command.md) with the specified name or nullptr if a command with that label doesn't exist 
+[**Command**](classendstone_1_1Command.md) with the specified name, a null handle if a command with that label doesn't exist 
 
 
 
@@ -252,12 +253,12 @@ CommandMap & endstone::CommandMap::operator= (
 
 
 
-### function registerCommand 
+### function registerCommand [1/2]
 
 _Registers a command._ 
 ```C++
 virtual bool endstone::CommandMap::registerCommand (
-    std::shared_ptr< Command > command
+    NotNull < Command > command
 ) = 0
 ```
 
@@ -269,6 +270,48 @@ virtual bool endstone::CommandMap::registerCommand (
 
 
 * `command` the command to register 
+
+
+
+**Returns:**
+
+true on success, false if a command with the same name is already registered 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function registerCommand [2/2]
+
+_Constructs a command of the given type and registers it._ 
+```C++
+template<class  T, class... Args>
+inline bool endstone::CommandMap::registerCommand (
+    Args &&... args
+) 
+```
+
+
+
+
+
+**Template parameters:**
+
+
+* `T` the type of command to construct 
+
+
+
+**Parameters:**
+
+
+* `args` the arguments to construct the command with 
 
 
 

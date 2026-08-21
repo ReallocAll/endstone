@@ -11,9 +11,9 @@
 
 
 * `#include <cstdint>`
-* `#include <memory>`
 * `#include <vector>`
 * `#include "endstone/map/map_renderer.h"`
+* `#include "endstone/util/pointers.h"`
 
 
 

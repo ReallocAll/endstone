@@ -5,8 +5,11 @@
     <derivedcompoundref refid="classendstone_1_1ActorType" prot="public" virt="non-virtual">endstone::ActorType</derivedcompoundref>
     <derivedcompoundref refid="classendstone_1_1Biome" prot="public" virt="non-virtual">endstone::Biome</derivedcompoundref>
     <derivedcompoundref refid="classendstone_1_1BlockType" prot="public" virt="non-virtual">endstone::BlockType</derivedcompoundref>
+    <derivedcompoundref refid="classendstone_1_1EffectType" prot="public" virt="non-virtual">endstone::EffectType</derivedcompoundref>
     <derivedcompoundref refid="classendstone_1_1Enchantment" prot="public" virt="non-virtual">endstone::Enchantment</derivedcompoundref>
+    <derivedcompoundref refid="classendstone_1_1GameRule" prot="public" virt="non-virtual">endstone::GameRule</derivedcompoundref>
     <derivedcompoundref refid="classendstone_1_1ItemType" prot="public" virt="non-virtual">endstone::ItemType</derivedcompoundref>
+    <derivedcompoundref refid="classendstone_1_1PotionType" prot="public" virt="non-virtual">endstone::PotionType</derivedcompoundref>
     <includes refid="registry_8h" local="no">endstone/registry.h</includes>
     <sectiondef kind="public-type">
       <memberdef kind="typedef" id="classendstone_1_1Registry_1_1Type_1a7d2793f0ec3a8f4e7ab9b8afbd777e82" prot="public" static="no">
@@ -69,13 +72,14 @@
 <para>Get the translation key, suitable for use in a translation component. </para>
         </briefdescription>
         <detaileddescription>
+<para>Bedrock does not localize every registry. <computeroutput><ref refid="classendstone_1_1Biome" kindref="compound">Biome</ref></computeroutput> and <computeroutput><ref refid="classendstone_1_1GameRule" kindref="compound">GameRule</ref></computeroutput> have no translation key at all, and asking either for one raises.</para>
 <para><simplesect kind="return"><para>the translation key </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/endstone/registry.h" line="93" column="30"/>
+        <location file="include/endstone/registry.h" line="96" column="30"/>
       </memberdef>
       <memberdef kind="function" id="classendstone_1_1Registry_1_1Type_1ae1f1c16d4904b521e7f727ae1e9715e7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classendstone_1_1Identifier" kindref="compound">bool</ref></type>
@@ -93,7 +97,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/endstone/registry.h" line="103" column="14" bodyfile="include/endstone/registry.h" bodystart="103" bodyend="103"/>
+        <location file="include/endstone/registry.h" line="106" column="14" bodyfile="include/endstone/registry.h" bodystart="106" bodyend="106"/>
       </memberdef>
       <memberdef kind="function" id="classendstone_1_1Registry_1_1Type_1a9e32d0cd444cf6e98cece1f89fd16fb4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classendstone_1_1Identifier" kindref="compound">bool</ref></type>
@@ -111,7 +115,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/endstone/registry.h" line="104" column="14" bodyfile="include/endstone/registry.h" bodystart="104" bodyend="104"/>
+        <location file="include/endstone/registry.h" line="107" column="14" bodyfile="include/endstone/registry.h" bodystart="107" bodyend="107"/>
       </memberdef>
       <memberdef kind="function" id="classendstone_1_1Registry_1_1Type_1a0e07b4427e10e44725cefa814de62a11" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classendstone_1_1Identifier" kindref="compound">bool</ref></type>
@@ -129,7 +133,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/endstone/registry.h" line="105" column="14" bodyfile="include/endstone/registry.h" bodystart="105" bodyend="105"/>
+        <location file="include/endstone/registry.h" line="108" column="14" bodyfile="include/endstone/registry.h" bodystart="108" bodyend="108"/>
       </memberdef>
       <memberdef kind="function" id="classendstone_1_1Registry_1_1Type_1aece109daae5dede57edc8c23ef174aff" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classendstone_1_1Identifier" kindref="compound">bool</ref></type>
@@ -147,7 +151,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/endstone/registry.h" line="106" column="14" bodyfile="include/endstone/registry.h" bodystart="106" bodyend="106"/>
+        <location file="include/endstone/registry.h" line="109" column="14" bodyfile="include/endstone/registry.h" bodystart="109" bodyend="109"/>
       </memberdef>
       <memberdef kind="function" id="classendstone_1_1Registry_1_1Type_1ab333d4c3e969abfb5dd01c4ce34d7154" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -161,7 +165,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/endstone/registry.h" line="107" column="9" bodyfile="include/endstone/registry.h" bodystart="107" bodyend="107"/>
+        <location file="include/endstone/registry.h" line="110" column="9" bodyfile="include/endstone/registry.h" bodystart="110" bodyend="110"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-static-func">
@@ -194,7 +198,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/endstone/registry.h" line="101" column="24" bodyfile="include/endstone/registry.h" bodystart="101" bodyend="101"/>
+        <location file="include/endstone/registry.h" line="104" column="24" bodyfile="include/endstone/registry.h" bodystart="104" bodyend="104"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -223,14 +227,32 @@
         </childnode>
       </node>
       <node id="5">
+        <label>endstone::EffectType</label>
+        <link refid="classendstone_1_1EffectType"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
         <label>endstone::Enchantment</label>
         <link refid="classendstone_1_1Enchantment"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="6">
+      <node id="7">
+        <label>endstone::GameRule</label>
+        <link refid="classendstone_1_1GameRule"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
         <label>endstone::ItemType</label>
         <link refid="classendstone_1_1ItemType"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>endstone::PotionType</label>
+        <link refid="classendstone_1_1PotionType"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
@@ -239,7 +261,7 @@
         <link refid="classendstone_1_1Registry_1_1Type"/>
       </node>
     </inheritancegraph>
-    <location file="include/endstone/registry.h" line="72" column="5" bodyfile="include/endstone/registry.h" bodystart="72" bodyend="108"/>
+    <location file="include/endstone/registry.h" line="72" column="5" bodyfile="include/endstone/registry.h" bodystart="72" bodyend="111"/>
     <listofallmembers>
       <member refid="classendstone_1_1Registry_1_1Type_1adb225834ec0af1fdd72f998cbee22946" prot="public" virt="non-virtual"><scope>endstone::Registry::Type</scope><name>get</name></member>
       <member refid="classendstone_1_1Registry_1_1Type_1ac7979c573cb4a71caf8f0d766048e95a" prot="public" virt="pure-virtual"><scope>endstone::Registry::Type</scope><name>getId</name></member>

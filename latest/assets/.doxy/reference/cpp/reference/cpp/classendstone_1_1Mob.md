@@ -136,14 +136,15 @@ Inherited by the following classes: [endstone::Player](classendstone_1_1Player.m
 | ---: | :--- |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**addEffect**](#function-addeffect) ([**const**](classendstone_1_1Identifier.md) [**Effect**](classendstone_1_1Effect.md) & effect) = 0<br>_Adds the given_ [_**Effect**_](classendstone_1_1Effect.md) _to this entity._ |
 | virtual std::vector&lt; [**Effect**](classendstone_1_1Effect.md) &gt; | [**getActiveEffects**](#function-getactiveeffects) () const = 0<br>_Returns all currently active Effects on this entity._  |
-| virtual std::unique\_ptr&lt; [**AttributeInstance**](classendstone_1_1AttributeInstance.md) &gt; | [**getAttribute**](#function-getattribute) ([**AttributeId**](classendstone_1_1Identifier.md) id) = 0<br>_Gets the specified attribute instance from the object._  |
-| virtual std::vector&lt; std::unique\_ptr&lt; [**AttributeInstance**](classendstone_1_1AttributeInstance.md) &gt; &gt; | [**getAttributes**](#function-getattributes) () = 0<br>_Gets all attribute instances from the object._  |
+| virtual [**Nullable**](classendstone_1_1Nullable.md)&lt; [**AttributeInstance**](classendstone_1_1AttributeInstance.md) &gt; | [**getAttribute**](#function-getattribute) ([**AttributeId**](classendstone_1_1Identifier.md) id) = 0<br>_Gets the specified attribute instance from the object._  |
+| virtual std::vector&lt; [**NotNull**](classendstone_1_1NotNull.md)&lt; [**AttributeInstance**](classendstone_1_1AttributeInstance.md) &gt; &gt; | [**getAttributes**](#function-getattributes) () = 0<br>_Gets all attribute instances from the object._  |
 | virtual std::optional&lt; [**Effect**](classendstone_1_1Effect.md) &gt; | [**getEffect**](#function-geteffect) ([**EffectId**](classendstone_1_1Identifier.md) type) const = 0<br>_Returns the active_ [_**Effect**_](classendstone_1_1Effect.md) _of the specified type._ |
 | virtual [**int**](classendstone_1_1Identifier.md) | [**getHealth**](#function-gethealth) () const = 0<br>_Gets the entity's health from 0 to its max possible value, where 0 is dead._  |
 | virtual [**int**](classendstone_1_1Identifier.md) | [**getMaxHealth**](#function-getmaxhealth) () const = 0<br>_Gets the maximum health this entity has._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**hasAttribute**](#function-hasattribute) ([**AttributeId**](classendstone_1_1Identifier.md) id) const = 0<br>_Checks whether the given attribute is present on the object._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**hasEffect**](#function-haseffect) ([**EffectId**](classendstone_1_1Identifier.md) type) const = 0<br>_Returns whether the entity already has an existing effect of the given type applied to it._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**isGliding**](#function-isgliding) () const = 0<br>_Checks to see if an actor is gliding, such as using an Elytra._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isSwimming**](#function-isswimming) () const = 0<br>_Checks to see if an actor is swimming._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**removeEffect**](#function-removeeffect) ([**EffectId**](classendstone_1_1Identifier.md) type) = 0<br>_Removes any effects of the given type that are present on this entity._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setHealth**](#function-sethealth) ([**int**](classendstone_1_1Identifier.md) health) const = 0<br>_Sets the entity's health from 0 to its possible value, where 0 is dead._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setMaxHealth**](#function-setmaxhealth) ([**int**](classendstone_1_1Identifier.md) health) const = 0<br>_Sets the maximum health this entity can have._  |
@@ -156,7 +157,7 @@ See [endstone::Actor](classendstone_1_1Actor.md)
 | Type | Name |
 | ---: | :--- |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**addScoreboardTag**](classendstone_1_1Actor.md#function-addscoreboardtag) (std::string tag) const = 0<br>_Adds a tag to this actor._  |
-| virtual [**Dimension**](classendstone_1_1Dimension.md) & | [**getDimension**](classendstone_1_1Actor.md#function-getdimension) () const = 0<br>_Gets the current_ [_**Dimension**_](classendstone_1_1Dimension.md) _this actor resides in._ |
+| virtual [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Dimension**](classendstone_1_1Dimension.md) &gt; | [**getDimension**](classendstone_1_1Actor.md#function-getdimension) () const = 0<br>_Gets the current_ [_**Dimension**_](classendstone_1_1Dimension.md) _this actor resides in._ |
 | virtual std::int64\_t | [**getId**](classendstone_1_1Actor.md#function-getid) () const = 0<br>_Returns a unique id for this actor._  |
 | virtual [**Level**](classendstone_1_1Level.md) & | [**getLevel**](classendstone_1_1Actor.md#function-getlevel) () const = 0<br>_Gets the current_ [_**Level**_](classendstone_1_1Level.md) _this actor resides in._ |
 | virtual [**Location**](classendstone_1_1Location.md) | [**getLocation**](classendstone_1_1Actor.md#function-getlocation) () const = 0<br>_Gets the actor's current position._  |
@@ -181,7 +182,7 @@ See [endstone::Actor](classendstone_1_1Actor.md)
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setRotation**](classendstone_1_1Actor.md#function-setrotation) ([**float**](classendstone_1_1Identifier.md) yaw, [**float**](classendstone_1_1Identifier.md) pitch) = 0<br>_Sets the actor's rotation._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setScoreTag**](classendstone_1_1Actor.md#function-setscoretag) (std::string score) = 0<br>_Sets the score tag for the actor._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**teleport**](classendstone_1_1Actor.md#function-teleport-12) ([**const**](classendstone_1_1Identifier.md) [**Location**](classendstone_1_1Location.md) & location) = 0<br>_Teleports this actor to the given location._  |
-| virtual [**bool**](classendstone_1_1Identifier.md) | [**teleport**](classendstone_1_1Actor.md#function-teleport-22) ([**const**](classendstone_1_1Identifier.md) [**Actor**](classendstone_1_1Actor.md) & target) = 0<br>_Teleports this actor to the target_ [_**Actor**_](classendstone_1_1Actor.md) _._ |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**teleport**](classendstone_1_1Actor.md#function-teleport-22) ([**const**](classendstone_1_1Identifier.md) [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Actor**](classendstone_1_1Actor.md) &gt; & target) = 0<br>_Teleports this actor to the target_ [_**Actor**_](classendstone_1_1Actor.md) _._ |
 
 
 ## Public Functions inherited from endstone::CommandSender
@@ -204,16 +205,16 @@ See [endstone::Permissible](classendstone_1_1Permissible.md)
 
 | Type | Name |
 | ---: | :--- |
-| virtual [**PermissionAttachment**](classendstone_1_1PermissionAttachment.md) \* | [**addAttachment**](classendstone_1_1Permissible.md#function-addattachment-12) ([**Plugin**](classendstone_1_1Plugin.md) & plugin, [**const**](classendstone_1_1Identifier.md) std::string & name, [**bool**](classendstone_1_1Identifier.md) value) = 0<br>_Adds a new_ [_**PermissionAttachment**_](classendstone_1_1PermissionAttachment.md) _with a single permission by name and value._ |
-| virtual [**PermissionAttachment**](classendstone_1_1PermissionAttachment.md) \* | [**addAttachment**](classendstone_1_1Permissible.md#function-addattachment-22) ([**Plugin**](classendstone_1_1Plugin.md) & plugin) = 0<br>_Adds a new empty_ [_**PermissionAttachment**_](classendstone_1_1PermissionAttachment.md) _to this object._ |
-| virtual std::unordered\_set&lt; [**PermissionAttachmentInfo**](classendstone_1_1PermissionAttachmentInfo.md) \* &gt; | [**getEffectivePermissions**](classendstone_1_1Permissible.md#function-geteffectivepermissions) () const = 0<br>_Gets a set containing all the permissions currently in effect by this object._  |
+| virtual [**NotNull**](classendstone_1_1NotNull.md)&lt; [**PermissionAttachment**](classendstone_1_1PermissionAttachment.md) &gt; | [**addAttachment**](classendstone_1_1Permissible.md#function-addattachment-12) ([**Plugin**](classendstone_1_1Plugin.md) & plugin, [**const**](classendstone_1_1Identifier.md) std::string & name, [**bool**](classendstone_1_1Identifier.md) value) = 0<br>_Adds a new_ [_**PermissionAttachment**_](classendstone_1_1PermissionAttachment.md) _with a single permission by name and value._ |
+| virtual [**NotNull**](classendstone_1_1NotNull.md)&lt; [**PermissionAttachment**](classendstone_1_1PermissionAttachment.md) &gt; | [**addAttachment**](classendstone_1_1Permissible.md#function-addattachment-22) ([**Plugin**](classendstone_1_1Plugin.md) & plugin) = 0<br>_Adds a new empty_ [_**PermissionAttachment**_](classendstone_1_1PermissionAttachment.md) _to this object._ |
+| virtual std::unordered\_set&lt; [**NotNull**](classendstone_1_1NotNull.md)&lt; [**PermissionAttachmentInfo**](classendstone_1_1PermissionAttachmentInfo.md) &gt; &gt; | [**getEffectivePermissions**](classendstone_1_1Permissible.md#function-geteffectivepermissions) () const = 0<br>_Gets a set containing all the permissions currently in effect by this object._  |
 | virtual [**PermissionLevel**](namespaceendstone.md#enum-permissionlevel) | [**getPermissionLevel**](classendstone_1_1Permissible.md#function-getpermissionlevel) () const = 0<br>_Gets the permission level of this object._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**hasPermission**](classendstone_1_1Permissible.md#function-haspermission-12) (std::string name) const = 0<br>_Gets the value of the specified permission, if set._  |
-| virtual [**bool**](classendstone_1_1Identifier.md) | [**hasPermission**](classendstone_1_1Permissible.md#function-haspermission-22) ([**const**](classendstone_1_1Identifier.md) [**Permission**](classendstone_1_1Permission.md) & perm) const = 0<br>_Gets the value of the specified permission, if set._  |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**hasPermission**](classendstone_1_1Permissible.md#function-haspermission-22) ([**const**](classendstone_1_1Identifier.md) [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Permission**](classendstone_1_1Permission.md) &gt; & perm) const = 0<br>_Gets the value of the specified permission, if set._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**isPermissionSet**](classendstone_1_1Permissible.md#function-ispermissionset-12) (std::string name) const = 0<br>_Checks if this object contains an override for the specified permission, by fully qualified name._  |
-| virtual [**bool**](classendstone_1_1Identifier.md) | [**isPermissionSet**](classendstone_1_1Permissible.md#function-ispermissionset-22) ([**const**](classendstone_1_1Identifier.md) [**Permission**](classendstone_1_1Permission.md) & perm) const = 0<br>_Checks if this object contains an override for the specified_ [_**Permission**_](classendstone_1_1Permission.md) _._ |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**isPermissionSet**](classendstone_1_1Permissible.md#function-ispermissionset-22) ([**const**](classendstone_1_1Identifier.md) [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Permission**](classendstone_1_1Permission.md) &gt; & perm) const = 0<br>_Checks if this object contains an override for the specified_ [_**Permission**_](classendstone_1_1Permission.md) _._ |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**recalculatePermissions**](classendstone_1_1Permissible.md#function-recalculatepermissions) () = 0<br>_Recalculates the permissions for this object, if the attachments have changed values._  |
-| virtual [**bool**](classendstone_1_1Identifier.md) | [**removeAttachment**](classendstone_1_1Permissible.md#function-removeattachment) ([**PermissionAttachment**](classendstone_1_1PermissionAttachment.md) & attachment) = 0<br>_Removes the given_ [_**PermissionAttachment**_](classendstone_1_1PermissionAttachment.md) _from this object._ |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**removeAttachment**](classendstone_1_1Permissible.md#function-removeattachment) ([**const**](classendstone_1_1Identifier.md) [**NotNull**](classendstone_1_1NotNull.md)&lt; [**PermissionAttachment**](classendstone_1_1PermissionAttachment.md) &gt; & attachment) = 0<br>_Removes the given_ [_**PermissionAttachment**_](classendstone_1_1PermissionAttachment.md) _from this object._ |
 
 
 ## Public Functions inherited from endstone::Object
@@ -431,7 +432,7 @@ a vector of Effects
 
 _Gets the specified attribute instance from the object._ 
 ```C++
-virtual std::unique_ptr< AttributeInstance > endstone::Mob::getAttribute (
+virtual Nullable < AttributeInstance > endstone::Mob::getAttribute (
     AttributeId id
 ) = 0
 ```
@@ -461,7 +462,7 @@ This instance will be backed directly to the object and any changes will be visi
 
 _Gets all attribute instances from the object._ 
 ```C++
-virtual std::vector< std::unique_ptr< AttributeInstance > > endstone::Mob::getAttributes () = 0
+virtual std::vector< NotNull < AttributeInstance > > endstone::Mob::getAttributes () = 0
 ```
 
 
@@ -637,6 +638,31 @@ virtual bool endstone::Mob::isGliding () const = 0
 **Returns:**
 
 True if this actor is gliding. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function isSwimming 
+
+_Checks to see if an actor is swimming._ 
+```C++
+virtual bool endstone::Mob::isSwimming () const = 0
+```
+
+
+
+
+
+**Returns:**
+
+True if this actor is swimming. 
 
 
 

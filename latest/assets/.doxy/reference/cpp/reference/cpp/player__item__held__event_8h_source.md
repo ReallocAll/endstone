@@ -30,9 +30,8 @@
 namespace endstone {
 class PlayerItemHeldEvent final : public Cancellable<PlayerEvent> {
 public:
-    ENDSTONE_EVENT(PlayerItemHeldEvent)
-
-    explicit PlayerItemHeldEvent(Player &player, const int previous, const int current)
+    ENDSTONE_EVENT(PlayerItemHeldEvent);
+    explicit PlayerItemHeldEvent(const NotNull<Player> &player, const int previous, const int current)
         : Cancellable(player), previous_(previous), current_(current)
     {
     }

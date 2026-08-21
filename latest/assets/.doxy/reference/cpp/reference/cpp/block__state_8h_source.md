@@ -31,6 +31,7 @@
 #include "endstone/block/block.h"
 #include "endstone/block/block_type.h"
 #include "endstone/object.h"
+#include "endstone/util/pointers.h"
 #include "endstone/util/result.h"
 
 namespace endstone {
@@ -39,17 +40,17 @@ class BlockState : public Object {
 public:
     ~BlockState() override = default;
 
-    [[nodiscard]] virtual std::unique_ptr<Block> getBlock() const = 0;
+    [[nodiscard]] virtual NotNull<Block> getBlock() const = 0;
 
     [[nodiscard]] virtual const BlockType &getType() const = 0;
 
     virtual void setType(BlockTypeId type) = 0;
 
-    [[nodiscard]] virtual std::unique_ptr<BlockData> getData() const = 0;
+    [[nodiscard]] virtual NotNull<BlockData> getData() const = 0;
 
     virtual void setData(const BlockData &data) = 0;
 
-    [[nodiscard]] virtual Dimension &getDimension() const = 0;
+    [[nodiscard]] virtual NotNull<Dimension> getDimension() const = 0;
 
     [[nodiscard]] virtual int getX() const = 0;
 
@@ -72,7 +73,7 @@ struct std::formatter<endstone::BlockState> : std::formatter<std::string_view> {
     using Type = endstone::BlockState;
 
     template <typename FormatContext>
-    auto format(const Type &val, FormatContext &ctx) const -> format_context::iterator
+    auto format(const Type &val, FormatContext &ctx) const
     {
         return std::format_to(ctx.out(), "BlockState(pos=BlockPos(x={}, y={}, z={}), type={}, data={})", val.getX(),
                               val.getY(), val.getZ(), val.getType(), *val.getData());

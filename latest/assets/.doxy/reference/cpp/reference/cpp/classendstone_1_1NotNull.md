@@ -10,7 +10,7 @@
 
 
 
-_A wrapper around a std::shared\_ptr that is guaranteed never to be null._ [More...](#detailed-description)
+_A wrapper around a std::shared\_ptr that documents that it is never null._ [More...](#detailed-description)
 
 * `#include <endstone/util/pointers.h>`
 
@@ -60,13 +60,17 @@ _A wrapper around a std::shared\_ptr that is guaranteed never to be null._ [More
 
 | Type | Name |
 | ---: | :--- |
-|   | [**NotNull**](#function-notnull-16) () = delete<br> |
-|   | [**NotNull**](#function-notnull-26) (std::shared\_ptr&lt; [**T**](classendstone_1_1Identifier.md) &gt; ptr) <br> |
-|   | [**NotNull**](#function-notnull-36) ([**const**](classendstone_1_1Identifier.md) [**NotNull**](classendstone_1_1NotNull.md) & other) = default<br> |
-|   | [**NotNull**](#function-notnull-46) (std::shared\_ptr&lt; [**U**](classendstone_1_1Identifier.md) &gt; ptr) <br>_Covariant conversion from a shared\_ptr of a convertible (e.g._  |
-|   | [**NotNull**](#function-notnull-56) ([**const**](classendstone_1_1Identifier.md) [**NotNull**](classendstone_1_1NotNull.md)&lt; [**U**](classendstone_1_1Identifier.md) &gt; & other) <br>_Covariant conversion from a_ [_**NotNull**_](classendstone_1_1NotNull.md) _of a convertible (e.g._ |
-|   | [**NotNull**](#function-notnull-66) (std::nullptr\_t) = delete<br> |
+|   | [**NotNull**](#function-notnull-17) () = delete<br> |
+|   | [**NotNull**](#function-notnull-27) (std::shared\_ptr&lt; [**T**](classendstone_1_1Identifier.md) &gt; ptr) <br> |
+|   | [**NotNull**](#function-notnull-37) ([**const**](classendstone_1_1Identifier.md) [**NotNull**](classendstone_1_1NotNull.md) & other) = default<br> |
+|   | [**NotNull**](#function-notnull-47) (std::shared\_ptr&lt; [**U**](classendstone_1_1Identifier.md) &gt; ptr) <br>_Covariant conversion from a shared\_ptr of a convertible (e.g._  |
+|   | [**NotNull**](#function-notnull-57) ([**const**](classendstone_1_1Identifier.md) [**NotNull**](classendstone_1_1NotNull.md)&lt; [**U**](classendstone_1_1Identifier.md) &gt; & other) <br>_Covariant conversion from a_ [_**NotNull**_](classendstone_1_1NotNull.md) _of a convertible (e.g._ |
+|   | [**NotNull**](#function-notnull-67) ([**const**](classendstone_1_1Identifier.md) [**Nullable**](classendstone_1_1Nullable.md)&lt; [**T**](classendstone_1_1Identifier.md) &gt; & other) <br>_Narrowing conversion from a_ [_**Nullable**_](classendstone_1_1Nullable.md) _._ |
+|   | [**NotNull**](#function-notnull-77) (std::nullptr\_t) = delete<br> |
+|  [**Nullable**](classendstone_1_1Nullable.md)&lt; [**U**](classendstone_1_1Identifier.md) &gt; | [**as**](#function-as) () const<br>_Attempts to narrow the pointee to the given type U, keeping the shared ownership._  |
+|  [**NotNull**](classendstone_1_1NotNull.md)&lt; [**U**](classendstone_1_1Identifier.md) &gt; | [**cast**](#function-cast) () const<br> |
 |  [**const**](classendstone_1_1Identifier.md) pointer\_type & | [**get**](#function-get) () noexcept const<br> |
+|  [**bool**](classendstone_1_1Identifier.md) | [**is**](#function-is) () const<br>_Checks if the pointee is an instance of the given type U (or a subclass of U)._  |
 |  [**T**](classendstone_1_1Identifier.md) & | [**operator\***](#function-operator) () noexcept const<br> |
 |  [**NotNull**](classendstone_1_1NotNull.md) & | [**operator++**](#function-operator_1) () = delete<br> |
 |  [**NotNull**](classendstone_1_1NotNull.md) | [**operator++**](#function-operator_2) ([**int**](classendstone_1_1Identifier.md)) = delete<br> |
@@ -110,7 +114,7 @@ _A wrapper around a std::shared\_ptr that is guaranteed never to be null._ [More
 ## Detailed Description
 
 
-Construction from a null pointer throws, and the pointer-mutating operators are deleted. This mirrors `gsl::not_null<std::shared_ptr<T>>`, but throws `std::invalid_argument` on a null pointer (instead of a contract violation) so that a misbehaving plugin cannot crash the host. 
+This carries the same weight as Java's `@ NotNull`: it states the contract and costs nothing at run time. Passing `nullptr` is a compile error, as are the pointer-mutating operators, but a null `shared_ptr` handed over at run time is not diagnosed. Validate at the boundary where the pointer enters the API, not here. 
 
 
     
@@ -147,7 +151,7 @@ using endstone::NotNull< T >::pointer_type =  std::shared_ptr<T>;
 
 
 
-### function NotNull [1/6]
+### function NotNull [1/7]
 
 ```C++
 endstone::NotNull::NotNull () = delete
@@ -160,7 +164,7 @@ endstone::NotNull::NotNull () = delete
 
 
 
-### function NotNull [2/6]
+### function NotNull [2/7]
 
 ```C++
 inline endstone::NotNull::NotNull (
@@ -175,7 +179,7 @@ inline endstone::NotNull::NotNull (
 
 
 
-### function NotNull [3/6]
+### function NotNull [3/7]
 
 ```C++
 endstone::NotNull::NotNull (
@@ -190,7 +194,7 @@ endstone::NotNull::NotNull (
 
 
 
-### function NotNull [4/6]
+### function NotNull [4/7]
 
 _Covariant conversion from a shared\_ptr of a convertible (e.g._ 
 ```C++
@@ -211,7 +215,7 @@ derived) type.
 
 
 
-### function NotNull [5/6]
+### function NotNull [5/7]
 
 _Covariant conversion from a_ [_**NotNull**_](classendstone_1_1NotNull.md) _of a convertible (e.g._
 ```C++
@@ -232,12 +236,78 @@ derived) type.
 
 
 
-### function NotNull [6/6]
+### function NotNull [6/7]
+
+_Narrowing conversion from a_ [_**Nullable**_](classendstone_1_1Nullable.md) _._
+```C++
+endstone::NotNull::NotNull (
+    const  Nullable < T > & other
+) 
+```
+
+
+
+
+<hr>
+
+
+
+### function NotNull [7/7]
 
 ```C++
 endstone::NotNull::NotNull (
     std::nullptr_t
 ) = delete
+```
+
+
+
+
+<hr>
+
+
+
+### function as 
+
+_Attempts to narrow the pointee to the given type U, keeping the shared ownership._ 
+```C++
+template<class  U>
+inline Nullable < U > endstone::NotNull::as () const
+```
+
+
+
+Returns a null [**Nullable**](classendstone_1_1Nullable.md) if the pointee is not an instance of U (or a subclass of U).
+
+
+
+
+**Template parameters:**
+
+
+* `U` Target type to narrow to (must derive from [**Object**](classendstone_1_1Object.md)) 
+
+
+
+**Returns:**
+
+A [**Nullable**](classendstone_1_1Nullable.md) holding this as U, or a null [**Nullable**](classendstone_1_1Nullable.md) if the narrowing is invalid 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function cast 
+
+```C++
+template<class  U>
+inline NotNull < U > endstone::NotNull::cast () const
 ```
 
 
@@ -255,6 +325,39 @@ inline const pointer_type & endstone::NotNull::get () noexcept const
 
 
 
+
+<hr>
+
+
+
+### function is 
+
+_Checks if the pointee is an instance of the given type U (or a subclass of U)._ 
+```C++
+template<class  U>
+inline bool endstone::NotNull::is () const
+```
+
+
+
+
+
+**Template parameters:**
+
+
+* `U` Type to check against (must derive from [**Object**](classendstone_1_1Object.md)) 
+
+
+
+**Returns:**
+
+`true` if the pointee is an instance of U 
+
+
+
+
+
+        
 
 <hr>
 

@@ -24,7 +24,6 @@
 
 #pragma once
 
-#include <memory>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -39,11 +38,11 @@ class PluginCommand : public Command {
 public:
     PluginCommand(const Command &command, Plugin &owner) : Command(command), owner_(owner) {}
 
-    bool execute(CommandSender &sender, const std::vector<std::string> &args) const override
+    bool execute(const NotNull<CommandSender> &sender, const std::vector<std::string> &args) const override
     {
         if (!owner_.isEnabled()) {
-            sender.sendMessage("Cannot execute command '{}' in plugin {}. Plugin is disabled.", getName(),
-                               getPlugin().getDescription().getFullName());
+            sender->sendMessage("Cannot execute command '{}' in plugin {}. Plugin is disabled.", getName(),
+                                getPlugin().getDescription().getFullName());
             return false;
         }
 
@@ -62,7 +61,7 @@ public:
         }
     }
 
-    virtual void setExecutor(std::shared_ptr<CommandExecutor> executor) { executor_ = std::move(executor); }
+    virtual void setExecutor(Nullable<CommandExecutor> executor) { executor_ = std::move(executor); }
 
     [[nodiscard]] virtual CommandExecutor &getExecutor() const
     {
@@ -82,7 +81,7 @@ public:
 
 private:
     Plugin &owner_;
-    std::shared_ptr<CommandExecutor> executor_;
+    Nullable<CommandExecutor> executor_;
 };
 }  // namespace endstone
 ```

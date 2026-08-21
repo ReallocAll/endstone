@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../../assets/logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -31,7 +31,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -1212,6 +1212,19 @@ For latest updates join the chat on
     <a href="#endstone.Server.ban_list" class="md-nav__link">
       <span class="md-ellipsis">
         <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;ban_list
+      </span>
+    </a>
+
+    <!-- Table of contents list -->
+    
+</li>
+                
+            
+                
+                    <li class="md-nav__item">
+    <a href="#endstone.Server.command_map" class="md-nav__link">
+      <span class="md-ellipsis">
+        <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;command_map
       </span>
     </a>
 
@@ -3260,6 +3273,19 @@ For latest updates join the chat on
             
                 
                     <li class="md-nav__item">
+    <a href="#endstone.Server.command_map" class="md-nav__link">
+      <span class="md-ellipsis">
+        <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;command_map
+      </span>
+    </a>
+
+    <!-- Table of contents list -->
+    
+</li>
+                
+            
+                
+                    <li class="md-nav__item">
     <a href="#endstone.Server.command_sender" class="md-nav__link">
       <span class="md-ellipsis">
         <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;command_sender
@@ -4009,6 +4035,22 @@ For latest updates join the chat on
             </td>
           </tr>
           <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="            command_map
+
+
+  
+      property
+   (endstone.Server.command_map)" href="#endstone.Server.command_map">command_map</a></code></td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="            CommandMap (endstone.command.CommandMap)" href="../command/#endstone.command.CommandMap">CommandMap</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The command map for registering and looking up commands.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
             <td><code><a class="autorefs autorefs-internal" title="            command_sender
 
 
@@ -4482,6 +4524,30 @@ For latest updates join the chat on
     <div class="doc doc-contents ">
 
         <p>The player ban list.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="endstone.Server.command_map" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">command_map</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a href="#endstone.Server.command_map" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">command_map</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="            CommandMap (endstone.command.CommandMap)" href="../command/#endstone.command.CommandMap">CommandMap</a></span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>The command map for registering and looking up commands.</p>
 
     </div>
 
@@ -5775,12 +5841,67 @@ except for those provided in <code>block_states</code>.</p>
 
 
 <a href="#endstone.Server.get_registry" class="headerlink" title="Permanent link">&para;</a></h3>
-<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">get_registry</span><span class="p">(</span><span class="nb">type</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Type" href="https://docs.python.org/3/library/typing.html#typing.Type">Type</a></span><span class="p">[</span><span class="n"><span title="endstone._T">_T</span></span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-internal" title="            endstone.Registry" href="../misc/#endstone.Registry">Registry</a></span><span class="p">[</span><span class="n"><span title="endstone._T">_T</span></span><span class="p">]</span>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">get_registry</span><span class="p">(</span><span class="nb">type</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#type">type</a></span><span class="p">[</span><span class="n"><span title="endstone._T">_T</span></span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-internal" title="            endstone.Registry" href="../misc/#endstone.Registry">Registry</a></span><span class="p">[</span><span class="n"><span title="endstone._T">_T</span></span><span class="p">]</span>
 </span></code></pre></div>
 
     <div class="doc doc-contents ">
 
         <p>Returns the registry for the given type.</p>
+<p>If no registry is present for the given type, <code>None</code> will be returned.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>type</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#type">type</a>[<span title="endstone._T">_T</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Type of the registry to get.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="            endstone.Registry" href="../misc/#endstone.Registry">Registry</a>[<span title="endstone._T">_T</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The corresponding registry, or <code>None</code> if not present.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -6074,7 +6195,7 @@ except for those provided in <code>block_states</code>.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "stable", "provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

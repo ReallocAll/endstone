@@ -5,10 +5,21 @@
     <includes local="no">functional</includes>
     <includes local="no">utility</includes>
     <includes refid="message_8h" local="yes">endstone/message.h</includes>
+    <includes refid="pointers_8h" local="yes">endstone/util/pointers.h</includes>
     <includedby refid="action__form_8h" local="yes">include/endstone/form/action_form.h</includedby>
     <includedby refid="message__form_8h" local="yes">include/endstone/form/message_form.h</includedby>
     <includedby refid="modal__form_8h" local="yes">include/endstone/form/modal_form.h</includedby>
     <incdepgraph>
+      <node id="13">
+        <label>endstone/check.h</label>
+        <link refid="check_8h_source"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
       <node id="1">
         <label>include/endstone/form/form.h</label>
         <link refid="form_8h"/>
@@ -17,6 +28,8 @@
         <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
         </childnode>
       </node>
       <node id="7">
@@ -41,11 +54,55 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
+      <node id="16">
+        <label>endstone/object.h</label>
+        <link refid="object_8h_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>endstone/util/pointers.h</label>
+        <link refid="pointers_8h_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>cstddef</label>
+      </node>
+      <node id="14">
+        <label>format</label>
+      </node>
       <node id="2">
         <label>functional</label>
       </node>
+      <node id="11">
+        <label>memory</label>
+      </node>
+      <node id="15">
+        <label>stdexcept</label>
+      </node>
       <node id="5">
         <label>string</label>
+      </node>
+      <node id="12">
+        <label>type_traits</label>
+      </node>
+      <node id="17">
+        <label>typeinfo</label>
       </node>
       <node id="3">
         <label>utility</label>
@@ -67,30 +124,46 @@
         <link refid="block__place__event_8h_source"/>
       </node>
       <node id="7">
+        <label>include/endstone/event/player/player_arm_swing_event.h</label>
+        <link refid="player__arm__swing__event_8h_source"/>
+      </node>
+      <node id="21">
+        <label>include/endstone/event/player/player_armor_stand_manipulate_event.h</label>
+        <link refid="player__armor__stand__manipulate__event_8h_source"/>
+      </node>
+      <node id="8">
         <label>include/endstone/event/player/player_bed_enter_event.h</label>
         <link refid="player__bed__enter__event_8h_source"/>
       </node>
-      <node id="8">
+      <node id="9">
         <label>include/endstone/event/player/player_bed_leave_event.h</label>
         <link refid="player__bed__leave__event_8h_source"/>
       </node>
-      <node id="9">
+      <node id="10">
+        <label>include/endstone/event/player/player_bucket_actor_event.h</label>
+        <link refid="player__bucket__actor__event_8h_source"/>
+      </node>
+      <node id="11">
         <label>include/endstone/event/player/player_chat_event.h</label>
         <link refid="player__chat__event_8h_source"/>
       </node>
-      <node id="10">
+      <node id="12">
         <label>include/endstone/event/player/player_command_event.h</label>
         <link refid="player__command__event_8h_source"/>
       </node>
-      <node id="11">
+      <node id="13">
+        <label>include/endstone/event/player/player_craft_item_event.h</label>
+        <link refid="player__craft__item__event_8h_source"/>
+      </node>
+      <node id="14">
         <label>include/endstone/event/player/player_dimension_change_event.h</label>
         <link refid="player__dimension__change__event_8h_source"/>
       </node>
-      <node id="12">
+      <node id="15">
         <label>include/endstone/event/player/player_drop_item_event.h</label>
         <link refid="player__drop__item__event_8h_source"/>
       </node>
-      <node id="13">
+      <node id="16">
         <label>include/endstone/event/player/player_emote_event.h</label>
         <link refid="player__emote__event_8h_source"/>
       </node>
@@ -127,9 +200,13 @@
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
         <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
         </childnode>
         <childnode refid="26" relation="include">
         </childnode>
@@ -139,76 +216,152 @@
         </childnode>
         <childnode refid="29" relation="include">
         </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
       </node>
-      <node id="14">
+      <node id="17">
+        <label>include/endstone/event/player/player_exp_change_event.h</label>
+        <link refid="player__exp__change__event_8h_source"/>
+      </node>
+      <node id="18">
         <label>include/endstone/event/player/player_game_mode_change_event.h</label>
         <link refid="player__game__mode__change__event_8h_source"/>
       </node>
-      <node id="15">
+      <node id="19">
+        <label>include/endstone/event/player/player_input_event.h</label>
+        <link refid="player__input__event_8h_source"/>
+      </node>
+      <node id="20">
         <label>include/endstone/event/player/player_interact_actor_event.h</label>
         <link refid="player__interact__actor__event_8h_source"/>
+        <childnode refid="21" relation="include">
+        </childnode>
       </node>
-      <node id="16">
+      <node id="22">
         <label>include/endstone/event/player/player_interact_event.h</label>
         <link refid="player__interact__event_8h_source"/>
       </node>
-      <node id="17">
+      <node id="23">
         <label>include/endstone/event/player/player_item_consume_event.h</label>
         <link refid="player__item__consume__event_8h_source"/>
       </node>
-      <node id="18">
+      <node id="24">
         <label>include/endstone/event/player/player_item_held_event.h</label>
         <link refid="player__item__held__event_8h_source"/>
       </node>
-      <node id="19">
+      <node id="25">
         <label>include/endstone/event/player/player_join_event.h</label>
         <link refid="player__join__event_8h_source"/>
       </node>
-      <node id="23">
+      <node id="30">
         <label>include/endstone/event/player/player_jump_event.h</label>
         <link refid="player__jump__event_8h_source"/>
       </node>
-      <node id="20">
+      <node id="26">
         <label>include/endstone/event/player/player_kick_event.h</label>
         <link refid="player__kick__event_8h_source"/>
       </node>
-      <node id="21">
+      <node id="27">
+        <label>include/endstone/event/player/player_level_change_event.h</label>
+        <link refid="player__level__change__event_8h_source"/>
+      </node>
+      <node id="28">
         <label>include/endstone/event/player/player_login_event.h</label>
         <link refid="player__login__event_8h_source"/>
       </node>
-      <node id="22">
+      <node id="29">
         <label>include/endstone/event/player/player_move_event.h</label>
         <link refid="player__move__event_8h_source"/>
-        <childnode refid="23" relation="include">
+        <childnode refid="30" relation="include">
         </childnode>
-        <childnode refid="24" relation="include">
+        <childnode refid="31" relation="include">
         </childnode>
       </node>
-      <node id="26">
+      <node id="33">
+        <label>include/endstone/event/player/player_pickup_arrow_event.h</label>
+        <link refid="player__pickup__arrow__event_8h_source"/>
+      </node>
+      <node id="34">
+        <label>include/endstone/event/player/player_pickup_experience_event.h</label>
+        <link refid="player__pickup__experience__event_8h_source"/>
+      </node>
+      <node id="35">
         <label>include/endstone/event/player/player_pickup_item_event.h</label>
         <link refid="player__pickup__item__event_8h_source"/>
       </node>
-      <node id="25">
+      <node id="32">
         <label>include/endstone/event/player/player_portal_event.h</label>
         <link refid="player__portal__event_8h_source"/>
       </node>
-      <node id="27">
+      <node id="36">
         <label>include/endstone/event/player/player_quit_event.h</label>
         <link refid="player__quit__event_8h_source"/>
       </node>
-      <node id="28">
+      <node id="37">
+        <label>include/endstone/event/player/player_recipe_book_settings_change_event.h</label>
+        <link refid="player__recipe__book__settings__change__event_8h_source"/>
+      </node>
+      <node id="38">
         <label>include/endstone/event/player/player_respawn_event.h</label>
         <link refid="player__respawn__event_8h_source"/>
       </node>
-      <node id="29">
+      <node id="39">
+        <label>include/endstone/event/player/player_riptide_event.h</label>
+        <link refid="player__riptide__event_8h_source"/>
+      </node>
+      <node id="40">
+        <label>include/endstone/event/player/player_shear_actor_event.h</label>
+        <link refid="player__shear__actor__event_8h_source"/>
+      </node>
+      <node id="41">
         <label>include/endstone/event/player/player_skin_change_event.h</label>
         <link refid="player__skin__change__event_8h_source"/>
       </node>
-      <node id="24">
+      <node id="31">
         <label>include/endstone/event/player/player_teleport_event.h</label>
         <link refid="player__teleport__event_8h_source"/>
-        <childnode refid="25" relation="include">
+        <childnode refid="32" relation="include">
         </childnode>
+      </node>
+      <node id="42">
+        <label>include/endstone/event/player/player_toggle_crawl_event.h</label>
+        <link refid="player__toggle__crawl__event_8h_source"/>
+      </node>
+      <node id="43">
+        <label>include/endstone/event/player/player_toggle_flight_event.h</label>
+        <link refid="player__toggle__flight__event_8h_source"/>
+      </node>
+      <node id="44">
+        <label>include/endstone/event/player/player_toggle_sneak_event.h</label>
+        <link refid="player__toggle__sneak__event_8h_source"/>
+      </node>
+      <node id="45">
+        <label>include/endstone/event/player/player_toggle_sprint_event.h</label>
+        <link refid="player__toggle__sprint__event_8h_source"/>
       </node>
       <node id="2">
         <label>include/endstone/form/action_form.h</label>
@@ -221,18 +374,18 @@
         <link refid="form_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="30" relation="include">
+        <childnode refid="46" relation="include">
         </childnode>
-        <childnode refid="31" relation="include">
+        <childnode refid="47" relation="include">
         </childnode>
       </node>
-      <node id="30">
+      <node id="46">
         <label>include/endstone/form/message_form.h</label>
         <link refid="message__form_8h_source"/>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="31">
+      <node id="47">
         <label>include/endstone/form/modal_form.h</label>
         <link refid="modal__form_8h_source"/>
         <childnode refid="3" relation="include">
@@ -274,39 +427,40 @@
 <codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utility&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;endstone/message.h&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceendstone" kindref="compound">endstone</ref><sp/>{</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">Player;</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight></codeline>
-<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
-<codeline lineno="34" refid="classendstone_1_1Form" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classendstone_1_1Form" kindref="compound">Form</ref><sp/>{</highlight></codeline>
-<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">OnCloseCallback<sp/>=<sp/>std::function&lt;<ref refid="classendstone_1_1Identifier" kindref="compound">void</ref>(<ref refid="classendstone_1_1Player" kindref="compound">Player</ref><sp/>*)&gt;;</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classendstone_1_1Form" kindref="compound">Form</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"></highlight></codeline>
-<codeline lineno="44" refid="classendstone_1_1Form_1a08c5096cfa0a1fb79c160d3bd0890679" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[<ref refid="classendstone_1_1Identifier" kindref="compound">nodiscard</ref>]]<sp/><ref refid="namespaceendstone_1ab1be61859bf80a227cf5d0b12a26ef78" kindref="member">Message</ref><sp/><ref refid="classendstone_1_1Form_1a08c5096cfa0a1fb79c160d3bd0890679" kindref="member">getTitle</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>title_;<sp/>}</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"></highlight></codeline>
-<codeline lineno="52" refid="classendstone_1_1Form_1a85daf37f20cdd2ce9e5eff9a2179a7e0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classendstone_1_1Identifier" kindref="compound">T</ref><sp/>&amp;<ref refid="classendstone_1_1Form_1a85daf37f20cdd2ce9e5eff9a2179a7e0" kindref="member">setTitle</ref>(<ref refid="namespaceendstone_1ab1be61859bf80a227cf5d0b12a26ef78" kindref="member">Message</ref><sp/><ref refid="classendstone_1_1Identifier" kindref="compound">title</ref>)</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>title_<sp/>=<sp/>std::move(<ref refid="classendstone_1_1Identifier" kindref="compound">title</ref>);</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="classendstone_1_1Identifier" kindref="compound">T</ref><sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="57"><highlight class="normal"></highlight></codeline>
-<codeline lineno="64" refid="classendstone_1_1Form_1aff78b36d4798b8185ea1ff93f6260f63" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classendstone_1_1Identifier" kindref="compound">T</ref><sp/>&amp;<ref refid="classendstone_1_1Form_1aff78b36d4798b8185ea1ff93f6260f63" kindref="member">setOnClose</ref>(OnCloseCallback<sp/><ref refid="classendstone_1_1Identifier" kindref="compound">on_close</ref>)</highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>on_close_<sp/>=<sp/>std::move(<ref refid="classendstone_1_1Identifier" kindref="compound">on_close</ref>);</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="classendstone_1_1Identifier" kindref="compound">T</ref><sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"></highlight></codeline>
-<codeline lineno="75" refid="classendstone_1_1Form_1ad0a5721b99d2d9bd30eec414d9c218b6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[<ref refid="classendstone_1_1Identifier" kindref="compound">nodiscard</ref>]]<sp/>OnCloseCallback<sp/><ref refid="classendstone_1_1Form_1ad0a5721b99d2d9bd30eec414d9c218b6" kindref="member">getOnClose</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>on_close_;<sp/>}</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"></highlight></codeline>
-<codeline lineno="77"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceendstone_1ab1be61859bf80a227cf5d0b12a26ef78" kindref="member">Message</ref><sp/>title_;</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>OnCloseCallback<sp/>on_close_;</highlight></codeline>
-<codeline lineno="80"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"></highlight></codeline>
-<codeline lineno="82"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>endstone</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;endstone/util/pointers.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceendstone" kindref="compound">endstone</ref><sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">Player;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="35" refid="classendstone_1_1Form" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classendstone_1_1Form" kindref="compound">Form</ref><sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">OnCloseCallback<sp/>=<sp/>std::function&lt;<ref refid="classendstone_1_1Identifier" kindref="compound">void</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classendstone_1_1Identifier" kindref="compound">NotNull&lt;Player&gt;</ref><sp/>&amp;)&gt;;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classendstone_1_1Form" kindref="compound">Form</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="classendstone_1_1Form_1a08c5096cfa0a1fb79c160d3bd0890679" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[<ref refid="classendstone_1_1Identifier" kindref="compound">nodiscard</ref>]]<sp/><ref refid="namespaceendstone_1ab1be61859bf80a227cf5d0b12a26ef78" kindref="member">Message</ref><sp/><ref refid="classendstone_1_1Form_1a08c5096cfa0a1fb79c160d3bd0890679" kindref="member">getTitle</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>title_;<sp/>}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="classendstone_1_1Form_1a85daf37f20cdd2ce9e5eff9a2179a7e0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classendstone_1_1Identifier" kindref="compound">T</ref><sp/>&amp;<ref refid="classendstone_1_1Form_1a85daf37f20cdd2ce9e5eff9a2179a7e0" kindref="member">setTitle</ref>(<ref refid="namespaceendstone_1ab1be61859bf80a227cf5d0b12a26ef78" kindref="member">Message</ref><sp/><ref refid="classendstone_1_1Identifier" kindref="compound">title</ref>)</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>title_<sp/>=<sp/>std::move(<ref refid="classendstone_1_1Identifier" kindref="compound">title</ref>);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="classendstone_1_1Identifier" kindref="compound">T</ref><sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="classendstone_1_1Form_1aff78b36d4798b8185ea1ff93f6260f63" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classendstone_1_1Identifier" kindref="compound">T</ref><sp/>&amp;<ref refid="classendstone_1_1Form_1aff78b36d4798b8185ea1ff93f6260f63" kindref="member">setOnClose</ref>(OnCloseCallback<sp/><ref refid="classendstone_1_1Identifier" kindref="compound">on_close</ref>)</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>on_close_<sp/>=<sp/>std::move(<ref refid="classendstone_1_1Identifier" kindref="compound">on_close</ref>);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="classendstone_1_1Identifier" kindref="compound">T</ref><sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76" refid="classendstone_1_1Form_1ad0a5721b99d2d9bd30eec414d9c218b6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[<ref refid="classendstone_1_1Identifier" kindref="compound">nodiscard</ref>]]<sp/>OnCloseCallback<sp/><ref refid="classendstone_1_1Form_1ad0a5721b99d2d9bd30eec414d9c218b6" kindref="member">getOnClose</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>on_close_;<sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceendstone_1ab1be61859bf80a227cf5d0b12a26ef78" kindref="member">Message</ref><sp/>title_;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>OnCloseCallback<sp/>on_close_;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>endstone</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="include/endstone/form/form.h"/>
   </compounddef>

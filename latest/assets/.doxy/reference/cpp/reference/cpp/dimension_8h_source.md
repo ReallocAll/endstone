@@ -38,10 +38,13 @@
 
 namespace endstone {
 
+class Mob;
+class Player;
+
 class Dimension;
 using DimensionId = Identifier<Dimension>;
 
-class Dimension : public std::enable_shared_from_this<Dimension> {
+class Dimension {
 public:
     static constexpr auto Overworld = DimensionId::minecraft("overworld");
     static constexpr auto Nether = DimensionId::minecraft("nether");
@@ -57,17 +60,17 @@ public:
 
     [[nodiscard]] virtual bool isValid() const = 0;
 
-    [[nodiscard]] virtual std::unique_ptr<Block> getBlockAt(int x, int y, int z) const = 0;
+    [[nodiscard]] virtual NotNull<Block> getBlockAt(int x, int y, int z) const = 0;
 
-    [[nodiscard]] virtual std::unique_ptr<Block> getBlockAt(Location location) const = 0;
+    [[nodiscard]] virtual NotNull<Block> getBlockAt(Location location) const = 0;
 
     [[nodiscard]] virtual int getHighestBlockYAt(int x, int z) const = 0;
 
-    [[nodiscard]] virtual std::unique_ptr<Block> getHighestBlockAt(int x, int z) const = 0;
+    [[nodiscard]] virtual NotNull<Block> getHighestBlockAt(int x, int z) const = 0;
 
-    [[nodiscard]] virtual std::unique_ptr<Block> getHighestBlockAt(Location location) const = 0;
+    [[nodiscard]] virtual NotNull<Block> getHighestBlockAt(Location location) const = 0;
 
-    [[nodiscard]] virtual std::vector<std::unique_ptr<Chunk>> getLoadedChunks() = 0;
+    [[nodiscard]] virtual std::vector<NotNull<Chunk>> getLoadedChunks() = 0;
 
     [[nodiscard]] virtual bool isChunkLoaded(int x, int z) const = 0;
 
@@ -75,11 +78,15 @@ public:
 
     virtual bool unloadChunk(int x, int z) = 0;
 
-    [[nodiscard]] virtual Item &dropItem(Location location, const ItemStack &item) = 0;
+    [[nodiscard]] virtual NotNull<Item> dropItem(Location location, const ItemStack &item) = 0;
 
-    [[nodiscard]] virtual Actor *spawnActor(Location location, ActorTypeId type) = 0;
+    [[nodiscard]] virtual Nullable<Actor> spawnActor(Location location, ActorTypeId type) = 0;
 
-    [[nodiscard]] virtual std::vector<Actor *> getActors() const = 0;
+    [[nodiscard]] virtual std::vector<NotNull<Actor>> getActors() const = 0;
+
+    [[nodiscard]] virtual std::vector<NotNull<Mob>> getMobs() const = 0;
+
+    [[nodiscard]] virtual std::vector<NotNull<Player>> getPlayers() const = 0;
 };
 
 inline Nullable<Dimension> Location::getDimension() const
@@ -103,7 +110,7 @@ inline bool Location::isDimensionLoaded() const
     return dimension && dimension->isValid();
 }
 
-inline std::unique_ptr<Block> Location::getBlock() const
+inline NotNull<Block> Location::getBlock() const
 {
     return getDimension().value().getBlockAt(*this);
 }
@@ -124,7 +131,7 @@ inline float Location::distanceSquared(const Location &other) const
 template <>
 struct std::formatter<endstone::Dimension> : std::formatter<std::string_view> {
     template <typename FormatContext>
-    auto format(const endstone::Dimension &self, FormatContext &ctx) const -> format_context::iterator
+    auto format(const endstone::Dimension &self, FormatContext &ctx) const
     {
         return std::format_to(ctx.out(), "Dimension(id={})", self.getId());
     }

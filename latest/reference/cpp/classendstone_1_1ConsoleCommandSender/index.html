@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../../assets/logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -27,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -2704,15 +2704,15 @@ For latest updates join the chat on
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;">virtual <a href="../classendstone_1_1PermissionAttachment/"><strong>PermissionAttachment</strong></a> *</td>
+<td style="text-align: right;">virtual <a href="../classendstone_1_1NotNull/"><strong>NotNull</strong></a>&lt; <a href="../classendstone_1_1PermissionAttachment/"><strong>PermissionAttachment</strong></a> &gt;</td>
 <td style="text-align: left;"><a href="../classendstone_1_1Permissible/#function-addattachment-12"><strong>addAttachment</strong></a> (<a href="../classendstone_1_1Plugin/"><strong>Plugin</strong></a> &amp; plugin, <a href="../classendstone_1_1Identifier/"><strong>const</strong></a> std::string &amp; name, <a href="../classendstone_1_1Identifier/"><strong>bool</strong></a> value) = 0<br><em>Adds a new</em> <a href="../classendstone_1_1PermissionAttachment/"><em><strong>PermissionAttachment</strong></em></a> <em>with a single permission by name and value.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classendstone_1_1PermissionAttachment/"><strong>PermissionAttachment</strong></a> *</td>
+<td style="text-align: right;">virtual <a href="../classendstone_1_1NotNull/"><strong>NotNull</strong></a>&lt; <a href="../classendstone_1_1PermissionAttachment/"><strong>PermissionAttachment</strong></a> &gt;</td>
 <td style="text-align: left;"><a href="../classendstone_1_1Permissible/#function-addattachment-22"><strong>addAttachment</strong></a> (<a href="../classendstone_1_1Plugin/"><strong>Plugin</strong></a> &amp; plugin) = 0<br><em>Adds a new empty</em> <a href="../classendstone_1_1PermissionAttachment/"><em><strong>PermissionAttachment</strong></em></a> <em>to this object.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual std::unordered_set&lt; <a href="../classendstone_1_1PermissionAttachmentInfo/"><strong>PermissionAttachmentInfo</strong></a> * &gt;</td>
+<td style="text-align: right;">virtual std::unordered_set&lt; <a href="../classendstone_1_1NotNull/"><strong>NotNull</strong></a>&lt; <a href="../classendstone_1_1PermissionAttachmentInfo/"><strong>PermissionAttachmentInfo</strong></a> &gt; &gt;</td>
 <td style="text-align: left;"><a href="../classendstone_1_1Permissible/#function-geteffectivepermissions"><strong>getEffectivePermissions</strong></a> () const = 0<br><em>Gets a set containing all the permissions currently in effect by this object.</em></td>
 </tr>
 <tr>
@@ -2725,7 +2725,7 @@ For latest updates join the chat on
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="../classendstone_1_1Permissible/#function-haspermission-22"><strong>hasPermission</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1Permission/"><strong>Permission</strong></a> &amp; perm) const = 0<br><em>Gets the value of the specified permission, if set.</em></td>
+<td style="text-align: left;"><a href="../classendstone_1_1Permissible/#function-haspermission-22"><strong>hasPermission</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1NotNull/"><strong>NotNull</strong></a>&lt; <a href="../classendstone_1_1Permission/"><strong>Permission</strong></a> &gt; &amp; perm) const = 0<br><em>Gets the value of the specified permission, if set.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
@@ -2733,7 +2733,7 @@ For latest updates join the chat on
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="../classendstone_1_1Permissible/#function-ispermissionset-22"><strong>isPermissionSet</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1Permission/"><strong>Permission</strong></a> &amp; perm) const = 0<br><em>Checks if this object contains an override for the specified</em> <a href="../classendstone_1_1Permission/"><em><strong>Permission</strong></em></a> <em>.</em></td>
+<td style="text-align: left;"><a href="../classendstone_1_1Permissible/#function-ispermissionset-22"><strong>isPermissionSet</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1NotNull/"><strong>NotNull</strong></a>&lt; <a href="../classendstone_1_1Permission/"><strong>Permission</strong></a> &gt; &amp; perm) const = 0<br><em>Checks if this object contains an override for the specified</em> <a href="../classendstone_1_1Permission/"><em><strong>Permission</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>void</strong></a></td>
@@ -2741,7 +2741,7 @@ For latest updates join the chat on
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="../classendstone_1_1Permissible/#function-removeattachment"><strong>removeAttachment</strong></a> (<a href="../classendstone_1_1PermissionAttachment/"><strong>PermissionAttachment</strong></a> &amp; attachment) = 0<br><em>Removes the given</em> <a href="../classendstone_1_1PermissionAttachment/"><em><strong>PermissionAttachment</strong></em></a> <em>from this object.</em></td>
+<td style="text-align: left;"><a href="../classendstone_1_1Permissible/#function-removeattachment"><strong>removeAttachment</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1NotNull/"><strong>NotNull</strong></a>&lt; <a href="../classendstone_1_1PermissionAttachment/"><strong>PermissionAttachment</strong></a> &gt; &amp; attachment) = 0<br><em>Removes the given</em> <a href="../classendstone_1_1PermissionAttachment/"><em><strong>PermissionAttachment</strong></em></a> <em>from this object.</em></td>
 </tr>
 </tbody>
 </table>
@@ -2909,7 +2909,7 @@ For latest updates join the chat on
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "stable", "provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

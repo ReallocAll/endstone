@@ -25,10 +25,10 @@
 #pragma once
 
 #include <cstdint>
-#include <memory>
 #include <vector>
 
 #include "endstone/map/map_renderer.h"
+#include "endstone/util/pointers.h"
 
 namespace endstone {
 
@@ -62,15 +62,15 @@ public:
 
     virtual void setCenterZ(int z) = 0;
 
-    [[nodiscard]] virtual Dimension *getDimension() const = 0;
+    [[nodiscard]] virtual Nullable<Dimension> getDimension() const = 0;
 
-    virtual void setDimension(const Dimension &dimension) = 0;
+    virtual void setDimension(const NotNull<Dimension> &dimension) = 0;
 
-    [[nodiscard]] virtual std::vector<std::shared_ptr<MapRenderer>> getRenderers() const = 0;
+    [[nodiscard]] virtual std::vector<NotNull<MapRenderer>> getRenderers() const = 0;
 
-    virtual void addRenderer(std::shared_ptr<MapRenderer> renderer) = 0;
+    virtual void addRenderer(NotNull<MapRenderer> renderer) = 0;
 
-    virtual bool removeRenderer(const std::shared_ptr<MapRenderer> &renderer) = 0;
+    virtual bool removeRenderer(const NotNull<MapRenderer> &renderer) = 0;
 
     [[nodiscard]] virtual bool isUnlimitedTracking() const = 0;
 

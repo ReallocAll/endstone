@@ -17,7 +17,7 @@ _Represents a captured state of a block, which will not update automatically._ [
 Inherits the following classes: [endstone::Object](classendstone_1_1Object.md)
 
 
-Inherited by the following classes: [endstone::Container](classendstone_1_1Container.md)
+Inherited by the following classes: [endstone::Campfire](classendstone_1_1Campfire.md),  [endstone::Container](classendstone_1_1Container.md),  [endstone::CreatureSpawner](classendstone_1_1CreatureSpawner.md),  [endstone::ItemFrame](classendstone_1_1ItemFrame.md),  [endstone::Sign](classendstone_1_1Sign.md)
 
 
 
@@ -74,9 +74,9 @@ Inherited by the following classes: [endstone::Container](classendstone_1_1Conta
 
 | Type | Name |
 | ---: | :--- |
-| virtual std::unique\_ptr&lt; [**Block**](classendstone_1_1Block.md) &gt; | [**getBlock**](#function-getblock) () const = 0<br>_Gets the block represented by this block state._  |
-| virtual std::unique\_ptr&lt; [**BlockData**](classendstone_1_1BlockData.md) &gt; | [**getData**](#function-getdata) () const = 0<br>_Gets the data for this block state._  |
-| virtual [**Dimension**](classendstone_1_1Dimension.md) & | [**getDimension**](#function-getdimension) () const = 0<br>_Gets the dimension which contains the block represented by this block state._  |
+| virtual [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Block**](classendstone_1_1Block.md) &gt; | [**getBlock**](#function-getblock) () const = 0<br>_Gets the block represented by this block state._  |
+| virtual [**NotNull**](classendstone_1_1NotNull.md)&lt; [**BlockData**](classendstone_1_1BlockData.md) &gt; | [**getData**](#function-getdata) () const = 0<br>_Gets the data for this block state._  |
+| virtual [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Dimension**](classendstone_1_1Dimension.md) &gt; | [**getDimension**](#function-getdimension) () const = 0<br>_Gets the dimension which contains the block represented by this block state._  |
 | virtual [**Location**](classendstone_1_1Location.md) | [**getLocation**](#function-getlocation) () const = 0<br>_Gets the location of this block state._  |
 | virtual [**const**](classendstone_1_1Identifier.md) [**BlockType**](classendstone_1_1BlockType.md) & | [**getType**](#function-gettype) () const = 0<br>_Gets the type of this block state._  |
 | virtual [**int**](classendstone_1_1Identifier.md) | [**getX**](#function-getx) () const = 0<br>_Gets the x-coordinate of this block state._  |
@@ -172,7 +172,7 @@ Unlike [**Block**](classendstone_1_1Block.md), which only one object can exist p
 
 _Gets the block represented by this block state._ 
 ```C++
-virtual std::unique_ptr< Block > endstone::BlockState::getBlock () const = 0
+virtual NotNull < Block > endstone::BlockState::getBlock () const = 0
 ```
 
 
@@ -197,7 +197,7 @@ the block represented by this block state
 
 _Gets the data for this block state._ 
 ```C++
-virtual std::unique_ptr< BlockData > endstone::BlockState::getData () const = 0
+virtual NotNull < BlockData > endstone::BlockState::getData () const = 0
 ```
 
 
@@ -222,7 +222,7 @@ block specific data
 
 _Gets the dimension which contains the block represented by this block state._ 
 ```C++
-virtual Dimension & endstone::BlockState::getDimension () const = 0
+virtual NotNull < Dimension > endstone::BlockState::getDimension () const = 0
 ```
 
 

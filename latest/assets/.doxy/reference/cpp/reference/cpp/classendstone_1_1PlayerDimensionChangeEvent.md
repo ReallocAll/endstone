@@ -94,9 +94,9 @@ Inherits the following classes: [endstone::PlayerEvent](classendstone_1_1PlayerE
 | Type | Name |
 | ---: | :--- |
 |   | [**ENDSTONE\_EVENT**](#function-endstone_event) ([**PlayerDimensionChangeEvent**](classendstone_1_1PlayerDimensionChangeEvent.md)) <br> |
-|   | [**PlayerDimensionChangeEvent**](#function-playerdimensionchangeevent) ([**Player**](classendstone_1_1Player.md) & player, [**Dimension**](classendstone_1_1Dimension.md) & from, [**Dimension**](classendstone_1_1Dimension.md) & to) <br> |
-|  [**Dimension**](classendstone_1_1Dimension.md) & | [**getFrom**](#function-getfrom) () const<br>_Gets the dimension the player is switching from._  |
-|  [**Dimension**](classendstone_1_1Dimension.md) & | [**getTo**](#function-getto) () const<br>_Gets the dimension the player is switching to._  |
+|   | [**PlayerDimensionChangeEvent**](#function-playerdimensionchangeevent) ([**const**](classendstone_1_1Identifier.md) [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Player**](classendstone_1_1Player.md) &gt; & player, [**const**](classendstone_1_1Identifier.md) [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Dimension**](classendstone_1_1Dimension.md) &gt; & from, [**const**](classendstone_1_1Identifier.md) [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Dimension**](classendstone_1_1Dimension.md) &gt; & to) <br> |
+|  [**const**](classendstone_1_1Identifier.md) [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Dimension**](classendstone_1_1Dimension.md) &gt; & | [**getFrom**](#function-getfrom) () const<br>_Gets the dimension the player is switching from._  |
+|  [**const**](classendstone_1_1Identifier.md) [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Dimension**](classendstone_1_1Dimension.md) &gt; & | [**getTo**](#function-getto) () const<br>_Gets the dimension the player is switching to._  |
 
 
 ## Public Functions inherited from endstone::PlayerEvent
@@ -105,8 +105,8 @@ See [endstone::PlayerEvent](classendstone_1_1PlayerEvent.md)
 
 | Type | Name |
 | ---: | :--- |
-|   | [**PlayerEvent**](classendstone_1_1PlayerEvent.md#function-playerevent) ([**Player**](classendstone_1_1Player.md) & player) <br> |
-|  [**Player**](classendstone_1_1Player.md) & | [**getPlayer**](classendstone_1_1PlayerEvent.md#function-getplayer) () const<br>_Returns the player involved in this event._  |
+|   | [**PlayerEvent**](classendstone_1_1PlayerEvent.md#function-playerevent) ([**const**](classendstone_1_1Identifier.md) [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Player**](classendstone_1_1Player.md) &gt; & player) <br> |
+|  [**const**](classendstone_1_1Identifier.md) [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Player**](classendstone_1_1Player.md) &gt; & | [**getPlayer**](classendstone_1_1PlayerEvent.md#function-getplayer) () const<br>_Returns the player involved in this event._  |
 |   | [**~PlayerEvent**](classendstone_1_1PlayerEvent.md#function-playerevent) () override<br> |
 
 
@@ -152,7 +152,7 @@ See [endstone::PlayerEvent](classendstone_1_1PlayerEvent.md)
 
 | Type | Name |
 | ---: | :--- |
-|  std::reference\_wrapper&lt; [**Player**](classendstone_1_1Player.md) &gt; | [**player\_**](classendstone_1_1PlayerEvent.md#variable-player_)  <br> |
+|  [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Player**](classendstone_1_1Player.md) &gt; | [**player\_**](classendstone_1_1PlayerEvent.md#variable-player_)  <br> |
 
 
 
@@ -235,9 +235,9 @@ endstone::PlayerDimensionChangeEvent::ENDSTONE_EVENT (
 
 ```C++
 inline explicit endstone::PlayerDimensionChangeEvent::PlayerDimensionChangeEvent (
-    Player & player,
-    Dimension & from,
-    Dimension & to
+    const  NotNull < Player > & player,
+    const  NotNull < Dimension > & from,
+    const  NotNull < Dimension > & to
 ) 
 ```
 
@@ -252,7 +252,7 @@ inline explicit endstone::PlayerDimensionChangeEvent::PlayerDimensionChangeEvent
 
 _Gets the dimension the player is switching from._ 
 ```C++
-inline Dimension & endstone::PlayerDimensionChangeEvent::getFrom () const
+inline const  NotNull < Dimension > & endstone::PlayerDimensionChangeEvent::getFrom () const
 ```
 
 
@@ -277,7 +277,7 @@ player's previous dimension
 
 _Gets the dimension the player is switching to._ 
 ```C++
-inline Dimension & endstone::PlayerDimensionChangeEvent::getTo () const
+inline const  NotNull < Dimension > & endstone::PlayerDimensionChangeEvent::getTo () const
 ```
 
 

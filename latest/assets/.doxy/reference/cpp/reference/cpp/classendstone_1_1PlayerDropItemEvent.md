@@ -93,7 +93,8 @@ Inherits the following classes: [endstone::Cancellable](classendstone_1_1Cancell
 
 | Type | Name |
 | ---: | :--- |
-|   | [**PlayerDropItemEvent**](#function-playerdropitemevent) ([**Player**](classendstone_1_1Player.md) & player, [**ItemStack**](classendstone_1_1ItemStack.md) drop) <br> |
+|   | [**ENDSTONE\_EVENT**](#function-endstone_event) ([**PlayerDropItemEvent**](classendstone_1_1PlayerDropItemEvent.md)) <br> |
+|   | [**PlayerDropItemEvent**](#function-playerdropitemevent) ([**const**](classendstone_1_1Identifier.md) [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Player**](classendstone_1_1Player.md) &gt; & player, [**ItemStack**](classendstone_1_1ItemStack.md) drop) <br> |
 |  [**const**](classendstone_1_1Identifier.md) [**ItemStack**](classendstone_1_1ItemStack.md) & | [**getItem**](#function-getitem) () const<br>_Gets the_ [_**ItemStack**_](classendstone_1_1ItemStack.md) _dropped by the player._ |
 
 
@@ -203,11 +204,26 @@ See [endstone::ICancellable](classendstone_1_1ICancellable.md)
 
 
 
+### function ENDSTONE\_EVENT 
+
+```C++
+endstone::PlayerDropItemEvent::ENDSTONE_EVENT (
+    PlayerDropItemEvent
+) 
+```
+
+
+
+
+<hr>
+
+
+
 ### function PlayerDropItemEvent 
 
 ```C++
 inline explicit endstone::PlayerDropItemEvent::PlayerDropItemEvent (
-    Player & player,
+    const  NotNull < Player > & player,
     ItemStack drop
 ) 
 ```

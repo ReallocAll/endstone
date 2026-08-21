@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../../assets/logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -27,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -2743,7 +2743,7 @@ For latest updates join the chat on
 <li><code>#include &lt;endstone/event/player/player_event.h&gt;</code></li>
 </ul>
 <p>Inherits the following classes: <a href="../classendstone_1_1Event/">endstone::Event</a></p>
-<p>Inherited by the following classes: <a href="../classendstone_1_1Cancellable/">endstone::Cancellable</a>,  <a href="../classendstone_1_1PlayerBedLeaveEvent/">endstone::PlayerBedLeaveEvent</a>,  <a href="../classendstone_1_1PlayerDimensionChangeEvent/">endstone::PlayerDimensionChangeEvent</a>,  <a href="../classendstone_1_1PlayerJoinEvent/">endstone::PlayerJoinEvent</a>,  <a href="../classendstone_1_1PlayerQuitEvent/">endstone::PlayerQuitEvent</a>,  <a href="../classendstone_1_1PlayerRespawnEvent/">endstone::PlayerRespawnEvent</a></p>
+<p>Inherited by the following classes: <a href="../classendstone_1_1Cancellable/">endstone::Cancellable</a>,  <a href="../classendstone_1_1PlayerArmSwingEvent/">endstone::PlayerArmSwingEvent</a>,  <a href="../classendstone_1_1PlayerBedLeaveEvent/">endstone::PlayerBedLeaveEvent</a>,  <a href="../classendstone_1_1PlayerDimensionChangeEvent/">endstone::PlayerDimensionChangeEvent</a>,  <a href="../classendstone_1_1PlayerExpChangeEvent/">endstone::PlayerExpChangeEvent</a>,  <a href="../classendstone_1_1PlayerInputEvent/">endstone::PlayerInputEvent</a>,  <a href="../classendstone_1_1PlayerJoinEvent/">endstone::PlayerJoinEvent</a>,  <a href="../classendstone_1_1PlayerLevelChangeEvent/">endstone::PlayerLevelChangeEvent</a>,  <a href="../classendstone_1_1PlayerQuitEvent/">endstone::PlayerQuitEvent</a>,  <a href="../classendstone_1_1PlayerRecipeBookSettingsChangeEvent/">endstone::PlayerRecipeBookSettingsChangeEvent</a>,  <a href="../classendstone_1_1PlayerRespawnEvent/">endstone::PlayerRespawnEvent</a>,  <a href="../classendstone_1_1PlayerRiptideEvent/">endstone::PlayerRiptideEvent</a>,  <a href="../classendstone_1_1PlayerToggleCrawlEvent/">endstone::PlayerToggleCrawlEvent</a>,  <a href="../classendstone_1_1PlayerToggleFlightEvent/">endstone::PlayerToggleFlightEvent</a>,  <a href="../classendstone_1_1PlayerToggleSneakEvent/">endstone::PlayerToggleSneakEvent</a>,  <a href="../classendstone_1_1PlayerToggleSprintEvent/">endstone::PlayerToggleSprintEvent</a></p>
 <h2 id="public-functions">Public Functions<a class="headerlink" href="#public-functions" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -2755,10 +2755,10 @@ For latest updates join the chat on
 <tbody>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-playerevent"><strong>PlayerEvent</strong></a> (<a href="../classendstone_1_1Player/"><strong>Player</strong></a> &amp; player) <br></td>
+<td style="text-align: left;"><a href="#function-playerevent"><strong>PlayerEvent</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1NotNull/"><strong>NotNull</strong></a>&lt; <a href="../classendstone_1_1Player/"><strong>Player</strong></a> &gt; &amp; player) <br></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classendstone_1_1Player/"><strong>Player</strong></a> &amp;</td>
+<td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1NotNull/"><strong>NotNull</strong></a>&lt; <a href="../classendstone_1_1Player/"><strong>Player</strong></a> &gt; &amp;</td>
 <td style="text-align: left;"><a href="#function-getplayer"><strong>getPlayer</strong></a> () const<br><em>Returns the player involved in this event.</em></td>
 </tr>
 <tr>
@@ -2821,7 +2821,7 @@ For latest updates join the chat on
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;">std::reference_wrapper&lt; <a href="../classendstone_1_1Player/"><strong>Player</strong></a> &gt;</td>
+<td style="text-align: right;"><a href="../classendstone_1_1NotNull/"><strong>NotNull</strong></a>&lt; <a href="../classendstone_1_1Player/"><strong>Player</strong></a> &gt;</td>
 <td style="text-align: left;"><a href="#variable-player_"><strong>player_</strong></a>  <br></td>
 </tr>
 </tbody>
@@ -2829,14 +2829,14 @@ For latest updates join the chat on
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-playerevent">function PlayerEvent<a class="headerlink" href="#function-playerevent" title="Permanent link">&para;</a></h3>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">explicit</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">PlayerEvent</span><span class="o">::</span><span class="n">PlayerEvent</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">Player</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">player</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">NotNull</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Player</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">player</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div>
 <hr>
 
 <h3 id="function-getplayer">function getPlayer<a class="headerlink" href="#function-getplayer" title="Permanent link">&para;</a></h3>
 <p><em>Returns the player involved in this event.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">Player</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">PlayerEvent</span><span class="o">::</span><span class="n">getPlayer</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w">  </span><span class="n">NotNull</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Player</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">PlayerEvent</span><span class="o">::</span><span class="n">getPlayer</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p><a href="../classendstone_1_1Player/"><strong>Player</strong></a> who is involved in this event </p>
@@ -2848,7 +2848,7 @@ For latest updates join the chat on
 <hr>
 <h2 id="protected-attributes-documentation">Protected Attributes Documentation<a class="headerlink" href="#protected-attributes-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="variable-player_">variable player_<a class="headerlink" href="#variable-player_" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">std</span><span class="o">::</span><span class="n">reference_wrapper</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">PlayerEvent</span><span class="o">::</span><span class="n">player_</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">NotNull</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">PlayerEvent</span><span class="o">::</span><span class="n">player_</span><span class="p">;</span>
 </span></code></pre></div>
 <hr>
 
@@ -2980,7 +2980,7 @@ For latest updates join the chat on
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "stable", "provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

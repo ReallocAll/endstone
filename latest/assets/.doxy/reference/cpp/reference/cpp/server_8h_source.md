@@ -39,6 +39,7 @@
 #include "endstone/ban/player_ban_list.h"
 #include "endstone/block/block_data.h"
 #include "endstone/boss/boss_bar.h"
+#include "endstone/command/command_map.h"
 #include "endstone/command/command_sender.h"
 #include "endstone/identifier.h"
 #include "endstone/lang/language.h"
@@ -93,17 +94,20 @@ public:
 
     [[nodiscard]] virtual PluginManager &getPluginManager() const = 0;
 
+    [[nodiscard]] virtual CommandMap &getCommandMap() const = 0;
+
     [[nodiscard]] virtual Nullable<PluginCommand> getPluginCommand(std::string name) const = 0;
 
-    [[nodiscard]] virtual ConsoleCommandSender &getCommandSender() const = 0;
+    [[nodiscard]] virtual NotNull<ConsoleCommandSender> getCommandSender() const = 0;
 
-    [[nodiscard]] virtual bool dispatchCommand(CommandSender &sender, std::string command_line) const = 0;
+    [[nodiscard]] virtual bool dispatchCommand(const NotNull<CommandSender> &sender,
+                                               std::string command_line) const = 0;
 
     [[nodiscard]] virtual Scheduler &getScheduler() const = 0;
 
     [[nodiscard]] virtual Level &getLevel() const = 0;
 
-    [[nodiscard]] virtual std::vector<Player *> getOnlinePlayers() const = 0;
+    [[nodiscard]] virtual std::vector<NotNull<Player>> getOnlinePlayers() const = 0;
 
     [[nodiscard]] virtual int getMaxPlayers() const = 0;
 
@@ -146,7 +150,7 @@ public:
 
     [[nodiscard]] virtual Nullable<Scoreboard> getScoreboard() const = 0;
 
-    [[nodiscard]] virtual std::shared_ptr<Scoreboard> createScoreboard() = 0;
+    [[nodiscard]] virtual NotNull<Scoreboard> createScoreboard() = 0;
 
     virtual float getCurrentMillisecondsPerTick() = 0;
 
@@ -161,16 +165,14 @@ public:
 
     [[nodiscard]] virtual std::chrono::system_clock::time_point getStartTime() = 0;
 
-    [[nodiscard]] virtual std::unique_ptr<BossBar> createBossBar(std::string title, BarColor color,
-                                                                 BarStyle style) const = 0;
+    [[nodiscard]] virtual NotNull<BossBar> createBossBar(std::string title, BarColor color, BarStyle style) const = 0;
 
-    [[nodiscard]] virtual std::unique_ptr<BossBar> createBossBar(std::string title, BarColor color, BarStyle style,
-                                                                 std::vector<BarFlag> flags) const = 0;
+    [[nodiscard]] virtual NotNull<BossBar> createBossBar(std::string title, BarColor color, BarStyle style,
+                                                         std::vector<BarFlag> flags) const = 0;
 
-    [[nodiscard]] virtual std::unique_ptr<BlockData> createBlockData(BlockTypeId type) const = 0;
+    [[nodiscard]] virtual NotNull<BlockData> createBlockData(BlockTypeId type) const = 0;
 
-    [[nodiscard]] virtual std::unique_ptr<BlockData> createBlockData(BlockTypeId type,
-                                                                     BlockStates block_states) const = 0;
+    [[nodiscard]] virtual NotNull<BlockData> createBlockData(BlockTypeId type, BlockStates block_states) const = 0;
 
     [[nodiscard]] virtual PlayerBanList &getBanList() const = 0;
 
@@ -188,7 +190,7 @@ public:
 
     [[nodiscard]] virtual MapView *getMap(std::int64_t id) const = 0;
 
-    [[nodiscard]] virtual MapView &createMap(const Dimension &dimension) const = 0;
+    [[nodiscard]] virtual MapView &createMap(const NotNull<Dimension> &dimension) const = 0;
 
     inline static const std::string BroadcastChannelAdmin = "endstone.broadcast.admin";
 

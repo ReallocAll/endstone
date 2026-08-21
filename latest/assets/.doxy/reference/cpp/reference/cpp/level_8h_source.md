@@ -30,6 +30,7 @@
 #include <vector>
 
 #include "endstone/actor/actor.h"
+#include "endstone/game_rule.h"
 #include "endstone/level/dimension.h"
 #include "endstone/level/dimension_creator.h"
 
@@ -41,19 +42,43 @@ public:
 
     [[nodiscard]] virtual std::string getName() const = 0;
 
-    [[nodiscard]] virtual std::vector<Actor *> getActors() const = 0;
+    [[nodiscard]] virtual std::vector<NotNull<Actor>> getActors() const = 0;
 
     [[nodiscard]] virtual int getTime() const = 0;
 
     virtual void setTime(int time) = 0;
 
-    [[nodiscard]] virtual std::vector<Dimension *> getDimensions() const = 0;
+    [[nodiscard]] virtual std::vector<NotNull<Dimension>> getDimensions() const = 0;
 
-    [[nodiscard]] virtual Dimension *getDimension(DimensionId id) const = 0;
+    [[nodiscard]] virtual Nullable<Dimension> getDimension(DimensionId id) const = 0;
 
-    [[nodiscard]] virtual Dimension *createDimension(const DimensionCreator &creator) = 0;
+    [[nodiscard]] virtual Nullable<Dimension> createDimension(const DimensionCreator &creator) = 0;
 
     [[nodiscard]] virtual std::int64_t getSeed() const = 0;
+
+    [[nodiscard]] virtual bool _hasGameRule(Identifier<GameRule> rule) const = 0;
+
+    template <typename T>
+    [[nodiscard]] bool hasGameRule(GameRuleId<T> rule) const
+    {
+        return _hasGameRule(rule);
+    }
+
+    [[nodiscard]] virtual GameRuleValue _getGameRule(Identifier<GameRule> rule) const = 0;
+
+    template <typename T>
+    [[nodiscard]] T getGameRule(GameRuleId<T> rule) const
+    {
+        return std::get<T>(_getGameRule(rule));
+    }
+
+    virtual bool _setGameRule(Identifier<GameRule> rule, GameRuleValue value) = 0;
+
+    template <typename T>
+    bool setGameRule(GameRuleId<T> rule, T value)
+    {
+        return _setGameRule(rule, value);
+    }
 };
 
 }  // namespace endstone

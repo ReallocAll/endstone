@@ -251,9 +251,9 @@
         </inbodydescription>
         <location file="include/endstone/map/map_view.h" line="101" column="18"/>
       </memberdef>
-      <memberdef kind="function" id="classendstone_1_1MapView_1ab739c4252289cfd9ca7436a537cf62d9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
-        <type><ref refid="classendstone_1_1Dimension" kindref="compound">Dimension</ref> *</type>
-        <definition>virtual Dimension * endstone::MapView::getDimension</definition>
+      <memberdef kind="function" id="classendstone_1_1MapView_1ab2001972badba74404636dc2379785be" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classendstone_1_1Nullable" kindref="compound">Nullable</ref>&lt; <ref refid="classendstone_1_1Dimension" kindref="compound">Dimension</ref> &gt;</type>
+        <definition>virtual Nullable&lt; Dimension &gt; endstone::MapView::getDimension</definition>
         <argsstring>() const =0</argsstring>
         <name>getDimension</name>
         <qualifiedname>endstone::MapView::getDimension</qualifiedname>
@@ -261,22 +261,22 @@
 <para>Get the dimension that this map is associated with. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>Pointer to the <ref refid="classendstone_1_1Dimension" kindref="compound">Dimension</ref> this map is associated with, or nullptr. </para>
+<para><simplesect kind="return"><para>The <ref refid="classendstone_1_1Dimension" kindref="compound">Dimension</ref> this map is associated with, or null. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/endstone/map/map_view.h" line="108" column="24"/>
+        <location file="include/endstone/map/map_view.h" line="108" column="23"/>
       </memberdef>
-      <memberdef kind="function" id="classendstone_1_1MapView_1a0ff3209db49eb4585652c8ca104cf7c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+      <memberdef kind="function" id="classendstone_1_1MapView_1aba37705e57a5d2ce11f5c2c74ed11e02" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
         <type><ref refid="classendstone_1_1Identifier" kindref="compound">void</ref></type>
         <definition>virtual void endstone::MapView::setDimension</definition>
-        <argsstring>(const Dimension &amp;dimension)=0</argsstring>
+        <argsstring>(const NotNull&lt; Dimension &gt; &amp;dimension)=0</argsstring>
         <name>setDimension</name>
         <qualifiedname>endstone::MapView::setDimension</qualifiedname>
         <param>
-          <type><ref refid="classendstone_1_1Identifier" kindref="compound">const</ref> <ref refid="classendstone_1_1Dimension" kindref="compound">Dimension</ref> &amp;</type>
+          <type><ref refid="classendstone_1_1Identifier" kindref="compound">const</ref> <ref refid="classendstone_1_1NotNull" kindref="compound">NotNull</ref>&lt; <ref refid="classendstone_1_1Dimension" kindref="compound">Dimension</ref> &gt; &amp;</type>
           <declname>dimension</declname>
         </param>
         <briefdescription>
@@ -298,9 +298,9 @@
         </inbodydescription>
         <location file="include/endstone/map/map_view.h" line="115" column="18"/>
       </memberdef>
-      <memberdef kind="function" id="classendstone_1_1MapView_1a91a42244a4f6e209e3d80fd2d1343bda" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
-        <type>std::vector&lt; std::shared_ptr&lt; <ref refid="classendstone_1_1MapRenderer" kindref="compound">MapRenderer</ref> &gt; &gt;</type>
-        <definition>virtual std::vector&lt; std::shared_ptr&lt; MapRenderer &gt; &gt; endstone::MapView::getRenderers</definition>
+      <memberdef kind="function" id="classendstone_1_1MapView_1a4d063222877e7275e7ed98b15ae9944e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::vector&lt; <ref refid="classendstone_1_1NotNull" kindref="compound">NotNull</ref>&lt; <ref refid="classendstone_1_1MapRenderer" kindref="compound">MapRenderer</ref> &gt; &gt;</type>
+        <definition>virtual std::vector&lt; NotNull&lt; MapRenderer &gt; &gt; endstone::MapView::getRenderers</definition>
         <argsstring>() const =0</argsstring>
         <name>getRenderers</name>
         <qualifiedname>endstone::MapView::getRenderers</qualifiedname>
@@ -316,14 +316,14 @@
         </inbodydescription>
         <location file="include/endstone/map/map_view.h" line="122" column="26"/>
       </memberdef>
-      <memberdef kind="function" id="classendstone_1_1MapView_1a759c2ca352b140a77f6aec185c1f2561" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+      <memberdef kind="function" id="classendstone_1_1MapView_1a1d34d153cfecd22c7045e2cf985a6cc4" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
         <type><ref refid="classendstone_1_1Identifier" kindref="compound">void</ref></type>
         <definition>virtual void endstone::MapView::addRenderer</definition>
-        <argsstring>(std::shared_ptr&lt; MapRenderer &gt; renderer)=0</argsstring>
+        <argsstring>(NotNull&lt; MapRenderer &gt; renderer)=0</argsstring>
         <name>addRenderer</name>
         <qualifiedname>endstone::MapView::addRenderer</qualifiedname>
         <param>
-          <type>std::shared_ptr&lt; <ref refid="classendstone_1_1MapRenderer" kindref="compound">MapRenderer</ref> &gt;</type>
+          <type><ref refid="classendstone_1_1NotNull" kindref="compound">NotNull</ref>&lt; <ref refid="classendstone_1_1MapRenderer" kindref="compound">MapRenderer</ref> &gt;</type>
           <declname>renderer</declname>
         </param>
         <briefdescription>
@@ -345,14 +345,14 @@
         </inbodydescription>
         <location file="include/endstone/map/map_view.h" line="129" column="18"/>
       </memberdef>
-      <memberdef kind="function" id="classendstone_1_1MapView_1a778c94e5095993dd7c5895d7f8c24eee" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+      <memberdef kind="function" id="classendstone_1_1MapView_1aa057267c8f4a9f25590307dd4fc75494" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
         <type><ref refid="classendstone_1_1Identifier" kindref="compound">bool</ref></type>
         <definition>virtual bool endstone::MapView::removeRenderer</definition>
-        <argsstring>(const std::shared_ptr&lt; MapRenderer &gt; &amp;renderer)=0</argsstring>
+        <argsstring>(const NotNull&lt; MapRenderer &gt; &amp;renderer)=0</argsstring>
         <name>removeRenderer</name>
         <qualifiedname>endstone::MapView::removeRenderer</qualifiedname>
         <param>
-          <type><ref refid="classendstone_1_1Identifier" kindref="compound">const</ref> std::shared_ptr&lt; <ref refid="classendstone_1_1MapRenderer" kindref="compound">MapRenderer</ref> &gt; &amp;</type>
+          <type><ref refid="classendstone_1_1Identifier" kindref="compound">const</ref> <ref refid="classendstone_1_1NotNull" kindref="compound">NotNull</ref>&lt; <ref refid="classendstone_1_1MapRenderer" kindref="compound">MapRenderer</ref> &gt; &amp;</type>
           <declname>renderer</declname>
         </param>
         <briefdescription>
@@ -480,21 +480,21 @@
     </detaileddescription>
     <location file="include/endstone/map/map_view.h" line="30" column="1" bodyfile="include/endstone/map/map_view.h" bodystart="30" bodyend="169"/>
     <listofallmembers>
-      <member refid="classendstone_1_1MapView_1a759c2ca352b140a77f6aec185c1f2561" prot="public" virt="pure-virtual"><scope>endstone::MapView</scope><name>addRenderer</name></member>
+      <member refid="classendstone_1_1MapView_1a1d34d153cfecd22c7045e2cf985a6cc4" prot="public" virt="pure-virtual"><scope>endstone::MapView</scope><name>addRenderer</name></member>
       <member refid="classendstone_1_1MapView_1a9a42abd0ee68d6d858f29b313d334d99" prot="public" virt="pure-virtual"><scope>endstone::MapView</scope><name>getCenterX</name></member>
       <member refid="classendstone_1_1MapView_1a730857d1da98ce90d93e6ef1da89af2d" prot="public" virt="pure-virtual"><scope>endstone::MapView</scope><name>getCenterZ</name></member>
-      <member refid="classendstone_1_1MapView_1ab739c4252289cfd9ca7436a537cf62d9" prot="public" virt="pure-virtual"><scope>endstone::MapView</scope><name>getDimension</name></member>
+      <member refid="classendstone_1_1MapView_1ab2001972badba74404636dc2379785be" prot="public" virt="pure-virtual"><scope>endstone::MapView</scope><name>getDimension</name></member>
       <member refid="classendstone_1_1MapView_1aaa13aa08f9e1c8b15797a9ea8af70951" prot="public" virt="pure-virtual"><scope>endstone::MapView</scope><name>getId</name></member>
-      <member refid="classendstone_1_1MapView_1a91a42244a4f6e209e3d80fd2d1343bda" prot="public" virt="pure-virtual"><scope>endstone::MapView</scope><name>getRenderers</name></member>
+      <member refid="classendstone_1_1MapView_1a4d063222877e7275e7ed98b15ae9944e" prot="public" virt="pure-virtual"><scope>endstone::MapView</scope><name>getRenderers</name></member>
       <member refid="classendstone_1_1MapView_1aeadc8818f79ee31f6068b7e57c1eebee" prot="public" virt="pure-virtual"><scope>endstone::MapView</scope><name>getScale</name></member>
       <member refid="classendstone_1_1MapView_1afde755089e4f1bcb1849fe27a56323fa" prot="public" virt="pure-virtual"><scope>endstone::MapView</scope><name>isLocked</name></member>
       <member refid="classendstone_1_1MapView_1ab94f8ff90f7ecef5e313f40696a993b8" prot="public" virt="pure-virtual"><scope>endstone::MapView</scope><name>isUnlimitedTracking</name></member>
       <member refid="classendstone_1_1MapView_1a358de6be116c02c479df672b7d115fb1" prot="public" virt="pure-virtual"><scope>endstone::MapView</scope><name>isVirtual</name></member>
-      <member refid="classendstone_1_1MapView_1a778c94e5095993dd7c5895d7f8c24eee" prot="public" virt="pure-virtual"><scope>endstone::MapView</scope><name>removeRenderer</name></member>
+      <member refid="classendstone_1_1MapView_1aa057267c8f4a9f25590307dd4fc75494" prot="public" virt="pure-virtual"><scope>endstone::MapView</scope><name>removeRenderer</name></member>
       <member refid="classendstone_1_1MapView_1a8923322151bf59ee7077fe9c071a3a3c" prot="public" virt="non-virtual"><scope>endstone::MapView</scope><name>Scale</name></member>
       <member refid="classendstone_1_1MapView_1a909106f650cd8d8755bca25a7b5c76aa" prot="public" virt="pure-virtual"><scope>endstone::MapView</scope><name>setCenterX</name></member>
       <member refid="classendstone_1_1MapView_1ae4875770b34a02497ccdcc081e3d71ec" prot="public" virt="pure-virtual"><scope>endstone::MapView</scope><name>setCenterZ</name></member>
-      <member refid="classendstone_1_1MapView_1a0ff3209db49eb4585652c8ca104cf7c6" prot="public" virt="pure-virtual"><scope>endstone::MapView</scope><name>setDimension</name></member>
+      <member refid="classendstone_1_1MapView_1aba37705e57a5d2ce11f5c2c74ed11e02" prot="public" virt="pure-virtual"><scope>endstone::MapView</scope><name>setDimension</name></member>
       <member refid="classendstone_1_1MapView_1ae265a39be350ec1e782a8035f867bda9" prot="public" virt="pure-virtual"><scope>endstone::MapView</scope><name>setLocked</name></member>
       <member refid="classendstone_1_1MapView_1ac539ec1fa7f4055f8a662b6897f25073" prot="public" virt="pure-virtual"><scope>endstone::MapView</scope><name>setScale</name></member>
       <member refid="classendstone_1_1MapView_1a279570bf134982e89afa46b9ceeb81a7" prot="public" virt="pure-virtual"><scope>endstone::MapView</scope><name>setUnlimitedTracking</name></member>

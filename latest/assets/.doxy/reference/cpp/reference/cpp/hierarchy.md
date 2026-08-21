@@ -7,12 +7,19 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **class** [**endstone::Form**](classendstone_1_1Form.md) _Represents a generic form._ 
 * **class** [**endstone::Object**](classendstone_1_1Object.md) _Base class providing runtime type identification and safe casting._     
     * **class** [**endstone::BlockState**](classendstone_1_1BlockState.md) _Represents a captured state of a block, which will not update automatically._     
-        * **class** [**endstone::Container**](classendstone_1_1Container.md) _Represents a captured state of a container block, such as a chest._ 
+        * **class** [**endstone::Campfire**](classendstone_1_1Campfire.md) _Represents a captured state of a campfire._ 
+        * **class** [**endstone::Container**](classendstone_1_1Container.md) _Represents a captured state of a container block, such as a chest._     
+            * **class** [**endstone::Furnace**](classendstone_1_1Furnace.md) _Represents a captured state of a furnace._ 
+            * **class** [**endstone::Lectern**](classendstone_1_1Lectern.md) _Represents a captured state of a lectern._ 
+        * **class** [**endstone::CreatureSpawner**](classendstone_1_1CreatureSpawner.md) _Represents a captured state of a creature spawner._ 
+        * **class** [**endstone::ItemFrame**](classendstone_1_1ItemFrame.md) _Represents a captured state of an item frame._ 
+        * **class** [**endstone::Sign**](classendstone_1_1Sign.md) _Represents a captured state of a sign._ 
     * **class** [**endstone::Command**](classendstone_1_1Command.md) _Represents a_ [_**Command**_](classendstone_1_1Command.md) _, which executes various tasks upon user input._    
         * **class** [**endstone::PluginCommand**](classendstone_1_1PluginCommand.md) _Represents a_ [_**Command**_](classendstone_1_1Command.md) _belonging to a_[_**Plugin**_](classendstone_1_1Plugin.md) _._
     * **class** [**endstone::ItemMeta**](classendstone_1_1ItemMeta.md) _Represents the metadata of a generic item._     
         * **class** [**endstone::CrossbowMeta**](classendstone_1_1CrossbowMeta.md) _Represents the meta for a crossbow that can have a charged projectile._ 
         * **class** [**endstone::MapMeta**](classendstone_1_1MapMeta.md) _Represents the metadata for a map item._ 
+        * **class** [**endstone::PotionMeta**](classendstone_1_1PotionMeta.md) _Represents the metadata for a potion item._ 
         * **class** [**endstone::WritableBookMeta**](classendstone_1_1WritableBookMeta.md) _Represents the meta for a writable book that can have pages._     
             * **class** [**endstone::BookMeta**](classendstone_1_1BookMeta.md) _Represents the meta for a written book that can have a title, an author, and pages._ 
     * **class** [**endstone::Permissible**](classendstone_1_1Permissible.md) _Represents an object that may become a server operator and can be assigned permissions._     
@@ -32,9 +39,11 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
     * **class** [**endstone::Cancellable**](classendstone_1_1Cancellable.md) _A type characterizing events that may be cancelled by a plugin or the server._ 
     * **class** [**endstone::Cancellable**](classendstone_1_1Cancellable.md) _A type characterizing events that may be cancelled by a plugin or the server._ 
     * **class** [**endstone::Cancellable**](classendstone_1_1Cancellable.md) _A type characterizing events that may be cancelled by a plugin or the server._ 
+    * **class** [**endstone::Cancellable**](classendstone_1_1Cancellable.md) _A type characterizing events that may be cancelled by a plugin or the server._ 
 * **class** [**endstone::Event**](classendstone_1_1Event.md) _Represents an event._     
     * **class** [**endstone::ActorEvent**](classendstone_1_1ActorEvent.md) _Represents an Actor-related event._ 
     * **class** [**endstone::ActorEvent**](classendstone_1_1ActorEvent.md) _Represents an Actor-related event._ 
+    * **class** [**endstone::Cancellable**](classendstone_1_1Cancellable.md) _A type characterizing events that may be cancelled by a plugin or the server._ 
     * **class** [**endstone::ActorEvent**](classendstone_1_1ActorEvent.md) _Represents an Actor-related event._ 
     * **class** [**endstone::BlockEvent**](classendstone_1_1BlockEvent.md) _Represents an Block-related event._     
         * **class** [**endstone::Cancellable**](classendstone_1_1Cancellable.md) _A type characterizing events that may be cancelled by a plugin or the server._ 
@@ -45,11 +54,21 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
                 * **class** [**endstone::ChunkUnloadEvent**](classendstone_1_1ChunkUnloadEvent.md) _Called when a chunk is unloaded._ 
     * **class** [**endstone::PlayerEvent**](classendstone_1_1PlayerEvent.md) _Represents a player related event._     
         * **class** [**endstone::Cancellable**](classendstone_1_1Cancellable.md) _A type characterizing events that may be cancelled by a plugin or the server._ 
+        * **class** [**endstone::PlayerArmSwingEvent**](classendstone_1_1PlayerArmSwingEvent.md) _Called when a player swings their arm._ 
         * **class** [**endstone::PlayerBedLeaveEvent**](classendstone_1_1PlayerBedLeaveEvent.md) _Called when a player is leaving a bed._ 
         * **class** [**endstone::PlayerDimensionChangeEvent**](classendstone_1_1PlayerDimensionChangeEvent.md) _Called when a player switches to another dimension._ 
+        * **class** [**endstone::PlayerExpChangeEvent**](classendstone_1_1PlayerExpChangeEvent.md) _Called when a player's experience changes._ 
+        * **class** [**endstone::PlayerInputEvent**](classendstone_1_1PlayerInputEvent.md) _Called when a player sends updated input to the server._ 
         * **class** [**endstone::PlayerJoinEvent**](classendstone_1_1PlayerJoinEvent.md) _Called when a player joins a server._ 
+        * **class** [**endstone::PlayerLevelChangeEvent**](classendstone_1_1PlayerLevelChangeEvent.md) _Called when a player's level changes._ 
         * **class** [**endstone::PlayerQuitEvent**](classendstone_1_1PlayerQuitEvent.md) _Called when a player leaves a server._ 
+        * **class** [**endstone::PlayerRecipeBookSettingsChangeEvent**](classendstone_1_1PlayerRecipeBookSettingsChangeEvent.md) _Called when a player changes recipe book settings._ 
         * **class** [**endstone::PlayerRespawnEvent**](classendstone_1_1PlayerRespawnEvent.md) _Called when a player respawns._ 
+        * **class** [**endstone::PlayerRiptideEvent**](classendstone_1_1PlayerRiptideEvent.md) _Called when a player activates the riptide enchantment, using their trident to propel them through the air._ 
+        * **class** [**endstone::PlayerToggleCrawlEvent**](classendstone_1_1PlayerToggleCrawlEvent.md) _Called when a player toggles their crawling state._ 
+        * **class** [**endstone::PlayerToggleFlightEvent**](classendstone_1_1PlayerToggleFlightEvent.md) _Called when a player toggles their flying state._ 
+        * **class** [**endstone::PlayerToggleSneakEvent**](classendstone_1_1PlayerToggleSneakEvent.md) _Called when a player toggles their sneaking state._ 
+        * **class** [**endstone::PlayerToggleSprintEvent**](classendstone_1_1PlayerToggleSprintEvent.md) _Called when a player toggles their sprinting state._ 
     * **class** [**endstone::ServerEvent**](classendstone_1_1ServerEvent.md) _Represents a Server-related event._     
         * **class** [**endstone::Cancellable**](classendstone_1_1Cancellable.md) _A type characterizing events that may be cancelled by a plugin or the server._ 
         * **class** [**endstone::MapInitializeEvent**](classendstone_1_1MapInitializeEvent.md) _Called when a map is initialized._ 
@@ -62,8 +81,11 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
     * **class** [**endstone::ActorType**](classendstone_1_1ActorType.md) 
     * **class** [**endstone::Biome**](classendstone_1_1Biome.md) 
     * **class** [**endstone::BlockType**](classendstone_1_1BlockType.md) 
+    * **class** [**endstone::EffectType**](classendstone_1_1EffectType.md) _Represents an effect type._ 
     * **class** [**endstone::Enchantment**](classendstone_1_1Enchantment.md) _Represents an enchantment that may be added to armor, weapons, tools or other items._ 
+    * **class** [**endstone::GameRule**](classendstone_1_1GameRule.md) _Represents a game rule._ 
     * **class** [**endstone::ItemType**](classendstone_1_1ItemType.md) _Represents an item type._ 
+    * **class** [**endstone::PotionType**](classendstone_1_1PotionType.md) _Represents a potion type._ 
 * **class** [**endstone::Attribute**](classendstone_1_1Attribute.md) _All attribute types._ 
 * **class** [**endstone::AttributeInstance**](classendstone_1_1AttributeInstance.md) _Represents a mutable instance of an attribute and its associated modifiers and values._ 
 * **class** [**endstone::AttributeModifier**](classendstone_1_1AttributeModifier.md) _Concrete implementation of an attribute modifier._ 
@@ -88,19 +110,20 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
     * **class** [**endstone::nbt::ValueTag**](classendstone_1_1nbt_1_1ValueTag.md) _An NBT tag wrapping a single scalar payload of type T (e.g._ 
 * **class** [**endstone::Criteria**](classendstone_1_1Criteria.md) _Represents a scoreboard criteria._ 
 * **class** [**endstone::DamageSource**](classendstone_1_1DamageSource.md) _Represents a source of damage._ 
+* **class** [**endstone::Dimension**](classendstone_1_1Dimension.md) _Represents a dimension within a_ [_**Level**_](classendstone_1_1Level.md) _._
 * **class** [**endstone::DimensionCreator**](classendstone_1_1DimensionCreator.md) _Represents the options that may be used to create a custom_ [_**Dimension**_](classendstone_1_1Dimension.md) _._
 * **class** [**endstone::Divider**](classendstone_1_1Divider.md) _Represents a divider._ 
 * **class** [**endstone::Dropdown**](classendstone_1_1Dropdown.md) _Represents a dropdown with a set of predefined options._     
     * **class** [**endstone::StepSlider**](classendstone_1_1StepSlider.md) _Represents a step slider with a set of predefined options._ 
 * **class** [**endstone::Effect**](classendstone_1_1Effect.md) _Represents an effect that can be added to a_ [_**Mob**_](classendstone_1_1Mob.md) _._
-* **class** [**endstone::EffectType**](classendstone_1_1EffectType.md) _All effect types._ 
 * **class** [**endstone::EventHandler**](classendstone_1_1EventHandler.md) _Represents a registered_ [_**EventHandler**_](classendstone_1_1EventHandler.md) _which associates with a_[_**Plugin**_](classendstone_1_1Plugin.md) _._
+* **class** [**endstone::Identifier**](classendstone_1_1Identifier.md) _Represents a identifier consisting of two components: a namespace and a key._ 
 * **class** [**endstone::HandlerList**](classendstone_1_1HandlerList.md) _A list of event handlers._ 
 * **class** [**endstone::Header**](classendstone_1_1Header.md) _Represents a header with a label._ 
 * **class** [**endstone::IRegistry**](classendstone_1_1IRegistry.md) _Type-erased base interface for registries._     
     * **class** [**endstone::Registry**](classendstone_1_1Registry.md) _Abstract registry interface for objects with identifiers._ 
-* **class** [**endstone::Identifier**](classendstone_1_1Identifier.md) _Represents a identifier consisting of two components: a namespace and a key._ 
 * **class** [**endstone::Image**](classendstone_1_1Image.md) _Represents an RGBA image._ 
+* **class** [**endstone::Input**](classendstone_1_1Input.md) _Represents a movement input applied to a player._ 
 * **class** [**endstone::Inventory**](classendstone_1_1Inventory.md) _Interface to the various inventories._     
     * **class** [**endstone::PlayerInventory**](classendstone_1_1PlayerInventory.md) _Interface to the inventory of a_ [_**Player**_](classendstone_1_1Player.md) _, including the four armor slots and any extra slots._
 * **class** [**endstone::ItemFactory**](classendstone_1_1ItemFactory.md) _An interface to the methods used to create item metadata._ 
@@ -114,23 +137,23 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **class** [**endstone::MapCursor**](classendstone_1_1MapCursor.md) _Represents a cursor on a map._ 
 * **class** [**endstone::MapRenderer**](classendstone_1_1MapRenderer.md) _Represents a renderer for a map._ 
 * **class** [**endstone::MapView**](classendstone_1_1MapView.md) _Represents a map item._ 
-* **class** [**endstone::NotNull**](classendstone_1_1NotNull.md) _A wrapper around a std::shared\_ptr that is guaranteed never to be null._ 
+* **class** [**endstone::NotNull**](classendstone_1_1NotNull.md) _A wrapper around a std::shared\_ptr that documents that it is never null._ 
 * **class** [**endstone::Nullable**](classendstone_1_1Nullable.md) _A wrapper around a std::shared\_ptr that may be null._ 
 * **class** [**endstone::Objective**](classendstone_1_1Objective.md) _Represents an objective on a scoreboard that can show scores specific to entries._ 
 * **class** [**endstone::OfflinePlayer**](classendstone_1_1OfflinePlayer.md) _Represents a reference to a player identity and the data belonging to a player that is stored on the disk and can, thus, be retrieved without the player needing to be online._ 
-* **class** [**endstone::Permission**](classendstone_1_1Permission.md) _Represents a unique permission that may be attached to a_ [_**Permissible**_](classendstone_1_1Permissible.md) _._
-* **class** [**endstone::PermissionAttachment**](classendstone_1_1PermissionAttachment.md) _Holds information about a permission attachment on a_ [_**Permissible**_](classendstone_1_1Permissible.md) _object._
 * **class** [**endstone::PermissionAttachmentInfo**](classendstone_1_1PermissionAttachmentInfo.md) _Holds information on a permission and which_ [_**PermissionAttachment**_](classendstone_1_1PermissionAttachment.md) _provides it._
 * **class** [**endstone::PluginDescription**](classendstone_1_1PluginDescription.md) _Represents the basic information about a plugin that the plugin loader needs to know._ 
 * **class** [**endstone::PluginLoader**](classendstone_1_1PluginLoader.md) _Represents a plugin loader, which handles direct access to specific types of plugins._ 
 * **class** [**endstone::PluginManager**](classendstone_1_1PluginManager.md) _Represents a plugin manager that handles all plugins from the_ [_**Server**_](classendstone_1_1Server.md) _._
-* **class** [**endstone::PotionType**](classendstone_1_1PotionType.md) _All potion types._ 
 * **class** [**endstone::Preconditions**](classendstone_1_1Preconditions.md) _Static helpers for validating method arguments and object state._ 
 * **class** [**endstone::Recipe**](classendstone_1_1Recipe.md) _Represents some type of crafting recipe._ 
 * **class** [**endstone::Scheduler**](classendstone_1_1Scheduler.md) _Represents a scheduler that executes various tasks._ 
 * **class** [**endstone::Score**](classendstone_1_1Score.md) _Represents a score for an objective on a scoreboard._ 
+* **class** [**endstone::Scoreboard**](classendstone_1_1Scoreboard.md) _Represents a scoreboard._ 
 * **class** [**endstone::Server**](classendstone_1_1Server.md) _Represents a server implementation._ 
+* **class** [**endstone::Service**](classendstone_1_1Service.md) _Services represent a list of methods._ 
 * **class** [**endstone::ServiceManager**](classendstone_1_1ServiceManager.md) _Represent a service manager that manages services and service providers._ 
+* **class** [**endstone::SignSide**](classendstone_1_1SignSide.md) _Represents a side of a sign._ 
 * **class** [**endstone::Skin**](classendstone_1_1Skin.md) _Represents a player skin._ 
 * **class** [**endstone::Slider**](classendstone_1_1Slider.md) _Represents a slider with a label._ 
 * **class** [**endstone::SocketAddress**](classendstone_1_1SocketAddress.md) _Represents an IP Socket Address (hostname + port number)._ 
@@ -151,6 +174,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **struct** [**std::hash&lt; endstone::Identifier&lt; T &gt; &gt;**](structstd_1_1hash_3_01endstone_1_1Identifier_3_01T_01_4_01_4.md) 
 * **struct** [**std::hash&lt; endstone::NotNull&lt; T &gt; &gt;**](structstd_1_1hash_3_01endstone_1_1NotNull_3_01T_01_4_01_4.md) 
 * **struct** [**std::hash&lt; endstone::Nullable&lt; T &gt; &gt;**](structstd_1_1hash_3_01endstone_1_1Nullable_3_01T_01_4_01_4.md) 
+* **struct** [**std::hash&lt; endstone::SocketAddress &gt;**](structstd_1_1hash_3_01endstone_1_1SocketAddress_01_4.md) 
 * **struct** [**std::hash&lt; endstone::UUID &gt;**](structstd_1_1hash_3_01endstone_1_1UUID_01_4.md) 
 * **class** **std::enable_shared_from_this< Permissible >**    
     * **class** [**endstone::Permissible**](classendstone_1_1Permissible.md) _Represents an object that may become a server operator and can be assigned permissions._     
@@ -278,12 +302,21 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
     * **class** [**endstone::Cancellable**](classendstone_1_1Cancellable.md) _A type characterizing events that may be cancelled by a plugin or the server._ 
     * **class** [**endstone::Cancellable**](classendstone_1_1Cancellable.md) _A type characterizing events that may be cancelled by a plugin or the server._ 
     * **class** [**endstone::Cancellable**](classendstone_1_1Cancellable.md) _A type characterizing events that may be cancelled by a plugin or the server._ 
-* **class** **std::enable_shared_from_this< Dimension >**    
-    * **class** [**endstone::Dimension**](classendstone_1_1Dimension.md) _Represents a dimension within a_ [_**Level**_](classendstone_1_1Level.md) _._
-* **class** **std::enable_shared_from_this< Scoreboard >**    
-    * **class** [**endstone::Scoreboard**](classendstone_1_1Scoreboard.md) _Represents a scoreboard._ 
-* **class** **std::enable_shared_from_this< Service >**    
-    * **class** [**endstone::Service**](classendstone_1_1Service.md) _Services represent a list of methods._ 
+    * **class** [**endstone::Cancellable**](classendstone_1_1Cancellable.md) _A type characterizing events that may be cancelled by a plugin or the server._ 
+    * **class** [**endstone::Cancellable**](classendstone_1_1Cancellable.md) _A type characterizing events that may be cancelled by a plugin or the server._ 
+    * **class** [**endstone::Cancellable**](classendstone_1_1Cancellable.md) _A type characterizing events that may be cancelled by a plugin or the server._ 
+    * **class** [**endstone::Cancellable**](classendstone_1_1Cancellable.md) _A type characterizing events that may be cancelled by a plugin or the server._ 
+    * **class** [**endstone::Cancellable**](classendstone_1_1Cancellable.md) _A type characterizing events that may be cancelled by a plugin or the server._ 
+    * **class** [**endstone::Cancellable**](classendstone_1_1Cancellable.md) _A type characterizing events that may be cancelled by a plugin or the server._ 
+    * **class** [**endstone::Cancellable**](classendstone_1_1Cancellable.md) _A type characterizing events that may be cancelled by a plugin or the server._ 
+    * **class** [**endstone::Cancellable**](classendstone_1_1Cancellable.md) _A type characterizing events that may be cancelled by a plugin or the server._ 
+    * **class** [**endstone::Cancellable**](classendstone_1_1Cancellable.md) _A type characterizing events that may be cancelled by a plugin or the server._ 
+    * **class** [**endstone::Cancellable**](classendstone_1_1Cancellable.md) _A type characterizing events that may be cancelled by a plugin or the server._ 
+    * **class** [**endstone::Cancellable**](classendstone_1_1Cancellable.md) _A type characterizing events that may be cancelled by a plugin or the server._ 
+* **class** **std::enable_shared_from_this< Permission >**    
+    * **class** [**endstone::Permission**](classendstone_1_1Permission.md) _Represents a unique permission that may be attached to a_ [_**Permissible**_](classendstone_1_1Permissible.md) _._
+* **class** **std::enable_shared_from_this< PermissionAttachment >**    
+    * **class** [**endstone::PermissionAttachment**](classendstone_1_1PermissionAttachment.md) _Holds information about a permission attachment on a_ [_**Permissible**_](classendstone_1_1Permissible.md) _object._
 * **class** **endstone::Func**    
     * **struct** [**endstone::overloaded**](structendstone_1_1overloaded.md) _Helper type for visitors._ 
 * **class** **std::formatter< std::string_view >**    
@@ -312,6 +345,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
     * **struct** [**std::formatter&lt; endstone::Location &gt;**](structstd_1_1formatter_3_01endstone_1_1Location_01_4.md) 
     * **struct** [**std::formatter&lt; endstone::LongTag &gt;**](structstd_1_1formatter_3_01endstone_1_1LongTag_01_4.md) 
     * **struct** [**std::formatter&lt; endstone::ShortTag &gt;**](structstd_1_1formatter_3_01endstone_1_1ShortTag_01_4.md) 
+    * **struct** [**std::formatter&lt; endstone::SocketAddress &gt;**](structstd_1_1formatter_3_01endstone_1_1SocketAddress_01_4.md) 
     * **struct** [**std::formatter&lt; endstone::StringTag &gt;**](structstd_1_1formatter_3_01endstone_1_1StringTag_01_4.md) 
     * **struct** [**std::formatter&lt; endstone::Vector &gt;**](structstd_1_1formatter_3_01endstone_1_1Vector_01_4.md) 
     * **struct** [**std::formatter&lt; endstone::detail::JoinView&lt; It, Sentinel &gt; &gt;**](structstd_1_1formatter_3_01endstone_1_1detail_1_1JoinView_3_01It_00_01Sentinel_01_4_01_4.md) 

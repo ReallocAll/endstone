@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../../assets/logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -31,7 +31,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -2646,14 +2646,21 @@ For latest updates join the chat on
 <li><strong>namespace</strong> <a href="../namespaceendstone/"><strong>endstone</strong></a> <em>Represents a button with text and an optional icon.</em>     <ul>
 <li><strong>class</strong> <a href="../classendstone_1_1ActionForm/"><strong>ActionForm</strong></a> <em>Represents a form with buttons that let the player take action.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Actor/"><strong>Actor</strong></a> <em>Represents a base actor in the level.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1ActorChangeBlockEvent/"><strong>ActorChangeBlockEvent</strong></a> <em>Called when an</em> <a href="../classendstone_1_1Actor/"><em><strong>Actor</strong></em></a> <em>changes a block as part of its own behaviour, such as a creeper exploding, an enderman picking a block up, a ravager trampling crops or a zombie breaking a door.</em>    </li>
+<li><strong>class</strong> <a href="../classendstone_1_1ActorCollideWithActorEvent/"><strong>ActorCollideWithActorEvent</strong></a> <em>Called when two Actors collide with each other.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1ActorDamageEvent/"><strong>ActorDamageEvent</strong></a> <em>Called when an</em> <a href="../classendstone_1_1Actor/"><em><strong>Actor</strong></em></a> <em>is damaged.</em>    </li>
 <li><strong>class</strong> <a href="../classendstone_1_1ActorDeathEvent/"><strong>ActorDeathEvent</strong></a> <em>Called when an</em> <a href="../classendstone_1_1Actor/"><em><strong>Actor</strong></em></a> <em>dies.</em>    </li>
+<li><strong>class</strong> <a href="../classendstone_1_1ActorDismountEvent/"><strong>ActorDismountEvent</strong></a> <em>Called when an</em> <a href="../classendstone_1_1Actor/"><em><strong>Actor</strong></em></a> <em>stops riding another</em><a href="../classendstone_1_1Actor/"><em><strong>Actor</strong></em></a> <em>.</em>    </li>
+<li><strong>class</strong> <a href="../classendstone_1_1ActorEffectEvent/"><strong>ActorEffectEvent</strong></a> <em>Called when an effect on a</em> <a href="../classendstone_1_1Mob/"><em><strong>Mob</strong></em></a> <em>changes.</em>    </li>
 <li><strong>class</strong> <a href="../classendstone_1_1ActorEvent/"><strong>ActorEvent</strong></a> <em>Represents an Actor-related event.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1ActorExplodeEvent/"><strong>ActorExplodeEvent</strong></a> <em>Called when an actor explodes.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1ActorKnockbackEvent/"><strong>ActorKnockbackEvent</strong></a> <em>Called when a living entity receives knockback.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1ActorPickupItemEvent/"><strong>ActorPickupItemEvent</strong></a> <em>Called when an</em> <a href="../classendstone_1_1Actor/"><em><strong>Actor</strong></em></a> <em>picks an item up from the ground.</em>    </li>
 <li><strong>class</strong> <a href="../classendstone_1_1ActorRemoveEvent/"><strong>ActorRemoveEvent</strong></a> <em>Called when an</em> <a href="../classendstone_1_1Actor/"><em><strong>Actor</strong></em></a> <em>is removed.</em>    </li>
 <li><strong>class</strong> <a href="../classendstone_1_1ActorSpawnEvent/"><strong>ActorSpawnEvent</strong></a> <em>Called when an</em> <a href="../classendstone_1_1Actor/"><em><strong>Actor</strong></em></a> <em>is spawned into a world.</em>    </li>
 <li><strong>class</strong> <a href="../classendstone_1_1ActorTeleportEvent/"><strong>ActorTeleportEvent</strong></a> <em>Called when a non-player entity is teleported from one location to another.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1ActorToggleGlideEvent/"><strong>ActorToggleGlideEvent</strong></a> <em>Called when an</em> <a href="../classendstone_1_1Actor/"><em><strong>Actor</strong></em></a> <em>'s gliding state is toggled with an elytra.</em>    </li>
+<li><strong>class</strong> <a href="../classendstone_1_1ActorToggleSwimEvent/"><strong>ActorToggleSwimEvent</strong></a> <em>Called when an</em> <a href="../classendstone_1_1Actor/"><em><strong>Actor</strong></em></a> <em>'s swimming state is toggled.</em>    </li>
 <li><strong>class</strong> <a href="../classendstone_1_1ActorType/"><strong>ActorType</strong></a>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Attribute/"><strong>Attribute</strong></a> <em>All attribute types.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1AttributeInstance/"><strong>AttributeInstance</strong></a> <em>Represents a mutable instance of an attribute and its associated modifiers and values.</em>     </li>
@@ -2681,6 +2688,7 @@ For latest updates join the chat on
 <li><strong>class</strong> <a href="../classendstone_1_1BossBar/"><strong>BossBar</strong></a> <em>Represents a boss bar that is displayed to players.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1BroadcastMessageEvent/"><strong>BroadcastMessageEvent</strong></a> <a href="../classendstone_1_1Event/"><em><strong>Event</strong></em></a> <em>triggered for server broadcast messages such as from</em><a href="../classendstone_1_1Server/#function-broadcast"><em><strong>Server::broadcast()</strong></em></a> <em>.</em>    </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Button/"><strong>Button</strong></a> <em>Represents a button with text and an optional icon.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1Campfire/"><strong>Campfire</strong></a> <em>Represents a captured state of a campfire.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Cancellable/"><strong>Cancellable</strong></a> <em>A type characterizing events that may be cancelled by a plugin or the server.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Chunk/"><strong>Chunk</strong></a> <em>Represents a chunk of blocks.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1ChunkEvent/"><strong>ChunkEvent</strong></a> <em>Represents a</em> <a href="../classendstone_1_1Chunk/"><em><strong>Chunk</strong></em></a> <em>related event.</em>    </li>
@@ -2697,6 +2705,7 @@ For latest updates join the chat on
 <li><strong>class</strong> <a href="../classendstone_1_1CompoundTag/"><strong>CompoundTag</strong></a> <em>An NBT tag holding a set of named child tags, keyed by string.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1ConsoleCommandSender/"><strong>ConsoleCommandSender</strong></a> <em>Represents a console command sender.</em> </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Container/"><strong>Container</strong></a> <em>Represents a captured state of a container block, such as a chest.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1CreatureSpawner/"><strong>CreatureSpawner</strong></a> <em>Represents a captured state of a creature spawner.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Criteria/"><strong>Criteria</strong></a> <em>Represents a scoreboard criteria.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1CrossbowMeta/"><strong>CrossbowMeta</strong></a> <em>Represents the meta for a crossbow that can have a charged projectile.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1DamageSource/"><strong>DamageSource</strong></a> <em>Represents a source of damage.</em>     </li>
@@ -2706,28 +2715,34 @@ For latest updates join the chat on
 <li><strong>class</strong> <a href="../classendstone_1_1Divider/"><strong>Divider</strong></a> <em>Represents a divider.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Dropdown/"><strong>Dropdown</strong></a> <em>Represents a dropdown with a set of predefined options.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Effect/"><strong>Effect</strong></a> <em>Represents an effect that can be added to a</em> <a href="../classendstone_1_1Mob/"><em><strong>Mob</strong></em></a> <em>.</em>    </li>
-<li><strong>class</strong> <a href="../classendstone_1_1EffectType/"><strong>EffectType</strong></a> <em>All effect types.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1EffectType/"><strong>EffectType</strong></a> <em>Represents an effect type.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Enchantment/"><strong>Enchantment</strong></a> <em>Represents an enchantment that may be added to armor, weapons, tools or other items.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Event/"><strong>Event</strong></a> <em>Represents an event.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1EventHandler/"><strong>EventHandler</strong></a> <em>Represents a registered</em> <a href="../classendstone_1_1EventHandler/"><em><strong>EventHandler</strong></em></a> <em>which associates with a</em><a href="../classendstone_1_1Plugin/"><em><strong>Plugin</strong></em></a> <em>.</em>    </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Form/"><strong>Form</strong></a> <em>Represents a generic form.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1Furnace/"><strong>Furnace</strong></a> <em>Represents a captured state of a furnace.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1GameRule/"><strong>GameRule</strong></a> <em>Represents a game rule.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1GameRuleId/"><strong>GameRuleId</strong></a> <em>Represents the identifier of a game rule, carrying the type of the rule's value.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1HandlerList/"><strong>HandlerList</strong></a> <em>A list of event handlers.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Header/"><strong>Header</strong></a> <em>Represents a header with a label.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1ICancellable/"><strong>ICancellable</strong></a> <em>Interface for events that may be cancelled by a plugin or the server.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1IRegistry/"><strong>IRegistry</strong></a> <em>Type-erased base interface for registries.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Identifier/"><strong>Identifier</strong></a> <em>Represents a identifier consisting of two components: a namespace and a key.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Image/"><strong>Image</strong></a> <em>Represents an RGBA image.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1Input/"><strong>Input</strong></a> <em>Represents a movement input applied to a player.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Inventory/"><strong>Inventory</strong></a> <em>Interface to the various inventories.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1IpBanEntry/"><strong>IpBanEntry</strong></a> <em>Represents an entry for a banned IP address.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1IpBanList/"><strong>IpBanList</strong></a> <em>Represents a ban list, containing banned IP addresses.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Item/"><strong>Item</strong></a> <em>Represents a dropped item that can be picked up by players.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1ItemFactory/"><strong>ItemFactory</strong></a> <em>An interface to the methods used to create item metadata.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1ItemFrame/"><strong>ItemFrame</strong></a> <em>Represents a captured state of an item frame.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1ItemMeta/"><strong>ItemMeta</strong></a> <em>Represents the metadata of a generic item.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1ItemStack/"><strong>ItemStack</strong></a> <em>Represents a stack of items.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1ItemType/"><strong>ItemType</strong></a> <em>Represents an item type.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Label/"><strong>Label</strong></a> <em>Represents a text label.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Language/"><strong>Language</strong></a> <em>Represents the interface for translating text into different languages.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1LeavesDecayEvent/"><strong>LeavesDecayEvent</strong></a> <em>Called when leaves are decaying naturally.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1Lectern/"><strong>Lectern</strong></a> <em>Represents a captured state of a lectern.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Level/"><strong>Level</strong></a> <em>Represents a level, which may contain actors, chunks and blocks.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1LevelEvent/"><strong>LevelEvent</strong></a> <em>Represents events within a level.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1ListTag/"><strong>ListTag</strong></a> <em>An NBT tag holding an ordered sequence of child tags that all share the same type.</em>     </li>
@@ -2742,7 +2757,7 @@ For latest updates join the chat on
 <li><strong>class</strong> <a href="../classendstone_1_1MessageForm/"><strong>MessageForm</strong></a> <em>Represents a form with two buttons.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Mob/"><strong>Mob</strong></a> <em>Represents a mobile entity (i.e.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1ModalForm/"><strong>ModalForm</strong></a> <em>Represents a modal form with controls.</em>     </li>
-<li><strong>class</strong> <a href="../classendstone_1_1NotNull/"><strong>NotNull</strong></a> <em>A wrapper around a std::shared_ptr that is guaranteed never to be null.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1NotNull/"><strong>NotNull</strong></a> <em>A wrapper around a std::shared_ptr that documents that it is never null.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Nullable/"><strong>Nullable</strong></a> <em>A wrapper around a std::shared_ptr that may be null.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Object/"><strong>Object</strong></a> <em>Base class providing runtime type identification and safe casting.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Objective/"><strong>Objective</strong></a> <em>Represents an objective on a scoreboard that can show scores specific to entries.</em>     </li>
@@ -2754,34 +2769,50 @@ For latest updates join the chat on
 <li><strong>class</strong> <a href="../classendstone_1_1PermissionAttachment/"><strong>PermissionAttachment</strong></a> <em>Holds information about a permission attachment on a</em> <a href="../classendstone_1_1Permissible/"><em><strong>Permissible</strong></em></a> <em>object.</em>    </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PermissionAttachmentInfo/"><strong>PermissionAttachmentInfo</strong></a> <em>Holds information on a permission and which</em> <a href="../classendstone_1_1PermissionAttachment/"><em><strong>PermissionAttachment</strong></em></a> <em>provides it.</em>    </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Player/"><strong>Player</strong></a> <em>Represents a player.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1PlayerArmSwingEvent/"><strong>PlayerArmSwingEvent</strong></a> <em>Called when a player swings their arm.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1PlayerArmorStandManipulateEvent/"><strong>PlayerArmorStandManipulateEvent</strong></a> <em>Called when a player interacts with an armor stand and will either swap, retrieve or place an item.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PlayerBanEntry/"><strong>PlayerBanEntry</strong></a> <em>Represents an entry for a banned player.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PlayerBanList/"><strong>PlayerBanList</strong></a> <em>Represents a ban list, containing banned players.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PlayerBedEnterEvent/"><strong>PlayerBedEnterEvent</strong></a> <em>Called when a player is almost about to enter the bed.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PlayerBedLeaveEvent/"><strong>PlayerBedLeaveEvent</strong></a> <em>Called when a player is leaving a bed.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1PlayerBucketActorEvent/"><strong>PlayerBucketActorEvent</strong></a> <em>Represents an event that is called when a player captures an actor in a bucket.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PlayerChatEvent/"><strong>PlayerChatEvent</strong></a> <em>Called when a player sends a chat message.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PlayerCommandEvent/"><strong>PlayerCommandEvent</strong></a> <em>Called whenever a player runs a command.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1PlayerCraftItemEvent/"><strong>PlayerCraftItemEvent</strong></a> <em>Called when a player crafts an item.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PlayerDeathEvent/"><strong>PlayerDeathEvent</strong></a> <em>Called when a</em> <a href="../classendstone_1_1Player/"><em><strong>Player</strong></em></a> <em>dies.</em>    </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PlayerDimensionChangeEvent/"><strong>PlayerDimensionChangeEvent</strong></a> <em>Called when a player switches to another dimension.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PlayerDropItemEvent/"><strong>PlayerDropItemEvent</strong></a> <em>Called when a player drops an item from their inventory.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PlayerEmoteEvent/"><strong>PlayerEmoteEvent</strong></a> <em>Called when a player uses an emote.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PlayerEvent/"><strong>PlayerEvent</strong></a> <em>Represents a player related event.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1PlayerExpChangeEvent/"><strong>PlayerExpChangeEvent</strong></a> <em>Called when a player's experience changes.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PlayerGameModeChangeEvent/"><strong>PlayerGameModeChangeEvent</strong></a> <em>Called when the GameMode of the player is changed.</em>     </li>
-<li><strong>class</strong> <a href="../classendstone_1_1PlayerInteractActorEvent/"><strong>PlayerInteractActorEvent</strong></a> <em>Represents an event that is called when a player right-clicks an actor.</em>     </li>
-<li><strong>class</strong> <a href="../classendstone_1_1PlayerInteractEvent/"><strong>PlayerInteractEvent</strong></a> <em>Represents an event that is called when a player right-clicks a block.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1PlayerInputEvent/"><strong>PlayerInputEvent</strong></a> <em>Called when a player sends updated input to the server.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1PlayerInteractActorEvent/"><strong>PlayerInteractActorEvent</strong></a> <em>Called when a player right-clicks an actor.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1PlayerInteractEvent/"><strong>PlayerInteractEvent</strong></a> <em>Called when a player interacts with an object or air.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PlayerInventory/"><strong>PlayerInventory</strong></a> <em>Interface to the inventory of a</em> <a href="../classendstone_1_1Player/"><em><strong>Player</strong></em></a> <em>, including the four armor slots and any extra slots.</em>    </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PlayerItemConsumeEvent/"><strong>PlayerItemConsumeEvent</strong></a> <em>Called when a player is finishing consuming an item (food, potion, milk bucket).</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PlayerItemHeldEvent/"><strong>PlayerItemHeldEvent</strong></a> <em>Called when a player changes their currently held item.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PlayerJoinEvent/"><strong>PlayerJoinEvent</strong></a> <em>Called when a player joins a server.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PlayerJumpEvent/"><strong>PlayerJumpEvent</strong></a> <em>Called when a player jumps.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PlayerKickEvent/"><strong>PlayerKickEvent</strong></a> <em>Called when a player gets kicked from the server.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1PlayerLevelChangeEvent/"><strong>PlayerLevelChangeEvent</strong></a> <em>Called when a player's level changes.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PlayerLoginEvent/"><strong>PlayerLoginEvent</strong></a> <em>Called when a player attempts to login in.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PlayerMoveEvent/"><strong>PlayerMoveEvent</strong></a> <em>Called when a player moves.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1PlayerPickupArrowEvent/"><strong>PlayerPickupArrowEvent</strong></a> <em>Called when a player picks up an arrow or a thrown trident from the ground.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1PlayerPickupExperienceEvent/"><strong>PlayerPickupExperienceEvent</strong></a> <em>Called when a player picks up an experience orb.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PlayerPickupItemEvent/"><strong>PlayerPickupItemEvent</strong></a> <em>Called when a player picks an item up from the ground.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PlayerPortalEvent/"><strong>PlayerPortalEvent</strong></a> <em>Called when a player is about to teleport because it is in contact with a portal.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PlayerQuitEvent/"><strong>PlayerQuitEvent</strong></a> <em>Called when a player leaves a server.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1PlayerRecipeBookSettingsChangeEvent/"><strong>PlayerRecipeBookSettingsChangeEvent</strong></a> <em>Called when a player changes recipe book settings.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PlayerRespawnEvent/"><strong>PlayerRespawnEvent</strong></a> <em>Called when a player respawns.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1PlayerRiptideEvent/"><strong>PlayerRiptideEvent</strong></a> <em>Called when a player activates the riptide enchantment, using their trident to propel them through the air.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1PlayerShearActorEvent/"><strong>PlayerShearActorEvent</strong></a> <em>Called when a player shears an</em> <a href="../classendstone_1_1Actor/"><em><strong>Actor</strong></em></a> <em>.</em>    </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PlayerSkinChangeEvent/"><strong>PlayerSkinChangeEvent</strong></a> <em>Called when a player changes their skin.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PlayerTeleportEvent/"><strong>PlayerTeleportEvent</strong></a> <em>Called when a player is teleported from one location to another.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1PlayerToggleCrawlEvent/"><strong>PlayerToggleCrawlEvent</strong></a> <em>Called when a player toggles their crawling state.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1PlayerToggleFlightEvent/"><strong>PlayerToggleFlightEvent</strong></a> <em>Called when a player toggles their flying state.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1PlayerToggleSneakEvent/"><strong>PlayerToggleSneakEvent</strong></a> <em>Called when a player toggles their sneaking state.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1PlayerToggleSprintEvent/"><strong>PlayerToggleSprintEvent</strong></a> <em>Called when a player toggles their sprinting state.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Plugin/"><strong>Plugin</strong></a> <em>Represents a</em> <a href="../classendstone_1_1Plugin/"><em><strong>Plugin</strong></em></a> <em>.</em>    </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PluginCommand/"><strong>PluginCommand</strong></a> <em>Represents a</em> <a href="../classendstone_1_1Command/"><em><strong>Command</strong></em></a> <em>belonging to a</em><a href="../classendstone_1_1Plugin/"><em><strong>Plugin</strong></em></a> <em>.</em>    </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PluginDescription/"><strong>PluginDescription</strong></a> <em>Represents the basic information about a plugin that the plugin loader needs to know.</em>     </li>
@@ -2789,7 +2820,8 @@ For latest updates join the chat on
 <li><strong>class</strong> <a href="../classendstone_1_1PluginEnableEvent/"><strong>PluginEnableEvent</strong></a> <em>Called when a plugin is enabled.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PluginLoader/"><strong>PluginLoader</strong></a> <em>Represents a plugin loader, which handles direct access to specific types of plugins.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1PluginManager/"><strong>PluginManager</strong></a> <em>Represents a plugin manager that handles all plugins from the</em> <a href="../classendstone_1_1Server/"><em><strong>Server</strong></em></a> <em>.</em>    </li>
-<li><strong>class</strong> <a href="../classendstone_1_1PotionType/"><strong>PotionType</strong></a> <em>All potion types.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1PotionMeta/"><strong>PotionMeta</strong></a> <em>Represents the metadata for a potion item.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1PotionType/"><strong>PotionType</strong></a> <em>Represents a potion type.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Preconditions/"><strong>Preconditions</strong></a> <em>Static helpers for validating method arguments and object state.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Recipe/"><strong>Recipe</strong></a> <em>Represents some type of crafting recipe.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Registry/"><strong>Registry</strong></a> <em>Abstract registry interface for objects with identifiers.</em>     <ul>
@@ -2807,6 +2839,8 @@ For latest updates join the chat on
 <li><strong>class</strong> <a href="../classendstone_1_1ServerLoadEvent/"><strong>ServerLoadEvent</strong></a> <em>Called when either the server startup or reload has completed.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Service/"><strong>Service</strong></a> <em>Services represent a list of methods.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1ServiceManager/"><strong>ServiceManager</strong></a> <em>Represent a service manager that manages services and service providers.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1Sign/"><strong>Sign</strong></a> <em>Represents a captured state of a sign.</em>     </li>
+<li><strong>class</strong> <a href="../classendstone_1_1SignSide/"><strong>SignSide</strong></a> <em>Represents a side of a sign.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Skin/"><strong>Skin</strong></a> <em>Represents a player skin.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1Slider/"><strong>Slider</strong></a> <em>Represents a slider with a label.</em>     </li>
 <li><strong>class</strong> <a href="../classendstone_1_1SocketAddress/"><strong>SocketAddress</strong></a> <em>Represents an IP Socket Address (hostname + port number).</em>     </li>
@@ -2869,6 +2903,7 @@ For latest updates join the chat on
 <li><strong>struct</strong> <a href="../structstd_1_1formatter_3_01endstone_1_1Location_01_4/"><strong>formatter&lt; endstone::Location &gt;</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structstd_1_1formatter_3_01endstone_1_1LongTag_01_4/"><strong>formatter&lt; endstone::LongTag &gt;</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structstd_1_1formatter_3_01endstone_1_1ShortTag_01_4/"><strong>formatter&lt; endstone::ShortTag &gt;</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structstd_1_1formatter_3_01endstone_1_1SocketAddress_01_4/"><strong>formatter&lt; endstone::SocketAddress &gt;</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structstd_1_1formatter_3_01endstone_1_1StringTag_01_4/"><strong>formatter&lt; endstone::StringTag &gt;</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structstd_1_1formatter_3_01endstone_1_1Vector_01_4/"><strong>formatter&lt; endstone::Vector &gt;</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structstd_1_1formatter_3_01endstone_1_1detail_1_1JoinView_3_01It_00_01Sentinel_01_4_01_4/"><strong>formatter&lt; endstone::detail::JoinView&lt; It, Sentinel &gt; &gt;</strong></a>     </li>
@@ -2877,6 +2912,7 @@ For latest updates join the chat on
 <li><strong>struct</strong> <a href="../structstd_1_1hash_3_01endstone_1_1Identifier_3_01T_01_4_01_4/"><strong>hash&lt; endstone::Identifier&lt; T &gt; &gt;</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structstd_1_1hash_3_01endstone_1_1NotNull_3_01T_01_4_01_4/"><strong>hash&lt; endstone::NotNull&lt; T &gt; &gt;</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structstd_1_1hash_3_01endstone_1_1Nullable_3_01T_01_4_01_4/"><strong>hash&lt; endstone::Nullable&lt; T &gt; &gt;</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structstd_1_1hash_3_01endstone_1_1SocketAddress_01_4/"><strong>hash&lt; endstone::SocketAddress &gt;</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structstd_1_1hash_3_01endstone_1_1UUID_01_4/"><strong>hash&lt; endstone::UUID &gt;</strong></a>     </li>
 </ul>
 </li>
@@ -3045,7 +3081,7 @@ For latest updates join the chat on
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "stable", "provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

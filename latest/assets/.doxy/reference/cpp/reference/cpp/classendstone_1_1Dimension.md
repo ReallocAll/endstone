@@ -14,7 +14,6 @@ _Represents a dimension within a_ [_**Level**_](classendstone_1_1Level.md) _._
 
 
 
-Inherits the following classes: std::enable_shared_from_this< Dimension >
 
 
 
@@ -60,22 +59,24 @@ Inherits the following classes: std::enable_shared_from_this< Dimension >
 
 | Type | Name |
 | ---: | :--- |
-| virtual [**Item**](classendstone_1_1Item.md) & | [**dropItem**](#function-dropitem) ([**Location**](classendstone_1_1Location.md) location, [**const**](classendstone_1_1Identifier.md) [**ItemStack**](classendstone_1_1ItemStack.md) & item) = 0<br>_Drops an item at the specified_ [_**Location**_](classendstone_1_1Location.md) _._ |
-| virtual std::vector&lt; [**Actor**](classendstone_1_1Actor.md) \* &gt; | [**getActors**](#function-getactors) () const = 0<br>_Get a list of all actors in this dimension._  |
-| virtual std::unique\_ptr&lt; [**Block**](classendstone_1_1Block.md) &gt; | [**getBlockAt**](#function-getblockat-12) ([**int**](classendstone_1_1Identifier.md) x, [**int**](classendstone_1_1Identifier.md) y, [**int**](classendstone_1_1Identifier.md) z) const = 0<br>_Gets the_ [_**Block**_](classendstone_1_1Block.md) _at the given coordinates._ |
-| virtual std::unique\_ptr&lt; [**Block**](classendstone_1_1Block.md) &gt; | [**getBlockAt**](#function-getblockat-22) ([**Location**](classendstone_1_1Location.md) location) const = 0<br>_Gets the_ [_**Block**_](classendstone_1_1Block.md) _at the given_[_**Location**_](classendstone_1_1Location.md) _._ |
-| virtual std::unique\_ptr&lt; [**Block**](classendstone_1_1Block.md) &gt; | [**getHighestBlockAt**](#function-gethighestblockat-12) ([**int**](classendstone_1_1Identifier.md) x, [**int**](classendstone_1_1Identifier.md) z) const = 0<br>_Gets the highest non-empty (impassable) block at the given coordinates._  |
-| virtual std::unique\_ptr&lt; [**Block**](classendstone_1_1Block.md) &gt; | [**getHighestBlockAt**](#function-gethighestblockat-22) ([**Location**](classendstone_1_1Location.md) location) const = 0<br>_Gets the highest non-empty (impassable) block at the given_ [_**Location**_](classendstone_1_1Location.md) _._ |
+| virtual [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Item**](classendstone_1_1Item.md) &gt; | [**dropItem**](#function-dropitem) ([**Location**](classendstone_1_1Location.md) location, [**const**](classendstone_1_1Identifier.md) [**ItemStack**](classendstone_1_1ItemStack.md) & item) = 0<br>_Drops an item at the specified_ [_**Location**_](classendstone_1_1Location.md) _._ |
+| virtual std::vector&lt; [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Actor**](classendstone_1_1Actor.md) &gt; &gt; | [**getActors**](#function-getactors) () const = 0<br>_Get a list of all actors in this dimension._  |
+| virtual [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Block**](classendstone_1_1Block.md) &gt; | [**getBlockAt**](#function-getblockat-12) ([**int**](classendstone_1_1Identifier.md) x, [**int**](classendstone_1_1Identifier.md) y, [**int**](classendstone_1_1Identifier.md) z) const = 0<br>_Gets the_ [_**Block**_](classendstone_1_1Block.md) _at the given coordinates._ |
+| virtual [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Block**](classendstone_1_1Block.md) &gt; | [**getBlockAt**](#function-getblockat-22) ([**Location**](classendstone_1_1Location.md) location) const = 0<br>_Gets the_ [_**Block**_](classendstone_1_1Block.md) _at the given_[_**Location**_](classendstone_1_1Location.md) _._ |
+| virtual [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Block**](classendstone_1_1Block.md) &gt; | [**getHighestBlockAt**](#function-gethighestblockat-12) ([**int**](classendstone_1_1Identifier.md) x, [**int**](classendstone_1_1Identifier.md) z) const = 0<br>_Gets the highest non-empty (impassable) block at the given coordinates._  |
+| virtual [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Block**](classendstone_1_1Block.md) &gt; | [**getHighestBlockAt**](#function-gethighestblockat-22) ([**Location**](classendstone_1_1Location.md) location) const = 0<br>_Gets the highest non-empty (impassable) block at the given_ [_**Location**_](classendstone_1_1Location.md) _._ |
 | virtual [**int**](classendstone_1_1Identifier.md) | [**getHighestBlockYAt**](#function-gethighestblockyat) ([**int**](classendstone_1_1Identifier.md) x, [**int**](classendstone_1_1Identifier.md) z) const = 0<br>_Gets the highest non-empty (impassable) coordinate at the given coordinates._  |
 | virtual [**DimensionId**](classendstone_1_1Identifier.md) | [**getId**](#function-getid) () const = 0<br>_Return the identifier of this dimension._  |
 | virtual [**Level**](classendstone_1_1Level.md) & | [**getLevel**](#function-getlevel) () const = 0<br>_Gets the level to which this dimension belongs._  |
-| virtual std::vector&lt; std::unique\_ptr&lt; [**Chunk**](classendstone_1_1Chunk.md) &gt; &gt; | [**getLoadedChunks**](#function-getloadedchunks) () = 0<br>_Gets a list of all loaded Chunks._  |
+| virtual std::vector&lt; [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Chunk**](classendstone_1_1Chunk.md) &gt; &gt; | [**getLoadedChunks**](#function-getloadedchunks) () = 0<br>_Gets a list of all loaded Chunks._  |
+| virtual std::vector&lt; [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Mob**](classendstone_1_1Mob.md) &gt; &gt; | [**getMobs**](#function-getmobs) () const = 0<br>_Get a list of all mobs in this dimension._  |
+| virtual std::vector&lt; [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Player**](classendstone_1_1Player.md) &gt; &gt; | [**getPlayers**](#function-getplayers) () const = 0<br>_Get a list of all players in this dimension._  |
 | virtual std::string | [**getTranslationKey**](#function-gettranslationkey) () const = 0<br>_Get the translation key, suitable for use in a translation component._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**isChunkLoaded**](#function-ischunkloaded) ([**int**](classendstone_1_1Identifier.md) x, [**int**](classendstone_1_1Identifier.md) z) const = 0<br>_Checks if the_ [_**Chunk**_](classendstone_1_1Chunk.md) _at the given coordinates is loaded._ |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**isValid**](#function-isvalid) () const = 0<br>_Checks whether this dimension is still valid (loaded)._  |
 | virtual [**bool**](classendstone_1_1Identifier.md) | [**loadChunk**](#function-loadchunk) ([**int**](classendstone_1_1Identifier.md) x, [**int**](classendstone_1_1Identifier.md) z) = 0<br>_Requests the_ [_**Chunk**_](classendstone_1_1Chunk.md) _at the given coordinates to be loaded, and keeps it loaded until it is unloaded again._ |
-| virtual [**Actor**](classendstone_1_1Actor.md) \* | [**spawnActor**](#function-spawnactor) ([**Location**](classendstone_1_1Location.md) location, [**ActorTypeId**](classendstone_1_1Identifier.md) type) = 0<br>_Creates an actor at the given_ [_**Location**_](classendstone_1_1Location.md) _._ |
-| virtual [**bool**](classendstone_1_1Identifier.md) | [**unloadChunk**](#function-unloadchunk) ([**int**](classendstone_1_1Identifier.md) x, [**int**](classendstone_1_1Identifier.md) z) = 0<br>_Releases the plugin-owned ticket that_ `loadChunk()` _placed on the_[_**Chunk**_](classendstone_1_1Chunk.md) _at the given coordinates._ |
+| virtual [**Nullable**](classendstone_1_1Nullable.md)&lt; [**Actor**](classendstone_1_1Actor.md) &gt; | [**spawnActor**](#function-spawnactor) ([**Location**](classendstone_1_1Location.md) location, [**ActorTypeId**](classendstone_1_1Identifier.md) type) = 0<br>_Creates an actor at the given_ [_**Location**_](classendstone_1_1Location.md) _._ |
+| virtual [**bool**](classendstone_1_1Identifier.md) | [**unloadChunk**](#function-unloadchunk) ([**int**](classendstone_1_1Identifier.md) x, [**int**](classendstone_1_1Identifier.md) z) = 0<br>_Releases the hold that_ `loadChunk()` _placed on the_[_**Chunk**_](classendstone_1_1Chunk.md) _at the given coordinates._ |
 | virtual  | [**~Dimension**](#function-dimension) () = default<br> |
 
 
@@ -155,7 +156,7 @@ constexpr auto endstone::Dimension::TheEnd;
 
 _Drops an item at the specified_ [_**Location**_](classendstone_1_1Location.md) _._
 ```C++
-virtual Item & endstone::Dimension::dropItem (
+virtual NotNull < Item > endstone::Dimension::dropItem (
     Location location,
     const  ItemStack & item
 ) = 0
@@ -191,7 +192,7 @@ virtual Item & endstone::Dimension::dropItem (
 
 _Get a list of all actors in this dimension._ 
 ```C++
-virtual std::vector< Actor * > endstone::Dimension::getActors () const = 0
+virtual std::vector< NotNull < Actor > > endstone::Dimension::getActors () const = 0
 ```
 
 
@@ -216,7 +217,7 @@ A List of all actors currently residing in this dimension
 
 _Gets the_ [_**Block**_](classendstone_1_1Block.md) _at the given coordinates._
 ```C++
-virtual std::unique_ptr< Block > endstone::Dimension::getBlockAt (
+virtual NotNull < Block > endstone::Dimension::getBlockAt (
     int x,
     int y,
     int z
@@ -254,7 +255,7 @@ virtual std::unique_ptr< Block > endstone::Dimension::getBlockAt (
 
 _Gets the_ [_**Block**_](classendstone_1_1Block.md) _at the given_[_**Location**_](classendstone_1_1Location.md) _._
 ```C++
-virtual std::unique_ptr< Block > endstone::Dimension::getBlockAt (
+virtual NotNull < Block > endstone::Dimension::getBlockAt (
     Location location
 ) const = 0
 ```
@@ -288,7 +289,7 @@ virtual std::unique_ptr< Block > endstone::Dimension::getBlockAt (
 
 _Gets the highest non-empty (impassable) block at the given coordinates._ 
 ```C++
-virtual std::unique_ptr< Block > endstone::Dimension::getHighestBlockAt (
+virtual NotNull < Block > endstone::Dimension::getHighestBlockAt (
     int x,
     int z
 ) const = 0
@@ -324,7 +325,7 @@ Highest non-empty block
 
 _Gets the highest non-empty (impassable) block at the given_ [_**Location**_](classendstone_1_1Location.md) _._
 ```C++
-virtual std::unique_ptr< Block > endstone::Dimension::getHighestBlockAt (
+virtual NotNull < Block > endstone::Dimension::getHighestBlockAt (
     Location location
 ) const = 0
 ```
@@ -444,7 +445,7 @@ virtual Level & endstone::Dimension::getLevel () const = 0
 
 _Gets a list of all loaded Chunks._ 
 ```C++
-virtual std::vector< std::unique_ptr< Chunk > > endstone::Dimension::getLoadedChunks () = 0
+virtual std::vector< NotNull < Chunk > > endstone::Dimension::getLoadedChunks () = 0
 ```
 
 
@@ -454,6 +455,56 @@ virtual std::vector< std::unique_ptr< Chunk > > endstone::Dimension::getLoadedCh
 **Returns:**
 
 All loaded chunks 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function getMobs 
+
+_Get a list of all mobs in this dimension._ 
+```C++
+virtual std::vector< NotNull < Mob > > endstone::Dimension::getMobs () const = 0
+```
+
+
+
+
+
+**Returns:**
+
+A List of all mobs currently residing in this dimension 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function getPlayers 
+
+_Get a list of all players in this dimension._ 
+```C++
+virtual std::vector< NotNull < Player > > endstone::Dimension::getPlayers () const = 0
+```
+
+
+
+
+
+**Returns:**
+
+A List of all players currently residing in this dimension 
 
 
 
@@ -566,7 +617,7 @@ virtual bool endstone::Dimension::loadChunk (
 
 
 
-Unlike Java Edition, Bedrock has no synchronous chunk load: this registers a plugin-owned ticking ticket for the chunk, which is honoured on the next server tick (so the chunk may not be available within this call). The chunk is then kept loaded and ticking until removed with `unloadChunk()`, the server restarts, or the ticket limit is reached. Intended for keeping a handful of chunks resident; it is not suited to loading large regions.
+The chunk is held resident by Endstone from the moment this returns until removed with `unloadChunk()` or the server restarts. Loading itself is asynchronous: unless the chunk was already resident, it finishes on a later tick, so `isChunkLoaded()` may still report `false` immediately afterwards. Intended for keeping a handful of chunks resident; it is not suited to loading large regions.
 
 
 
@@ -581,7 +632,7 @@ Unlike Java Edition, Bedrock has no synchronous chunk load: this registers a plu
 
 **Returns:**
 
-`true` if the ticket was registered (or already present), otherwise `false` 
+`true` if the request was accepted, otherwise `false` 
 
 
 
@@ -597,7 +648,7 @@ Unlike Java Edition, Bedrock has no synchronous chunk load: this registers a plu
 
 _Creates an actor at the given_ [_**Location**_](classendstone_1_1Location.md) _._
 ```C++
-virtual Actor * endstone::Dimension::spawnActor (
+virtual Nullable < Actor > endstone::Dimension::spawnActor (
     Location location,
     ActorTypeId type
 ) = 0
@@ -631,7 +682,7 @@ Resulting [**Actor**](classendstone_1_1Actor.md) of this method
 
 ### function unloadChunk 
 
-_Releases the plugin-owned ticket that_ `loadChunk()` _placed on the_[_**Chunk**_](classendstone_1_1Chunk.md) _at the given coordinates._
+_Releases the hold that_ `loadChunk()` _placed on the_[_**Chunk**_](classendstone_1_1Chunk.md) _at the given coordinates._
 ```C++
 virtual bool endstone::Dimension::unloadChunk (
     int x,
@@ -641,7 +692,7 @@ virtual bool endstone::Dimension::unloadChunk (
 
 
 
-This only removes Endstone's own ticket; it never affects `/tickingarea`s or other holders. The chunk is unloaded once nothing else keeps it loaded (a nearby player, the spawn area, etc.), so this is a no-op in effect while the chunk is still in use.
+This only drops Endstone's own reference; it never affects `/tickingarea`s or other holders. The chunk is unloaded once nothing else keeps it loaded (a nearby player, the spawn area, etc.), so this is a no-op in effect while the chunk is still in use.
 
 
 
@@ -656,7 +707,7 @@ This only removes Endstone's own ticket; it never affects `/tickingarea`s or oth
 
 **Returns:**
 
-`true` once the ticket has been released 
+`true` once the hold has been released 
 
 
 

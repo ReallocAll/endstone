@@ -55,6 +55,8 @@ _Represents a button with text and an optional icon._
 | class | [**ActorToggleGlideEvent**](classendstone_1_1ActorToggleGlideEvent.md) <br>_Called when an_ [_**Actor**_](classendstone_1_1Actor.md) _'s gliding state is toggled with an elytra._ |
 | class | [**ActorToggleSwimEvent**](classendstone_1_1ActorToggleSwimEvent.md) <br>_Called when an_ [_**Actor**_](classendstone_1_1Actor.md) _'s swimming state is toggled._ |
 | class | [**ActorType**](classendstone_1_1ActorType.md) <br> |
+| class | [**AdvancedBarChart**](classendstone_1_1AdvancedBarChart.md) <br>_A bStats bar chart with several bars per category._  |
+| class | [**AdvancedPie**](classendstone_1_1AdvancedPie.md) <br>_A bStats pie chart with named values._  |
 | class | [**Attribute**](classendstone_1_1Attribute.md) <br>_All attribute types._  |
 | class | [**AttributeInstance**](classendstone_1_1AttributeInstance.md) <br>_Represents a mutable instance of an attribute and its associated modifiers and values._  |
 | class | [**AttributeModifier**](classendstone_1_1AttributeModifier.md) <br>_Concrete implementation of an attribute modifier._  |
@@ -101,11 +103,13 @@ _Represents a button with text and an optional icon._
 | class | [**CreatureSpawner**](classendstone_1_1CreatureSpawner.md) <br>_Represents a captured state of a creature spawner._  |
 | class | [**Criteria**](classendstone_1_1Criteria.md) <br>_Represents a scoreboard criteria._  |
 | class | [**CrossbowMeta**](classendstone_1_1CrossbowMeta.md) <br>_Represents the meta for a crossbow that can have a charged projectile._  |
+| class | [**CustomChart**](classendstone_1_1CustomChart.md) <br>_Represents a custom chart._  |
 | class | [**DamageSource**](classendstone_1_1DamageSource.md) <br>_Represents a source of damage._  |
 | class | [**Dimension**](classendstone_1_1Dimension.md) <br>_Represents a dimension within a_ [_**Level**_](classendstone_1_1Level.md) _._ |
 | class | [**DimensionCreator**](classendstone_1_1DimensionCreator.md) <br>_Represents the options that may be used to create a custom_ [_**Dimension**_](classendstone_1_1Dimension.md) _._ |
 | class | [**DimensionEvent**](classendstone_1_1DimensionEvent.md) <br>_Represents events within a dimension._  |
 | class | [**Divider**](classendstone_1_1Divider.md) <br>_Represents a divider._  |
+| class | [**DrilldownPie**](classendstone_1_1DrilldownPie.md) <br>_A bStats pie chart with grouped named values._  |
 | class | [**Dropdown**](classendstone_1_1Dropdown.md) <br>_Represents a dropdown with a set of predefined options._  |
 | class | [**Effect**](classendstone_1_1Effect.md) <br>_Represents an effect that can be added to a_ [_**Mob**_](classendstone_1_1Mob.md) _._ |
 | class | [**EffectType**](classendstone_1_1EffectType.md) <br>_Represents an effect type._  |
@@ -124,6 +128,8 @@ _Represents a button with text and an optional icon._
 | class | [**Image**](classendstone_1_1Image.md) <br>_Represents an RGBA image._  |
 | class | [**Input**](classendstone_1_1Input.md) <br>_Represents a movement input applied to a player._  |
 | class | [**Inventory**](classendstone_1_1Inventory.md) <br>_Interface to the various inventories._  |
+| class | [**InventoryEvent**](classendstone_1_1InventoryEvent.md) <br>_Represents a player related inventory event._  |
+| class | [**InventoryInteractEvent**](classendstone_1_1InventoryInteractEvent.md) <br>_An abstract base class for events that describe an interaction between a_ [_**Player**_](classendstone_1_1Player.md) _and the contents of an_[_**Inventory**_](classendstone_1_1Inventory.md) _._ |
 | class | [**IpBanEntry**](classendstone_1_1IpBanEntry.md) <br>_Represents an entry for a banned IP address._  |
 | class | [**IpBanList**](classendstone_1_1IpBanList.md) <br>_Represents a ban list, containing banned IP addresses._  |
 | class | [**Item**](classendstone_1_1Item.md) <br>_Represents a dropped item that can be picked up by players._  |
@@ -148,8 +154,11 @@ _Represents a button with text and an optional icon._
 | class | [**MapRenderer**](classendstone_1_1MapRenderer.md) <br>_Represents a renderer for a map._  |
 | class | [**MapView**](classendstone_1_1MapView.md) <br>_Represents a map item._  |
 | class | [**MessageForm**](classendstone_1_1MessageForm.md) <br>_Represents a form with two buttons._  |
+| class | [**Metrics**](classendstone_1_1Metrics.md) <br>_Collects and submits anonymous usage statistics for a plugin to bStats._  |
+| class | [**MetricsBase**](classendstone_1_1MetricsBase.md) <br>_Collects and submits the data behind a_ [_**Metrics**_](classendstone_1_1Metrics.md) _instance._ |
 | class | [**Mob**](classendstone_1_1Mob.md) <br>_Represents a mobile entity (i.e._  |
 | class | [**ModalForm**](classendstone_1_1ModalForm.md) <br>_Represents a modal form with controls._  |
+| class | [**MultiLineChart**](classendstone_1_1MultiLineChart.md) <br>_A bStats line chart with a line per named value._  |
 | class | [**NotNull**](classendstone_1_1NotNull.md) &lt;[**class**](classendstone_1_1Identifier.md) [**T**](classendstone_1_1Identifier.md)&gt;<br>_A wrapper around a std::shared\_ptr that documents that it is never null._  |
 | class | [**Nullable**](classendstone_1_1Nullable.md) &lt;[**class**](classendstone_1_1Identifier.md) [**T**](classendstone_1_1Identifier.md)&gt;<br>_A wrapper around a std::shared\_ptr that may be null._  |
 | class | [**Object**](classendstone_1_1Object.md) <br>_Base class providing runtime type identification and safe casting._  |
@@ -171,10 +180,11 @@ _Represents a button with text and an optional icon._
 | class | [**PlayerBucketActorEvent**](classendstone_1_1PlayerBucketActorEvent.md) <br>_Represents an event that is called when a player captures an actor in a bucket._  |
 | class | [**PlayerChatEvent**](classendstone_1_1PlayerChatEvent.md) <br>_Called when a player sends a chat message._  |
 | class | [**PlayerCommandEvent**](classendstone_1_1PlayerCommandEvent.md) <br>_Called whenever a player runs a command._  |
-| class | [**PlayerCraftItemEvent**](classendstone_1_1PlayerCraftItemEvent.md) <br>_Called when a player crafts an item._  |
+| class | [**PlayerCraftItemEvent**](classendstone_1_1PlayerCraftItemEvent.md) <br>_Called when a player crafts an item, either inside a crafting grid or straight from the recipe book._  |
 | class | [**PlayerDeathEvent**](classendstone_1_1PlayerDeathEvent.md) <br>_Called when a_ [_**Player**_](classendstone_1_1Player.md) _dies._ |
 | class | [**PlayerDimensionChangeEvent**](classendstone_1_1PlayerDimensionChangeEvent.md) <br>_Called when a player switches to another dimension._  |
 | class | [**PlayerDropItemEvent**](classendstone_1_1PlayerDropItemEvent.md) <br>_Called when a player drops an item from their inventory._  |
+| class | [**PlayerEditBookEvent**](classendstone_1_1PlayerEditBookEvent.md) <br>_Called when a player edits or signs a book._  |
 | class | [**PlayerEmoteEvent**](classendstone_1_1PlayerEmoteEvent.md) <br>_Called when a player uses an emote._  |
 | class | [**PlayerEvent**](classendstone_1_1PlayerEvent.md) <br>_Represents a player related event._  |
 | class | [**PlayerExpChangeEvent**](classendstone_1_1PlayerExpChangeEvent.md) <br>_Called when a player's experience changes._  |
@@ -199,6 +209,7 @@ _Represents a button with text and an optional icon._
 | class | [**PlayerRecipeBookSettingsChangeEvent**](classendstone_1_1PlayerRecipeBookSettingsChangeEvent.md) <br>_Called when a player changes recipe book settings._  |
 | class | [**PlayerRespawnEvent**](classendstone_1_1PlayerRespawnEvent.md) <br>_Called when a player respawns._  |
 | class | [**PlayerRiptideEvent**](classendstone_1_1PlayerRiptideEvent.md) <br>_Called when a player activates the riptide enchantment, using their trident to propel them through the air._  |
+| class | [**PlayerSetSpawnEvent**](classendstone_1_1PlayerSetSpawnEvent.md) <br>_Called when a player's spawn is set, either by themselves or otherwise._  |
 | class | [**PlayerShearActorEvent**](classendstone_1_1PlayerShearActorEvent.md) <br>_Called when a player shears an_ [_**Actor**_](classendstone_1_1Actor.md) _._ |
 | class | [**PlayerSkinChangeEvent**](classendstone_1_1PlayerSkinChangeEvent.md) <br>_Called when a player changes their skin._  |
 | class | [**PlayerTeleportEvent**](classendstone_1_1PlayerTeleportEvent.md) <br>_Called when a player is teleported from one location to another._  |
@@ -216,6 +227,7 @@ _Represents a button with text and an optional icon._
 | class | [**PotionMeta**](classendstone_1_1PotionMeta.md) <br>_Represents the metadata for a potion item._  |
 | class | [**PotionType**](classendstone_1_1PotionType.md) <br>_Represents a potion type._  |
 | class | [**Preconditions**](classendstone_1_1Preconditions.md) <br>_Static helpers for validating method arguments and object state._  |
+| class | [**ProxiedCommandSender**](classendstone_1_1ProxiedCommandSender.md) <br>_Represents a command sender that is running a command on behalf of another one, as_ `/execute` _does._ |
 | class | [**Recipe**](classendstone_1_1Recipe.md) <br>_Represents some type of crafting recipe._  |
 | class | [**Registry**](classendstone_1_1Registry.md) &lt;[**typename**](classendstone_1_1Identifier.md) [**T**](classendstone_1_1Identifier.md)&gt;<br>_Abstract registry interface for objects with identifiers._  |
 | class | [**Scheduler**](classendstone_1_1Scheduler.md) <br>_Represents a scheduler that executes various tasks._  |
@@ -231,6 +243,9 @@ _Represents a button with text and an optional icon._
 | class | [**ServiceManager**](classendstone_1_1ServiceManager.md) <br>_Represent a service manager that manages services and service providers._  |
 | class | [**Sign**](classendstone_1_1Sign.md) <br>_Represents a captured state of a sign._  |
 | class | [**SignSide**](classendstone_1_1SignSide.md) <br>_Represents a side of a sign._  |
+| class | [**SimpleBarChart**](classendstone_1_1SimpleBarChart.md) <br>_A bStats bar chart with a single bar per category._  |
+| class | [**SimplePie**](classendstone_1_1SimplePie.md) <br>_A bStats pie chart with a single value._  |
+| class | [**SingleLineChart**](classendstone_1_1SingleLineChart.md) <br>_A bStats line chart with a single line._  |
 | class | [**Skin**](classendstone_1_1Skin.md) <br>_Represents a player skin._  |
 | class | [**Slider**](classendstone_1_1Slider.md) <br>_Represents a slider with a label._  |
 | class | [**SocketAddress**](classendstone_1_1SocketAddress.md) <br>_Represents an IP Socket Address (hostname + port number)._  |
@@ -258,6 +273,7 @@ _Represents a button with text and an optional icon._
 | enum  | [**BarColor**](#enum-barcolor)  <br>_Represents the color of a boss bar._  |
 | enum  | [**BarFlag**](#enum-barflag)  <br>_Represents an optional flag that changes the appearance or behaviour of a boss bar._  |
 | enum  | [**BarStyle**](#enum-barstyle)  <br>_Represents the segment style of a boss bar._  |
+| typedef std::unordered\_map&lt; std::string, std::vector&lt; [**int**](classendstone_1_1Identifier.md) &gt; &gt; | [**BarValues**](#typedef-barvalues)  <br> |
 | typedef [**Identifier**](classendstone_1_1Identifier.md)&lt; [**Biome**](classendstone_1_1Biome.md) &gt; | [**BiomeId**](#typedef-biomeid)  <br> |
 | enum  | [**BlockFace**](#enum-blockface)  <br>_Represents the face of a block._  |
 | typedef std::unordered\_map&lt; std::string, std::variant&lt; [**bool**](classendstone_1_1Identifier.md), std::string, [**int**](classendstone_1_1Identifier.md) &gt; &gt; | [**BlockStates**](#typedef-blockstates)  <br> |
@@ -267,6 +283,7 @@ _Represents a button with text and an optional icon._
 | typedef [**Identifier**](classendstone_1_1Identifier.md)&lt; [**Dimension**](classendstone_1_1Dimension.md) &gt; | [**DimensionId**](#typedef-dimensionid)  <br> |
 | enum  | [**DisplaySlot**](#enum-displayslot)  <br>_Locations for displaying objectives to the player._  |
 | typedef [**nbt::ValueTag**](classendstone_1_1nbt_1_1ValueTag.md)&lt; [**double**](classendstone_1_1Identifier.md) &gt; | [**DoubleTag**](#typedef-doubletag)  <br> |
+| typedef std::unordered\_map&lt; std::string, StringValues &gt; | [**DrilldownValues**](#typedef-drilldownvalues)  <br> |
 | typedef [**Identifier**](classendstone_1_1Identifier.md)&lt; [**EffectType**](classendstone_1_1EffectType.md) &gt; | [**EffectId**](#typedef-effectid)  <br> |
 | typedef [**Identifier**](classendstone_1_1Identifier.md)&lt; [**class**](classendstone_1_1Identifier.md) [**Enchantment**](classendstone_1_1Enchantment.md) &gt; | [**EnchantmentId**](#typedef-enchantmentid)  <br> |
 | enum  | [**EquipmentSlot**](#enum-equipmentslot)  <br>_Represents the equipment slots on an entity._  |
@@ -278,6 +295,9 @@ _Represents a button with text and an optional icon._
 | typedef [**nbt::ArrayTag**](classendstone_1_1nbt_1_1ArrayTag.md)&lt; std::int32\_t &gt; | [**IntArrayTag**](#typedef-intarraytag)  <br> |
 | typedef [**nbt::ValueTag**](classendstone_1_1nbt_1_1ValueTag.md)&lt; std::int32\_t &gt; | [**IntTag**](#typedef-inttag)  <br> |
 | typedef [**Identifier**](classendstone_1_1Identifier.md)&lt; [**ItemType**](classendstone_1_1ItemType.md) &gt; | [**ItemTypeId**](#typedef-itemtypeid)  <br>_Represents an item type._  |
+| typedef nlohmann::json::array\_t | [**JsonArray**](#typedef-jsonarray)  <br> |
+| typedef nlohmann::json::object\_t | [**JsonObject**](#typedef-jsonobject)  <br> |
+| typedef nlohmann::json | [**JsonValue**](#typedef-jsonvalue)  <br> |
 | typedef [**nbt::ValueTag**](classendstone_1_1nbt_1_1ValueTag.md)&lt; std::int64\_t &gt; | [**LongTag**](#typedef-longtag)  <br> |
 | typedef std::variant&lt; std::string, [**Translatable**](classendstone_1_1Translatable.md) &gt; | [**Message**](#typedef-message)  <br>_A message that is either a plain string or a_ [_**Translatable**_](classendstone_1_1Translatable.md) _that is resolved client-side._ |
 | enum  | [**ObjectiveSortOrder**](#enum-objectivesortorder)  <br>_Represents the sort order of objectives on a DisplaySlot._  |
@@ -293,6 +313,7 @@ _Represents a button with text and an optional icon._
 | enum  | [**ServicePriority**](#enum-servicepriority)  <br>_Represents various priorities of a provider._  |
 | typedef [**nbt::ValueTag**](classendstone_1_1nbt_1_1ValueTag.md)&lt; std::int16\_t &gt; | [**ShortTag**](#typedef-shorttag)  <br> |
 | typedef [**nbt::ValueTag**](classendstone_1_1nbt_1_1ValueTag.md)&lt; std::string &gt; | [**StringTag**](#typedef-stringtag)  <br> |
+| typedef std::unordered\_map&lt; std::string, [**int**](classendstone_1_1Identifier.md) &gt; | [**StringValues**](#typedef-stringvalues)  <br> |
 | typedef std::uint32\_t | [**TaskId**](#typedef-taskid)  <br> |
 
 
@@ -465,6 +486,19 @@ enum endstone::BarStyle {
 
 
 
+### typedef BarValues 
+
+```C++
+using endstone::BarValues = typedef std::unordered_map<std::string, std::vector<int> >;
+```
+
+
+
+
+<hr>
+
+
+
 ### typedef BiomeId 
 
 ```C++
@@ -586,6 +620,19 @@ enum endstone::DisplaySlot {
 
 ```C++
 using endstone::DoubleTag = typedef nbt::ValueTag<double>;
+```
+
+
+
+
+<hr>
+
+
+
+### typedef DrilldownValues 
+
+```C++
+using endstone::DrilldownValues = typedef std::unordered_map<std::string, StringValues>;
 ```
 
 
@@ -762,6 +809,45 @@ using endstone::IntTag = typedef nbt::ValueTag<std::int32_t>;
 _Represents an item type._ 
 ```C++
 using endstone::ItemTypeId = typedef Identifier<ItemType>;
+```
+
+
+
+
+<hr>
+
+
+
+### typedef JsonArray 
+
+```C++
+using endstone::JsonArray = typedef nlohmann::json::array_t;
+```
+
+
+
+
+<hr>
+
+
+
+### typedef JsonObject 
+
+```C++
+using endstone::JsonObject = typedef nlohmann::json::object_t;
+```
+
+
+
+
+<hr>
+
+
+
+### typedef JsonValue 
+
+```C++
+using endstone::JsonValue = typedef nlohmann::json;
 ```
 
 
@@ -1005,6 +1091,19 @@ using endstone::ShortTag = typedef nbt::ValueTag<std::int16_t>;
 
 ```C++
 using endstone::StringTag = typedef nbt::ValueTag<std::string>;
+```
+
+
+
+
+<hr>
+
+
+
+### typedef StringValues 
+
+```C++
+using endstone::StringValues = typedef std::unordered_map<std::string, int>;
 ```
 
 

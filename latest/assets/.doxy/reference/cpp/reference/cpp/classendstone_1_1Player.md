@@ -168,6 +168,7 @@ Inherits the following classes: [endstone::Mob](classendstone_1_1Mob.md)
 | virtual std::string | [**getLocale**](#function-getlocale) () const = 0<br>_Gets the player's current locale._  |
 | virtual std::string | [**getName**](#function-getname) () override const = 0<br>_Returns the name of this player._  |
 | virtual std::chrono::milliseconds | [**getPing**](#function-getping) () const = 0<br>_Gets the player's average ping._  |
+| virtual std::optional&lt; [**Location**](classendstone_1_1Location.md) &gt; | [**getRespawnLocation**](#function-getrespawnlocation) () const = 0<br>_Gets the location where the player will spawn._  |
 | virtual [**NotNull**](classendstone_1_1NotNull.md)&lt; [**Scoreboard**](classendstone_1_1Scoreboard.md) &gt; | [**getScoreboard**](#function-getscoreboard) () const = 0<br>_Gets the_ [_**Scoreboard**_](classendstone_1_1Scoreboard.md) _displayed to this player._ |
 | virtual [**Skin**](classendstone_1_1Skin.md) | [**getSkin**](#function-getskin) () const = 0<br>_Gets the player's skin._  |
 | virtual [**int**](classendstone_1_1Identifier.md) | [**getTotalExp**](#function-gettotalexp) () const = 0<br>_Gets the players total experience points._  |
@@ -201,14 +202,15 @@ Inherits the following classes: [endstone::Mob](classendstone_1_1Mob.md)
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setFlying**](#function-setflying) ([**bool**](classendstone_1_1Identifier.md) value) = 0<br>_Makes this player start or stop flying._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setGameMode**](#function-setgamemode) ([**GameMode**](namespaceendstone.md#enum-gamemode) mode) = 0<br>_Sets this player's current GameMode._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setOp**](#function-setop) ([**bool**](classendstone_1_1Identifier.md) value) = 0<br>_Sets the operator status of this player._  |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**setRespawnLocation**](#function-setrespawnlocation) (std::optional&lt; [**Location**](classendstone_1_1Location.md) &gt; location) = 0<br>_Sets the location where the player will respawn._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setScoreboard**](#function-setscoreboard) ([**NotNull**](classendstone_1_1NotNull.md)&lt; [**Scoreboard**](classendstone_1_1Scoreboard.md) &gt; scoreboard) = 0<br>_Sets the player's visible_ [_**Scoreboard**_](classendstone_1_1Scoreboard.md) _._ |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setSneaking**](#function-setsneaking) ([**bool**](classendstone_1_1Identifier.md) sneak) = 0<br>_Sets the sneak mode of the player._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setSprinting**](#function-setsprinting) ([**bool**](classendstone_1_1Identifier.md) sprinting) = 0<br>_Sets whether the player is sprinting or not._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**setWalkSpeed**](#function-setwalkspeed) ([**float**](classendstone_1_1Identifier.md) value) const = 0<br>_Sets the speed at which a client will walk._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**spawnParticle**](#function-spawnparticle-14) (std::string name, [**Location**](classendstone_1_1Location.md) location) const = 0<br>_Spawns the particle at the target location._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**spawnParticle**](#function-spawnparticle-24) (std::string name, [**float**](classendstone_1_1Identifier.md) x, [**float**](classendstone_1_1Identifier.md) y, [**float**](classendstone_1_1Identifier.md) z) const = 0<br>_Spawns the particle at the target location._  |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**spawnParticle**](#function-spawnparticle-34) (std::string name, [**Location**](classendstone_1_1Location.md) location, std::optional&lt; std::string &gt; molang\_variables\_json) const = 0<br>_Spawns the particle at the target location._  |
-| virtual [**void**](classendstone_1_1Identifier.md) | [**spawnParticle**](#function-spawnparticle-44) (std::string name, [**float**](classendstone_1_1Identifier.md) x, [**float**](classendstone_1_1Identifier.md) y, [**float**](classendstone_1_1Identifier.md) z, std::optional&lt; std::string &gt; molang\_variables\_json) const = 0<br>_Spawns the particle at the target location._  |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**spawnParticle**](#function-spawnparticle-34) (std::string name, [**Location**](classendstone_1_1Location.md) location, std::optional&lt; JsonObject &gt; molang\_variables) const = 0<br>_Spawns the particle at the target location._  |
+| virtual [**void**](classendstone_1_1Identifier.md) | [**spawnParticle**](#function-spawnparticle-44) (std::string name, [**float**](classendstone_1_1Identifier.md) x, [**float**](classendstone_1_1Identifier.md) y, [**float**](classendstone_1_1Identifier.md) z, std::optional&lt; JsonObject &gt; molang\_variables) const = 0<br>_Spawns the particle at the target location._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**stopAllSounds**](#function-stopallsounds) () = 0<br>_Stop all sounds from playing._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**stopSound**](#function-stopsound) (std::string sound) = 0<br>_Stop the specified sound from playing._  |
 | virtual [**void**](classendstone_1_1Identifier.md) | [**transfer**](#function-transfer) (std::string host, [**int**](classendstone_1_1Identifier.md) port) const = 0<br>_Transfers the player to another server._  |
@@ -842,6 +844,38 @@ virtual std::chrono::milliseconds endstone::Player::getPing () const = 0
 **Returns:**
 
 player ping 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function getRespawnLocation 
+
+_Gets the location where the player will spawn._ 
+```C++
+virtual std::optional< Location > endstone::Player::getRespawnLocation () const = 0
+```
+
+
+
+
+
+**Note:**
+
+Bedrock does not persist yaw/pitch for a respawn point, so both are 0 on the returned location. 
+
+
+
+
+**Returns:**
+
+the respawn location, or std::nullopt if the player has no valid respawn point 
 
 
 
@@ -1758,6 +1792,36 @@ virtual void endstone::Player::setOp (
 
 
 
+### function setRespawnLocation 
+
+_Sets the location where the player will respawn._ 
+```C++
+virtual void endstone::Player::setRespawnLocation (
+    std::optional< Location > location
+) = 0
+```
+
+
+
+Fires [**PlayerSetSpawnEvent**](classendstone_1_1PlayerSetSpawnEvent.md) with PlayerSetSpawnEvent::Cause::Plugin, whether setting or clearing.
+
+
+
+
+**Parameters:**
+
+
+* `location` the respawn location, or std::nullopt to clear it; its dimension must be loaded when set 
+
+
+
+
+        
+
+<hr>
+
+
+
 ### function setScoreboard 
 
 _Sets the player's visible_ [_**Scoreboard**_](classendstone_1_1Scoreboard.md) _._
@@ -1935,7 +1999,7 @@ _Spawns the particle at the target location._
 virtual void endstone::Player::spawnParticle (
     std::string name,
     Location location,
-    std::optional< std::string > molang_variables_json
+    std::optional< JsonObject > molang_variables
 ) const = 0
 ```
 
@@ -1948,7 +2012,7 @@ virtual void endstone::Player::spawnParticle (
 
 * `name` the name of the particle effect to spawn 
 * `location` the location to spawn at 
-* `molang_variables_json` the customizable molang variables that can be adjusted for this particle, in json 
+* `molang_variables` the customizable molang variables that can be adjusted for this particle 
 
 
 
@@ -1968,7 +2032,7 @@ virtual void endstone::Player::spawnParticle (
     float x,
     float y,
     float z,
-    std::optional< std::string > molang_variables_json
+    std::optional< JsonObject > molang_variables
 ) const = 0
 ```
 
@@ -1983,7 +2047,7 @@ virtual void endstone::Player::spawnParticle (
 * `x` the position on the x axis to spawn at 
 * `y` the position on the y axis to spawn at 
 * `z` the position on the z axis to spawn at 
-* `molang_variables_json` the customizable molang variables that can be adjusted for this particle, in json 
+* `molang_variables` the customizable molang variables that can be adjusted for this particle 
 
 
 

@@ -212,7 +212,8 @@ void EndstoneServer::setLevel(::Level &level)
     scoreboard_ = EndstoneScoreboard::create(level.getScoreboard());
     command_map_ = std::make_unique<EndstoneCommandMap>(*this);
     try {
-        metrics_ = std::make_unique<Metrics>("endstone._metrics", "EndstoneMetrics", std::ref(*this));
+        metrics_ =
+            std::make_unique<Metrics>("endstone._metrics", "EndstoneMetrics", std::ref(static_cast<Server &>(*this)));
     }
     catch (std::exception &e) {
         getLogger().warning("Unable to start metrics: {}", e.what());

@@ -5,6 +5,7 @@
 
 ## a
 
+* **AbilityValue** ([**endstone**](namespaceendstone.md))
 * **ActorTypeId** ([**endstone**](namespaceendstone.md))
 * **AttributeId** ([**endstone**](namespaceendstone.md))
 * **AttributeModifierId** ([**endstone**](namespaceendstone.md))
@@ -12,7 +13,6 @@
 
 ## b
 
-* **BarValues** ([**endstone**](namespaceendstone.md))
 * **BiomeId** ([**endstone**](namespaceendstone.md))
 * **BlockStates** ([**endstone**](namespaceendstone.md))
 * **BlockTypeId** ([**endstone**](namespaceendstone.md))
@@ -24,7 +24,6 @@
 
 * **DimensionId** ([**endstone**](namespaceendstone.md))
 * **DoubleTag** ([**endstone**](namespaceendstone.md))
-* **DrilldownValues** ([**endstone**](namespaceendstone.md))
 
 
 ## e
@@ -83,7 +82,6 @@
 * **ScoreEntry** ([**endstone**](namespaceendstone.md))
 * **ShortTag** ([**endstone**](namespaceendstone.md))
 * **StringTag** ([**endstone**](namespaceendstone.md))
-* **StringValues** ([**endstone**](namespaceendstone.md))
 
 
 ## t

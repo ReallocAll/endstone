@@ -5,6 +5,7 @@
 
 ## a
 
+* **AbilityValue** ([**endstone**](namespaceendstone.md))
 * **ActorTypeId** ([**endstone**](namespaceendstone.md))
 * **AttributeId** ([**endstone**](namespaceendstone.md))
 * **AttributeModifierId** ([**endstone**](namespaceendstone.md))
@@ -15,7 +16,6 @@
 * **BarColor** ([**endstone**](namespaceendstone.md))
 * **BarFlag** ([**endstone**](namespaceendstone.md))
 * **BarStyle** ([**endstone**](namespaceendstone.md))
-* **BarValues** ([**endstone**](namespaceendstone.md))
 * **BiomeId** ([**endstone**](namespaceendstone.md))
 * **BlockFace** ([**endstone**](namespaceendstone.md))
 * **BlockStates** ([**endstone**](namespaceendstone.md))
@@ -29,7 +29,6 @@
 * **DimensionId** ([**endstone**](namespaceendstone.md))
 * **DisplaySlot** ([**endstone**](namespaceendstone.md))
 * **DoubleTag** ([**endstone**](namespaceendstone.md))
-* **DrilldownValues** ([**endstone**](namespaceendstone.md))
 * **dump** ([**endstone::nbt**](namespaceendstone_1_1nbt.md))
 
 
@@ -135,7 +134,6 @@
 * **ServicePriority** ([**endstone**](namespaceendstone.md))
 * **ShortTag** ([**endstone**](namespaceendstone.md))
 * **StringTag** ([**endstone**](namespaceendstone.md))
-* **StringValues** ([**endstone**](namespaceendstone.md))
 * **swap** ([**endstone**](namespaceendstone.md))
 
 

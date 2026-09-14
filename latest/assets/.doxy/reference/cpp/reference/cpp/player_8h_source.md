@@ -30,7 +30,11 @@
 #include <string_view>
 #include <variant>
 
+#include "endstone/ability.h"
 #include "endstone/actor/mob.h"
+#include "endstone/block/block_actor_state.h"
+#include "endstone/block/block_data.h"
+#include "endstone/block/sign.h"
 #include "endstone/form/action_form.h"
 #include "endstone/form/message_form.h"
 #include "endstone/form/modal_form.h"
@@ -45,6 +49,8 @@
 #include "endstone/util/uuid.h"
 
 namespace endstone {
+
+class Plugin;
 
 class Player : public Mob {
 protected:
@@ -74,6 +80,22 @@ public:
     [[nodiscard]] virtual std::optional<Location> getRespawnLocation() const = 0;
 
     virtual void setRespawnLocation(std::optional<Location> location) = 0;
+
+    virtual void sendBlockUpdate(const Location &location, const BlockActorState &block_actor_state) = 0;
+
+    virtual void hideActor(Plugin &plugin, Actor &actor) = 0;
+
+    virtual void showActor(Plugin &plugin, Actor &actor) = 0;
+
+    [[nodiscard]] virtual bool canSee(const Actor &actor) const = 0;
+
+    [[nodiscard]] virtual bool canSee(const Player &player) const = 0;
+
+    virtual void sendBlockChange(const Location &location, const BlockData &block) = 0;
+
+    virtual void openSign(const Sign &sign, Sign::Side side) = 0;
+
+    virtual void openVirtualSign(const Location &location, Sign::Side side) = 0;
 
     [[nodiscard]] virtual bool isSneaking() const = 0;
 
@@ -185,6 +207,22 @@ public:
     virtual void sendPacket(int packet_id, std::string_view payload) const = 0;
 
     virtual void sendMap(MapView &map) = 0;
+
+    [[nodiscard]] virtual AbilityValue _getAbility(Identifier<Ability> ability) const = 0;
+
+    template <typename T>
+    [[nodiscard]] T getAbility(AbilityId<T> ability) const
+    {
+        return std::get<T>(_getAbility(ability));
+    }
+
+    virtual bool _setAbility(Identifier<Ability> ability, AbilityValue value) = 0;
+
+    template <typename T>
+    bool setAbility(AbilityId<T> ability, T value)
+    {
+        return _setAbility(ability, value);
+    }
 };
 
 }  // namespace endstone

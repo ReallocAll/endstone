@@ -3170,9 +3170,9 @@ For latest updates join the chat on
             
                 
                     <li class="md-nav__item">
-    <a href="#function-getportv6" class="md-nav__link">
+    <a href="#function-getprotocolversion" class="md-nav__link">
       <span class="md-ellipsis">
-        function getPortV6
+        function getProtocolVersion
       </span>
     </a>
 
@@ -3183,9 +3183,9 @@ For latest updates join the chat on
             
                 
                     <li class="md-nav__item">
-    <a href="#function-getprotocolversion" class="md-nav__link">
+    <a href="#function-getrecipes" class="md-nav__link">
       <span class="md-ellipsis">
-        function getProtocolVersion
+        function getRecipes
       </span>
     </a>
 
@@ -3445,7 +3445,7 @@ For latest updates join the chat on
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classendstone_1_1IRegistry/"><strong>IRegistry</strong></a> *</td>
-<td style="text-align: left;"><a href="#function-_getregistry"><strong>_getRegistry</strong></a> (<a href="../classendstone_1_1Identifier/"><strong>const</strong></a> std::type_info &amp; type) const = 0<br><em>Returns the registry for the given type.</em></td>
+<td style="text-align: left;"><a href="#function-_getregistry"><strong>_getRegistry</strong></a> (<a href="../classendstone_1_1ClassInfo/"><strong>ClassInfo</strong></a> type) const = 0<br><em>Returns the registry for the given type.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>void</strong></a></td>
@@ -3469,11 +3469,11 @@ For latest updates join the chat on
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classendstone_1_1NotNull/"><strong>NotNull</strong></a>&lt; <a href="../classendstone_1_1BossBar/"><strong>BossBar</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="#function-createbossbar-12"><strong>createBossBar</strong></a> (std::string title, <a href="../namespaceendstone/#enum-barcolor"><strong>BarColor</strong></a> color, <a href="../namespaceendstone/#enum-barstyle"><strong>BarStyle</strong></a> style) const = 0<br><em>Creates a boss bar instance to display to players.</em></td>
+<td style="text-align: left;"><a href="#function-createbossbar-12"><strong>createBossBar</strong></a> (std::string title, <a href="../namespaceendstone/#enum-barcolor"><strong>BarColor</strong></a> color, <a href="../namespaceendstone/#enum-barstyle"><strong>BarStyle</strong></a> style) = 0<br><em>Creates a boss bar instance to display to players.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classendstone_1_1NotNull/"><strong>NotNull</strong></a>&lt; <a href="../classendstone_1_1BossBar/"><strong>BossBar</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="#function-createbossbar-22"><strong>createBossBar</strong></a> (std::string title, <a href="../namespaceendstone/#enum-barcolor"><strong>BarColor</strong></a> color, <a href="../namespaceendstone/#enum-barstyle"><strong>BarStyle</strong></a> style, std::vector&lt; <a href="../namespaceendstone/#enum-barflag"><strong>BarFlag</strong></a> &gt; flags) const = 0<br><em>Creates a boss bar instance to display to players.</em></td>
+<td style="text-align: left;"><a href="#function-createbossbar-22"><strong>createBossBar</strong></a> (std::string title, <a href="../namespaceendstone/#enum-barcolor"><strong>BarColor</strong></a> color, <a href="../namespaceendstone/#enum-barstyle"><strong>BarStyle</strong></a> style, std::vector&lt; <a href="../namespaceendstone/#enum-barflag"><strong>BarFlag</strong></a> &gt; flags) = 0<br><em>Creates a boss bar instance to display to players.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classendstone_1_1MapView/"><strong>MapView</strong></a> &amp;</td>
@@ -3593,11 +3593,11 @@ For latest updates join the chat on
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>int</strong></a></td>
-<td style="text-align: left;"><a href="#function-getportv6"><strong>getPortV6</strong></a> () const = 0<br><em>Get the game port (IPv6) that the server runs on.</em></td>
+<td style="text-align: left;"><a href="#function-getprotocolversion"><strong>getProtocolVersion</strong></a> () const = 0<br><em>Gets the network protocol version that this server supports.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classendstone_1_1Identifier/"><strong>int</strong></a></td>
-<td style="text-align: left;"><a href="#function-getprotocolversion"><strong>getProtocolVersion</strong></a> () const = 0<br><em>Gets the network protocol version that this server supports.</em></td>
+<td style="text-align: right;">virtual std::vector&lt; <a href="../classendstone_1_1NotNull/"><strong>NotNull</strong></a>&lt; <a href="../classendstone_1_1Recipe/"><strong>Recipe</strong></a> &gt; &gt;</td>
+<td style="text-align: left;"><a href="#function-getrecipes"><strong>getRecipes</strong></a> () const = 0<br><em>Get the list of crafting recipes.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classendstone_1_1Identifier/"><strong>const</strong></a> <a href="../classendstone_1_1Registry/"><strong>Registry</strong></a>&lt; <a href="../classendstone_1_1Identifier/"><strong>T</strong></a> &gt; &amp;</td>
@@ -3681,7 +3681,7 @@ For latest updates join the chat on
 <h3 id="function-_getregistry">function _getRegistry<a class="headerlink" href="#function-_getregistry" title="Permanent link">&para;</a></h3>
 <p><em>Returns the registry for the given type.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">IRegistry</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Server</span><span class="o">::</span><span class="n">_getRegistry</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">type_info</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">type</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="n">ClassInfo</span><span class="w"> </span><span class="n">type</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
 </span></code></pre></div></p>
 <p>If no registry is present for the given type, nullptr will be returned.</p>
@@ -3771,7 +3771,7 @@ For latest updates join the chat on
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">title</span><span class="p">,</span>
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="n">BarColor</span><span class="w"> </span><span class="n">color</span><span class="p">,</span>
 </span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="n">BarStyle</span><span class="w"> </span><span class="n">style</span>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
 </span></code></pre></div></p>
 <p>The progress defaults to 1.0.</p>
 <p><strong>Parameters:</strong></p>
@@ -3791,7 +3791,7 @@ For latest updates join the chat on
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="n">BarColor</span><span class="w"> </span><span class="n">color</span><span class="p">,</span>
 </span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="n">BarStyle</span><span class="w"> </span><span class="n">style</span><span class="p">,</span>
 </span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">BarFlag</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">flags</span>
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
 </span></code></pre></div></p>
 <p>The progress defaults to 1.0.</p>
 <p><strong>Parameters:</strong></p>
@@ -4090,20 +4090,20 @@ For latest updates join the chat on
 <p>the port number of this server </p>
 <hr>
 
-<h3 id="function-getportv6">function getPortV6<a class="headerlink" href="#function-getportv6" title="Permanent link">&para;</a></h3>
-<p><em>Get the game port (IPv6) that the server runs on.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Server</span><span class="o">::</span><span class="n">getPortV6</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
-</span></code></pre></div></p>
-<p><strong>Returns:</strong></p>
-<p>the port number of this server </p>
-<hr>
-
 <h3 id="function-getprotocolversion">function getProtocolVersion<a class="headerlink" href="#function-getprotocolversion" title="Permanent link">&para;</a></h3>
 <p><em>Gets the network protocol version that this server supports.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Server</span><span class="o">::</span><span class="n">getProtocolVersion</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Server</span><span class="o">::</span><span class="n">getProtocolVersion</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>version of network protocol </p>
+<hr>
+
+<h3 id="function-getrecipes">function getRecipes<a class="headerlink" href="#function-getrecipes" title="Permanent link">&para;</a></h3>
+<p><em>Get the list of crafting recipes.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">NotNull</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Recipe</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">endstone</span><span class="o">::</span><span class="n">Server</span><span class="o">::</span><span class="n">getRecipes</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+</span></code></pre></div></p>
+<p><strong>Returns:</strong></p>
+<p>a list of recipes </p>
 <hr>
 
 <h3 id="function-getregistry">function getRegistry<a class="headerlink" href="#function-getregistry" title="Permanent link">&para;</a></h3>
@@ -4117,6 +4117,10 @@ For latest updates join the chat on
 </ul>
 <p><strong>Returns:</strong></p>
 <p>the corresponding registry. </p>
+<p><strong>Exception:</strong></p>
+<ul>
+<li><code>std::out_of_range</code> if no registry is present for T. </li>
+</ul>
 <hr>
 
 <h3 id="function-getscheduler">function getScheduler<a class="headerlink" href="#function-getscheduler" title="Permanent link">&para;</a></h3>

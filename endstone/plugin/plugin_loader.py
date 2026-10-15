@@ -114,6 +114,7 @@ class PythonPluginLoader(PluginLoader):
 
     def load_plugin(self, file: str) -> Plugin | None:
         env = os.environ.copy()
+        env["PYTHONPATH"] = os.pathsep.join(sys.path)
         env.pop("LD_PRELOAD", "")
 
         dist_name = pkginfo.Wheel(file).name

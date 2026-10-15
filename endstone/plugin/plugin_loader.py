@@ -131,6 +131,7 @@ class PythonPluginLoader(PluginLoader):
                 "--disable-pip-version-check",
             ],
             env=env,
+            stdin=subprocess.DEVNULL,
         )
 
         eps = distribution(dist_name).entry_points.select(group="endstone")

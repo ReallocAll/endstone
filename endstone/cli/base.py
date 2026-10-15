@@ -415,7 +415,7 @@ class Bootstrap:
     @property
     def _endstone_runtime_env(self) -> dict[str, str]:
         env = os.environ.copy()
-        env["PATH"] = os.pathsep.join(sys.path)
+        env["PATH"] = os.pathsep.join([*sys.path, env.get("PATH", "")])
         env["PYTHONPATH"] = os.pathsep.join(sys.path)
         env["PYTHONIOENCODING"] = "UTF-8"
         env["ENDSTONE_PYTHON_EXECUTABLE"] = sys.executable

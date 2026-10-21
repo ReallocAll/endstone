@@ -2,20 +2,13 @@
 
 #include <algorithm>
 #include <array>
-#include <cerrno>
 #include <cmath>
 #include <limits>
 #include <set>
 #include <stdexcept>
-#include <system_error>
 #include <utility>
 
 #include <toml++/toml.h>
-
-#ifndef _WIN32
-#include <fcntl.h>
-#include <unistd.h>
-#endif
 
 namespace endstone::core {
 namespace {
@@ -147,80 +140,11 @@ MobAiDecision mobAiDecision(const MobAiSettings &settings)
     return result;
 }
 
-#ifndef _WIN32
-void checkIo(bool success, const char *operation)
-{
-    if (!success) {
-        throw std::system_error(errno, std::generic_category(), operation);
-    }
-}
-
-class FileDescriptor {
-public:
-    explicit FileDescriptor(int fd, int (*close)(int)) : fd_(fd), close_(close ? close : ::close)
-    {
-        if (fd_ < 0) {
-            throw std::system_error(errno, std::generic_category(), "Cannot open mob AI file");
-        }
-    }
-    ~FileDescriptor() noexcept
-    {
-        if (fd_ >= 0) {
-            close_(fd_);
-        }
-    }
-    FileDescriptor(const FileDescriptor &) = delete;
-    FileDescriptor &operator=(const FileDescriptor &) = delete;
-    [[nodiscard]] int get() const { return fd_; }
-    void close(const char *operation)
-    {
-        const auto fd = std::exchange(fd_, -1);
-        checkIo(close_(fd) == 0, operation);
-    }
-
-private:
-    int fd_;
-    int (*close_)(int);
-};
-#endif
-
 }  // namespace
 
-#ifndef _WIN32
-std::optional<std::string> MobAiPolicies::readOptional(const std::filesystem::path &path,
-                                                          const FileOperations &operations)
-{
-    if (!std::filesystem::exists(path)) {
-        return std::nullopt;
-    }
-    require(std::filesystem::is_regular_file(path), "Expected regular file: " + path.string());
-    FileDescriptor file(::open(path.c_str(), O_RDONLY | O_CLOEXEC), operations.close);
-    std::array<char, 4096> buffer;
-    std::string content;
-    for (;;) {
-        const auto count = operations.read ? operations.read(file.get(), buffer.data(), buffer.size())
-                                           : ::read(file.get(), buffer.data(), buffer.size());
-        if (count < 0 && errno == EINTR) {
-            continue;
-        }
-        checkIo(count >= 0, ("Cannot read " + path.string()).c_str());
-        if (count == 0) {
-            break;
-        }
-        content.append(buffer.data(), static_cast<std::size_t>(count));
-    }
-    file.close(("Cannot close " + path.string()).c_str());
-    return content;
-}
-#endif
-
-MobAiPolicies::Snapshot MobAiPolicies::parse(const std::optional<std::string> &policies)
+MobAiPolicies::Snapshot MobAiPolicies::parse(const toml::table &root)
 {
     Snapshot result;
-    if (!policies) {
-        return result;
-    }
-    const auto root = toml::parse(*policies);
     const auto *section = root.get("mob-ai");
     require(!section || section->is_table(), "Expected mob-ai table.");
     if (!section) {
@@ -268,7 +192,7 @@ MobAiPolicies::Snapshot MobAiPolicies::parse(const std::optional<std::string> &p
     return result;
 }
 
-Result<void> MobAiPolicies::initialize(const std::filesystem::path &policies_file)
+Result<void> MobAiPolicies::initialize(const toml::table &config)
 {
 #ifdef _WIN32
     return nonstd::make_unexpected(std::string("Mob AI policies are not supported on Windows."));
@@ -276,7 +200,7 @@ Result<void> MobAiPolicies::initialize(const std::filesystem::path &policies_fil
     ENDSTONE_CHECK(!initialized_, std::string("Mob AI policies are already initialized."));
     initialized_ = true;
     try {
-        auto candidate = parse(readOptional(policies_file, file_operations_));
+        auto candidate = parse(config);
         snapshot_ = std::move(candidate);
         return {};
     }

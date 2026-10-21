@@ -28,11 +28,11 @@
 #include <thread>
 #include <unordered_map>
 #include <unordered_set>
+#include <utility>
 
 #include <boost/algorithm/string.hpp>
 #include <entt/locator/locator.hpp>
 #include <pybind11/pybind11.h>
-#include <toml++/toml.h>
 
 #include "bedrock/deps/nethernet/http_signaling_server.h"
 #include "bedrock/deps/nethernet/simple_network_interface_impl.h"
@@ -58,6 +58,7 @@
 #include "endstone/core/boss/boss_bar.h"
 #include "endstone/core/command/command_map.h"
 #include "endstone/core/command/console_command_sender.h"
+#include "endstone/core/config.h"
 #include "endstone/core/enchantments/enchantment.h"
 #include "endstone/core/inventory/item_factory.h"
 #include "endstone/core/inventory/item_type.h"
@@ -163,7 +164,8 @@ EndstoneServer::EndstoneServer() : logger_(LoggerFactory::getLogger(""))
     start_time_ = std::chrono::system_clock::now();
 
     try {
-        toml::table tbl = toml::parse_file("endstone.toml");
+        startup_config_ = loadConfig("endstone.toml");
+        const auto &tbl = *startup_config_;
         log_commands_ = tbl.at_path("commands.log").value_or(true);
         allow_client_packs_ = tbl.at_path("settings.allow-client-packs").value_or(false);
         if (const auto *servers = tbl.at_path("network.stun-servers").as_array()) {
@@ -180,8 +182,8 @@ EndstoneServer::EndstoneServer() : logger_(LoggerFactory::getLogger(""))
             }
         }
     }
-    catch (const toml::parse_error &err) {
-        EndstoneServer::getLogger().error("Failed to parse config file: {}", err.what());
+    catch (const std::exception &err) {
+        EndstoneServer::getLogger().error("Failed to load config file: {}", err.what());
     }
 
     loadPlugins();
@@ -654,31 +656,25 @@ void EndstoneServer::reloadData()
 
 void EndstoneServer::initializeMobAiPolicies()
 {
-    try {
-        const auto config = fs::current_path() / "endstone.toml";
-        if (!MobAiState::isNativeAvailable()) {
-            if (fs::exists(config)) {
-                const auto settings = toml::parse_file(config.string());
-                if (settings.at_path("mob-ai.enabled").value_or(false)) {
-                    getLogger().error(
-                        "[Perf] Mob AI policies inactive: native controls are unavailable for this binary.");
-                }
-            }
-            return;
+    const auto config = std::exchange(startup_config_, std::nullopt);
+    if (!config) {
+        return;
+    }
+    if (!MobAiState::isNativeAvailable()) {
+        if (config->at_path("mob-ai.enabled").value_or(false)) {
+            getLogger().error("[Perf] Mob AI policies inactive: native controls are unavailable for this binary.");
         }
+        return;
+    }
 #ifdef __linux__
-        const auto result = mob_ai_policies_.initialize(config);
-        if (!result) {
-            getLogger().error("[Perf] Mob AI policies were not loaded: {}", result.error());
-        }
-        else {
-            getLogger().info("[Perf] Mob AI policies loaded.");
-        }
+    const auto result = mob_ai_policies_.initialize(*config);
+    if (!result) {
+        getLogger().error("[Perf] Mob AI policies were not loaded: {}", result.error());
+    }
+    else {
+        getLogger().info("[Perf] Mob AI policies loaded.");
+    }
 #endif
-    }
-    catch (const std::exception &e) {
-        getLogger().error("[Perf] Mob AI policies were not loaded: {}", e.what());
-    }
 }
 
 void EndstoneServer::recordMobAiActivity(const ::Actor &actor)

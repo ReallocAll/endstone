@@ -2,11 +2,12 @@
 
 #include <cstddef>
 #include <cstdint>
-#include <filesystem>
 #include <map>
 #include <optional>
 #include <string>
 #include <string_view>
+
+#include <toml++/toml.h>
 
 #include "endstone/util/result.h"
 
@@ -30,16 +31,11 @@ struct MobAiDecision {
 // Main-thread only; returned decisions do not refer to the active snapshot.
 class MobAiPolicies {
 public:
-    Result<void> initialize(const std::filesystem::path &policies_file);
+    Result<void> initialize(const toml::table &config);
     [[nodiscard]] MobAiDecision resolve(std::string_view type) const;
 
 private:
     friend struct MobAiPoliciesTestAccess;
-
-    struct FileOperations {
-        std::ptrdiff_t (*read)(int, void *, std::size_t) = nullptr;
-        int (*close)(int) = nullptr;
-    };
 
     struct Snapshot {
         bool enabled = false;
@@ -47,10 +43,7 @@ private:
         std::map<std::string, MobAiDecision, std::less<>> overrides;
     };
 
-    static Snapshot parse(const std::optional<std::string> &policies);
-    static std::optional<std::string> readOptional(const std::filesystem::path &path, const FileOperations &operations);
-
-    FileOperations file_operations_;
+    static Snapshot parse(const toml::table &config);
 
     Snapshot snapshot_;
     bool initialized_ = false;

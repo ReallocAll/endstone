@@ -1,8 +1,17 @@
+#if defined(__linux__) && !defined(_GNU_SOURCE)
+#define _GNU_SOURCE
+#endif
+
+#include <algorithm>
 #include <cerrno>
+#include <cstdio>
+#include <cstring>
 #include <filesystem>
 #include <fstream>
 #include <limits>
+#include <memory>
 #include <string>
+#include <string_view>
 #include <utility>
 #include <vector>
 
@@ -10,22 +19,22 @@
 #include <boost/uuid/uuid_io.hpp>
 #include <gtest/gtest.h>
 
+#include "endstone/core/config.h"
 #include "endstone/core/perf/mob_ai.h"
 #include "endstone/core/perf/mob_ai_capabilities.h"
-
-#ifndef _WIN32
-#include <unistd.h>
-#endif
 
 namespace endstone::core {
 
 struct MobAiPoliciesTestAccess {
-    static auto &fileOperations(MobAiPolicies &policies) { return policies.file_operations_; }
+    static void parse(MobAiPolicies &subject, const toml::table &config)
+    {
+        subject.snapshot_ = MobAiPolicies::parse(config);
+    }
 
-    static MobAiDecision parseAndResolve(const std::optional<std::string> &policies, std::string_view type)
+    static MobAiDecision parseAndResolve(std::string_view config, std::string_view type)
     {
         MobAiPolicies subject;
-        subject.snapshot_ = MobAiPolicies::parse(policies);
+        parse(subject, toml::parse(config));
         return subject.resolve(type);
     }
 };
@@ -117,8 +126,8 @@ prevent-sleep = true
 
 TEST_F(MobAiTest, MissingOrDisabledMasterKeepsVanilla)
 {
-    for (const auto &config : std::vector<std::optional<std::string>>{
-             std::nullopt, "[server]\nname='example'\n",
+    for (const auto &config : std::vector<std::string>{
+             "", "[server]\nname='example'\n",
              "[mob-ai.villagers]\nprevent-sleep=true\n[[mob-ai.overrides]]\n"
              "types=['minecraft:villager_v2']\n[mob-ai.overrides.idle]\nenabled=true\n",
              "[mob-ai]\nenabled=false\n[mob-ai.villagers]\nprevent-sleep=true\n"
@@ -240,7 +249,6 @@ TEST_F(MobAiTest, InvalidSchemaIsRejectedEvenWhenDisabled)
 {
     const std::string rule = "[[mob-ai.overrides]]\ntypes=['minecraft:cow']\n[mob-ai.overrides.idle]\n";
     for (const auto &[label, config] : std::vector<std::pair<std::string, std::string>>{
-             {"malformed TOML", "[mob-ai"},
              {"non-table root", "mob-ai=false"},
              {"wrong master boolean", "[mob-ai]\nenabled=1"},
              {"unknown field while disabled", "[mob-ai]\nenabled=false\nunknown=true"},
@@ -296,71 +304,112 @@ player-range-blocks = 9223372036854775807
     EXPECT_DOUBLE_EQ(*decision.target_search_player_range_blocks, 9223372036854775808.0);
 }
 
+TEST_F(MobAiTest, SnapshotOwnsValuesAfterTableMutationAndDestruction)
+{
+    MobAiDecision cow;
+    MobAiDecision villager;
+    {
+        auto config = toml::parse(sleep + "[[mob-ai.overrides]]\ntypes=['minecraft:cow']\n"
+                                          "[mob-ai.overrides.idle]\nplayer-range-blocks=16\n");
+        MobAiPoliciesTestAccess::parse(subject, config);
+        cow = subject.resolve("minecraft:cow");
+        villager = subject.resolve("minecraft:villager_v2");
+        ASSERT_TRUE(cow.animal);
+        EXPECT_EQ(cow.animal->activation_range_blocks, 16);
+        ASSERT_TRUE(villager.prevent_sleep);
+        config.clear();
+        config.insert_or_assign("mob-ai", false);
+        EXPECT_EQ(subject.resolve("minecraft:cow"), cow);
+        EXPECT_EQ(subject.resolve("minecraft:villager_v2"), villager);
+    }
+    EXPECT_EQ(subject.resolve("minecraft:cow"), cow);
+    EXPECT_EQ(subject.resolve("minecraft:villager_v2"), villager);
+}
+
 #ifdef _WIN32
 TEST_F(MobAiTest, WindowsCannotActivateOrModifyMainConfiguration)
 {
     write(policies, sleep);
-    EXPECT_FALSE(subject.initialize(policies));
+    EXPECT_FALSE(subject.initialize(loadConfig(policies)));
     EXPECT_FALSE(subject.resolve("minecraft:villager_v2").prevent_sleep);
     EXPECT_EQ(read(policies), sleep);
 }
 #else
 TEST_F(MobAiTest, MissingConfigStaysInactiveAndDoesNotWrite)
 {
-    const auto initialized = subject.initialize(policies);
-    ASSERT_TRUE(initialized);
+    ASSERT_TRUE(subject.initialize(loadConfig(policies)));
     EXPECT_EQ(subject.resolve("minecraft:villager_v2"), MobAiDecision{});
     EXPECT_TRUE(std::filesystem::is_empty(directory));
 }
 
-TEST_F(MobAiTest, ConfigurationChangesRequireNewPoliciesInstance)
+#ifdef __linux__
+TEST_F(MobAiTest, ReadFailureAfterValidPrefixDoesNotPublishTruncatedConfig)
 {
-    const auto config = sleep + "[[mob-ai.overrides]]\ntypes=['minecraft:cow']\n"
-                                "[mob-ai.overrides.idle]\nplayer-range-blocks=16\n";
-    write(policies, config);
-    ASSERT_TRUE(subject.initialize(policies));
+    struct Cookie {
+        std::string_view content = "[commands]\nlog=false\n[mob-ai]\nenabled=true\n";
+        std::size_t offset = 0;
+    } cookie;
+    ASSERT_EQ(toml::parse(cookie.content).at_path("mob-ai.enabled").value<bool>(), true);
+    cookie_io_functions_t operations{};
+    operations.read = [](void *state, char *buffer, std::size_t size) -> ssize_t {
+        auto &cookie = *static_cast<Cookie *>(state);
+        if (cookie.offset == cookie.content.size()) {
+            errno = EIO;
+            return -1;
+        }
+        const auto count = std::min(size, cookie.content.size() - cookie.offset);
+        std::memcpy(buffer, cookie.content.data() + cookie.offset, count);
+        cookie.offset += count;
+        return static_cast<ssize_t>(count);
+    };
+    const std::unique_ptr<std::FILE, decltype(&std::fclose)> file(::fopencookie(&cookie, "r", operations),
+                                                                  &std::fclose);
+    ASSERT_NE(file, nullptr);
+    try {
+        (void)subject.initialize(config_detail::loadConfig(file.get(), policies));
+        FAIL() << "Read failure accepted a valid TOML prefix.";
+    }
+    catch (const std::filesystem::filesystem_error &error) {
+        EXPECT_EQ(error.code(), std::error_code(EIO, std::generic_category()));
+    }
+    EXPECT_EQ(cookie.offset, cookie.content.size());
+    EXPECT_NE(std::ferror(file.get()), 0);
+    EXPECT_EQ(subject.resolve("minecraft:cow"), MobAiDecision{});
+    EXPECT_EQ(subject.resolve("minecraft:villager_v2"), MobAiDecision{});
+}
+#endif
+
+TEST_F(MobAiTest, StartupSnapshotIgnoresFileChangesBeforeInitialization)
+{
+    write(policies, sleep + "[[mob-ai.overrides]]\ntypes=['minecraft:cow']\n"
+                            "[mob-ai.overrides.idle]\nplayer-range-blocks=16\n");
+    const auto config = loadConfig(policies);
+    write(policies, "[mob-ai]\nenabled=false\n");
+    ASSERT_TRUE(subject.initialize(config));
     const auto cow = subject.resolve("minecraft:cow");
     const auto villager = subject.resolve("minecraft:villager_v2");
     ASSERT_TRUE(cow.animal);
     ASSERT_EQ(cow.animal->activation_range_blocks, 16);
     ASSERT_TRUE(villager.prevent_sleep);
-    write(policies, "[mob-ai]\nenabled=false\n");
-    EXPECT_EQ(subject.resolve("minecraft:cow"), cow);
-    EXPECT_EQ(subject.resolve("minecraft:villager_v2"), villager);
-    EXPECT_FALSE(subject.initialize(policies));
+    EXPECT_FALSE(subject.initialize(loadConfig(policies)));
     EXPECT_EQ(subject.resolve("minecraft:cow"), cow);
     EXPECT_EQ(subject.resolve("minecraft:villager_v2"), villager);
     MobAiPolicies restarted;
-    ASSERT_TRUE(restarted.initialize(policies));
+    ASSERT_TRUE(restarted.initialize(loadConfig(policies)));
     EXPECT_EQ(restarted.resolve("minecraft:cow"), MobAiDecision{});
     EXPECT_EQ(restarted.resolve("minecraft:villager_v2"), MobAiDecision{});
 }
 
-TEST_F(MobAiTest, InvalidInitialConfigurationStaysInactiveAndDoesNotWrite)
+TEST_F(MobAiTest, SchemaFailureStaysInactiveAndRejectsSecondInitialization)
 {
-    const std::string invalid = "[mob-ai]\nenabled=true\nunknown=true\n";
-    write(policies, invalid);
-    EXPECT_FALSE(subject.initialize(policies));
+    const auto config = toml::parse("[commands]\nlog=false\n[mob-ai]\nenabled=true\nunknown=true\n");
+    EXPECT_FALSE(subject.initialize(config));
+    EXPECT_EQ(config.at_path("commands.log").value<bool>(), false);
     EXPECT_EQ(subject.resolve("minecraft:cow"), MobAiDecision{});
     EXPECT_EQ(subject.resolve("minecraft:villager_v2"), MobAiDecision{});
-    EXPECT_EQ(read(policies), invalid);
-}
-
-TEST_F(MobAiTest, ReadFailureAfterValidPrefixDoesNotPublishTruncatedConfig)
-{
-    write(policies, sleep);
-    MobAiPoliciesTestAccess::fileOperations(subject).read = [](int fd, void *buffer, std::size_t) -> std::ptrdiff_t {
-        if (::lseek(fd, 0, SEEK_CUR) == 0) {
-            constexpr std::string_view prefix = "[mob-ai]\nenabled = true\n";
-            return ::read(fd, buffer, prefix.size());
-        }
-        errno = EIO;
-        return -1;
-    };
-    EXPECT_FALSE(subject.initialize(policies));
+    EXPECT_FALSE(subject.initialize(toml::parse(sleep)));
     EXPECT_EQ(subject.resolve("minecraft:cow"), MobAiDecision{});
     EXPECT_EQ(subject.resolve("minecraft:villager_v2"), MobAiDecision{});
-    EXPECT_EQ(read(policies), sleep);
 }
 #endif
 

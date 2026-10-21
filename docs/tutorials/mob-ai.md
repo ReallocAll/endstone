@@ -77,7 +77,7 @@ Missing required components, invalid positions or an unresolved relevant player'
 
 ## Apply changes, disable and restore
 
-Mob AI settings are loaded once during server startup. After editing `endstone.toml`, restart the server and check the English `[Perf]` result. A successful load reports `Mob AI policies loaded`. Endstone `/reload` keeps the Mob AI settings loaded at startup and does not explicitly reset Mob AI activity or search state. Normal plugin and server-data reload behavior still applies.
+Endstone reads `endstone.toml` once before loading plugins. Mob AI settings use that startup snapshot; changes made by startup plugins take effect after the next restart. After editing `endstone.toml`, restart the server and check the English `[Perf]` result. A successful load reports `Mob AI policies loaded`. Endstone `/reload` keeps the Mob AI settings loaded at startup and does not explicitly reset Mob AI activity or search state. Normal plugin and server-data reload behavior still applies.
 
 If Mob AI initialization rejects syntax errors, unknown fields, invalid values or conflicting overrides, controls stay inactive. Disabled configurations still validate all settings. The launcher may reject malformed TOML before the server starts.
 

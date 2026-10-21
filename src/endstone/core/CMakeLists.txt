@@ -21,6 +21,7 @@ find_package(tomlplusplus REQUIRED)
 find_package(zstr CONFIG REQUIRED)
 
 add_library(endstone_core
+        config.cpp
         crash_handler.cpp
         game_mode.cpp
         logger_factory.cpp

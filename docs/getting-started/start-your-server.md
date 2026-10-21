@@ -35,16 +35,17 @@ You should see this in your console:
 
 ## Configuration updates
 
-At startup, the launcher adds missing defaults to `endstone.toml` while preserving existing values and comments.
-This applies to the whole configuration, including when [mob AI controls](../tutorials/mob-ai.md) are disabled.
-Files that need no changes are left alone. A changed file is replaced atomically at its resolved destination,
-so relative symlinks remain intact, but the target's inode changes. A required update stops startup if the target
-has multiple hard links; use a symlink when several paths should share the configuration.
+At startup, the launcher adds missing defaults to `endstone.toml` while keeping your existing values and comments.
+This applies to the whole configuration, including [mob AI settings](../tutorials/mob-ai.md) when the controls are
+disabled.
 
-On POSIX, replacement preserves the existing user ID, group ID and mode bits; new files use mode `0600`.
-The launcher does not copy custom ACLs, extended attributes or Windows file security metadata from the old file.
-Deployments that set these separately should account for replacement during configuration updates.
-If writing or replacement fails, the original file is kept.
+If the launcher reports a TOML error, correct `endstone.toml` and start the server again. If a configuration update
+fails, your original file is kept; resolve the reported file or permission problem and retry.
+
+??? note "Shared files and custom permissions"
+    The launcher cannot update a configuration with multiple hard links. Use a symlink to share one configuration
+    between paths. Updates preserve ordinary POSIX permissions, but do not copy custom ACLs, extended attributes or
+    Windows security metadata; reapply these if your deployment needs them.
 
 
 [installed]: installation.md

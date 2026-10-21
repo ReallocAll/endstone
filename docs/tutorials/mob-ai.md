@@ -1,10 +1,11 @@
 # Mob AI controls
 
-Mob AI controls adjust matching native sleep, random-stroll, random-look-around and new-target-search goals on supported Linux BDS binaries. They default to **off**. Endstone checks native hook addresses and each exact goal instance before applying a control; unsupported platforms, goals or unreliable entity state retain vanilla behavior. Windows native controls are unavailable.
+Mob AI controls let you reduce random strolling and looking around, space out new target searches, and prevent
+villagers from sleeping. They are available on Linux and disabled by default.
 
-## Configuration and first setup
+## Enable the controls {#configuration-and-first-setup}
 
-Settings live in the server working directory's `endstone.toml`. For a new installation, the Python launcher supplies:
+Open `endstone.toml` in your server directory. The launcher adds these defaults when you start the server:
 
 ```toml
 [mob-ai]
@@ -25,19 +26,27 @@ interval-ticks = 20
 prevent-sleep = false
 ```
 
-Set `mob-ai.enabled = true` to activate the controls. Idle and target-search settings are independent: an effective feature `enabled = false` keeps that feature vanilla while the other feature can remain active. Each idle `disable-*` flag controls only its named goal. Set `prevent-sleep = true` to prevent supported `minecraft:villager_v2` sleep goals; `false` keeps vanilla sleep. The master switch disables every mob AI control, including overrides.
+Set `enabled = true` under `[mob-ai]` to turn on the controls, then restart the server.
 
-The two `player-range-blocks` values are independent nearby-player protections, **not target detection radii**. A qualifying player inside the idle range preserves vanilla idle behavior; one inside the target-search range preserves vanilla search cadence. Ranges are finite positive numbers, use three-dimensional feet distance, include the boundary, and consider nonspectator players in the same dimension. `interval-ticks` is an integer from 1 to 4294967295 and delays only new target searches outside their protection range. Existing-target validation, attacks, retaliation, pathfinding, breeding, grazing, egg laying, work, trading, physics and synchronization are not throttled. The 32-block ranges and 20-tick interval are starting settings, with no performance or maximum reaction-delay guarantee.
+- **Idle:** Outside `player-range-blocks`, stop random strolling and looking around on supported mobs. Set either
+  `disable-*` option to `false` to keep that behavior.
+- **Target search:** Outside its own `player-range-blocks`, use `interval-ticks` to space out searches for new targets.
+  Existing targets and attacks continue normally.
+- **Villagers:** Set `prevent-sleep = true` to keep modern villagers (`minecraft:villager_v2`) awake. This also prevents
+  sleep healing; it does not extend working hours or guarantee overnight restocking.
 
-The launcher fills missing global fields from the template. It generates no override rules and leaves override fields omitted so they inherit the corresponding global values at runtime. Existing values, comments and invalid data are preserved; invalid settings are rejected rather than repaired.
+Idle and target search each have an `enabled` switch, so you can use either feature on its own. The master switch
+under `[mob-ai]` controls everything, including villager sleep and per-type overrides.
 
-Launcher preparation updates the whole main configuration even when mob AI controls are disabled. Its [atomic replacement and file metadata behavior](../getting-started/start-your-server.md#configuration-updates) also applies to existing installations. If temporary-file cleanup fails, the warning reports the remaining path. Loading the native runtime directly does not create configuration; a missing `mob-ai` section initially keeps vanilla behavior.
+Each feature has its own `player-range-blocks`. A nonspectator player in the same dimension, at or within that
+distance, keeps the mob's normal behavior for that feature. Distance includes vertical separation. These settings
+do not change how far mobs can detect a target. Use positive, finite numbers for ranges and an integer from 1 to
+4294967295 for `interval-ticks`.
 
-## Per-type overrides
+## Set options for individual mobs {#per-type-overrides}
 
-Each `[[mob-ai.overrides]]` rule has a nonempty `types` list of unique exact identifiers, such as `minecraft:cow`. Wildcards and duplicate identifiers are invalid. A rule can contain `idle`, `target-search` and `villagers` subtables. There is no root per-type `enabled` field; use the feature subtable's fields. Omitted fields inherit their corresponding global feature values. Villager `prevent-sleep` control remains limited to `minecraft:villager_v2`.
-
-For cows and pigs, use a 16-block idle protection range:
+Add `[[mob-ai.overrides]]` entries to give particular mob types different settings. For example, use a 16-block idle
+range for cows and pigs:
 
 ```toml
 [[mob-ai.overrides]]
@@ -47,7 +56,7 @@ types = ["minecraft:cow", "minecraft:pig"]
 player-range-blocks = 16
 ```
 
-For skeletons, use a 16-block idle protection range and a separate 48-block search protection range with searches every 40 ticks:
+For skeletons, use a 16-block idle range and a separate 48-block search range with a 40-tick search interval:
 
 ```toml
 [[mob-ai.overrides]]
@@ -57,41 +66,48 @@ types = ["minecraft:skeleton"]
 player-range-blocks = 16
 
 [mob-ai.overrides.target-search]
+enabled = true
 player-range-blocks = 48
 interval-ticks = 40
 ```
 
-With these settings, a nearby player can preserve vanilla skeleton search cadence while idle controls still apply. The type's native detection range is unchanged. The same type cannot occur in two rules for the same feature, even if those rules set different fields. Separate rules for the same type and different features are allowed. Unknown fields, invalid values and conflicting rules reject the entire configuration, even when the master switch is off.
+A player 32 blocks from a skeleton would keep its normal target-search behavior while idle controls could still
+apply. The override's `enabled = true` also enables target-search controls for skeletons if that feature is disabled
+globally. The master switch must still be on.
 
-## Capability boundaries and activity protection
+Use `idle`, `target-search` or `villagers` subtables with the same options as the global settings. Leave out any
+option to inherit its global value. To disable a feature for selected types, set `enabled = false` in their `idle`
+or `target-search` subtable, or `prevent-sleep = false` in their `villagers` subtable.
 
-Idle controls require a `minecraft:` Mob that is not a player and has the exact matching goal. The following 21 identifiers are excluded, all in the `minecraft:` namespace: `player`, `armor_stand`, `tripod_camera`, `npc`, `agent`, `villager`, `villager_v2`, `wandering_trader`, `trader_llama`, `ender_dragon`, `wither`, `warden`, `creaking`, `allay`, `copper_golem`, `iron_golem`, `snow_golem`, `guardian`, `elder_guardian`, `elder_guardian_ghost`, `shulker`.
+Each `types` list must be nonempty and contain unique, exact identifiers; wildcards are not supported. A type can
+appear in separate rules for different features, but two rules cannot configure the same feature for the same
+type. Overrides cannot make unsupported mobs eligible. Mob types outside the `minecraft:` namespace are unaffected.
 
-Target-search controls additionally require the Monster category and one of these 12 exact identifiers: `zombie`, `husk`, `drowned`, `zombie_villager`, `zombie_villager_v2`, `skeleton`, `stray`, `wither_skeleton`, `bogged`, `parched`, `creeper`, `witch`. Exact selectors cannot bypass native capability boundaries. Unknown Minecraft Mobs may qualify for matching idle goals but do not gain search control from a Monster category alone.
+## Supported mobs {#capability-boundaries-and-activity-protection}
 
-Spider and cave-spider idle goals can qualify; their day/night targeting and retaliation remain vanilla. Endermen, zombie pigmen, piglins, piglin brutes, pets and guardians retain vanilla target searches. Villager sleep control is independent and only accepts exact `minecraft:villager_v2`.
+Idle controls affect mobs with random strolling or looking-around behaviors, such as cows, pigs and spiders.
+Exceptions include villagers and traders, trader llamas, bosses, wardens, creakings, golems, allays, guardians and
+shulkers. Special entities such as NPCs and armor stands are also excluded.
 
-Numeric-range controls retain vanilla behavior with an existing target, riding, passengers, a qualifying nearby player, or activity during the previous 100 ticks. Hurt and interaction activity is retained only for an entity with a resolved supported idle/search capability. Any of these flags also protects the entity: `LEASHED`, `INLOVE`, `TEMPTED`, `TAMED`, `ANGRY`, `SCARED`, `ONFIRE`, `USINGITEM`, `TRADE_INTEREST`, `IS_IN_UI`, `ADMIRING`, `CASTING`, `CHARGING`, `IGNITED`, `FACING_TARGET_TO_RANGE_ATTACK`, `DELAYED_ATTACK`, `RAM_ATTACK`.
+Target-search controls support zombies, husks, drowned, zombie villagers, skeletons, strays, wither skeletons,
+bogged, parched, creepers and witches. Other mobs, including spiders, endermen and piglins, keep their normal target
+searches. Villager sleep control applies only to `minecraft:villager_v2`.
 
-Missing required components, invalid positions or an unresolved relevant player's state preserve vanilla behavior. Removed players and players conclusively in another dimension are ignored; explicit spectators are ignored. Ambiguous default game modes retain vanilla behavior when their world default is spectator or unresolved. These safeguards cover the stated conditions; hidden species-specific behavior and every farm or device have not been established as safe.
+Mobs keep normal idle and target-search behavior while breeding, tamed or leashed, while they have a target, or
+while riding another entity or carrying passengers. Mobs that were recently hurt or interacted with also keep their
+normal behavior.
 
-## Apply changes, disable and restore
+## Apply or disable changes {#apply-changes-disable-and-restore}
 
-Endstone reads `endstone.toml` once before loading plugins. Mob AI settings use that startup snapshot; changes made by startup plugins take effect after the next restart. After editing `endstone.toml`, restart the server and check the English `[Perf]` result. A successful load reports `Mob AI policies loaded`. Endstone `/reload` keeps the Mob AI settings loaded at startup and does not explicitly reset Mob AI activity or search state. Normal plugin and server-data reload behavior still applies.
+Restart the server after editing `endstone.toml`; `/reload` does not apply mob AI settings. Check the startup log
+for `[Perf] Mob AI policies loaded`. If settings are invalid, the log reports the error and mob AI controls stay
+disabled. Unknown fields, invalid values and conflicting overrides are rejected even when the master switch is
+off. Malformed TOML may stop the launcher before the server starts; correct the reported error and try again.
 
-If Mob AI initialization rejects syntax errors, unknown fields, invalid values or conflicting overrides, controls stay inactive. Disabled configurations still validate all settings. The launcher may reject malformed TOML before the server starts.
+To disable all controls, set `enabled = false` under `[mob-ai]` and restart. You can keep your other settings and
+overrides for later.
 
-To disable mob AI controls, change the master switch in the existing main configuration and restart the server, keeping the feature settings and overrides:
+## Check your farms {#coverage-and-verification-limits}
 
-```toml
-[mob-ai]
-enabled = false
-```
-
-To restore prior behavior, restore the saved configuration and restart the server.
-
-## Coverage and verification limits
-
-The pinned definition reference is Mojang/bedrock-samples **v1.26.50.4**, commit `46ba6ea985fb5a92d79a9419198f10dda14c199d`: 128 definitions, 64 containing `random_stroll`, 55 `random_look_around`, 49 `nearest_attackable_target`, and one `sleep`. Their union is **78 definition types**, including tools, special entities and behaviors that may occur only in component groups. This is a definition inventory, not a claim of 78 supported or runtime-tested species. Practical coverage depends separately on definition presence, exact native goal admission and current-state eligibility.
-
-Native support is limited to Linux on Endstone's supported BDS version and requires the native checks to pass. Automated policy/state tests and compilation do not establish live species behavior. Cow/pig idle and breeding, zombie/skeleton/creeper search, spider day/night, player interaction, protections and exclusions require separate live validation. Unobserved cases remain unverified. Preventing villager sleep changes bedtime positioning and can remove native sleep healing; it does not add health compensation, longer work hours or guaranteed overnight restocking. No performance benefit or compatibility with every farm, breeder or sleep-based transport device is promised.
+Try these settings with your farms and mob transport systems before relying on them: changing idle movement,
+target searches or villager sleep can affect how they work.

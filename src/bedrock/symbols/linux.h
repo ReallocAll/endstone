@@ -18,7 +18,6 @@ static constexpr std::array<std::pair<std::string_view, std::size_t>, 89> symbol
     {"Enchant::mEnchants", 257765312},
     {"LevelChunk::tickImpl::seed", 256134984},
     {"MinecraftWorkerPool::ASYNC", 258114960},
-    {"endstone_perf_find_nearest_target", 199063312},
     {"getI18n::result", 256811320},
     // Actor
     {"_ZN5Actor10teleportToERK4Vec3biib", 187569008},
@@ -94,6 +93,8 @@ static constexpr std::array<std::pair<std::string_view, std::size_t>, 89> symbol
     {"_ZN16MinecraftPackets12createPacketE18MinecraftPacketIds", 144683616},
     // Mob
     {"_ZN3Mob9knockbackEP5ActorfffRK19KnockbackParameters", 199753344},
+    // NearestAttackableTargetGoal
+    {"_ZN27NearestAttackableTargetGoal11_findTargetEPPK13MobDescriptor", 199063312},
     // NetherNet::LanThreadManager
     {"_ZN9NetherNet16LanThreadManager24SendLanBroadcastResponseERKN6webrtc13SocketAddressENS_9NetworkIDENSt3__112basic_stringIcNS6_11char_traitsIcEENS6_9allocatorIcEEEE", 222750928},
     // NetherNet::SimpleNetworkInterfaceImpl

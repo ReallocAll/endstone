@@ -36,7 +36,8 @@ struct MobAiHook {
 inline constexpr std::array mob_ai_hooks = {
     MobAiHook{"_ZN9SleepGoal6canUseEv", sleep_goal_layout, 2},
     MobAiHook{"_ZN9SleepGoal11canContinueEv", sleep_goal_layout, 3},
-    MobAiHook{"endstone_perf_find_nearest_target", nearest_attackable_target_goal_layout, 13},
+    MobAiHook{"_ZN27NearestAttackableTargetGoal11_findTargetEPPK13MobDescriptor", nearest_attackable_target_goal_layout,
+              13},
     MobAiHook{"_ZN16RandomStrollGoal6canUseEv", random_stroll_goal_layout, 2},
     MobAiHook{"_ZN16RandomStrollGoal11canContinueEv", random_stroll_goal_layout, 3},
     MobAiHook{"_ZN20RandomLookAroundGoal6canUseEv", random_look_around_goal_layout, 2},

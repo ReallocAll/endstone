@@ -23,8 +23,8 @@
 #include "bedrock/world/level/level.h"
 #include "endstone/core/perf/mob_ai_capabilities.h"
 #include "endstone/core/server.h"
-#include "endstone/runtime/mob_ai_preflight.h"
 #include "endstone/runtime/hook.h"
+#include "endstone/runtime/mob_ai_preflight.h"
 
 namespace {
 using endstone::core::EndstoneServer;
@@ -246,9 +246,9 @@ bool RandomLookAroundGoal::canContinue()
     return ENDSTONE_HOOK_CALL_ORIGINAL(&RandomLookAroundGoal::canContinue, this);
 }
 
-extern "C" ENDSTONE_HOOK_LINUX std::int64_t endstone_perf_find_nearest_target(void *goal, void **matched_definition)
+ActorUniqueID NearestAttackableTargetGoal::_findTarget(const MobDescriptor **matched_definition)
 {
-    const auto *actor = owner(goal, endstone::runtime::nearest_attackable_target_goal_layout);
+    const auto *actor = owner(this, endstone::runtime::nearest_attackable_target_goal_layout);
     if (!usableMob(actor)) {
         clearSearch(actor);
     }
@@ -265,11 +265,10 @@ extern "C" ENDSTONE_HOOK_LINUX std::int64_t endstone_perf_find_nearest_target(vo
         else if (!state.allowNewTargetSearch(id, actor->getLevel().getCurrentServerTick().tick_id,
                                              decision.target_search_interval_ticks)) {
             *matched_definition = nullptr;
-            return -1;
+            return ActorUniqueID::INVALID_ID;
         }
     }
-    return ENDSTONE_HOOK_CALL_ORIGINAL_NAME(&endstone_perf_find_nearest_target, "endstone_perf_find_nearest_target",
-                                            goal, matched_definition);
+    return ENDSTONE_HOOK_CALL_ORIGINAL(&NearestAttackableTargetGoal::_findTarget, this, matched_definition);
 }
 
 #endif

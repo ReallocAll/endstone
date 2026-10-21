@@ -28,14 +28,14 @@ extra = 0
 pattern = "41 57 41 56 53 48 83 EC ? 48 89 FB 80 7F 3C 01 0F 85 ? ? ? ? 4C 8B B3 B8 00 00 00"
 
 [[signatures]]
-name = "endstone_perf_find_nearest_target"
+name = "_ZN27NearestAttackableTargetGoal11_findTargetEPPK13MobDescriptor"
 relative = false
 extra = 0
 # 1. find bytes "32 37 4E 65 61 72 65 73 74 41 74 74 61 63 6B 61 62 6C 65 54 61 72 67 65 74 47 6F 61 6C 00"
 #    = "27NearestAttackableTargetGoal\0" (the RTTI name); walk the relative relocations through type_info
 #    to the primary vtable address point, as for SleepGoal::canUse
-# 2. this private adapter key selects slot 13 (+0x68), not a recovered native method name; the canUse helper
-#    calls this slot with a local output pointer, then stores RAX at this+0x78 and the output at this+0x80
+# 2. _findTarget is slot 13 (+0x68); _selectTarget calls this slot with a local MobDescriptor const* output,
+#    then stores the ActorUniqueID from RAX at this+0x78 and the output at this+0x80
 # 3. confirm the real body: scans 0x68-byte records at this+0x60..0x68 for the maximum float at record+0x40,
 #    collects candidates with owner this+0x28 and constant 256; no result writes null through RSI and returns -1
 # 4. compare with the previously verified body; recheck the slot and RDI=goal, RSI=output argument flow on a bump

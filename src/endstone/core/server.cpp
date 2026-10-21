@@ -36,6 +36,9 @@
 
 #include "bedrock/deps/nethernet/http_signaling_server.h"
 #include "bedrock/deps/nethernet/simple_network_interface_impl.h"
+#include "bedrock/entity/components/actor_data_flag_component.h"
+#include "bedrock/entity/components/actor_type_flag_component.h"
+#include "bedrock/entity/components/actor_unique_id_component.h"
 #include "bedrock/network/nethernet_connector.h"
 #include "bedrock/network/server_network_handler.h"
 #include "bedrock/platform/threading/assigned_thread.h"
@@ -66,6 +69,7 @@
 #include "endstone/core/message.h"
 #include "endstone/core/metrics.h"
 #include "endstone/core/network/stun_client.h"
+#include "endstone/core/perf/entity_ai_capabilities.h"
 #include "endstone/core/permissions/default_permissions.h"
 #include "endstone/core/player.h"
 #include "endstone/core/plugin/cpp_plugin_loader.h"
@@ -225,6 +229,10 @@ void EndstoneServer::setLevel(::Level &level)
     metrics_ = std::make_unique<EndstoneMetrics>(*this);  // start metrics
     loadResourcePacks();
     initRegistries();
+#ifdef __linux__
+    entity_ai_state_.clear();
+#endif
+    reloadEntityAiPolicies();
 
     // enable packet rate limiter
     (void)dispatchCommand(getCommandSender(), "reloadpacketlimitconfig");
@@ -642,6 +650,72 @@ void EndstoneServer::reloadData()
     server_instance_->onRequestResourceReload();
     level_->getHandle().loadFunctionManager();
     initRegistries();
+    reloadEntityAiPolicies();
+}
+
+void EndstoneServer::reloadEntityAiPolicies()
+{
+    try {
+        const auto config = fs::current_path() / "endstone.toml";
+        if (!EntityAiState::isNativeAvailable()) {
+            if (fs::exists(config)) {
+                const auto settings = toml::parse_file(config.string());
+                if (settings.at_path("mob-ai.enabled").value_or(false)) {
+                    getLogger().error(
+                        "[Perf] Entity AI policies inactive: native controls are unavailable for this binary.");
+                }
+            }
+            return;
+        }
+#ifdef __linux__
+        Result<EntityAiReloadResult> result;
+        if (!entity_ai_initialized_) {
+            result = entity_ai_policies_.initialize(config);
+            entity_ai_initialized_ = true;
+        }
+        else {
+            result = entity_ai_policies_.reload();
+        }
+        if (!result) {
+            getLogger().error("[Perf] Entity AI policies were not updated: {}", result.error());
+        }
+        else if (result->changed) {
+            entity_ai_state_.clearSearchDelays();
+            getLogger().info("[Perf] Policies updated: {} type overrides.", result->override_types);
+        }
+#endif
+    }
+    catch (const std::exception &e) {
+        getLogger().error("[Perf] Entity AI policies were not updated: {}", e.what());
+    }
+}
+
+void EndstoneServer::recordEntityAiActivity(const ::Actor &actor)
+{
+#ifdef __linux__
+    if (!EntityAiState::isNativeAvailable() || actor.isRemoved() || actor.isClientSide() || actor.isPlayer()) {
+        return;
+    }
+    const auto *id = actor.tryGetComponent<ActorUniqueIDComponent>();
+    const auto *type = actor.tryGetComponent<ActorTypeComponent>();
+    if (!id || id->unique_id.raw_id == -1 || !type || !actor.tryGetComponent<ActorDataFlagComponent>()) {
+        return;
+    }
+    const auto &identifier = actor.getActorIdentifier().getCanonicalName();
+    const auto decision = entity_ai_policies_.resolve(identifier);
+    if (hasEntityAiActivityCapability(identifier, type->type, decision)) {
+        entity_ai_state_.recordActivity(id->unique_id.raw_id, actor.getLevel().getCurrentServerTick().tick_id);
+    }
+#endif
+}
+
+void EndstoneServer::removeEntityAiState(const ::Actor &actor)
+{
+#ifdef __linux__
+    if (const auto *id = actor.tryGetComponent<ActorUniqueIDComponent>(); id && id->unique_id.raw_id != -1) {
+        entity_ai_state_.erase(id->unique_id.raw_id);
+    }
+#endif
 }
 
 void EndstoneServer::broadcast(const Message &message, const std::string &permission) const
@@ -877,6 +951,7 @@ void EndstoneServer::tick(std::uint64_t current_tick, const std::function<void()
     // A frame can run several ticks, so the previous one ends where this one starts
     endTick();
 
+    entity_ai_state_.prune(current_tick);
     scheduler_->mainThreadHeartbeat(current_tick);
     tick_function();
     for (const auto &p : getOnlinePlayers()) {

@@ -6,12 +6,13 @@ import logging
 import os
 import platform
 import re
-import shutil
 import socket
+import stat
 import subprocess
 import sys
 import tempfile
 import zipfile
+from collections.abc import MutableMapping
 from pathlib import Path
 from typing import Union
 
@@ -271,31 +272,65 @@ class Bootstrap:
 
         # create or update the config file
         ref = importlib_resources.files("endstone") / "config" / "endstone.default.toml"
-        if not self.config_path.exists():
-            with importlib_resources.as_file(ref) as path:
-                shutil.copy(path, self.config_path)
-        else:
-            with importlib_resources.as_file(ref) as path:
-                with open(path, "r", encoding="utf-8") as f:
-                    default_config = tomlkit.load(f)
+        with importlib_resources.as_file(ref) as path, open(path, "r", encoding="utf-8", newline="") as f:
+            default_config = tomlkit.load(f)
 
-            with open(self.config_path, "r", encoding="utf-8") as f:
-                config = tomlkit.load(f)
+        original = None
+        config = tomlkit.document()
+        config_path = self.config_path.resolve()
+        try:
+            config_stat = config_path.stat()
+        except FileNotFoundError:
+            config_stat = None
+        if config_stat is not None:
+            if not stat.S_ISREG(config_stat.st_mode):
+                raise OSError(errno.EINVAL, "Configuration path must be a regular file", str(config_path))
+            with config_path.open("r", encoding="utf-8", newline="") as f:
+                original = f.read()
+            config = tomlkit.parse(original)
 
-            def migrate_config(from_doc: tomlkit.TOMLDocument, to_doc: tomlkit.TOMLDocument) -> None:
-                for key, val in from_doc.items():
-                    if key not in to_doc:
-                        # if the user hasn’t set it, copy it (with comments!)
-                        to_doc[key] = val
+        def migrate_config(from_doc: MutableMapping, to_doc: MutableMapping) -> None:
+            for key, val in from_doc.items():
+                if key not in to_doc:
+                    if isinstance(to_doc, tomlkit.items.InlineTable) and isinstance(val, MutableMapping):
+                        to_doc[key] = val.unwrap()
                     else:
-                        # if both are tables, dive deeper
-                        tables = (tomlkit.TOMLDocument, tomlkit.items.Table)
-                        if isinstance(val, tables) and isinstance(to_doc[key], tables):
-                            migrate_config(val, to_doc[key])
+                        to_doc[key] = val
+                elif isinstance(val, MutableMapping) and isinstance(to_doc[key], MutableMapping):
+                    migrate_config(val, to_doc[key])
 
-            migrate_config(default_config, config)
-            with open(self.config_path, "w", encoding="utf-8") as f:
-                tomlkit.dump(config, f)
+        migrate_config(default_config, config)
+        updated = tomlkit.dumps(config)
+        if updated != original:
+            if config_stat is not None and config_stat.st_nlink > 1:
+                raise OSError(errno.EMLINK, "Cannot update configuration with multiple hard links", str(config_path))
+            temporary_path = None
+            try:
+                with tempfile.NamedTemporaryFile(
+                    mode="w", encoding="utf-8", newline="", dir=config_path.parent, delete=False
+                ) as f:
+                    temporary_path = Path(f.name)
+                    f.write(updated)
+                if os.name == "posix" and config_stat is not None:
+                    staged_stat = temporary_path.stat()
+                    if (staged_stat.st_uid, staged_stat.st_gid) != (config_stat.st_uid, config_stat.st_gid):
+                        os.chown(temporary_path, config_stat.st_uid, config_stat.st_gid)
+                    os.chmod(temporary_path, stat.S_IMODE(config_stat.st_mode))
+                    staged_stat = temporary_path.stat()
+                    if (staged_stat.st_uid, staged_stat.st_gid, stat.S_IMODE(staged_stat.st_mode)) != (
+                        config_stat.st_uid,
+                        config_stat.st_gid,
+                        stat.S_IMODE(config_stat.st_mode),
+                    ):
+                        raise OSError(errno.EPERM, "Unable to preserve configuration file metadata", str(config_path))
+                os.replace(temporary_path, config_path)
+            except BaseException:
+                if temporary_path is not None:
+                    try:
+                        temporary_path.unlink(missing_ok=True)
+                    except OSError as error:
+                        self._logger.warning(f"Unable to remove temporary configuration file {temporary_path}: {error}")
+                raise
 
         self._update_packet_limit_config()
 

@@ -35,7 +35,7 @@ bool ReloadCommand::execute(CommandSender &sender, const std::vector<std::string
 
     auto &server = EndstoneServer::getInstance();
     server.reload();
-    server.broadcast(ColorFormat::Green + "Reload complete.", Server::BroadcastChannelAdmin);
+    server.broadcast("Reload finished. Check the reported subsystem results.", Server::BroadcastChannelAdmin);
     return true;
 }
 

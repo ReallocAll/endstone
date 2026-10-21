@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added opt-in Linux policies to prevent supported villagers from sleeping.
+- Added opt-in Linux throttling for zombie searches for new targets.
+- Added opt-in Linux controls for sheep and chicken wandering and random looking.
+
 ### Changed
 
 - Improved the performance of cancellation checks and updates in Python event handlers.

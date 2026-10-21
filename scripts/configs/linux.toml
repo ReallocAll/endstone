@@ -4,6 +4,62 @@ executable = "bedrock_server"
 filename = "bedrock_server"
 
 [[signatures]]
+name = "_ZN9SleepGoal6canUseEv"
+relative = false
+extra = 0
+# SleepGoal vtable 0xEEFC570, slot 2; owner at +0xB8.
+# function prologue
+pattern = "55 41 57 41 56 41 54 53 48 83 EC ? 48 89 FB E8 ? ? ? ? 84 C0 74 ? 80 BB 38 01 00 00 00"
+
+[[signatures]]
+name = "_ZN9SleepGoal11canContinueEv"
+relative = false
+extra = 0
+# SleepGoal vtable 0xEEFC570, slot 3; owner at +0xB8.
+# function prologue
+pattern = "41 57 41 56 53 48 83 EC ? 48 89 FB 80 7F 3C 01 0F 85 ? ? ? ? 4C 8B B3 B8 00 00 00"
+
+[[signatures]]
+name = "endstone_perf_find_nearest_target"
+relative = false
+extra = 0
+# Private adapter key: NearestAttackableTargetGoal vtable 0xF242670, slot 13; RDI=goal, RSI=output, RAX=ID.
+# function prologue
+pattern = "55 41 57 41 56 41 55 41 54 53 48 83 EC 28 48 89 F3 49 89 FE 48 8B 47 60 48 8B 4F 68"
+
+[[signatures]]
+name = "_ZN16RandomStrollGoal6canUseEv"
+relative = false
+extra = 0
+# RandomStrollGoal vtable 0xF242178, slot 2; owner at +0x28.
+# function prologue
+pattern = "53 48 8B 47 28 48 8B 50 10 8B 48 18 48 8B 72 38 4C 8B 42 40 49 29 F0"
+
+[[signatures]]
+name = "_ZN16RandomStrollGoal11canContinueEv"
+relative = false
+extra = 256
+# Slot 3 is canUse +0x100 in the verified build; its seven-byte body also occurs in another goal.
+# RandomStrollGoal::canUse prologue; runtime preflight checks the continuation slot separately.
+pattern = "53 48 8B 47 28 48 8B 50 10 8B 48 18 48 8B 72 38 4C 8B 42 40 49 29 F0"
+
+[[signatures]]
+name = "_ZN20RandomLookAroundGoal6canUseEv"
+relative = false
+extra = 0
+# RandomLookAroundGoal vtable 0xEEE7378, slot 2; owner at +0x40.
+# function prologue
+pattern = "53 48 89 FB 48 8B 47 40 48 8B B8 D0 01 00 00 48 8B 07 FF 90 70 0A 00 00 48 8B 08 48 89 C7 FF 51 30 F3 0F 10 4B 38 0F 2E C8 0F 97 C0"
+
+[[signatures]]
+name = "_ZN20RandomLookAroundGoal11canContinueEv"
+relative = false
+extra = 0
+# RandomLookAroundGoal vtable 0xEEE7378, slot 3.
+# function prologue
+pattern = "83 7F 48 00 0F 99 C0 C3"
+
+[[signatures]]
 name = "BlockState::StateListNode::mHead"
 relative = false
 extra = 0

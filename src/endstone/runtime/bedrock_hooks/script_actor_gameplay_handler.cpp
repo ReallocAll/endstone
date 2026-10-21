@@ -38,6 +38,11 @@ bool handleEvent(const ActorKilledEvent &event)
 
 bool handleEvent(const ActorRemovedEvent &event)
 {
+#ifdef __linux__
+    if (auto *actor = WeakEntityRef(event.entity).tryUnwrap<::Actor>(true)) {
+        endstone::core::EndstoneServer::getInstance().removeEntityAiState(*actor);
+    }
+#endif
     if (auto *actor = WeakEntityRef(event.entity).tryUnwrap<::Actor>(); actor) {
         if (actor->isPlayer()) {
             // Don't call for player
@@ -58,6 +63,7 @@ bool handleEvent(const ActorRemovedEvent &event)
 
 bool handleEvent(::ActorBeforeHurtEvent &event)
 {
+    endstone::core::EndstoneServer::getInstance().recordEntityAiActivity(event.entity);
     const auto &source = event.source;
     const auto &server = endstone::core::EndstoneServer::getInstance();
     auto &mob = event.entity.getEndstoneActor<endstone::core::EndstoneMob>();

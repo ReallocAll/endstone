@@ -36,7 +36,7 @@ You should see this in your console:
 ## Configuration updates
 
 At startup, the launcher adds missing defaults to `endstone.toml` while preserving existing values and comments.
-This applies to the whole configuration, including when [mob AI controls](../tutorials/entity-ai.md) are disabled.
+This applies to the whole configuration, including when [mob AI controls](../tutorials/mob-ai.md) are disabled.
 Files that need no changes are left alone. A changed file is replaced atomically at its resolved destination,
 so relative symlinks remain intact, but the target's inode changes. A required update stops startup if the target
 has multiple hard links; use a symlink when several paths should share the configuration.

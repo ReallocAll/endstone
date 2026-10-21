@@ -1,4 +1,4 @@
-#include "bedrock/world/actor/ai/goal/entity_ai_goals.h"
+#include "bedrock/world/actor/ai/goal/mob_ai_goals.h"
 
 #ifdef __linux__
 
@@ -21,21 +21,21 @@
 #include "bedrock/world/actor/provider/actor_riding.h"
 #include "bedrock/world/level/dimension/vanilla_dimensions.h"
 #include "bedrock/world/level/level.h"
-#include "endstone/core/perf/entity_ai_capabilities.h"
+#include "endstone/core/perf/mob_ai_capabilities.h"
 #include "endstone/core/server.h"
-#include "endstone/runtime/entity_ai_preflight.h"
+#include "endstone/runtime/mob_ai_preflight.h"
 #include "endstone/runtime/hook.h"
 
 namespace {
 using endstone::core::EndstoneServer;
-using endstone::core::EntityAiState;
-using endstone::core::entityAiWithinRange;
-using endstone::core::supportsEntityAiIdle;
-using endstone::core::supportsEntityAiSearch;
+using endstone::core::MobAiState;
+using endstone::core::mobAiWithinRange;
+using endstone::core::supportsMobAiIdle;
+using endstone::core::supportsMobAiSearch;
 
-Actor *owner(void *goal, const endstone::runtime::EntityAiGoalLayout &layout)
+Actor *owner(void *goal, const endstone::runtime::MobAiGoalLayout &layout)
 {
-    if (!EntityAiState::isNativeAvailable()) {
+    if (!MobAiState::isNativeAvailable()) {
         return nullptr;
     }
     void *actual_vtable;
@@ -58,14 +58,14 @@ bool preventSleep(Actor *actor)
         return false;
     }
     auto &server = EndstoneServer::getInstance();
-    return server.getEntityAiPolicies().resolve("minecraft:villager_v2").prevent_sleep;
+    return server.getMobAiPolicies().resolve("minecraft:villager_v2").prevent_sleep;
 }
 
 void clearSearch(const Actor *actor)
 {
     if (actor) {
         if (const auto *id = actor->tryGetComponent<ActorUniqueIDComponent>(); id && id->unique_id.raw_id != -1) {
-            EndstoneServer::getInstance().getEntityAiState().clearSearch(id->unique_id.raw_id);
+            EndstoneServer::getInstance().getMobAiState().clearSearch(id->unique_id.raw_id);
         }
     }
 }
@@ -94,7 +94,7 @@ std::optional<std::array<double, 3>> feetPosition(const Actor &actor)
     return std::isfinite(feet[1]) ? std::optional(feet) : std::nullopt;
 }
 
-bool activeMob(const Actor &actor, std::int64_t id, double range, EntityAiState &state)
+bool activeMob(const Actor &actor, std::int64_t id, double range, MobAiState &state)
 {
     if (actor.getTargetId().raw_id != -1 || actor.isRiding() ||
         !ActorRiding::getPassengers(actor.getEntity()).empty() ||
@@ -159,7 +159,7 @@ bool activeMob(const Actor &actor, std::int64_t id, double range, EntityAiState 
             return false;
         }
         const auto player_position = feetPosition(player);
-        const auto nearby = player_position ? entityAiWithinRange(*position, *player_position, range) : std::nullopt;
+        const auto nearby = player_position ? mobAiWithinRange(*position, *player_position, range) : std::nullopt;
         active = !nearby || *nearby;
         return !active;
     };
@@ -174,20 +174,20 @@ bool suppressIdle(Actor *actor, bool stroll)
         return false;
     }
     const auto &type = actor->getActorIdentifier().getCanonicalName();
-    if (!supportsEntityAiIdle(type, actor->tryGetComponent<ActorTypeComponent>()->type)) {
+    if (!supportsMobAiIdle(type, actor->tryGetComponent<ActorTypeComponent>()->type)) {
         clearSearch(actor);
         return false;
     }
     const auto id = actor->tryGetComponent<ActorUniqueIDComponent>()->unique_id.raw_id;
     auto &server = EndstoneServer::getInstance();
-    const auto decision = server.getEntityAiPolicies().resolve(type);
+    const auto decision = server.getMobAiPolicies().resolve(type);
     const auto &policy = decision.animal;
     if (!policy || !(stroll ? policy->random_stroll : policy->random_look_around)) {
         return false;
     }
-    auto &state = server.getEntityAiState();
+    auto &state = server.getMobAiState();
     if (activeMob(*actor, id, policy->activation_range_blocks, state)) {
-        if (supportsEntityAiSearch(type, actor->tryGetComponent<ActorTypeComponent>()->type, decision) &&
+        if (supportsMobAiSearch(type, actor->tryGetComponent<ActorTypeComponent>()->type, decision) &&
             (*decision.target_search_player_range_blocks == policy->activation_range_blocks ||
              activeMob(*actor, id, *decision.target_search_player_range_blocks, state))) {
             state.clearSearch(id);
@@ -256,9 +256,9 @@ extern "C" ENDSTONE_HOOK_LINUX std::int64_t endstone_perf_find_nearest_target(vo
         const auto id = actor->tryGetComponent<ActorUniqueIDComponent>()->unique_id.raw_id;
         const auto &type = actor->getActorIdentifier().getCanonicalName();
         auto &server = EndstoneServer::getInstance();
-        auto &state = server.getEntityAiState();
-        const auto decision = server.getEntityAiPolicies().resolve(type);
-        if (!supportsEntityAiSearch(type, actor->tryGetComponent<ActorTypeComponent>()->type, decision) ||
+        auto &state = server.getMobAiState();
+        const auto decision = server.getMobAiPolicies().resolve(type);
+        if (!supportsMobAiSearch(type, actor->tryGetComponent<ActorTypeComponent>()->type, decision) ||
             activeMob(*actor, id, *decision.target_search_player_range_blocks, state)) {
             state.clearSearch(id);
         }

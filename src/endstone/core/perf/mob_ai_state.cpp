@@ -1,4 +1,4 @@
-#include "endstone/core/perf/entity_ai_state.h"
+#include "endstone/core/perf/mob_ai_state.h"
 
 #include <algorithm>
 #include <limits>
@@ -14,17 +14,17 @@ std::uint64_t deadline(std::uint64_t tick, std::uint64_t duration)
 }
 }  // namespace
 
-void EntityAiState::setNativeAvailable(bool available)
+void MobAiState::setNativeAvailable(bool available)
 {
     native_available = available;
 }
 
-bool EntityAiState::isNativeAvailable()
+bool MobAiState::isNativeAvailable()
 {
     return native_available;
 }
 
-void EntityAiState::recordActivity(std::int64_t id, std::uint64_t tick)
+void MobAiState::recordActivity(std::int64_t id, std::uint64_t tick)
 {
     if (id == -1) {
         return;
@@ -34,13 +34,13 @@ void EntityAiState::recordActivity(std::int64_t id, std::uint64_t tick)
     entry.search_after = 0;
 }
 
-bool EntityAiState::recentlyActive(std::int64_t id, std::uint64_t tick)
+bool MobAiState::recentlyActive(std::int64_t id, std::uint64_t tick)
 {
     const auto it = entries_.find(id);
     return it != entries_.end() && tick < it->second.protected_until;
 }
 
-bool EntityAiState::allowNewTargetSearch(std::int64_t id, std::uint64_t tick, std::optional<std::uint32_t> interval)
+bool MobAiState::allowNewTargetSearch(std::int64_t id, std::uint64_t tick, std::optional<std::uint32_t> interval)
 {
     auto it = entries_.find(id);
     if (id == -1 || !interval || (it != entries_.end() && tick < it->second.protected_until)) {
@@ -54,26 +54,26 @@ bool EntityAiState::allowNewTargetSearch(std::int64_t id, std::uint64_t tick, st
     return true;
 }
 
-void EntityAiState::clearSearch(std::int64_t id)
+void MobAiState::clearSearch(std::int64_t id)
 {
     if (auto it = entries_.find(id); it != entries_.end()) {
         it->second.search_after = 0;
     }
 }
 
-void EntityAiState::clearSearchDelays()
+void MobAiState::clearSearchDelays()
 {
     for (auto &[id, entry] : entries_) {
         entry.search_after = 0;
     }
 }
 
-void EntityAiState::erase(std::int64_t id)
+void MobAiState::erase(std::int64_t id)
 {
     entries_.erase(id);
 }
 
-void EntityAiState::prune(std::uint64_t tick)
+void MobAiState::prune(std::uint64_t tick)
 {
     if (tick < prune_after_) {
         return;
@@ -84,7 +84,7 @@ void EntityAiState::prune(std::uint64_t tick)
     });
 }
 
-void EntityAiState::clear()
+void MobAiState::clear()
 {
     entries_.clear();
     prune_after_ = 0;

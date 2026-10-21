@@ -8,7 +8,7 @@
 namespace endstone::core {
 
 // Main-thread state; native availability is fixed before server threads start.
-class EntityAiState {
+class MobAiState {
 public:
     static void setNativeAvailable(bool available);
     [[nodiscard]] static bool isNativeAvailable();
@@ -23,7 +23,7 @@ public:
     void clear();
 
 private:
-    friend struct EntityAiStateTestAccess;
+    friend struct MobAiStateTestAccess;
     struct Entry {
         std::uint64_t protected_until = 0;
         std::uint64_t search_after = 0;

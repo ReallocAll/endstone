@@ -34,9 +34,9 @@
 #endif
 
 #include "bedrock/symbol.h"
-#include "endstone/core/perf/entity_ai_state.h"
+#include "endstone/core/perf/mob_ai_state.h"
 #include "endstone/core/platform.h"
-#include "endstone/runtime/entity_ai_preflight.h"
+#include "endstone/runtime/mob_ai_preflight.h"
 
 namespace endstone::runtime::hook {
 namespace {
@@ -148,29 +148,29 @@ void install()
     const auto &targets = details::get_targets();
 
 #ifdef __linux__
-    core::EntityAiState::setNativeAvailable(false);
+    core::MobAiState::setNativeAvailable(false);
     std::string reason;
-    bool entity_ai_ready = entity_ai_preflight(reason);
-    if (entity_ai_ready) {
-        for (const auto &entry : entity_ai_hooks) {
+    bool mob_ai_ready = mob_ai_preflight(reason);
+    if (mob_ai_ready) {
+        for (const auto &entry : mob_ai_hooks) {
             const auto target = targets.find(std::string(entry.name));
             const auto detour = detours.find(std::string(entry.name));
             if (target == targets.end() || detour == detours.end() || !detour->second ||
                 target->second != static_cast<char *>(get_executable_base()) + entry.function) {
-                entity_ai_ready = false;
-                reason = "entity AI detour or symbol mapping is incomplete";
+                mob_ai_ready = false;
+                reason = "mob AI detour or symbol mapping is incomplete";
                 break;
             }
         }
     }
-    if (!entity_ai_ready) {
-        spdlog::warn("[Perf] Entity AI native controls unavailable: {}.", reason);
+    if (!mob_ai_ready) {
+        spdlog::warn("[Perf] Mob AI native controls unavailable: {}.", reason);
     }
 #endif
 
     for (const auto &[name, detour] : detours) {
 #ifdef __linux__
-        if (!entity_ai_ready && is_entity_ai_hook(name)) {
+        if (!mob_ai_ready && is_mob_ai_hook(name)) {
             continue;
         }
 #endif
@@ -198,14 +198,14 @@ void install()
     }
 
 #ifdef __linux__
-    if (entity_ai_ready) {
-        for (const auto &entry : entity_ai_hooks) {
+    if (mob_ai_ready) {
+        for (const auto &entry : mob_ai_hooks) {
             if (!details::get_original(static_cast<char *>(get_executable_base()) + entry.function)) {
-                entity_ai_ready = false;
+                mob_ai_ready = false;
                 break;
             }
         }
-        core::EntityAiState::setNativeAvailable(entity_ai_ready);
+        core::MobAiState::setNativeAvailable(mob_ai_ready);
     }
 #endif
 

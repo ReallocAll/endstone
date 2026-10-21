@@ -1,4 +1,4 @@
-#include "endstone/runtime/entity_ai_preflight.h"
+#include "endstone/runtime/mob_ai_preflight.h"
 
 #ifdef __linux__
 
@@ -83,19 +83,19 @@ int checkExecutable(dl_phdr_info *info, std::size_t, void *context)
         check.error = "executable GNU build ID does not match the verified binary";
         return 1;
     }
-    for (const auto &hook : entity_ai_hooks) {
+    for (const auto &hook : mob_ai_hooks) {
         const auto slot_offset = hook.layout.vtable + hook.slot * sizeof(void *);
         const auto max = std::numeric_limits<std::uintptr_t>::max();
         if (slot_offset > max - check.base || hook.function > max - check.base ||
             !contains(*info, check.base + slot_offset, sizeof(void *), PF_R) ||
             !contains(*info, check.base + hook.function, 1, PF_R | PF_X)) {
-            check.error = "entity AI hook address is outside the expected ELF segments";
+            check.error = "mob AI hook address is outside the expected ELF segments";
             return 1;
         }
         std::uintptr_t function;
         std::memcpy(&function, reinterpret_cast<const void *>(check.base + slot_offset), sizeof(function));
         if (function != check.base + hook.function) {
-            check.error = "entity AI vtable slot does not match the verified function";
+            check.error = "mob AI vtable slot does not match the verified function";
             return 1;
         }
     }
@@ -104,7 +104,7 @@ int checkExecutable(dl_phdr_info *info, std::size_t, void *context)
 }
 }  // namespace
 
-bool entity_ai_preflight(std::string &reason)
+bool mob_ai_preflight(std::string &reason)
 {
     Check check{reinterpret_cast<std::uintptr_t>(get_executable_base())};
     dl_iterate_phdr(checkExecutable, &check);
@@ -115,9 +115,9 @@ bool entity_ai_preflight(std::string &reason)
     return true;
 }
 
-bool is_entity_ai_hook(std::string_view name)
+bool is_mob_ai_hook(std::string_view name)
 {
-    return std::ranges::any_of(entity_ai_hooks, [name](const auto &hook) { return hook.name == name; });
+    return std::ranges::any_of(mob_ai_hooks, [name](const auto &hook) { return hook.name == name; });
 }
 
 }  // namespace endstone::runtime

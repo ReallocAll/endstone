@@ -8,11 +8,11 @@
 #include <type_traits>
 
 #include "bedrock/world/actor/actor_types.h"
-#include "endstone/core/perf/entity_ai.h"
+#include "endstone/core/perf/mob_ai.h"
 
 namespace endstone::core {
 
-inline bool supportsEntityAiIdle(std::string_view identifier, ActorType type)
+inline bool supportsMobAiIdle(std::string_view identifier, ActorType type)
 {
     constexpr std::array excluded{"minecraft:player",         "minecraft:armor_stand",
                                   "minecraft:tripod_camera",  "minecraft:npc",
@@ -29,11 +29,11 @@ inline bool supportsEntityAiIdle(std::string_view identifier, ActorType type)
            type != ActorType::Player && std::find(excluded.begin(), excluded.end(), identifier) == excluded.end();
 }
 
-inline bool supportsEntityAiSearch(std::string_view identifier, ActorType type, const EntityAiDecision &decision)
+inline bool supportsMobAiSearch(std::string_view identifier, ActorType type, const MobAiDecision &decision)
 {
     if (!decision.target_search_interval_ticks || !decision.target_search_player_range_blocks ||
         !std::isfinite(*decision.target_search_player_range_blocks) || *decision.target_search_player_range_blocks <= 0 ||
-        (type & ActorType::Monster) != ActorType::Monster || !supportsEntityAiIdle(identifier, type)) {
+        (type & ActorType::Monster) != ActorType::Monster || !supportsMobAiIdle(identifier, type)) {
         return false;
     }
     constexpr std::array allowed{"minecraft:zombie",
@@ -51,14 +51,14 @@ inline bool supportsEntityAiSearch(std::string_view identifier, ActorType type, 
     return std::find(allowed.begin(), allowed.end(), identifier) != allowed.end();
 }
 
-inline bool hasEntityAiActivityCapability(std::string_view identifier, ActorType type, const EntityAiDecision &decision)
+inline bool hasMobAiActivityCapability(std::string_view identifier, ActorType type, const MobAiDecision &decision)
 {
     return (decision.animal && (decision.animal->random_stroll || decision.animal->random_look_around) &&
-            supportsEntityAiIdle(identifier, type)) ||
-           supportsEntityAiSearch(identifier, type, decision);
+            supportsMobAiIdle(identifier, type)) ||
+           supportsMobAiSearch(identifier, type, decision);
 }
 
-inline std::optional<bool> entityAiWithinRange(const std::array<double, 3> &position,
+inline std::optional<bool> mobAiWithinRange(const std::array<double, 3> &position,
                                                const std::array<double, 3> &other, double range)
 {
     if (!std::isfinite(range) || range <= 0 ||

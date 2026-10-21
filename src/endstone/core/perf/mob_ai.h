@@ -12,37 +12,37 @@
 
 namespace endstone::core {
 
-struct EntityAiAnimalPolicy {
+struct MobAiAnimalPolicy {
     double activation_range_blocks;
     bool random_stroll = false;
     bool random_look_around = false;
-    bool operator==(const EntityAiAnimalPolicy &) const = default;
+    bool operator==(const MobAiAnimalPolicy &) const = default;
 };
 
-struct EntityAiDecision {
+struct MobAiDecision {
     bool prevent_sleep = false;
-    std::optional<EntityAiAnimalPolicy> animal;
+    std::optional<MobAiAnimalPolicy> animal;
     std::optional<std::uint32_t> target_search_interval_ticks;
     std::uint64_t revision = 0;
     std::optional<double> target_search_player_range_blocks;
-    bool operator==(const EntityAiDecision &) const = default;
+    bool operator==(const MobAiDecision &) const = default;
 };
 
-struct EntityAiReloadResult {
+struct MobAiReloadResult {
     std::size_t override_types = 0;
     bool changed = false;
     std::uint64_t revision = 0;
 };
 
 // Main-thread only; returned decisions do not refer to the active snapshot.
-class EntityAiPolicies {
+class MobAiPolicies {
 public:
-    Result<EntityAiReloadResult> initialize(const std::filesystem::path &policies_file);
-    Result<EntityAiReloadResult> reload();
-    [[nodiscard]] EntityAiDecision resolve(std::string_view type) const;
+    Result<MobAiReloadResult> initialize(const std::filesystem::path &policies_file);
+    Result<MobAiReloadResult> reload();
+    [[nodiscard]] MobAiDecision resolve(std::string_view type) const;
 
 private:
-    friend struct EntityAiPoliciesTestAccess;
+    friend struct MobAiPoliciesTestAccess;
 
     struct FileOperations {
         std::ptrdiff_t (*read)(int, void *, std::size_t) = nullptr;
@@ -52,8 +52,8 @@ private:
     struct Snapshot {
         bool present = false;
         bool enabled = false;
-        EntityAiDecision default_decision;
-        std::map<std::string, EntityAiDecision, std::less<>> overrides;
+        MobAiDecision default_decision;
+        std::map<std::string, MobAiDecision, std::less<>> overrides;
         bool operator==(const Snapshot &) const = default;
     };
 

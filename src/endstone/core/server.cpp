@@ -69,7 +69,7 @@
 #include "endstone/core/message.h"
 #include "endstone/core/metrics.h"
 #include "endstone/core/network/stun_client.h"
-#include "endstone/core/perf/entity_ai_capabilities.h"
+#include "endstone/core/perf/mob_ai_capabilities.h"
 #include "endstone/core/permissions/default_permissions.h"
 #include "endstone/core/player.h"
 #include "endstone/core/plugin/cpp_plugin_loader.h"
@@ -230,9 +230,9 @@ void EndstoneServer::setLevel(::Level &level)
     loadResourcePacks();
     initRegistries();
 #ifdef __linux__
-    entity_ai_state_.clear();
+    mob_ai_state_.clear();
 #endif
-    reloadEntityAiPolicies();
+    reloadMobAiPolicies();
 
     // enable packet rate limiter
     (void)dispatchCommand(getCommandSender(), "reloadpacketlimitconfig");
@@ -650,50 +650,50 @@ void EndstoneServer::reloadData()
     server_instance_->onRequestResourceReload();
     level_->getHandle().loadFunctionManager();
     initRegistries();
-    reloadEntityAiPolicies();
+    reloadMobAiPolicies();
 }
 
-void EndstoneServer::reloadEntityAiPolicies()
+void EndstoneServer::reloadMobAiPolicies()
 {
     try {
         const auto config = fs::current_path() / "endstone.toml";
-        if (!EntityAiState::isNativeAvailable()) {
+        if (!MobAiState::isNativeAvailable()) {
             if (fs::exists(config)) {
                 const auto settings = toml::parse_file(config.string());
                 if (settings.at_path("mob-ai.enabled").value_or(false)) {
                     getLogger().error(
-                        "[Perf] Entity AI policies inactive: native controls are unavailable for this binary.");
+                        "[Perf] Mob AI policies inactive: native controls are unavailable for this binary.");
                 }
             }
             return;
         }
 #ifdef __linux__
-        Result<EntityAiReloadResult> result;
-        if (!entity_ai_initialized_) {
-            result = entity_ai_policies_.initialize(config);
-            entity_ai_initialized_ = true;
+        Result<MobAiReloadResult> result;
+        if (!mob_ai_initialized_) {
+            result = mob_ai_policies_.initialize(config);
+            mob_ai_initialized_ = true;
         }
         else {
-            result = entity_ai_policies_.reload();
+            result = mob_ai_policies_.reload();
         }
         if (!result) {
-            getLogger().error("[Perf] Entity AI policies were not updated: {}", result.error());
+            getLogger().error("[Perf] Mob AI policies were not updated: {}", result.error());
         }
         else if (result->changed) {
-            entity_ai_state_.clearSearchDelays();
+            mob_ai_state_.clearSearchDelays();
             getLogger().info("[Perf] Policies updated: {} type overrides.", result->override_types);
         }
 #endif
     }
     catch (const std::exception &e) {
-        getLogger().error("[Perf] Entity AI policies were not updated: {}", e.what());
+        getLogger().error("[Perf] Mob AI policies were not updated: {}", e.what());
     }
 }
 
-void EndstoneServer::recordEntityAiActivity(const ::Actor &actor)
+void EndstoneServer::recordMobAiActivity(const ::Actor &actor)
 {
 #ifdef __linux__
-    if (!EntityAiState::isNativeAvailable() || actor.isRemoved() || actor.isClientSide() || actor.isPlayer()) {
+    if (!MobAiState::isNativeAvailable() || actor.isRemoved() || actor.isClientSide() || actor.isPlayer()) {
         return;
     }
     const auto *id = actor.tryGetComponent<ActorUniqueIDComponent>();
@@ -702,18 +702,18 @@ void EndstoneServer::recordEntityAiActivity(const ::Actor &actor)
         return;
     }
     const auto &identifier = actor.getActorIdentifier().getCanonicalName();
-    const auto decision = entity_ai_policies_.resolve(identifier);
-    if (hasEntityAiActivityCapability(identifier, type->type, decision)) {
-        entity_ai_state_.recordActivity(id->unique_id.raw_id, actor.getLevel().getCurrentServerTick().tick_id);
+    const auto decision = mob_ai_policies_.resolve(identifier);
+    if (hasMobAiActivityCapability(identifier, type->type, decision)) {
+        mob_ai_state_.recordActivity(id->unique_id.raw_id, actor.getLevel().getCurrentServerTick().tick_id);
     }
 #endif
 }
 
-void EndstoneServer::removeEntityAiState(const ::Actor &actor)
+void EndstoneServer::removeMobAiState(const ::Actor &actor)
 {
 #ifdef __linux__
     if (const auto *id = actor.tryGetComponent<ActorUniqueIDComponent>(); id && id->unique_id.raw_id != -1) {
-        entity_ai_state_.erase(id->unique_id.raw_id);
+        mob_ai_state_.erase(id->unique_id.raw_id);
     }
 #endif
 }
@@ -951,7 +951,7 @@ void EndstoneServer::tick(std::uint64_t current_tick, const std::function<void()
     // A frame can run several ticks, so the previous one ends where this one starts
     endTick();
 
-    entity_ai_state_.prune(current_tick);
+    mob_ai_state_.prune(current_tick);
     scheduler_->mainThreadHeartbeat(current_tick);
     tick_function();
     for (const auto &p : getOnlinePlayers()) {

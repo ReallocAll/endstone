@@ -1,4 +1,4 @@
-#include "endstone/core/perf/entity_ai.h"
+#include "endstone/core/perf/mob_ai.h"
 
 #include <algorithm>
 #include <array>
@@ -87,7 +87,7 @@ bool exactEntityType(std::string_view type)
 
 struct MobAiSettings {
     bool idle_enabled = true;
-    EntityAiAnimalPolicy idle{32, true, true};
+    MobAiAnimalPolicy idle{32, true, true};
     bool target_search_enabled = true;
     double target_search_player_range_blocks = 32;
     std::uint32_t target_search_interval_ticks = 20;
@@ -133,9 +133,9 @@ MobAiSettings mobAiSettings(const toml::table &table, MobAiSettings settings)
     return settings;
 }
 
-EntityAiDecision mobAiDecision(const MobAiSettings &settings)
+MobAiDecision mobAiDecision(const MobAiSettings &settings)
 {
-    EntityAiDecision result;
+    MobAiDecision result;
     result.prevent_sleep = settings.prevent_sleep;
     if (settings.idle_enabled) {
         result.animal = settings.idle;
@@ -160,7 +160,7 @@ public:
     explicit FileDescriptor(int fd, int (*close)(int)) : fd_(fd), close_(close ? close : ::close)
     {
         if (fd_ < 0) {
-            throw std::system_error(errno, std::generic_category(), "Cannot open entity AI file");
+            throw std::system_error(errno, std::generic_category(), "Cannot open mob AI file");
         }
     }
     ~FileDescriptor() noexcept
@@ -187,7 +187,7 @@ private:
 }  // namespace
 
 #ifndef _WIN32
-std::optional<std::string> EntityAiPolicies::readOptional(const std::filesystem::path &path,
+std::optional<std::string> MobAiPolicies::readOptional(const std::filesystem::path &path,
                                                           const FileOperations &operations)
 {
     if (!std::filesystem::exists(path)) {
@@ -214,7 +214,7 @@ std::optional<std::string> EntityAiPolicies::readOptional(const std::filesystem:
 }
 #endif
 
-EntityAiPolicies::Snapshot EntityAiPolicies::parse(const std::optional<std::string> &policies)
+MobAiPolicies::Snapshot MobAiPolicies::parse(const std::optional<std::string> &policies)
 {
     Snapshot result;
     if (!policies) {
@@ -269,25 +269,25 @@ EntityAiPolicies::Snapshot EntityAiPolicies::parse(const std::optional<std::stri
     return result;
 }
 
-Result<EntityAiReloadResult> EntityAiPolicies::initialize(const std::filesystem::path &policies_file)
+Result<MobAiReloadResult> MobAiPolicies::initialize(const std::filesystem::path &policies_file)
 {
 #ifdef _WIN32
-    return nonstd::make_unexpected(std::string("Entity AI policies are not supported on Windows."));
+    return nonstd::make_unexpected(std::string("Mob AI policies are not supported on Windows."));
 #else
-    ENDSTONE_CHECK(!initialized_, std::string("Entity AI policies are already initialized."));
+    ENDSTONE_CHECK(!initialized_, std::string("Mob AI policies are already initialized."));
     policies_file_ = policies_file;
     initialized_ = true;
     return reload();
 #endif
 }
 
-Result<EntityAiReloadResult> EntityAiPolicies::reload()
+Result<MobAiReloadResult> MobAiPolicies::reload()
 {
 #ifdef _WIN32
-    return nonstd::make_unexpected(std::string("Entity AI policies are not supported on Windows."));
+    return nonstd::make_unexpected(std::string("Mob AI policies are not supported on Windows."));
 #else
     try {
-        require(initialized_, "Entity AI policies have not been initialized.");
+        require(initialized_, "Mob AI policies have not been initialized.");
         auto candidate = parse(readOptional(policies_file_, file_operations_));
         require(!snapshot_.present || candidate.present, "Previously loaded mob-ai section is missing.");
         const auto changed = candidate != snapshot_;
@@ -295,7 +295,7 @@ Result<EntityAiReloadResult> EntityAiPolicies::reload()
             snapshot_ = std::move(candidate);
             ++revision_;
         }
-        return EntityAiReloadResult{snapshot_.overrides.size(), changed, revision_};
+        return MobAiReloadResult{snapshot_.overrides.size(), changed, revision_};
     }
     catch (const std::exception &error) {
         return nonstd::make_unexpected(std::string(error.what()));
@@ -303,9 +303,9 @@ Result<EntityAiReloadResult> EntityAiPolicies::reload()
 #endif
 }
 
-EntityAiDecision EntityAiPolicies::resolve(std::string_view type) const
+MobAiDecision MobAiPolicies::resolve(std::string_view type) const
 {
-    EntityAiDecision result;
+    MobAiDecision result;
     result.revision = revision_;
     if (!snapshot_.enabled) {
         return result;

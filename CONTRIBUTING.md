@@ -271,12 +271,11 @@ Endstone follows a layered architecture:
 When updating BDS support, verify these together against the new binary:
 
 - Signatures in `scripts/configs/linux.toml` and regenerated `src/bedrock/symbols/linux.h`.
-- The GNU build ID in `src/endstone/runtime/mob_ai_preflight.cpp`.
-- The four vtable/owner layouts and seven function/slot entries in `src/endstone/runtime/mob_ai_preflight.h`.
-- Native return/output conventions, running-goal stop/wake transitions, and reload behavior.
+- The four vtable/owner layouts and seven hook slots in `src/endstone/runtime/mob_ai_preflight.h`; function addresses come from the generated symbol table.
+- Native return/output conventions, running-goal stop/wake transitions, and startup/restart configuration behavior.
 
-Refreshing symbols alone does not establish support. Keep unsupported binaries on the existing vanilla fallback;
-change the build ID only after verifying the layouts and behavior. Record the source revision, BDS identity,
+Refreshing symbols alone does not establish support. Verify layouts and behavior for the BDS version supported by
+Endstone; failed native checks retain the existing vanilla fallback. Record the source revision, BDS identity,
 runtime artifact and live checks with the PR, separating diagnostic builds from the final runtime.
 
 ### 3. Core Layer (`src/endstone/core/`)

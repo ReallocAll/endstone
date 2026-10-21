@@ -158,7 +158,7 @@ private:
     void enablePlugin(Plugin &plugin);
     void loadResourcePacks();
     void fixServerAnnouncement();
-    void reloadMobAiPolicies();
+    void initializeMobAiPolicies();
     [[nodiscard]] bool isUsingNetherNet() const;
     [[nodiscard]] std::uint16_t getSignalingPort() const;
 
@@ -177,7 +177,6 @@ private:
     std::unique_ptr<EndstoneLevel> level_;
     MobAiPolicies mob_ai_policies_;
     MobAiState mob_ai_state_;
-    bool mob_ai_initialized_ = false;
     std::unordered_map<std::string, std::unique_ptr<IRegistry>> registries_;
     std::shared_ptr<EndstoneScoreboard> scoreboard_;
     std::unique_ptr<EndstoneMetrics> metrics_;

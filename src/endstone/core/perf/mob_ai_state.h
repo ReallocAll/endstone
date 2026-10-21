@@ -17,7 +17,6 @@ public:
     [[nodiscard]] bool recentlyActive(std::int64_t id, std::uint64_t tick);
     bool allowNewTargetSearch(std::int64_t id, std::uint64_t tick, std::optional<std::uint32_t> interval);
     void clearSearch(std::int64_t id);
-    void clearSearchDelays();
     void erase(std::int64_t id);
     void prune(std::uint64_t tick);
     void clear();

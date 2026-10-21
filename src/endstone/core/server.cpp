@@ -232,7 +232,7 @@ void EndstoneServer::setLevel(::Level &level)
 #ifdef __linux__
     mob_ai_state_.clear();
 #endif
-    reloadMobAiPolicies();
+    initializeMobAiPolicies();
 
     // enable packet rate limiter
     (void)dispatchCommand(getCommandSender(), "reloadpacketlimitconfig");
@@ -650,10 +650,9 @@ void EndstoneServer::reloadData()
     server_instance_->onRequestResourceReload();
     level_->getHandle().loadFunctionManager();
     initRegistries();
-    reloadMobAiPolicies();
 }
 
-void EndstoneServer::reloadMobAiPolicies()
+void EndstoneServer::initializeMobAiPolicies()
 {
     try {
         const auto config = fs::current_path() / "endstone.toml";
@@ -668,25 +667,17 @@ void EndstoneServer::reloadMobAiPolicies()
             return;
         }
 #ifdef __linux__
-        Result<MobAiReloadResult> result;
-        if (!mob_ai_initialized_) {
-            result = mob_ai_policies_.initialize(config);
-            mob_ai_initialized_ = true;
+        const auto result = mob_ai_policies_.initialize(config);
+        if (!result) {
+            getLogger().error("[Perf] Mob AI policies were not loaded: {}", result.error());
         }
         else {
-            result = mob_ai_policies_.reload();
-        }
-        if (!result) {
-            getLogger().error("[Perf] Mob AI policies were not updated: {}", result.error());
-        }
-        else if (result->changed) {
-            mob_ai_state_.clearSearchDelays();
-            getLogger().info("[Perf] Policies updated: {} type overrides.", result->override_types);
+            getLogger().info("[Perf] Mob AI policies loaded.");
         }
 #endif
     }
     catch (const std::exception &e) {
-        getLogger().error("[Perf] Mob AI policies were not updated: {}", e.what());
+        getLogger().error("[Perf] Mob AI policies were not loaded: {}", e.what());
     }
 }
 

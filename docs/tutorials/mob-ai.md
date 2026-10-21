@@ -1,6 +1,6 @@
 # Mob AI controls
 
-Mob AI controls adjust matching native sleep, random-stroll, random-look-around and new-target-search goals on supported Linux BDS binaries. They default to **off**. Endstone checks the binary and each exact goal instance before applying a control; unsupported platforms, goals or unreliable entity state retain vanilla behavior. Windows native controls are unavailable.
+Mob AI controls adjust matching native sleep, random-stroll, random-look-around and new-target-search goals on supported Linux BDS binaries. They default to **off**. Endstone checks native hook addresses and each exact goal instance before applying a control; unsupported platforms, goals or unreliable entity state retain vanilla behavior. Windows native controls are unavailable.
 
 ## Configuration and first setup
 
@@ -75,21 +75,23 @@ Numeric-range controls retain vanilla behavior with an existing target, riding, 
 
 Missing required components, invalid positions or an unresolved relevant player's state preserve vanilla behavior. Removed players and players conclusively in another dimension are ignored; explicit spectators are ignored. Ambiguous default game modes retain vanilla behavior when their world default is spectator or unresolved. These safeguards cover the stated conditions; hidden species-specific behavior and every farm or device have not been established as safe.
 
-## Reload, disable and restore
+## Apply changes, disable and restore
 
-After editing AI settings, run Endstone `/reload` and check the English `[Perf]` result. This is a full reload that also reloads plugins and server data. A changed valid snapshot reports `Policies updated`; unchanged settings need not print an update. Syntax errors, unknown AI fields, invalid values or conflicting overrides reject the entire candidate and retain the previous valid snapshot. Disabled candidates still validate all settings.
+Mob AI settings are loaded once during server startup. After editing `endstone.toml`, restart the server and check the English `[Perf]` result. A successful load reports `Mob AI policies loaded`. Endstone `/reload` keeps the Mob AI settings loaded at startup and does not explicitly reset Mob AI activity or search state. Normal plugin and server-data reload behavior still applies.
 
-To disable mob AI controls, change the master switch in the existing main configuration and reload, keeping the feature settings and overrides:
+If Mob AI initialization rejects syntax errors, unknown fields, invalid values or conflicting overrides, controls stay inactive. Disabled configurations still validate all settings. The launcher may reject malformed TOML before the server starts.
+
+To disable mob AI controls, change the master switch in the existing main configuration and restart the server, keeping the feature settings and overrides:
 
 ```toml
 [mob-ai]
 enabled = false
 ```
 
-A missing previously loaded `mob-ai` section on reload is rejected and the previous snapshot remains active. Use the master switch to disable controls, or restore saved configuration to restore prior behavior. Goal wake/stop transitions remain native, so sleep changes need not complete immediately on reload. Changed valid settings and master toggles clear search deadlines while retaining activity protection.
+To restore prior behavior, restore the saved configuration and restart the server.
 
 ## Coverage and verification limits
 
 The pinned definition reference is Mojang/bedrock-samples **v1.26.50.4**, commit `46ba6ea985fb5a92d79a9419198f10dda14c199d`: 128 definitions, 64 containing `random_stroll`, 55 `random_look_around`, 49 `nearest_attackable_target`, and one `sleep`. Their union is **78 definition types**, including tools, special entities and behaviors that may occur only in component groups. This is a definition inventory, not a claim of 78 supported or runtime-tested species. Practical coverage depends separately on definition presence, exact native goal admission and current-state eligibility.
 
-Native support is Linux-only and pinned to the recognized BDS binary. Automated policy/state tests and compilation do not establish live species behavior. Cow/pig idle and breeding, zombie/skeleton/creeper search, spider day/night, player interaction, protections and exclusions require separate live validation. Unobserved cases remain unverified. Preventing villager sleep changes bedtime positioning and can remove native sleep healing; it does not add health compensation, longer work hours or guaranteed overnight restocking. No performance benefit or compatibility with every farm, breeder or sleep-based transport device is promised.
+Native support is limited to Linux on Endstone's supported BDS version and requires the native checks to pass. Automated policy/state tests and compilation do not establish live species behavior. Cow/pig idle and breeding, zombie/skeleton/creeper search, spider day/night, player interaction, protections and exclusions require separate live validation. Unobserved cases remain unverified. Preventing villager sleep changes bedtime positioning and can remove native sleep healing; it does not add health compensation, longer work hours or guaranteed overnight restocking. No performance benefit or compatibility with every farm, breeder or sleep-based transport device is promised.

@@ -61,13 +61,6 @@ void MobAiState::clearSearch(std::int64_t id)
     }
 }
 
-void MobAiState::clearSearchDelays()
-{
-    for (auto &[id, entry] : entries_) {
-        entry.search_after = 0;
-    }
-}
-
 void MobAiState::erase(std::int64_t id)
 {
     entries_.erase(id);

@@ -28,7 +28,7 @@ TEST(MobAiStateTest, ActivityProtectsHalfOpenWindowAndClearsSearchDelay)
     EXPECT_FALSE(state.allowNewTargetSearch(12, 111, 200));
 }
 
-TEST(MobAiStateTest, SearchResetsPreserveActivity)
+TEST(MobAiStateTest, DisabledIntervalsAndExplicitResetsClearSearchDelay)
 {
     MobAiState state;
     EXPECT_TRUE(state.allowNewTargetSearch(12, 3, 20));
@@ -36,11 +36,6 @@ TEST(MobAiStateTest, SearchResetsPreserveActivity)
     EXPECT_TRUE(state.allowNewTargetSearch(12, 5, 20));
     state.clearSearch(12);
     EXPECT_TRUE(state.allowNewTargetSearch(12, 6, 20));
-    state.recordActivity(12, 10);
-    EXPECT_TRUE(state.allowNewTargetSearch(13, 10, 200));
-    state.clearSearchDelays();
-    EXPECT_TRUE(state.recentlyActive(12, 109));
-    EXPECT_TRUE(state.allowNewTargetSearch(13, 11, 200));
 }
 
 TEST(MobAiStateTest, RemovalAndLevelResetDiscardTransientEntries)

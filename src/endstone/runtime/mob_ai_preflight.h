@@ -7,6 +7,8 @@
 #include <string>
 #include <string_view>
 
+#include "bedrock/symbol.h"
+
 namespace endstone::runtime {
 
 struct MobAiGoalLayout {
@@ -20,6 +22,11 @@ inline constexpr MobAiGoalLayout random_stroll_goal_layout{0xF242178, 0x28};
 inline constexpr MobAiGoalLayout random_look_around_goal_layout{0xEEE7378, 0x40};
 
 struct MobAiHook {
+    consteval MobAiHook(std::string_view name, const MobAiGoalLayout &layout, std::size_t slot)
+        : name(name), function(get_symbol(name)), layout(layout), slot(slot)
+    {
+    }
+
     std::string_view name;
     std::size_t function;
     const MobAiGoalLayout &layout;
@@ -27,13 +34,13 @@ struct MobAiHook {
 };
 
 inline constexpr std::array mob_ai_hooks = {
-    MobAiHook{"_ZN9SleepGoal6canUseEv", 0x592D200, sleep_goal_layout, 2},
-    MobAiHook{"_ZN9SleepGoal11canContinueEv", 0x592DB20, sleep_goal_layout, 3},
-    MobAiHook{"endstone_perf_find_nearest_target", 0xBDD7710, nearest_attackable_target_goal_layout, 13},
-    MobAiHook{"_ZN16RandomStrollGoal6canUseEv", 0xBDC8D30, random_stroll_goal_layout, 2},
-    MobAiHook{"_ZN16RandomStrollGoal11canContinueEv", 0xBDC8E30, random_stroll_goal_layout, 3},
-    MobAiHook{"_ZN20RandomLookAroundGoal6canUseEv", 0x5761110, random_look_around_goal_layout, 2},
-    MobAiHook{"_ZN20RandomLookAroundGoal11canContinueEv", 0x5761160, random_look_around_goal_layout, 3},
+    MobAiHook{"_ZN9SleepGoal6canUseEv", sleep_goal_layout, 2},
+    MobAiHook{"_ZN9SleepGoal11canContinueEv", sleep_goal_layout, 3},
+    MobAiHook{"endstone_perf_find_nearest_target", nearest_attackable_target_goal_layout, 13},
+    MobAiHook{"_ZN16RandomStrollGoal6canUseEv", random_stroll_goal_layout, 2},
+    MobAiHook{"_ZN16RandomStrollGoal11canContinueEv", random_stroll_goal_layout, 3},
+    MobAiHook{"_ZN20RandomLookAroundGoal6canUseEv", random_look_around_goal_layout, 2},
+    MobAiHook{"_ZN20RandomLookAroundGoal11canContinueEv", random_look_around_goal_layout, 3},
 };
 
 bool mob_ai_preflight(std::string &reason);

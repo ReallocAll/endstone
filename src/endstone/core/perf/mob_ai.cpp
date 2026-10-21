@@ -227,7 +227,6 @@ MobAiPolicies::Snapshot MobAiPolicies::parse(const std::optional<std::string> &p
         return result;
     }
     const auto &config = *section->as_table();
-    result.present = true;
     keys(config, {"enabled", "idle", "target-search", "villagers", "overrides"});
     result.enabled = boolean(config, "enabled", false);
     const auto settings = mobAiSettings(config, MobAiSettings{});
@@ -269,33 +268,17 @@ MobAiPolicies::Snapshot MobAiPolicies::parse(const std::optional<std::string> &p
     return result;
 }
 
-Result<MobAiReloadResult> MobAiPolicies::initialize(const std::filesystem::path &policies_file)
+Result<void> MobAiPolicies::initialize(const std::filesystem::path &policies_file)
 {
 #ifdef _WIN32
     return nonstd::make_unexpected(std::string("Mob AI policies are not supported on Windows."));
 #else
     ENDSTONE_CHECK(!initialized_, std::string("Mob AI policies are already initialized."));
-    policies_file_ = policies_file;
     initialized_ = true;
-    return reload();
-#endif
-}
-
-Result<MobAiReloadResult> MobAiPolicies::reload()
-{
-#ifdef _WIN32
-    return nonstd::make_unexpected(std::string("Mob AI policies are not supported on Windows."));
-#else
     try {
-        require(initialized_, "Mob AI policies have not been initialized.");
-        auto candidate = parse(readOptional(policies_file_, file_operations_));
-        require(!snapshot_.present || candidate.present, "Previously loaded mob-ai section is missing.");
-        const auto changed = candidate != snapshot_;
-        if (changed) {
-            snapshot_ = std::move(candidate);
-            ++revision_;
-        }
-        return MobAiReloadResult{snapshot_.overrides.size(), changed, revision_};
+        auto candidate = parse(readOptional(policies_file, file_operations_));
+        snapshot_ = std::move(candidate);
+        return {};
     }
     catch (const std::exception &error) {
         return nonstd::make_unexpected(std::string(error.what()));
@@ -306,14 +289,12 @@ Result<MobAiReloadResult> MobAiPolicies::reload()
 MobAiDecision MobAiPolicies::resolve(std::string_view type) const
 {
     MobAiDecision result;
-    result.revision = revision_;
     if (!snapshot_.enabled) {
         return result;
     }
     const auto found = snapshot_.overrides.find(type);
     result = found == snapshot_.overrides.end() ? snapshot_.default_decision : found->second;
     result.prevent_sleep = result.prevent_sleep && type == "minecraft:villager_v2";
-    result.revision = revision_;
     return result;
 }
 

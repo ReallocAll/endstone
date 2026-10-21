@@ -33,6 +33,19 @@ You should see this in your console:
     The first time you run the bootstrap, it will need to download the [Bedrock Dedicated Server] from the official
     mirror. Press ++y++ and ++enter++ to continue.
 
+## Configuration updates
+
+At startup, the launcher adds missing defaults to `endstone.toml` while preserving existing values and comments.
+This applies to the whole configuration, including when [mob AI controls](../tutorials/entity-ai.md) are disabled.
+Files that need no changes are left alone. A changed file is replaced atomically at its resolved destination,
+so relative symlinks remain intact, but the target's inode changes. A required update stops startup if the target
+has multiple hard links; use a symlink when several paths should share the configuration.
+
+On POSIX, replacement preserves the existing user ID, group ID and mode bits; new files use mode `0600`.
+The launcher does not copy custom ACLs, extended attributes or Windows file security metadata from the old file.
+Deployments that set these separately should account for replacement during configuration updates.
+If writing or replacement fails, the original file is kept.
+
 
 [installed]: installation.md
 

@@ -31,7 +31,7 @@ The two `player-range-blocks` values are independent nearby-player protections, 
 
 The launcher fills missing global fields from the template. It generates no override rules and leaves override fields omitted so they inherit the corresponding global values at runtime. Existing values, comments and invalid data are preserved; invalid settings are rejected rather than repaired.
 
-Launcher preparation atomically replaces changed configuration at its resolved destination, preserving relative symlinks and existing POSIX ownership and permissions. New POSIX files use mode `0600`. Changed targets with multiple hard links are rejected; unchanged files are left alone. If writing or replacement fails, the original is kept, and any cleanup failure reports the remaining temporary path. Loading the native runtime directly does not create configuration; a missing `mob-ai` section initially keeps vanilla behavior.
+Launcher preparation updates the whole main configuration even when mob AI controls are disabled. Its [atomic replacement and file metadata behavior](../getting-started/start-your-server.md#configuration-updates) also applies to existing installations. If temporary-file cleanup fails, the warning reports the remaining path. Loading the native runtime directly does not create configuration; a missing `mob-ai` section initially keeps vanilla behavior.
 
 ## Per-type overrides
 

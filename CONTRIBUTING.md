@@ -266,6 +266,19 @@ Endstone follows a layered architecture:
 - Type-compatible structures matching BDS internal types
 - Required for ABI compatibility when hooking
 
+#### Updating Linux mob AI hooks
+
+When updating BDS support, verify these together against the new binary:
+
+- Signatures in `scripts/configs/linux.toml` and regenerated `src/bedrock/symbols/linux.h`.
+- The GNU build ID in `src/endstone/runtime/entity_ai_preflight.cpp`.
+- The four vtable/owner layouts and seven function/slot entries in `src/endstone/runtime/entity_ai_preflight.h`.
+- Native return/output conventions, running-goal stop/wake transitions, and reload behavior.
+
+Refreshing symbols alone does not establish support. Keep unsupported binaries on the existing vanilla fallback;
+change the build ID only after verifying the layouts and behavior. Record the source revision, BDS identity,
+runtime artifact and live checks with the PR, separating diagnostic builds from the final runtime.
+
 ### 3. Core Layer (`src/endstone/core/`)
 
 - Implements the public API by wrapping bedrock types

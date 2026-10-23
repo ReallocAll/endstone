@@ -9,9 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added opt-in controls to skip further villager sleep attempts for the night after a failure on Windows and Linux.
-- Added opt-in throttling for zombie searches for new targets on Windows and Linux.
-- Added opt-in controls for sheep and chicken wandering and random looking on Windows and Linux.
+- Added opt-in controls to skip further villager sleep attempts for the night after a failure.
+- Added opt-in throttling for zombie searches for new targets.
+- Added opt-in controls for sheep and chicken wandering and random looking.
 
 ### Changed
 

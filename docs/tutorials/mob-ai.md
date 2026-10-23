@@ -1,7 +1,7 @@
 # Mob AI controls
 
 Mob AI controls let you reduce random strolling and looking around, space out new target searches, and control
-villager sleep attempts. They are available on Windows and Linux and disabled by default.
+villager sleep attempts. They are disabled by default.
 
 ## Enable the controls {#configuration-and-first-setup}
 

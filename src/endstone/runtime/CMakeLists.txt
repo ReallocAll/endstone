@@ -57,7 +57,6 @@ add_library(endstone_runtime SHARED
         bedrock_hooks/weather_manager.cpp
         main.cpp
         hook.cpp
-        mob_ai_preflight.cpp
         vtable_hook.cpp
         linux.cpp
         windows.cpp

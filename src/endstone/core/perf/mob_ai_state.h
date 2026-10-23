@@ -8,12 +8,9 @@
 
 namespace endstone::core {
 
-// Main-thread state; native availability is fixed before server threads start.
+// Main-thread state.
 class MobAiState {
 public:
-    static void setNativeAvailable(bool available);
-    [[nodiscard]] static bool isNativeAvailable();
-
     void recordActivity(std::int64_t id, std::uint64_t tick);
     [[nodiscard]] bool recentlyActive(std::int64_t id, std::uint64_t tick);
     bool allowNewTargetSearch(std::int64_t id, std::uint64_t tick, std::optional<std::uint32_t> interval);

@@ -5,24 +5,12 @@
 
 namespace endstone::core {
 namespace {
-bool native_available = false;
-
 std::uint64_t deadline(std::uint64_t tick, std::uint64_t duration)
 {
     const auto max = std::numeric_limits<std::uint64_t>::max();
     return duration > max - tick ? max : tick + duration;
 }
 }  // namespace
-
-void MobAiState::setNativeAvailable(bool available)
-{
-    native_available = available;
-}
-
-bool MobAiState::isNativeAvailable()
-{
-    return native_available;
-}
 
 void MobAiState::recordActivity(std::int64_t id, std::uint64_t tick)
 {

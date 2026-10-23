@@ -51,19 +51,17 @@ def test_prepare_preserves_user_values_comments_and_repeated_setup(bootstrap):
     assert bootstrap.config_path.stat().st_mtime_ns == timestamp
 
 
-def test_prepare_replace_failure_preserves_main_and_cleans_tempfile(bootstrap, monkeypatch):
-    original = b"# Keep main\n[commands]\nlog = false\n"
-    bootstrap.config_path.write_bytes(original)
-    temporary_paths = []
+def test_prepare_updates_hardlinked_config_in_place(bootstrap):
+    bootstrap.config_path.write_text("# Shared config\n[mob-ai]\nenabled = true\n", encoding="utf-8")
+    linked = bootstrap.server_path / "shared.toml"
+    os.link(bootstrap.config_path, linked)
+    original_inode = bootstrap.config_path.stat().st_ino
 
-    def reject_replace(source, destination):
-        temporary_paths.append(source)
-        raise OSError("replace denied")
+    bootstrap._prepare()
 
-    monkeypatch.setattr(os, "replace", reject_replace)
-
-    with pytest.raises(OSError, match="replace denied"):
-        bootstrap._prepare()
-
-    assert bootstrap.config_path.read_bytes() == original
-    assert not os.path.exists(temporary_paths[0])
+    assert os.path.samefile(bootstrap.config_path, linked)
+    assert bootstrap.config_path.stat().st_ino == original_inode
+    assert linked.read_bytes() == bootstrap.config_path.read_bytes()
+    config = tomlkit.parse(linked.read_text(encoding="utf-8"))["mob-ai"]
+    assert config["enabled"] is True
+    assert config["villagers"]["sleep-failure-skip-night"] is False

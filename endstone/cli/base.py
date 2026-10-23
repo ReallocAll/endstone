@@ -7,7 +7,6 @@ import os
 import platform
 import re
 import socket
-import stat
 import subprocess
 import sys
 import tempfile
@@ -275,16 +274,9 @@ class Bootstrap:
         default_config = tomlkit.parse(ref.read_text(encoding="utf-8"))
 
         original = None
-        config = tomlkit.document()
-        config_path = self.config_path.resolve()
-        try:
-            config_stat = config_path.stat()
-        except FileNotFoundError:
-            config_stat = None
-        if config_stat is not None:
-            if not stat.S_ISREG(config_stat.st_mode):
-                raise OSError(errno.EINVAL, "Configuration path must be a regular file", str(config_path))
-            with config_path.open("r", encoding="utf-8", newline="") as f:
+        config = default_config
+        if self.config_path.exists():
+            with self.config_path.open("r", encoding="utf-8", newline="") as f:
                 original = f.read()
             config = tomlkit.parse(original)
 
@@ -301,35 +293,8 @@ class Bootstrap:
         migrate_config(default_config, config)
         updated = tomlkit.dumps(config)
         if updated != original:
-            if config_stat is not None and config_stat.st_nlink > 1:
-                raise OSError(errno.EMLINK, "Cannot update configuration with multiple hard links", str(config_path))
-            temporary_path = None
-            try:
-                with tempfile.NamedTemporaryFile(
-                    mode="w", encoding="utf-8", newline="", dir=config_path.parent, delete=False
-                ) as f:
-                    temporary_path = Path(f.name)
-                    f.write(updated)
-                if os.name == "posix" and config_stat is not None:
-                    staged_stat = temporary_path.stat()
-                    if (staged_stat.st_uid, staged_stat.st_gid) != (config_stat.st_uid, config_stat.st_gid):
-                        os.chown(temporary_path, config_stat.st_uid, config_stat.st_gid)
-                    os.chmod(temporary_path, stat.S_IMODE(config_stat.st_mode))
-                    staged_stat = temporary_path.stat()
-                    if (staged_stat.st_uid, staged_stat.st_gid, stat.S_IMODE(staged_stat.st_mode)) != (
-                        config_stat.st_uid,
-                        config_stat.st_gid,
-                        stat.S_IMODE(config_stat.st_mode),
-                    ):
-                        raise OSError(errno.EPERM, "Unable to preserve configuration file metadata", str(config_path))
-                os.replace(temporary_path, config_path)
-            except BaseException:
-                if temporary_path is not None:
-                    try:
-                        temporary_path.unlink(missing_ok=True)
-                    except OSError as error:
-                        self._logger.warning(f"Unable to remove temporary configuration file {temporary_path}: {error}")
-                raise
+            with self.config_path.open("w", encoding="utf-8", newline="") as f:
+                f.write(updated)
 
         self._update_packet_limit_config()
 

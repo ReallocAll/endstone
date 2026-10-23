@@ -658,12 +658,6 @@ void EndstoneServer::initializeMobAiPolicies()
     if (!config) {
         return;
     }
-    if (!MobAiState::isNativeAvailable()) {
-        if (config->at_path("mob-ai.enabled").value_or(false)) {
-            getLogger().error("[Perf] Mob AI policies inactive: native controls are unavailable for this binary.");
-        }
-        return;
-    }
     const auto result = mob_ai_policies_.initialize(*config);
     if (!result) {
         getLogger().error("[Perf] Mob AI policies were not loaded: {}", result.error());
@@ -675,7 +669,7 @@ void EndstoneServer::initializeMobAiPolicies()
 
 void EndstoneServer::recordMobAiActivity(const ::Actor &actor)
 {
-    if (!MobAiState::isNativeAvailable() || actor.isRemoved() || actor.isClientSide() || actor.isPlayer()) {
+    if (!mob_ai_policies_.isEnabled() || actor.isRemoved() || actor.isClientSide() || actor.isPlayer()) {
         return;
     }
     const auto *id = actor.tryGetComponent<ActorUniqueIDComponent>();
@@ -692,6 +686,9 @@ void EndstoneServer::recordMobAiActivity(const ::Actor &actor)
 
 void EndstoneServer::removeMobAiState(const ::Actor &actor)
 {
+    if (!mob_ai_policies_.isEnabled()) {
+        return;
+    }
     if (const auto *id = actor.tryGetComponent<ActorUniqueIDComponent>(); id && id->unique_id.raw_id != -1) {
         mob_ai_state_.erase(id->unique_id.raw_id);
     }

@@ -3,13 +3,12 @@
 #include <array>
 #include <cmath>
 #include <cstdint>
-#include <cstring>
-#include <functional>
 #include <optional>
 #include <utility>
 
+#include <entt/locator/locator.hpp>
+
 #include "bedrock/entity/components/actor_data_flag_component.h"
-#include "bedrock/entity/components/actor_game_type_component.h"
 #include "bedrock/entity/components/actor_type_flag_component.h"
 #include "bedrock/entity/components/actor_unique_id_component.h"
 #include "bedrock/entity/components/dimension_type_component.h"
@@ -18,13 +17,13 @@
 #include "bedrock/world/actor/actor.h"
 #include "bedrock/world/actor/player/player.h"
 #include "bedrock/world/actor/provider/actor_riding.h"
+#include "bedrock/world/level/dimension/dimension.h"
 #include "bedrock/world/level/dimension/vanilla_dimensions.h"
 #include "bedrock/world/level/level.h"
 #include "bedrock/world/level/pathfinder/path_finder.h"
 #include "endstone/core/perf/mob_ai_capabilities.h"
 #include "endstone/core/server.h"
 #include "endstone/runtime/hook.h"
-#include "endstone/runtime/mob_ai_preflight.h"
 
 namespace {
 using endstone::core::EndstoneServer;
@@ -33,19 +32,9 @@ using endstone::core::mobAiWithinRange;
 using endstone::core::supportsMobAiIdle;
 using endstone::core::supportsMobAiSearch;
 
-Actor *owner(void *goal, const endstone::runtime::MobAiGoalLayout &layout)
+bool mobAiEnabled()
 {
-    if (!MobAiState::isNativeAvailable()) {
-        return nullptr;
-    }
-    void *actual_vtable;
-    std::memcpy(&actual_vtable, goal, sizeof(actual_vtable));
-    if (actual_vtable != static_cast<char *>(endstone::runtime::get_executable_base()) + layout.vtable) {
-        return nullptr;
-    }
-    Actor *actor;
-    std::memcpy(&actor, static_cast<char *>(goal) + layout.owner_offset, sizeof(actor));
-    return actor;
+    return entt::locator<EndstoneServer>::has_value() && EndstoneServer::getInstance().getMobAiPolicies().isEnabled();
 }
 
 std::optional<std::int64_t> sleepPolicyId(Actor *actor)
@@ -154,36 +143,16 @@ bool activeMob(const Actor &actor, std::int64_t id, double range, MobAiState &st
     }
     bool active = false;
     auto visitor = [&](const Player &player) {
-        if (player.isRemoved()) {
+        const auto game_type = player.getPlayerGameType();
+        if (game_type == GameType::Spectator) {
             return true;
         }
-        const auto *player_dimension = player.tryGetComponent<DimensionTypeComponent>();
-        if (player_dimension && player_dimension->type != VanillaDimensions::Undefined &&
-            player_dimension->type != dimension->type) {
-            return true;
-        }
-        const auto *game_type = player.tryGetComponent<ActorGameTypeComponent>();
-        if (game_type && game_type->game_type == GameType::Spectator) {
-            return true;
-        }
-        if (!player_dimension || player_dimension->type == VanillaDimensions::Undefined || !game_type ||
-            player.isClientSide()) {
+        if (player.isClientSide()) {
             active = true;
             return false;
         }
-        switch (game_type->game_type) {
+        switch (game_type) {
         case GameType::Survival:
-        case GameType::Default:
-            switch (actor.getLevel().getDefaultGameType()) {
-            case GameType::Survival:
-            case GameType::Creative:
-            case GameType::Adventure:
-                break;
-            default:
-                active = true;
-                return false;
-            }
-            break;
         case GameType::Creative:
         case GameType::Adventure:
             break;
@@ -196,7 +165,7 @@ bool activeMob(const Actor &actor, std::int64_t id, double range, MobAiState &st
         active = !nearby || *nearby;
         return !active;
     };
-    actor.getLevel().forEachPlayer(std::ref(visitor));
+    actor.getDimension().forEachPlayer(visitor);
     return active;
 }
 
@@ -233,46 +202,28 @@ bool suppressIdle(Actor *actor, bool stroll)
 
 bool SleepGoal::canUse()
 {
-    auto *actor = owner(this, endstone::runtime::sleep_goal_layout);
-    const auto id = sleepPolicyId(actor);
-    if (id) {
-        const auto world_time = actor->getLevel().getTime();
-        auto &state = EndstoneServer::getInstance().getMobAiState();
-        if (!state.canAttemptSleep(*id, world_time)) {
-            return false;
+    if (mobAiEnabled()) {
+        auto *actor = tryGetActor();
+        const auto id = sleepPolicyId(actor);
+        if (id) {
+            const auto world_time = actor->getLevel().getTime();
+            auto &state = EndstoneServer::getInstance().getMobAiState();
+            if (!state.canAttemptSleep(*id, world_time)) {
+                return false;
+            }
+            const SleepAttempt attempt{actor, *id, state};
+            return ENDSTONE_HOOK_CALL_ORIGINAL(&SleepGoal::canUse, this);
         }
-        const SleepAttempt attempt{actor, *id, state};
-        return ENDSTONE_HOOK_CALL_ORIGINAL(&SleepGoal::canUse, this);
     }
     return ENDSTONE_HOOK_CALL_ORIGINAL(&SleepGoal::canUse, this);
 }
 
 void SleepGoal::stop()
 {
-    auto *actor = owner(this, endstone::runtime::sleep_goal_layout);
-    const auto id = sleepPolicyId(actor);
-    if (id && !actor->isSleeping()) {
-#ifdef _WIN32
-        constexpr std::size_t attempts_offset = 0x30;
-        constexpr std::size_t limit_offset = 0x38;
-        constexpr std::size_t reached_offset = 0x44;
-        constexpr std::size_t failure_offset = 0x50;
-#else
-        constexpr std::size_t attempts_offset = 0x28;
-        constexpr std::size_t limit_offset = 0x30;
-        constexpr std::size_t reached_offset = 0x3C;
-        constexpr std::size_t failure_offset = 0x48;
-#endif
-        const auto *goal = reinterpret_cast<const char *>(this);
-        std::int32_t attempts;
-        std::int32_t limit;
-        std::uint8_t reached;
-        std::uint64_t failure;
-        std::memcpy(&attempts, goal + attempts_offset, sizeof(attempts));
-        std::memcpy(&limit, goal + limit_offset, sizeof(limit));
-        std::memcpy(&reached, goal + reached_offset, sizeof(reached));
-        std::memcpy(&failure, goal + failure_offset, sizeof(failure));
-        if (!reached && attempts > 0 && (failure != 0 || attempts > limit)) {
+    if (mobAiEnabled()) {
+        auto *actor = tryGetActor();
+        const auto id = sleepPolicyId(actor);
+        if (id && !actor->isSleeping() && hasFailedNavigation()) {
             EndstoneServer::getInstance().getMobAiState().recordSleepFailure(*id, actor->getLevel().getTime());
         }
     }
@@ -298,7 +249,7 @@ std::unique_ptr<Path> PathFinder::findPath(Actor &actor, int x, int y, int z, fl
 
 bool RandomStrollGoal::canUse()
 {
-    if (suppressIdle(owner(this, endstone::runtime::random_stroll_goal_layout), true)) {
+    if (mobAiEnabled() && suppressIdle(tryGetActor(), true)) {
         return false;
     }
     return ENDSTONE_HOOK_CALL_ORIGINAL(&RandomStrollGoal::canUse, this);
@@ -306,7 +257,7 @@ bool RandomStrollGoal::canUse()
 
 bool RandomStrollGoal::canContinue()
 {
-    if (suppressIdle(owner(this, endstone::runtime::random_stroll_goal_layout), true)) {
+    if (mobAiEnabled() && suppressIdle(tryGetActor(), true)) {
         return false;
     }
     return ENDSTONE_HOOK_CALL_ORIGINAL(&RandomStrollGoal::canContinue, this);
@@ -314,7 +265,7 @@ bool RandomStrollGoal::canContinue()
 
 bool RandomLookAroundGoal::canUse()
 {
-    if (suppressIdle(owner(this, endstone::runtime::random_look_around_goal_layout), false)) {
+    if (mobAiEnabled() && suppressIdle(tryGetActor(), false)) {
         return false;
     }
     return ENDSTONE_HOOK_CALL_ORIGINAL(&RandomLookAroundGoal::canUse, this);
@@ -322,7 +273,7 @@ bool RandomLookAroundGoal::canUse()
 
 bool RandomLookAroundGoal::canContinue()
 {
-    if (suppressIdle(owner(this, endstone::runtime::random_look_around_goal_layout), false)) {
+    if (mobAiEnabled() && suppressIdle(tryGetActor(), false)) {
         return false;
     }
     return ENDSTONE_HOOK_CALL_ORIGINAL(&RandomLookAroundGoal::canContinue, this);
@@ -330,24 +281,26 @@ bool RandomLookAroundGoal::canContinue()
 
 ActorUniqueID NearestAttackableTargetGoal::_findTarget(const MobDescriptor **matched_definition)
 {
-    const auto *actor = owner(this, endstone::runtime::nearest_attackable_target_goal_layout);
-    if (!usableMob(actor)) {
-        clearSearch(actor);
-    }
-    else {
-        const auto id = actor->tryGetComponent<ActorUniqueIDComponent>()->unique_id.raw_id;
-        const auto &type = actor->getActorIdentifier().getCanonicalName();
-        auto &server = EndstoneServer::getInstance();
-        auto &state = server.getMobAiState();
-        const auto decision = server.getMobAiPolicies().resolve(type);
-        if (!supportsMobAiSearch(type, actor->tryGetComponent<ActorTypeComponent>()->type, decision) ||
-            activeMob(*actor, id, *decision.target_search_player_range_blocks, state)) {
-            state.clearSearch(id);
+    if (mobAiEnabled()) {
+        const auto *actor = tryGetActor();
+        if (!usableMob(actor)) {
+            clearSearch(actor);
         }
-        else if (!state.allowNewTargetSearch(id, actor->getLevel().getCurrentServerTick().tick_id,
-                                             decision.target_search_interval_ticks)) {
-            *matched_definition = nullptr;
-            return ActorUniqueID::INVALID_ID;
+        else {
+            const auto id = actor->tryGetComponent<ActorUniqueIDComponent>()->unique_id.raw_id;
+            const auto &type = actor->getActorIdentifier().getCanonicalName();
+            auto &server = EndstoneServer::getInstance();
+            auto &state = server.getMobAiState();
+            const auto decision = server.getMobAiPolicies().resolve(type);
+            if (!supportsMobAiSearch(type, actor->tryGetComponent<ActorTypeComponent>()->type, decision) ||
+                activeMob(*actor, id, *decision.target_search_player_range_blocks, state)) {
+                state.clearSearch(id);
+            }
+            else if (!state.allowNewTargetSearch(id, actor->getLevel().getCurrentServerTick().tick_id,
+                                                 decision.target_search_interval_ticks)) {
+                *matched_definition = nullptr;
+                return ActorUniqueID::INVALID_ID;
+            }
         }
     }
     return ENDSTONE_HOOK_CALL_ORIGINAL(&NearestAttackableTargetGoal::_findTarget, this, matched_definition);

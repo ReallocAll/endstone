@@ -34,9 +34,7 @@
 #endif
 
 #include "bedrock/symbol.h"
-#include "endstone/core/perf/mob_ai_state.h"
 #include "endstone/core/platform.h"
-#include "endstone/runtime/mob_ai_preflight.h"
 
 namespace endstone::runtime::hook {
 namespace {
@@ -147,27 +145,7 @@ void install()
     const auto &detours = details::get_detours();
     const auto &targets = details::get_targets();
 
-    core::MobAiState::setNativeAvailable(false);
-    std::string reason;
-    bool mob_ai_ready = mob_ai_preflight(reason);
-    if (mob_ai_ready) {
-        for (const auto &entry : mob_ai_hooks) {
-            const auto detour = detours.find(std::string(entry.name));
-            if (detour == detours.end() || !detour->second) {
-                mob_ai_ready = false;
-                reason = "mob AI detour or symbol mapping is incomplete";
-                break;
-            }
-        }
-    }
-    if (!mob_ai_ready) {
-        spdlog::warn("[Perf] Mob AI native controls unavailable: {}.", reason);
-    }
-
     for (const auto &[name, detour] : detours) {
-        if (!mob_ai_ready && is_mob_ai_hook(name)) {
-            continue;
-        }
         if (auto it = targets.find(name); it != targets.end()) {
             void *target = it->second;
             void *original = target;
@@ -189,10 +167,6 @@ void install()
         else {
             throw std::runtime_error(std::format("Unable to find target function for detour: {}.", name));
         }
-    }
-
-    if (mob_ai_ready) {
-        core::MobAiState::setNativeAvailable(true);
     }
 
     struct BytePatch {

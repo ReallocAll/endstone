@@ -272,15 +272,16 @@ When updating BDS support, verify these together against the new binary:
 
 - Signatures and locating recipes in `scripts/configs/windows.toml` and `scripts/configs/linux.toml`, with their
   corresponding `src/bedrock/symbols/*.h` tables. Preserve the existing class and namespace grouping.
-- Goal vtables, owner offsets and hook slots in `src/endstone/runtime/mob_ai_preflight.h`, plus the native identity
-  checks in `src/endstone/runtime/mob_ai_preflight.cpp`.
+- Goal vtables, owner offsets and failed-navigation fields in
+  `src/bedrock/world/actor/ai/goal/mob_ai_goals.cpp`. Accessors check the exact vtable before reading native fields.
 - `Level::findPath` on Windows and `PathFinder::findPath` on Linux, including the `Path` and `Path::Node` layouts and
   the owning `std::unique_ptr<Path>` return.
 - Native return/output conventions, sleep failure and stop/wake transitions, and startup/restart configuration behavior.
 
 Refreshing symbols alone does not establish support. Verify layouts and behavior for the BDS version supported by
-Endstone; failed native checks retain the existing vanilla fallback. Record the source revision, BDS identity,
-runtime artifact and live checks with the PR, separating diagnostic builds from the final runtime.
+Endstone. Missing hook targets or failed installations abort initialization through the normal runtime hook flow.
+Record the source revision, BDS identity, runtime artifact and live checks with the PR, separating diagnostic builds
+from the final runtime.
 
 ### 3. Core Layer (`src/endstone/core/`)
 

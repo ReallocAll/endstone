@@ -32,6 +32,7 @@ struct MobAiDecision {
 class MobAiPolicies {
 public:
     Result<void> initialize(const toml::table &config);
+    [[nodiscard]] bool isEnabled() const { return snapshot_.enabled; }
     [[nodiscard]] MobAiDecision resolve(std::string_view type) const;
 
 private:

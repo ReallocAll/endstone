@@ -21,12 +21,16 @@ types = ["minecraft:villager_v2"]
 enabled = true
 )"}) {
         MobAiPolicies policies;
+        EXPECT_FALSE(policies.isEnabled());
         ASSERT_TRUE(policies.initialize(toml::parse(config)));
+        EXPECT_FALSE(policies.isEnabled());
         EXPECT_EQ(policies.resolve("minecraft:villager_v2"), MobAiDecision{});
         EXPECT_EQ(policies.resolve("minecraft:cow"), MobAiDecision{});
     }
     MobAiPolicies policies;
+    EXPECT_FALSE(policies.isEnabled());
     ASSERT_TRUE(policies.initialize(toml::parse("[mob-ai]\nenabled=true\n")));
+    EXPECT_TRUE(policies.isEnabled());
     const auto decision = policies.resolve("minecraft:cow");
     ASSERT_TRUE(decision.animal);
     EXPECT_EQ(decision.animal->activation_range_blocks, 32);
@@ -85,7 +89,9 @@ TEST(MobAiPoliciesTest, InvalidSettingsLeavePoliciesInactive)
                               "[mob-ai.target-search]\ninterval-ticks=0\n"}) {
         SCOPED_TRACE(config);
         MobAiPolicies policies;
+        EXPECT_FALSE(policies.isEnabled());
         ASSERT_FALSE(policies.initialize(toml::parse(config)));
+        EXPECT_FALSE(policies.isEnabled());
         EXPECT_EQ(policies.resolve("minecraft:cow"), MobAiDecision{});
         EXPECT_EQ(policies.resolve("minecraft:villager_v2"), MobAiDecision{});
     }

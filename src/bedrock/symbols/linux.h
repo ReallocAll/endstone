@@ -11,7 +11,7 @@
 
 namespace endstone::runtime {
 
-static constexpr std::array<std::pair<std::string_view, std::size_t>, 89> symbols = {{
+static constexpr std::array<std::pair<std::string_view, std::size_t>, 90> symbols = {{
     {"BlockState::StateListNode::mHead", 257928656},
     {"ChunkBlenderFactory::getOrCreateChunkBlender::cache_cap", 85314623},
     {"DBChunkStorage::_hasChunk::cache_cap", 219434551},
@@ -19,6 +19,7 @@ static constexpr std::array<std::pair<std::string_view, std::size_t>, 89> symbol
     {"LevelChunk::tickImpl::seed", 256134984},
     {"MinecraftWorkerPool::ASYNC", 258114960},
     {"getI18n::result", 256811320},
+    {"endstone_mob_ai_find_path", 219627136},
     // Actor
     {"_ZN5Actor10teleportToERK4Vec3biib", 187569008},
     // ActorFactory
@@ -149,8 +150,8 @@ static constexpr std::array<std::pair<std::string_view, std::size_t>, 89> symbol
     // ServerWaypoint
     {"_ZN14ServerWaypoint6updateERK6Player", 187406736},
     // SleepGoal
-    {"_ZN9SleepGoal11canContinueEv", 93510432},
     {"_ZN9SleepGoal6canUseEv", 93508096},
+    {"_ZN9SleepGoal4stopEv", 93509440},
     // VanillaWaypointManager
     {"_ZN22VanillaWaypointManager6updateER6PlayerR16ServerLocatorBarb", 196116976},
     // WeatherManager

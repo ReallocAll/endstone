@@ -4,6 +4,22 @@ executable = "bedrock_server"
 filename = "bedrock_server"
 
 [[signatures]]
+name = "endstone_mob_ai_find_path"
+relative = false
+extra = 0
+# 1. follow ServerLevel's point-path wrapper to the synchronous path-finder call
+# 2. confirm RDI=result storage, RSI=finder, RDX=actor and XMM0=maximum distance
+pattern = "41 57 41 56 53 48 81 EC ? ? ? ? F3 0F 11 44 24 ? F3 0F 2A C9 49 89 F6"
+
+[[signatures]]
+name = "_ZN9SleepGoal4stopEv"
+relative = false
+extra = 0
+# 1. locate SleepGoal's primary vtable through RTTI; stop is slot 6 (+0x30)
+# 2. confirm owner at this+0xb8 and movement cleanup resets attempts at this+0x28
+pattern = "55 41 57 41 56 41 55 41 54 53 48 83 EC ? 48 89 FB 48 8B 87 B8 00 00 00 48 8B 78 10"
+
+[[signatures]]
 name = "_ZN9SleepGoal6canUseEv"
 relative = false
 extra = 0
@@ -15,17 +31,6 @@ extra = 0
 #    to this+0xe8..0xf0, then calculate position and facing fields
 # 3. compare with the previously verified body; recheck slot order and member offsets on a bump
 pattern = "55 41 57 41 56 41 54 53 48 83 EC ? 48 89 FB E8 ? ? ? ? 84 C0 74 ? 80 BB 38 01 00 00 00"
-
-[[signatures]]
-name = "_ZN9SleepGoal11canContinueEv"
-relative = false
-extra = 0
-# 1. locate the SleepGoal vtable as for SleepGoal::canUse; canContinue is slot 3 (+0x18)
-# 2. confirm the body: branches on byte this+0x3c, floors the position at this+0x64 and passes it to
-#    the goal's virtual +0x68; checks owner (this+0xb8) with constant 77, writes byte this+0x151
-#    and returns its inverse
-# 3. compare with the previously verified body; recheck slot order and member offsets on a bump
-pattern = "41 57 41 56 53 48 83 EC ? 48 89 FB 80 7F 3C 01 0F 85 ? ? ? ? 4C 8B B3 B8 00 00 00"
 
 [[signatures]]
 name = "_ZN27NearestAttackableTargetGoal11_findTargetEPPK13MobDescriptor"

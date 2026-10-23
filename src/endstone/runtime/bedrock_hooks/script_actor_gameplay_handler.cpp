@@ -38,11 +38,9 @@ bool handleEvent(const ActorKilledEvent &event)
 
 bool handleEvent(const ActorRemovedEvent &event)
 {
-#ifdef __linux__
     if (auto *actor = WeakEntityRef(event.entity).tryUnwrap<::Actor>(true)) {
         endstone::core::EndstoneServer::getInstance().removeMobAiState(*actor);
     }
-#endif
     if (auto *actor = WeakEntityRef(event.entity).tryUnwrap<::Actor>(); actor) {
         if (actor->isPlayer()) {
             // Don't call for player

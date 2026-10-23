@@ -21,7 +21,7 @@ struct MobAiAnimalPolicy {
 };
 
 struct MobAiDecision {
-    bool prevent_sleep = false;
+    bool sleep_failure_skip_night = false;
     std::optional<MobAiAnimalPolicy> animal;
     std::optional<std::uint32_t> target_search_interval_ticks;
     std::optional<double> target_search_player_range_blocks;

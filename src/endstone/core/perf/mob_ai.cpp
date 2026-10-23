@@ -84,7 +84,7 @@ struct MobAiSettings {
     bool target_search_enabled = true;
     double target_search_player_range_blocks = 32;
     std::uint32_t target_search_interval_ticks = 20;
-    bool prevent_sleep = false;
+    bool sleep_failure_skip_night = false;
 };
 
 MobAiSettings mobAiSettings(const toml::table &table, MobAiSettings settings)
@@ -120,8 +120,9 @@ MobAiSettings mobAiSettings(const toml::table &table, MobAiSettings settings)
     if (const auto *node = table.get("villagers")) {
         require(node->is_table(), "Expected villagers table.");
         const auto &villagers = *node->as_table();
-        keys(villagers, {"prevent-sleep"});
-        settings.prevent_sleep = boolean(villagers, "prevent-sleep", settings.prevent_sleep);
+        keys(villagers, {"sleep-failure-skip-night"});
+        settings.sleep_failure_skip_night =
+            boolean(villagers, "sleep-failure-skip-night", settings.sleep_failure_skip_night);
     }
     return settings;
 }
@@ -129,7 +130,7 @@ MobAiSettings mobAiSettings(const toml::table &table, MobAiSettings settings)
 MobAiDecision mobAiDecision(const MobAiSettings &settings)
 {
     MobAiDecision result;
-    result.prevent_sleep = settings.prevent_sleep;
+    result.sleep_failure_skip_night = settings.sleep_failure_skip_night;
     if (settings.idle_enabled) {
         result.animal = settings.idle;
     }
@@ -183,7 +184,7 @@ MobAiPolicies::Snapshot MobAiPolicies::parse(const toml::table &root)
                         resolved.target_search_player_range_blocks = decision.target_search_player_range_blocks;
                     }
                     else {
-                        resolved.prevent_sleep = decision.prevent_sleep;
+                        resolved.sleep_failure_skip_night = decision.sleep_failure_skip_night;
                     }
                 }
             }
@@ -194,9 +195,6 @@ MobAiPolicies::Snapshot MobAiPolicies::parse(const toml::table &root)
 
 Result<void> MobAiPolicies::initialize(const toml::table &config)
 {
-#ifdef _WIN32
-    return nonstd::make_unexpected(std::string("Mob AI policies are not supported on Windows."));
-#else
     ENDSTONE_CHECK(!initialized_, std::string("Mob AI policies are already initialized."));
     initialized_ = true;
     try {
@@ -207,7 +205,6 @@ Result<void> MobAiPolicies::initialize(const toml::table &config)
     catch (const std::exception &error) {
         return nonstd::make_unexpected(std::string(error.what()));
     }
-#endif
 }
 
 MobAiDecision MobAiPolicies::resolve(std::string_view type) const
@@ -218,7 +215,7 @@ MobAiDecision MobAiPolicies::resolve(std::string_view type) const
     }
     const auto found = snapshot_.overrides.find(type);
     result = found == snapshot_.overrides.end() ? snapshot_.default_decision : found->second;
-    result.prevent_sleep = result.prevent_sleep && type == "minecraft:villager_v2";
+    result.sleep_failure_skip_night = result.sleep_failure_skip_night && type == "minecraft:villager_v2";
     return result;
 }
 

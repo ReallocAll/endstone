@@ -1,13 +1,12 @@
 #include "bedrock/world/actor/ai/goal/mob_ai_goals.h"
 
-#ifdef __linux__
-
 #include <array>
 #include <cmath>
 #include <cstdint>
 #include <cstring>
 #include <functional>
 #include <optional>
+#include <utility>
 
 #include "bedrock/entity/components/actor_data_flag_component.h"
 #include "bedrock/entity/components/actor_game_type_component.h"
@@ -48,17 +47,57 @@ Actor *owner(void *goal, const endstone::runtime::MobAiGoalLayout &layout)
     return actor;
 }
 
-bool preventSleep(Actor *actor)
+std::optional<endstone::core::MobAiDecision> sleepDecision(Actor *actor)
 {
     if (!actor || actor->getActorIdentifier().getCanonicalName() != "minecraft:villager_v2") {
-        return false;
+        return std::nullopt;
     }
     const auto *id = actor->tryGetComponent<ActorUniqueIDComponent>();
     if (!id || id->unique_id.raw_id == -1) {
-        return false;
+        return std::nullopt;
     }
     auto &server = EndstoneServer::getInstance();
-    return server.getMobAiPolicies().resolve("minecraft:villager_v2").prevent_sleep;
+    return server.getMobAiPolicies().resolve("minecraft:villager_v2");
+}
+
+struct SleepAttempt;
+thread_local SleepAttempt *sleep_attempt = nullptr;
+
+struct SleepAttempt {
+    SleepAttempt(Actor *actor, std::int64_t id, MobAiState &state)
+        : actor(actor), id(id), state(state), previous(std::exchange(sleep_attempt, this))
+    {
+    }
+
+    ~SleepAttempt() { sleep_attempt = previous; }
+    SleepAttempt(const SleepAttempt &) = delete;
+    SleepAttempt &operator=(const SleepAttempt &) = delete;
+
+    Actor *actor;
+    std::int64_t id;
+    MobAiState &state;
+    SleepAttempt *previous;
+};
+
+void observeSleepPath(Actor *actor, const void *result_storage)
+{
+    const auto *attempt = sleep_attempt;
+    if (!attempt || attempt->actor != actor) {
+        return;
+    }
+    const void *path;
+    std::memcpy(&path, result_storage, sizeof(path));
+    bool failed = !path;
+    if (path) {
+        const void *begin;
+        const void *end;
+        std::memcpy(&begin, path, sizeof(begin));
+        std::memcpy(&end, static_cast<const char *>(path) + sizeof(void *), sizeof(end));
+        failed = begin == end;
+    }
+    if (failed) {
+        attempt->state.recordSleepFailure(attempt->id, actor->getLevel().getTime());
+    }
 }
 
 void clearSearch(const Actor *actor)
@@ -200,19 +239,73 @@ bool suppressIdle(Actor *actor, bool stroll)
 
 bool SleepGoal::canUse()
 {
-    const bool prevent = preventSleep(owner(this, endstone::runtime::sleep_goal_layout));
-    const bool result = ENDSTONE_HOOK_CALL_ORIGINAL(&SleepGoal::canUse, this);
-    return result && !prevent;
+    auto *actor = owner(this, endstone::runtime::sleep_goal_layout);
+    const auto decision = sleepDecision(actor);
+    if (decision && decision->sleep_failure_skip_night) {
+        const auto id = actor->tryGetComponent<ActorUniqueIDComponent>()->unique_id.raw_id;
+        const auto world_time = actor->getLevel().getTime();
+        auto &state = EndstoneServer::getInstance().getMobAiState();
+        if (!state.canAttemptSleep(id, world_time)) {
+            return false;
+        }
+        const SleepAttempt attempt{actor, id, state};
+        return ENDSTONE_HOOK_CALL_ORIGINAL(&SleepGoal::canUse, this);
+    }
+    return ENDSTONE_HOOK_CALL_ORIGINAL(&SleepGoal::canUse, this);
 }
 
-bool SleepGoal::canContinue()
+void SleepGoal::stop()
 {
     auto *actor = owner(this, endstone::runtime::sleep_goal_layout);
-    if (preventSleep(actor)) {
-        actor->setStatusFlag(ActorFlags::WANTS_TO_WAKE, true);
+    const auto decision = sleepDecision(actor);
+    if (decision && decision->sleep_failure_skip_night && !actor->isSleeping()) {
+#ifdef _WIN32
+        constexpr std::size_t attempts_offset = 0x30;
+        constexpr std::size_t limit_offset = 0x38;
+        constexpr std::size_t reached_offset = 0x44;
+        constexpr std::size_t failure_offset = 0x50;
+#else
+        constexpr std::size_t attempts_offset = 0x28;
+        constexpr std::size_t limit_offset = 0x30;
+        constexpr std::size_t reached_offset = 0x3C;
+        constexpr std::size_t failure_offset = 0x48;
+#endif
+        const auto *goal = reinterpret_cast<const char *>(this);
+        std::int32_t attempts;
+        std::int32_t limit;
+        std::uint8_t reached;
+        std::uint64_t failure;
+        std::memcpy(&attempts, goal + attempts_offset, sizeof(attempts));
+        std::memcpy(&limit, goal + limit_offset, sizeof(limit));
+        std::memcpy(&reached, goal + reached_offset, sizeof(reached));
+        std::memcpy(&failure, goal + failure_offset, sizeof(failure));
+        if (!reached && attempts > 0 && (failure != 0 || attempts > limit)) {
+            const auto id = actor->tryGetComponent<ActorUniqueIDComponent>()->unique_id.raw_id;
+            EndstoneServer::getInstance().getMobAiState().recordSleepFailure(id, actor->getLevel().getTime());
+        }
     }
-    return ENDSTONE_HOOK_CALL_ORIGINAL(&SleepGoal::canContinue, this);
+    ENDSTONE_HOOK_CALL_ORIGINAL(&SleepGoal::stop, this);
 }
+
+#ifdef _WIN32
+extern "C" ENDSTONE_HOOK void *endstone_mob_ai_find_path(void *level, void *result_storage, Actor *actor, int x, int y,
+                                                         int z, void *navigation)
+{
+    void *result = ENDSTONE_HOOK_CALL_ORIGINAL_NAME(&endstone_mob_ai_find_path, "endstone_mob_ai_find_path", level,
+                                                    result_storage, actor, x, y, z, navigation);
+    observeSleepPath(actor, result_storage);
+    return result;
+}
+#else
+extern "C" ENDSTONE_HOOK void *endstone_mob_ai_find_path(void *result_storage, void *path_finder, Actor *actor, int x,
+                                                         int y, int z, float maximum_distance)
+{
+    void *result = ENDSTONE_HOOK_CALL_ORIGINAL_NAME(&endstone_mob_ai_find_path, "endstone_mob_ai_find_path",
+                                                    result_storage, path_finder, actor, x, y, z, maximum_distance);
+    observeSleepPath(actor, result_storage);
+    return result;
+}
+#endif
 
 bool RandomStrollGoal::canUse()
 {
@@ -270,5 +363,3 @@ ActorUniqueID NearestAttackableTargetGoal::_findTarget(const MobDescriptor **mat
     }
     return ENDSTONE_HOOK_CALL_ORIGINAL(&NearestAttackableTargetGoal::_findTarget, this, matched_definition);
 }
-
-#endif

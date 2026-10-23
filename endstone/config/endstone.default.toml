@@ -35,4 +35,4 @@ player-range-blocks = 32
 interval-ticks = 20
 
 [mob-ai.villagers]
-prevent-sleep = false
+sleep-failure-skip-night = false

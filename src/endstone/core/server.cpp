@@ -231,9 +231,7 @@ void EndstoneServer::setLevel(::Level &level)
     metrics_ = std::make_unique<EndstoneMetrics>(*this);  // start metrics
     loadResourcePacks();
     initRegistries();
-#ifdef __linux__
     mob_ai_state_.clear();
-#endif
     initializeMobAiPolicies();
 
     // enable packet rate limiter
@@ -666,7 +664,6 @@ void EndstoneServer::initializeMobAiPolicies()
         }
         return;
     }
-#ifdef __linux__
     const auto result = mob_ai_policies_.initialize(*config);
     if (!result) {
         getLogger().error("[Perf] Mob AI policies were not loaded: {}", result.error());
@@ -674,12 +671,10 @@ void EndstoneServer::initializeMobAiPolicies()
     else {
         getLogger().info("[Perf] Mob AI policies loaded.");
     }
-#endif
 }
 
 void EndstoneServer::recordMobAiActivity(const ::Actor &actor)
 {
-#ifdef __linux__
     if (!MobAiState::isNativeAvailable() || actor.isRemoved() || actor.isClientSide() || actor.isPlayer()) {
         return;
     }
@@ -693,16 +688,13 @@ void EndstoneServer::recordMobAiActivity(const ::Actor &actor)
     if (hasMobAiActivityCapability(identifier, type->type, decision)) {
         mob_ai_state_.recordActivity(id->unique_id.raw_id, actor.getLevel().getCurrentServerTick().tick_id);
     }
-#endif
 }
 
 void EndstoneServer::removeMobAiState(const ::Actor &actor)
 {
-#ifdef __linux__
     if (const auto *id = actor.tryGetComponent<ActorUniqueIDComponent>(); id && id->unique_id.raw_id != -1) {
         mob_ai_state_.erase(id->unique_id.raw_id);
     }
-#endif
 }
 
 void EndstoneServer::broadcast(const Message &message, const std::string &permission) const

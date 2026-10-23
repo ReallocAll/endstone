@@ -15,7 +15,7 @@ DEFAULT_MOB_AI = {
         "disable-random-look-around": True,
     },
     "target-search": {"enabled": True, "player-range-blocks": 32, "interval-ticks": 20},
-    "villagers": {"prevent-sleep": False},
+    "villagers": {"sleep-failure-skip-night": False},
 }
 
 
@@ -53,11 +53,13 @@ def test_prepare_preserves_overrides_and_independent_global_values(bootstrap):
         "[mob-ai]\nenabled = true # Already enabled\n\n"
         "[mob-ai.idle]\nenabled = false\nplayer-range-blocks = 16\ndisable-random-stroll = false\n\n"
         "[mob-ai.target-search]\nenabled = true\nplayer-range-blocks = 48\ninterval-ticks = 40\n\n"
-        "[mob-ai.villagers]\nprevent-sleep = true\n\n"
+        "[mob-ai.villagers]\nsleep-failure-skip-night = true # Keep night policy\n\n"
         "[[mob-ai.overrides]]\ntypes = ['minecraft:cow', 'minecraft:pig']\n"
         "[mob-ai.overrides.idle]\nplayer-range-blocks = 8 # Keep this\n\n"
         "[[mob-ai.overrides]]\ntypes = ['minecraft:skeleton']\n"
         "[mob-ai.overrides.target-search]\ninterval-ticks = 80\n"
+        "[[mob-ai.overrides]]\ntypes = ['minecraft:villager_v2']\n"
+        "[mob-ai.overrides.villagers]\nsleep-failure-skip-night = false\n"
     )
     bootstrap.config_path.write_text(original, encoding="utf-8")
 
@@ -73,10 +75,14 @@ def test_prepare_preserves_overrides_and_independent_global_values(bootstrap):
             "disable-random-look-around": True,
         },
         "target-search": {"enabled": True, "player-range-blocks": 48, "interval-ticks": 40},
-        "villagers": {"prevent-sleep": True},
+        "villagers": {"sleep-failure-skip-night": True},
         "overrides": [
             {"types": ["minecraft:cow", "minecraft:pig"], "idle": {"player-range-blocks": 8}},
             {"types": ["minecraft:skeleton"], "target-search": {"interval-ticks": 80}},
+            {
+                "types": ["minecraft:villager_v2"],
+                "villagers": {"sleep-failure-skip-night": False},
+            },
         ],
     }
     text = bootstrap.config_path.read_text(encoding="utf-8")
@@ -84,6 +90,7 @@ def test_prepare_preserves_overrides_and_independent_global_values(bootstrap):
     assert "log = false # Admin choice" in text
     assert "enabled = true # Already enabled" in text
     assert "player-range-blocks = 8 # Keep this" in text
+    assert "sleep-failure-skip-night = true # Keep night policy" in text
     prepared = bootstrap.config_path.read_bytes()
     timestamp = 1_600_000_000_000_000_000
     os.utime(bootstrap.config_path, ns=(timestamp, timestamp))

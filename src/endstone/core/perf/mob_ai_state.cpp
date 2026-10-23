@@ -61,6 +61,30 @@ void MobAiState::clearSearch(std::int64_t id)
     }
 }
 
+void MobAiState::observeSleepPeriod(int world_time)
+{
+    const auto shifted = static_cast<std::int64_t>(world_time) - 12000;
+    const auto period = shifted / 24000 - (shifted % 24000 < 0 ? 1 : 0);
+    if (sleep_period_ != period) {
+        sleep_failures_.clear();
+        sleep_period_ = period;
+    }
+}
+
+bool MobAiState::canAttemptSleep(std::int64_t id, int world_time)
+{
+    observeSleepPeriod(world_time);
+    return id == -1 || !sleep_failures_.contains(id);
+}
+
+void MobAiState::recordSleepFailure(std::int64_t id, int world_time)
+{
+    observeSleepPeriod(world_time);
+    if (id != -1) {
+        sleep_failures_.insert(id);
+    }
+}
+
 void MobAiState::erase(std::int64_t id)
 {
     entries_.erase(id);
@@ -81,6 +105,8 @@ void MobAiState::clear()
 {
     entries_.clear();
     prune_after_ = 0;
+    sleep_failures_.clear();
+    sleep_period_.reset();
 }
 
 }  // namespace endstone::core

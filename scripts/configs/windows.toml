@@ -4,6 +4,70 @@ executable = "bedrock_server.exe"
 filename = "bedrock_server"
 
 [[signatures]]
+name = "endstone_mob_ai_find_path"
+relative = false
+extra = 0
+# 1. locate Level's point-path method at primary vtable slot 128 (+0x400)
+# 2. confirm both Level vtables share the method and its synchronous search call
+pattern = "55 41 57 41 56 41 55 41 54 56 57 53 48 81 EC ? ? ? ? 48 8D AC 24 ? ? ? ? 44 0F 29 8D ? ? ? ? 44 0F 29 85 ? ? ? ? 0F 29 BD ? ? ? ? 0F 29 B5 ? ? ? ? 48 C7 85 ? ? ? ? FE FF FF FF 44 89 CB 4C 89 C7"
+
+[[signatures]]
+name = "?stop@SleepGoal@@QEAAXXZ"
+relative = false
+extra = 0
+# 1. follow the SleepGoal behavior registration through its definition factory to the concrete constructor/vptr; stop is slot 5 (+0x28)
+# 2. confirm owner at this+0xc0 and movement cleanup resets attempts at this+0x30
+pattern = "41 56 56 57 55 53 48 83 EC ? 44 0F 29 44 24 ? 0F 29 7C 24 ? 0F 29 74 24 ? 48 89 CE 48 8B 81 C0 00 00 00"
+
+[[signatures]]
+name = "?canUse@SleepGoal@@QEAA_NXZ"
+relative = false
+extra = 0
+# 1. follow the SleepGoal behavior registration through its definition factory to the concrete constructor/vptr; canUse is slot 1 (+0x8)
+# 2. confirm owner at this+0xc0 and compare the body with the verified version
+pattern = "55 41 57 41 56 41 54 56 57 53 48 83 EC ? 48 8D 6C 24 ? 48 C7 45 ? FE FF FF FF 48 89 CE E8 ? ? ? ? 84 C0"
+
+[[signatures]]
+name = "?_findTarget@NearestAttackableTargetGoal@@QEAA?AUActorUniqueID@@PEAPEBUMobDescriptor@@@Z"
+relative = false
+extra = 0
+# 1. follow the NearestAttackableTargetGoal behavior registration through its definition factory to the concrete constructor/vptr; _findTarget is slot 12 (+0x60)
+# 2. confirm owner at this+0x30, RCX=this, RDX=ActorUniqueID result buffer and R8=matched definition
+pattern = "55 41 57 41 56 41 55 41 54 56 57 53 48 83 EC ? 48 8D 6C 24 ? 48 C7 45 ? FE FF FF FF 4C 89 45 ? 48 89 55 ? 48 89 CB 48 8B 41 68 48 8B 49 70"
+
+[[signatures]]
+name = "?canUse@RandomStrollGoal@@QEAA_NXZ"
+relative = false
+extra = -304
+# 1. follow the RandomStrollGoal behavior registration through its definition factory to the concrete constructor/vptr; canUse is slot 1 (+0x8), owner at this+0x30
+# 2. anchor on slot 2's byte-inversion body and remeasure canUse - canContinue on each bump
+pattern = "0F B6 41 60 34 01 C3"
+
+[[signatures]]
+name = "?canContinue@RandomStrollGoal@@QEAA_NXZ"
+relative = false
+extra = 0
+# 1. follow the RandomStrollGoal behavior registration through its definition factory to the concrete constructor/vptr; canContinue is slot 2 (+0x10)
+# 2. confirm the body returns the inverse of byte this+0x60 and owner is at this+0x30
+pattern = "0F B6 41 60 34 01 C3"
+
+[[signatures]]
+name = "?canUse@RandomLookAroundGoal@@QEAA_NXZ"
+relative = false
+extra = 0
+# 1. follow the RandomLookAroundGoal behavior registration through its definition factory to the concrete constructor/vptr; canUse is slot 1 (+0x8)
+# 2. confirm owner at this+0x48 and compare the body with the verified version
+pattern = "56 48 83 EC ? 48 89 CE 48 8B 41 48 48 8B 88 D8 01 00 00 48 8B 01 48 8B 80 68 0A 00 00 FF 15 ? ? ? ? 48 8B 08 48 8B 51 28 48 89 C1 48 89 D0 FF 15 ? ? ? ? F3 0F 10 4E 40 0F 2E C8 0F 97 C0"
+
+[[signatures]]
+name = "?canContinue@RandomLookAroundGoal@@QEAA_NXZ"
+relative = false
+extra = 0
+# 1. follow the RandomLookAroundGoal behavior registration through its definition factory to the concrete constructor/vptr; canContinue is slot 2 (+0x10)
+# 2. confirm the body tests signed dword this+0x50 and owner is at this+0x48
+pattern = "83 79 50 00 0F 99 C0 C3"
+
+[[signatures]]
 name = "BlockState::StateListNode::mHead"
 relative = false
 extra = 0

@@ -147,7 +147,6 @@ void install()
     const auto &detours = details::get_detours();
     const auto &targets = details::get_targets();
 
-#ifdef __linux__
     core::MobAiState::setNativeAvailable(false);
     std::string reason;
     bool mob_ai_ready = mob_ai_preflight(reason);
@@ -166,14 +165,11 @@ void install()
     if (!mob_ai_ready) {
         spdlog::warn("[Perf] Mob AI native controls unavailable: {}.", reason);
     }
-#endif
 
     for (const auto &[name, detour] : detours) {
-#ifdef __linux__
         if (!mob_ai_ready && is_mob_ai_hook(name)) {
             continue;
         }
-#endif
         if (auto it = targets.find(name); it != targets.end()) {
             void *target = it->second;
             void *original = target;
@@ -197,7 +193,6 @@ void install()
         }
     }
 
-#ifdef __linux__
     if (mob_ai_ready) {
         for (const auto &entry : mob_ai_hooks) {
             if (!details::get_original(static_cast<char *>(get_executable_base()) + entry.function)) {
@@ -207,7 +202,6 @@ void install()
         }
         core::MobAiState::setNativeAvailable(mob_ai_ready);
     }
-#endif
 
     struct BytePatch {
         std::string_view name;

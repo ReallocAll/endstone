@@ -143,6 +143,8 @@ TEST_F(MobAiTest, MissingOrDisabledMasterKeepsVanilla)
 
 TEST_F(MobAiTest, DefaultsAndExactFeatureOverridesCompose)
 {
+    EXPECT_FALSE(MobAiPoliciesTestAccess::parseAndResolve("[mob-ai]\nenabled=true\n", "minecraft:villager_v2")
+                     .sleep_failure_skip_night);
     const std::string config = R"([mob-ai]
 enabled = true
 [[mob-ai.overrides]]
@@ -156,7 +158,7 @@ types = ["minecraft:skeleton", "minecraft:villager_v2"]
 player-range-blocks = 8
 interval-ticks = 40
 [[mob-ai.overrides]]
-types = ["minecraft:skeleton", "minecraft:villager_v2"]
+types = ["minecraft:skeleton", "minecraft:villager_v2", "minecraft:villager", "custom:villager_v2"]
 [mob-ai.overrides.villagers]
 sleep-failure-skip-night = true
 )";
@@ -178,7 +180,9 @@ sleep-failure-skip-night = true
         EXPECT_EQ(decision.target_search_player_range_blocks, 8);
         EXPECT_EQ(decision.sleep_failure_skip_night, std::string_view(type) == "minecraft:villager_v2");
     }
-    EXPECT_FALSE(MobAiPoliciesTestAccess::parseAndResolve(sleep, "minecraft:villager").sleep_failure_skip_night);
+    for (const auto type : {"minecraft:villager", "custom:villager_v2"}) {
+        EXPECT_FALSE(MobAiPoliciesTestAccess::parseAndResolve(config, type).sleep_failure_skip_night);
+    }
 }
 
 TEST_F(MobAiTest, FeatureOverridesCanReenableAndInheritGlobals)
@@ -194,13 +198,17 @@ disable-random-look-around = false
 enabled = false
 player-range-blocks = 9
 interval-ticks = 43
+[mob-ai.villagers]
+sleep-failure-skip-night = false
 [[mob-ai.overrides]]
-types = ["minecraft:skeleton"]
+types = ["minecraft:skeleton", "minecraft:villager_v2"]
 [mob-ai.overrides.idle]
 enabled = true
 disable-random-look-around = true
 [mob-ai.overrides.target-search]
 enabled = true
+[mob-ai.overrides.villagers]
+sleep-failure-skip-night = true
 [[mob-ai.overrides]]
 types = ["minecraft:zombie"]
 [mob-ai.overrides.idle]
@@ -215,6 +223,7 @@ interval-ticks = 22
     EXPECT_TRUE(skeleton.animal->random_look_around);
     EXPECT_EQ(skeleton.target_search_interval_ticks, 43);
     EXPECT_EQ(skeleton.target_search_player_range_blocks, 9);
+    EXPECT_TRUE(MobAiPoliciesTestAccess::parseAndResolve(config, "minecraft:villager_v2").sleep_failure_skip_night);
     const auto zombie = MobAiPoliciesTestAccess::parseAndResolve(config, "minecraft:zombie");
     EXPECT_FALSE(zombie.animal);
     EXPECT_FALSE(zombie.target_search_interval_ticks);
@@ -238,115 +247,36 @@ TEST_F(MobAiTest, FeaturesCanBeDisabledIndependently)
     EXPECT_FALSE(idle_only.sleep_failure_skip_night);
     EXPECT_FALSE(idle_only.target_search_interval_ticks);
     EXPECT_FALSE(idle_only.target_search_player_range_blocks);
-    const auto sleep_only = MobAiPoliciesTestAccess::parseAndResolve(
-        sleep + "[mob-ai.idle]\nenabled=false\n[mob-ai.target-search]\nenabled=false\n", "minecraft:villager_v2");
+    const auto sleep_config = sleep + "[mob-ai.idle]\nenabled=false\n[mob-ai.target-search]\nenabled=false\n"
+                                      "[[mob-ai.overrides]]\ntypes=['minecraft:villager_v2']\n"
+                                      "[mob-ai.overrides.villagers]\n";
+    const auto sleep_only = MobAiPoliciesTestAccess::parseAndResolve(sleep_config, "minecraft:villager_v2");
     EXPECT_TRUE(sleep_only.sleep_failure_skip_night);
     EXPECT_FALSE(sleep_only.animal);
     EXPECT_FALSE(sleep_only.target_search_interval_ticks);
     EXPECT_FALSE(sleep_only.target_search_player_range_blocks);
-}
-
-TEST_F(MobAiTest, SleepFailureSkipNightDefaultsOffAndOnlyAppliesToModernVillagers)
-{
-    EXPECT_FALSE(MobAiPoliciesTestAccess::parseAndResolve("[mob-ai]\nenabled=true\n", "minecraft:villager_v2")
+    EXPECT_FALSE(MobAiPoliciesTestAccess::parseAndResolve(sleep_config + "sleep-failure-skip-night=false\n",
+                                                          "minecraft:villager_v2")
                      .sleep_failure_skip_night);
-    for (const std::string enabled : {"false", "true"}) {
-        const auto config = "[mob-ai]\nenabled=true\n[mob-ai.idle]\nenabled=false\n"
-                            "[mob-ai.target-search]\nenabled=false\n[mob-ai.villagers]\nsleep-failure-skip-night=" +
-                            enabled + "\n";
-        const auto villager = MobAiPoliciesTestAccess::parseAndResolve(config, "minecraft:villager_v2");
-        EXPECT_EQ(villager.sleep_failure_skip_night, enabled == "true");
-        EXPECT_FALSE(villager.animal);
-        EXPECT_FALSE(villager.target_search_interval_ticks);
-        for (const auto type : {"minecraft:villager", "minecraft:skeleton", "custom:villager_v2"}) {
-            EXPECT_FALSE(MobAiPoliciesTestAccess::parseAndResolve(config, type).sleep_failure_skip_night);
-        }
-    }
-}
-
-TEST_F(MobAiTest, VillagerOverridesInheritAndComposeSleepOption)
-{
-    const std::string config = R"([mob-ai]
-enabled = true
-[mob-ai.villagers]
-sleep-failure-skip-night = true
-[[mob-ai.overrides]]
-types = ["minecraft:villager_v2"]
-[mob-ai.overrides.idle]
-player-range-blocks = 16
-[[mob-ai.overrides]]
-types = ["minecraft:villager_v2"]
-[mob-ai.overrides.target-search]
-interval-ticks = 40
-[[mob-ai.overrides]]
-types = ["minecraft:villager_v2", "minecraft:villager", "minecraft:skeleton", "custom:villager_v2"]
-[mob-ai.overrides.villagers]
-)";
-    const auto inherited = MobAiPoliciesTestAccess::parseAndResolve(config, "minecraft:villager_v2");
-    EXPECT_TRUE(inherited.sleep_failure_skip_night);
-    ASSERT_TRUE(inherited.animal);
-    EXPECT_EQ(inherited.animal->activation_range_blocks, 16);
-    EXPECT_EQ(inherited.target_search_interval_ticks, 40);
-    const auto disabled =
-        MobAiPoliciesTestAccess::parseAndResolve(config + "sleep-failure-skip-night=false\n", "minecraft:villager_v2");
-    EXPECT_FALSE(disabled.sleep_failure_skip_night);
-    EXPECT_EQ(disabled.animal, inherited.animal);
-    EXPECT_EQ(disabled.target_search_interval_ticks, inherited.target_search_interval_ticks);
-    const auto enabled = MobAiPoliciesTestAccess::parseAndResolve(
-        "[mob-ai]\nenabled=true\n[mob-ai.villagers]\nsleep-failure-skip-night=false\n"
-        "[[mob-ai.overrides]]\ntypes=['minecraft:villager_v2']\n"
-        "[mob-ai.overrides.villagers]\nsleep-failure-skip-night=true\n",
-        "minecraft:villager_v2");
-    EXPECT_TRUE(enabled.sleep_failure_skip_night);
-    for (const auto type : {"minecraft:villager", "minecraft:skeleton", "custom:villager_v2"}) {
-        EXPECT_FALSE(MobAiPoliciesTestAccess::parseAndResolve(config, type).sleep_failure_skip_night);
-    }
-}
-
-TEST_F(MobAiTest, SleepFailureSkipNightRequiresBooleanEvenWhenDisabled)
-{
-    for (const std::string value : {"0", "1", "2.0", "'true'", "[]", "{}"}) {
-        SCOPED_TRACE(value);
-        for (const std::string prefix :
-             {"[mob-ai]\nenabled=false\n[mob-ai.villagers]\n",
-              "[mob-ai]\nenabled=false\n[[mob-ai.overrides]]\ntypes=['minecraft:villager_v2']\n"
-              "[mob-ai.overrides.villagers]\n"}) {
-            EXPECT_THROW(MobAiPoliciesTestAccess::parseAndResolve(prefix + "sleep-failure-skip-night=" + value,
-                                                                  "minecraft:villager_v2"),
-                         std::exception);
-        }
-    }
-    EXPECT_THROW(MobAiPoliciesTestAccess::parseAndResolve(
-                     "[[mob-ai.overrides]]\ntypes=['minecraft:villager_v2']\n[mob-ai.overrides.villagers]\n"
-                     "sleep-failure-skip-night=false\n[[mob-ai.overrides]]\ntypes=['minecraft:villager_v2']\n"
-                     "[mob-ai.overrides.villagers]\nsleep-failure-skip-night=true\n",
-                     "minecraft:villager_v2"),
-                 std::exception);
-}
-
-TEST_F(MobAiTest, RemovedSleepOptionsAreUnknownFields)
-{
-    for (const std::string option : {"prevent-sleep=true", "sleep-failure-cooldown-seconds=3"}) {
-        for (const std::string prefix :
-             {"[mob-ai]\nenabled=false\n[mob-ai.villagers]\n",
-              "[mob-ai]\nenabled=false\n[[mob-ai.overrides]]\ntypes=['minecraft:villager_v2']\n"
-              "[mob-ai.overrides.villagers]\n"}) {
-            MobAiPolicies policies;
-            const auto result = policies.initialize(toml::parse(prefix + option));
-            ASSERT_FALSE(result);
-            EXPECT_NE(result.error().find("Unknown policy field"), std::string::npos);
-            EXPECT_EQ(policies.resolve("minecraft:villager_v2"), MobAiDecision{});
-        }
-    }
 }
 
 TEST_F(MobAiTest, InvalidSchemaIsRejectedEvenWhenDisabled)
 {
     const std::string rule = "[[mob-ai.overrides]]\ntypes=['minecraft:cow']\n[mob-ai.overrides.idle]\n";
+    const std::string villager_rule =
+        "[[mob-ai.overrides]]\ntypes=['minecraft:villager_v2']\n[mob-ai.overrides.villagers]\n";
     for (const auto &[label, config] : std::vector<std::pair<std::string, std::string>>{
              {"non-table root", "mob-ai=false"},
              {"wrong master boolean", "[mob-ai]\nenabled=1"},
              {"unknown field while disabled", "[mob-ai]\nenabled=false\nunknown=true"},
+             {"integer global sleep boolean", "[mob-ai.villagers]\nsleep-failure-skip-night=1"},
+             {"string global sleep boolean", "[mob-ai.villagers]\nsleep-failure-skip-night='true'"},
+             {"integer override sleep boolean", villager_rule + "sleep-failure-skip-night=1"},
+             {"string override sleep boolean", villager_rule + "sleep-failure-skip-night='true'"},
+             {"unknown global villagers field", "[mob-ai.villagers]\nunknown=true"},
+             {"unknown override villagers field", villager_rule + "unknown=true"},
+             {"duplicate villagers override",
+              villager_rule + "sleep-failure-skip-night=false\n" + villager_rule + "sleep-failure-skip-night=true\n"},
              {"non-table feature", "[mob-ai]\nenabled=false\nidle=[]"},
              {"empty types", "[[mob-ai.overrides]]\ntypes=[]"},
              {"duplicate types", "[[mob-ai.overrides]]\ntypes=['minecraft:cow','minecraft:cow']"},

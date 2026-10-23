@@ -20,6 +20,7 @@
 #include "bedrock/world/actor/provider/actor_riding.h"
 #include "bedrock/world/level/dimension/vanilla_dimensions.h"
 #include "bedrock/world/level/level.h"
+#include "bedrock/world/level/pathfinder/path_finder.h"
 #include "endstone/core/perf/mob_ai_capabilities.h"
 #include "endstone/core/server.h"
 #include "endstone/runtime/hook.h"
@@ -79,23 +80,13 @@ struct SleepAttempt {
     SleepAttempt *previous;
 };
 
-void observeSleepPath(Actor *actor, const void *result_storage)
+void observeSleepPath(Actor *actor, const Path *path)
 {
     const auto *attempt = sleep_attempt;
     if (!attempt || attempt->actor != actor) {
         return;
     }
-    const void *path;
-    std::memcpy(&path, result_storage, sizeof(path));
-    bool failed = !path;
-    if (path) {
-        const void *begin;
-        const void *end;
-        std::memcpy(&begin, path, sizeof(begin));
-        std::memcpy(&end, static_cast<const char *>(path) + sizeof(void *), sizeof(end));
-        failed = begin == end;
-    }
-    if (failed) {
+    if (!path || path->getSize() == 0) {
         attempt->state.recordSleepFailure(attempt->id, actor->getLevel().getTime());
     }
 }
@@ -288,22 +279,19 @@ void SleepGoal::stop()
 }
 
 #ifdef _WIN32
-extern "C" ENDSTONE_HOOK void *endstone_mob_ai_find_path(void *level, void *result_storage, Actor *actor, int x, int y,
-                                                         int z, void *navigation)
+std::unique_ptr<Path> Level::findPath(Actor &actor, int x, int y, int z, NavigationComponent &navigation)
 {
-    void *result = ENDSTONE_HOOK_CALL_ORIGINAL_NAME(&endstone_mob_ai_find_path, "endstone_mob_ai_find_path", level,
-                                                    result_storage, actor, x, y, z, navigation);
-    observeSleepPath(actor, result_storage);
-    return result;
+    using Function = std::unique_ptr<Path> (Level::*)(Actor &, int, int, int, NavigationComponent &);
+    auto path = ENDSTONE_HOOK_CALL_ORIGINAL(static_cast<Function>(&Level::findPath), this, actor, x, y, z, navigation);
+    observeSleepPath(&actor, path.get());
+    return path;
 }
 #else
-extern "C" ENDSTONE_HOOK void *endstone_mob_ai_find_path(void *result_storage, void *path_finder, Actor *actor, int x,
-                                                         int y, int z, float maximum_distance)
+std::unique_ptr<Path> PathFinder::findPath(Actor &actor, int x, int y, int z, float maximum_distance)
 {
-    void *result = ENDSTONE_HOOK_CALL_ORIGINAL_NAME(&endstone_mob_ai_find_path, "endstone_mob_ai_find_path",
-                                                    result_storage, path_finder, actor, x, y, z, maximum_distance);
-    observeSleepPath(actor, result_storage);
-    return result;
+    auto path = ENDSTONE_HOOK_CALL_ORIGINAL(&PathFinder::findPath, this, actor, x, y, z, maximum_distance);
+    observeSleepPath(&actor, path.get());
+    return path;
 }
 #endif
 

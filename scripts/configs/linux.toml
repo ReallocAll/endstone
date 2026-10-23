@@ -4,11 +4,11 @@ executable = "bedrock_server"
 filename = "bedrock_server"
 
 [[signatures]]
-name = "endstone_mob_ai_find_path"
+name = "_ZN10PathFinder8findPathER5Actoriiif"
 relative = false
 extra = 0
 # 1. follow ServerLevel's point-path wrapper to the synchronous path-finder call
-# 2. confirm RDI=result storage, RSI=finder, RDX=actor and XMM0=maximum distance
+# 2. confirm the named PathFinder::findPath: RDI=unique_ptr return storage, RSI=this, RDX=Actor& and XMM0=maximum distance
 pattern = "41 57 41 56 53 48 81 EC ? ? ? ? F3 0F 11 44 24 ? F3 0F 2A C9 49 89 F6"
 
 [[signatures]]

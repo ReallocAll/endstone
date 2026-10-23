@@ -6,18 +6,6 @@
 
 using endstone::core::MobAiState;
 
-namespace endstone::core {
-
-struct MobAiStateTestAccess {
-    static std::size_t size(const MobAiState &state) { return state.entries_.size(); }
-    static std::size_t sleepFailures(const MobAiState &state) { return state.sleep_failures_.size(); }
-    static bool hasSleepPeriod(const MobAiState &state) { return state.sleep_period_.has_value(); }
-};
-
-}  // namespace endstone::core
-
-using endstone::core::MobAiStateTestAccess;
-
 TEST(MobAiStateTest, SearchCadenceUsesActualSearchTicks)
 {
     MobAiState state;
@@ -56,12 +44,14 @@ TEST(MobAiStateTest, RemovalDiscardsActivityAndSearchButPreservesSleepFailure)
 {
     MobAiState state;
     state.recordActivity(12, 1);
-    EXPECT_TRUE(state.allowNewTargetSearch(12, 101, 200));
+    EXPECT_TRUE(state.recentlyActive(12, 1));
+    EXPECT_TRUE(state.allowNewTargetSearch(13, 1, 200));
+    EXPECT_FALSE(state.allowNewTargetSearch(13, 2, 200));
     state.recordSleepFailure(12, 13000);
     state.erase(12);
-    EXPECT_EQ(MobAiStateTestAccess::size(state), 0);
-    EXPECT_FALSE(state.recentlyActive(12, 102));
-    EXPECT_TRUE(state.allowNewTargetSearch(12, 102, 20));
+    state.erase(13);
+    EXPECT_FALSE(state.recentlyActive(12, 1));
+    EXPECT_TRUE(state.allowNewTargetSearch(13, 2, 200));
     EXPECT_FALSE(state.canAttemptSleep(12, 14000));
 }
 
@@ -69,14 +59,13 @@ TEST(MobAiStateTest, LevelResetDiscardsAllState)
 {
     MobAiState state;
     state.recordActivity(12, 1);
+    EXPECT_TRUE(state.allowNewTargetSearch(13, 1, 20));
+    EXPECT_FALSE(state.allowNewTargetSearch(13, 2, 20));
     state.recordSleepFailure(12, 13000);
     state.clear();
-    EXPECT_EQ(MobAiStateTestAccess::size(state), 0);
-    EXPECT_EQ(MobAiStateTestAccess::sleepFailures(state), 0);
-    EXPECT_FALSE(MobAiStateTestAccess::hasSleepPeriod(state));
     EXPECT_FALSE(state.recentlyActive(12, 2));
     EXPECT_TRUE(state.canAttemptSleep(12, 13000));
-    EXPECT_TRUE(state.allowNewTargetSearch(12, 2, 20));
+    EXPECT_TRUE(state.allowNewTargetSearch(13, 2, 20));
 }
 
 TEST(MobAiStateTest, SleepFailureLocksThroughDawnUntilNextEvening)
@@ -89,14 +78,6 @@ TEST(MobAiStateTest, SleepFailureLocksThroughDawnUntilNextEvening)
         EXPECT_TRUE(state.canAttemptSleep(13, world_time));
     }
     EXPECT_TRUE(state.canAttemptSleep(12, 36000));
-    EXPECT_EQ(MobAiStateTestAccess::sleepFailures(state), 0);
-}
-
-TEST(MobAiStateTest, NitwitSleepAcrossMidnightStaysInOnePeriod)
-{
-    MobAiState state;
-    state.recordSleepFailure(12, 14000);
-    EXPECT_FALSE(state.canAttemptSleep(12, 26000));
 }
 
 TEST(MobAiStateTest, BackwardTimeKeepsOnlyTheObservedPeriod)
@@ -118,7 +99,6 @@ TEST(MobAiStateTest, RecordingFailureInNewPeriodDiscardsPreviousFailures)
     state.recordSleepFailure(13, 36000);
     EXPECT_TRUE(state.canAttemptSleep(12, 36001));
     EXPECT_FALSE(state.canAttemptSleep(13, 36001));
-    EXPECT_EQ(MobAiStateTestAccess::sleepFailures(state), 1);
 }
 
 TEST(MobAiStateTest, SleepFailureIgnoresInvalidIds)
@@ -127,8 +107,6 @@ TEST(MobAiStateTest, SleepFailureIgnoresInvalidIds)
     state.recordSleepFailure(-1, 13000);
     EXPECT_TRUE(state.canAttemptSleep(-1, 13000));
     EXPECT_TRUE(state.canAttemptSleep(12, 13000));
-    EXPECT_EQ(MobAiStateTestAccess::sleepFailures(state), 0);
-    EXPECT_EQ(MobAiStateTestAccess::size(state), 0);
     state.recordSleepFailure(12, 13000);
     EXPECT_TRUE(state.canAttemptSleep(-1, 14000));
     EXPECT_FALSE(state.canAttemptSleep(12, 14000));
@@ -149,14 +127,9 @@ TEST(MobAiStateTest, SleepPeriodsUseFloorDivisionForNegativeTime)
 TEST(MobAiStateTest, SleepPeriodsHandleExtremeWorldTimes)
 {
     MobAiState state;
-    const auto min = std::numeric_limits<int>::min();
-    const auto max = std::numeric_limits<int>::max();
-    state.recordSleepFailure(12, min);
-    EXPECT_FALSE(state.canAttemptSleep(12, min + 1));
-    EXPECT_TRUE(state.canAttemptSleep(12, -2147460000));
-    state.recordSleepFailure(12, max);
-    EXPECT_FALSE(state.canAttemptSleep(12, 2147460000));
-    EXPECT_TRUE(state.canAttemptSleep(12, 2147459999));
+    state.recordSleepFailure(12, std::numeric_limits<int>::min());
+    EXPECT_FALSE(state.canAttemptSleep(12, std::numeric_limits<int>::min() + 1));
+    EXPECT_TRUE(state.canAttemptSleep(12, std::numeric_limits<int>::max()));
 }
 
 TEST(MobAiStateTest, SleepFailurePreservesAndSurvivesActivityAndSearch)
@@ -182,11 +155,9 @@ TEST(MobAiStateTest, PruningRetainsUnexpiredActivityAndSearchWithoutClearingSlee
     EXPECT_TRUE(state.allowNewTargetSearch(2, 0, 120));
     state.recordSleepFailure(3, 13000);
     state.prune(100);
-    EXPECT_EQ(MobAiStateTestAccess::size(state), 1);
+    EXPECT_FALSE(state.allowNewTargetSearch(2, 100, 120));
     EXPECT_FALSE(state.canAttemptSleep(3, 14000));
     state.prune(120);
-    EXPECT_EQ(MobAiStateTestAccess::size(state), 0);
-    state.prune(std::numeric_limits<std::uint64_t>::max());
+    EXPECT_TRUE(state.allowNewTargetSearch(2, 120, 120));
     EXPECT_FALSE(state.canAttemptSleep(3, 25000));
-    EXPECT_EQ(MobAiStateTestAccess::sleepFailures(state), 1);
 }

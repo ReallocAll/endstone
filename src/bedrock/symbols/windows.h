@@ -14,7 +14,6 @@ namespace endstone::runtime {
 static constexpr std::array<std::pair<std::string_view, std::size_t>, 90> symbols = {{
     {"BlockState::StateListNode::mHead", 215092208},
     {"Enchant::mEnchants", 214656904},
-    {"endstone_mob_ai_find_path", 8184736},
     // Actor
     {"?teleportTo@Actor@@UEAAXAEBVVec3@@_NHH1@Z", 13861632},
     // ActorFactory
@@ -76,6 +75,7 @@ static constexpr std::array<std::pair<std::string_view, std::size_t>, 90> symbol
     // LeavesBlock
     {"?randomTick@LeavesBlock@@QEBAXAEAVBlockRandomTickEvent@BlockEvents@@@Z", 50197040},
     // Level
+    {"?findPath@Level@@UEAA?AV?$unique_ptr@VPath@@U?$default_delete@VPath@@@std@@@std@@AEAVActor@@HHHAEAVNavigationComponent@@@Z", 8184736},
     {"?getActivePlayerCount@Level@@UEBAHXZ", 8211872},
     {"?tick@Level@@UEAAXXZ", 8175568},
     // LevelChunk

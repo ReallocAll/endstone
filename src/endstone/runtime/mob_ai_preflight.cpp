@@ -40,7 +40,8 @@ bool containsImage(std::uintptr_t base, std::uintptr_t address, std::size_t size
 
 bool pathIdentity(std::uintptr_t base)
 {
-    constexpr auto function = get_symbol("endstone_mob_ai_find_path");
+    constexpr auto function = get_symbol("?findPath@Level@@UEAA?AV?$unique_ptr@VPath@@U?$default_delete@VPath@@@std@@@"
+                                         "std@@AEAVActor@@HHHAEAVNavigationComponent@@@Z");
     constexpr std::size_t call = 0x7CE52D;
     constexpr std::size_t target = 0x2F688B0;
     constexpr std::array<unsigned char, 27> prefix = {0x55, 0x41, 0x57, 0x41, 0x56, 0x41, 0x55, 0x41, 0x54,
@@ -135,7 +136,7 @@ int checkExecutable(dl_phdr_info *info, std::size_t, void *context)
             return 1;
         }
     }
-    constexpr auto function = get_symbol("endstone_mob_ai_find_path");
+    constexpr auto function = get_symbol("_ZN10PathFinder8findPathER5Actoriiif");
     constexpr std::size_t call = 0xC899BE5;
     constexpr std::array<unsigned char, 33> prefix = {0x41, 0x57, 0x41, 0x56, 0x53, 0x48, 0x81, 0xEC, 0x50, 0x01, 0x00,
                                                       0x00, 0xF3, 0x0F, 0x11, 0x44, 0x24, 0x0C, 0xF3, 0x0F, 0x2A, 0xC9,

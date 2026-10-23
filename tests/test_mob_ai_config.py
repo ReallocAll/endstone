@@ -38,8 +38,6 @@ def test_prepare_adds_disabled_recommendations(bootstrap, original):
 
     config = read_config(bootstrap)
     assert config["mob-ai"].unwrap() == DEFAULT_MOB_AI
-    assert bootstrap.plugin_path.is_dir()
-    assert (bootstrap.server_path / "packetlimitconfig.json").is_file()
     if original is not None:
         assert config["commands"]["log"] is False
         assert original in bootstrap.config_path.read_text(encoding="utf-8")

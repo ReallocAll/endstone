@@ -25,7 +25,6 @@ public:
     void clear();
 
 private:
-    friend struct MobAiStateTestAccess;
     struct Entry {
         std::uint64_t protected_until = 0;
         std::uint64_t search_after = 0;

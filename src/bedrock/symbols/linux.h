@@ -13,13 +13,8 @@ namespace endstone::runtime {
 
 static constexpr std::array<std::pair<std::string_view, std::size_t>, 90> symbols = {{
     {"BlockState::StateListNode::mHead", 257928656},
-    {"ChunkBlenderFactory::getOrCreateChunkBlender::cache_cap", 85314623},
-    {"DBChunkStorage::_hasChunk::cache_cap", 219434551},
     {"Enchant::mEnchants", 257765312},
-    {"LevelChunk::tickImpl::seed", 256134984},
-    {"MinecraftWorkerPool::ASYNC", 258114960},
     {"getI18n::result", 256811320},
-    {"endstone_mob_ai_find_path", 219627136},
     // Actor
     {"_ZN5Actor10teleportToERK4Vec3biib", 187569008},
     // ActorFactory
@@ -35,6 +30,8 @@ static constexpr std::array<std::pair<std::string_view, std::size_t>, 90> symbol
     {"_ZNK17BlockTypeRegistry16forEachBlockTypeEN5brstd12function_refIFbRK9BlockTypeES5_EE", 213118704},
     // CampfireBlockActor
     {"_ZN18CampfireBlockActor14_finishCookingER11BlockSourcei", 216526928},
+    // ChunkBlenderFactory
+    {"ChunkBlenderFactory::getOrCreateChunkBlender::cache_cap", 85314623},
     // ChunkBuildOrderPolicy
     {"_ZN21ChunkBuildOrderPolicy16updateInfluencesEv", 211141408},
     // CircuitSceneGraph
@@ -54,11 +51,13 @@ static constexpr std::array<std::pair<std::string_view, std::size_t>, 90> symbol
     {"_ZN12CommandUtils12getActorNameERK5Actor", 164348688},
     // CraftingDataPacketPayload
     {"_ZN25CraftingDataPacketPayload11fromRecipesERK7Recipesb", 140477760},
+    // DBChunkStorage
+    {"DBChunkStorage::_hasChunk::cache_cap", 219434551},
     // DedicatedServer
     {"_ZN15DedicatedServer5startERKNSt3__112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEERKN7Bedrock19ActivationArgumentsE", 75250608},
     // Dimension
-    {"_ZN9Dimension19sendPacketForEntityERK5ActorRK6PacketPK6Player", 211196912},
     {"_ZNK9Dimension13forEachPlayerEN5brstd12function_refIFbR6PlayerES4_EE", 211178112},
+    {"_ZN9Dimension19sendPacketForEntityERK5ActorRK6PacketPK6Player", 211196912},
     // Explosion
     {"_ZN9Explosion7explodeER7IRandom", 210160320},
     // FurnaceBlockActor
@@ -77,10 +76,11 @@ static constexpr std::array<std::pair<std::string_view, std::size_t>, 90> symbol
     // LeavesBlock
     {"_ZN11LeavesBlock10randomTickERN11BlockEvents20BlockRandomTickEventE", 207061616},
     // Level
-    {"_ZN5Level4tickEv", 210335488},
     {"_ZNK5Level20getActivePlayerCountEv", 210367168},
+    {"_ZN5Level4tickEv", 210335488},
     // LevelChunk
     {"_ZN10LevelChunk8tickImplER11BlockSourceRK4TickNSt3__18functionIFvvEEE", 211691840},
+    {"LevelChunk::tickImpl::seed", 256134984},
     // LiquidBlock
     {"_ZNK11LiquidBlock12_trySpreadToER11BlockSourceRK8BlockPosiS4_h", 206816800},
     // MainChunkSource
@@ -92,6 +92,8 @@ static constexpr std::array<std::pair<std::string_view, std::size_t>, 90> symbol
     {"_ZNK17MinecraftCommands14executeCommandER14CommandContextb", 164353584},
     // MinecraftPackets
     {"_ZN16MinecraftPackets12createPacketE18MinecraftPacketIds", 144683616},
+    // MinecraftWorkerPool
+    {"MinecraftWorkerPool::ASYNC", 258114960},
     // Mob
     {"_ZN3Mob9knockbackEP5ActorfffRK19KnockbackParameters", 199753344},
     // NearestAttackableTargetGoal
@@ -105,6 +107,8 @@ static constexpr std::array<std::pair<std::string_view, std::size_t>, 90> symbol
     // NetworkSystem
     {"_ZN13NetworkSystem23onNewIncomingConnectionERK17NetworkIdentifierONSt3__110shared_ptrI11NetworkPeerEE", 144717856},
     {"_ZN13NetworkSystem4sendERK17NetworkIdentifierRK6Packet11SubClientId", 144724016},
+    // PathFinder
+    {"_ZN10PathFinder8findPathER5Actoriiif", 219627136},
     // PistonBlockActor
     {"_ZN16PistonBlockActor4tickER11BlockSource", 216116560},
     // Player
@@ -115,8 +119,8 @@ static constexpr std::array<std::pair<std::string_view, std::size_t>, 90> symbol
     {"_ZN6Player4dropERK9ItemStackb", 196441152},
     {"_ZN6Player4takeER5Actorii", 196390032},
     // PlayerLocationSender
-    {"_ZN20PlayerLocationSender24_forEachClientPlayerPairERKNSt3__16vectorI13WeakEntityRefNS0_9allocatorIS2_EEEENS0_8functionIFvRK29UserEntityIdentifierComponentRK6PlayerSE_EEE", 209777232},
     {"_ZN20PlayerLocationSender25_shouldSendPositionPacketERK4Vec313DimensionTypebRKNSt3__18optionalIS0_EERKNS_18PlayerLocationDataEf", 209778816},
+    {"_ZN20PlayerLocationSender24_forEachClientPlayerPairERKNSt3__16vectorI13WeakEntityRefNS0_9allocatorIS2_EEEENS0_8functionIFvRK29UserEntityIdentifierComponentRK6PlayerSE_EEE", 209777232},
     // PlayerTickManager
     {"_ZN17PlayerTickManager23processPlayerNetworkingERK4Tick", 209786096},
     // RakNet::RNS2_Windows_Linux_360
@@ -143,8 +147,8 @@ static constexpr std::array<std::pair<std::string_view, std::size_t>, 90> symbol
     {"_ZN20ServerNetworkHandler24updateServerAnnouncementEv", 143740992},
     {"_ZN20ServerNetworkHandler27disconnectClientWithMessageERK17NetworkIdentifier11SubClientIdN10Connection20DisconnectFailReasonERKNSt3__112basic_stringIcNS6_11char_traitsIcEENS6_9allocatorIcEEEENS6_8optionalISC_EE", 143675360},
     // ServerPlayer
-    {"_ZN12ServerPlayer15changeDimensionE13DimensionType", 166161184},
     {"_ZN12ServerPlayer25_updateChunkPublisherViewERK4Vec3f", 166125232},
+    {"_ZN12ServerPlayer15changeDimensionE13DimensionType", 166161184},
     // ServerScoreboard
     {"_ZN16ServerScoreboardC2E23CommandSoftEnumRegistryP12LevelStorageN3gsl8not_nullIN7Bedrock15NonOwnerPointerI19GameplayUserManagerEEEE", 217580848},
     // ServerWaypoint

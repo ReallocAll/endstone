@@ -53,6 +53,8 @@ inline constexpr std::array mob_ai_hooks = {
     MobAiHook{"?canContinue@RandomStrollGoal@@QEAA_NXZ", random_stroll_goal_layout, 2},
     MobAiHook{"?canUse@RandomLookAroundGoal@@QEAA_NXZ", random_look_around_goal_layout, 1},
     MobAiHook{"?canContinue@RandomLookAroundGoal@@QEAA_NXZ", random_look_around_goal_layout, 2},
+    MobAiHook{"?findPath@Level@@UEAA?AV?$unique_ptr@VPath@@U?$default_delete@VPath@@@std@@@std@@AEAVActor@@"
+              "HHHAEAVNavigationComponent@@@Z"},
 #else
     MobAiHook{"_ZN9SleepGoal6canUseEv", sleep_goal_layout, 2},
     MobAiHook{"_ZN9SleepGoal4stopEv", sleep_goal_layout, 6},
@@ -62,8 +64,8 @@ inline constexpr std::array mob_ai_hooks = {
     MobAiHook{"_ZN16RandomStrollGoal11canContinueEv", random_stroll_goal_layout, 3},
     MobAiHook{"_ZN20RandomLookAroundGoal6canUseEv", random_look_around_goal_layout, 2},
     MobAiHook{"_ZN20RandomLookAroundGoal11canContinueEv", random_look_around_goal_layout, 3},
+    MobAiHook{"_ZN10PathFinder8findPathER5Actoriiif"},
 #endif
-    MobAiHook{"endstone_mob_ai_find_path"},
 };
 
 bool mob_ai_preflight(std::string &reason);

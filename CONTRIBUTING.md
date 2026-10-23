@@ -266,13 +266,17 @@ Endstone follows a layered architecture:
 - Type-compatible structures matching BDS internal types
 - Required for ABI compatibility when hooking
 
-#### Updating Linux mob AI hooks
+#### Updating mob AI hooks
 
 When updating BDS support, verify these together against the new binary:
 
-- Signatures in `scripts/configs/linux.toml` and regenerated `src/bedrock/symbols/linux.h`.
-- The four vtable/owner layouts and seven hook slots in `src/endstone/runtime/mob_ai_preflight.h`; function addresses come from the generated symbol table.
-- Native return/output conventions, running-goal stop/wake transitions, and startup/restart configuration behavior.
+- Signatures and locating recipes in `scripts/configs/windows.toml` and `scripts/configs/linux.toml`, with their
+  corresponding `src/bedrock/symbols/*.h` tables. Preserve the existing class and namespace grouping.
+- Goal vtables, owner offsets and hook slots in `src/endstone/runtime/mob_ai_preflight.h`, plus the native identity
+  checks in `src/endstone/runtime/mob_ai_preflight.cpp`.
+- `Level::findPath` on Windows and `PathFinder::findPath` on Linux, including the `Path` and `Path::Node` layouts and
+  the owning `std::unique_ptr<Path>` return.
+- Native return/output conventions, sleep failure and stop/wake transitions, and startup/restart configuration behavior.
 
 Refreshing symbols alone does not establish support. Verify layouts and behavior for the BDS version supported by
 Endstone; failed native checks retain the existing vanilla fallback. Record the source revision, BDS identity,

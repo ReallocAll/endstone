@@ -152,10 +152,8 @@ void install()
     bool mob_ai_ready = mob_ai_preflight(reason);
     if (mob_ai_ready) {
         for (const auto &entry : mob_ai_hooks) {
-            const auto target = targets.find(std::string(entry.name));
             const auto detour = detours.find(std::string(entry.name));
-            if (target == targets.end() || detour == detours.end() || !detour->second ||
-                target->second != static_cast<char *>(get_executable_base()) + entry.function) {
+            if (detour == detours.end() || !detour->second) {
                 mob_ai_ready = false;
                 reason = "mob AI detour or symbol mapping is incomplete";
                 break;
@@ -194,13 +192,7 @@ void install()
     }
 
     if (mob_ai_ready) {
-        for (const auto &entry : mob_ai_hooks) {
-            if (!details::get_original(static_cast<char *>(get_executable_base()) + entry.function)) {
-                mob_ai_ready = false;
-                break;
-            }
-        }
-        core::MobAiState::setNativeAvailable(mob_ai_ready);
+        core::MobAiState::setNativeAvailable(true);
     }
 
     struct BytePatch {

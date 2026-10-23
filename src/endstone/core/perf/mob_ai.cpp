@@ -6,7 +6,6 @@
 #include <limits>
 #include <set>
 #include <stdexcept>
-#include <utility>
 
 #include <toml++/toml.h>
 
@@ -198,8 +197,7 @@ Result<void> MobAiPolicies::initialize(const toml::table &config)
     ENDSTONE_CHECK(!initialized_, std::string("Mob AI policies are already initialized."));
     initialized_ = true;
     try {
-        auto candidate = parse(config);
-        snapshot_ = std::move(candidate);
+        snapshot_ = parse(config);
         return {};
     }
     catch (const std::exception &error) {

@@ -35,8 +35,6 @@ public:
     [[nodiscard]] MobAiDecision resolve(std::string_view type) const;
 
 private:
-    friend struct MobAiPoliciesTestAccess;
-
     struct Snapshot {
         bool enabled = false;
         MobAiDecision default_decision;

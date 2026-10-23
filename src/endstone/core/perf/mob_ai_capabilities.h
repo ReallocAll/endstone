@@ -5,7 +5,6 @@
 #include <cmath>
 #include <optional>
 #include <string_view>
-#include <type_traits>
 
 #include "bedrock/world/actor/actor_types.h"
 #include "endstone/core/perf/mob_ai.h"
@@ -32,8 +31,8 @@ inline bool supportsMobAiIdle(std::string_view identifier, ActorType type)
 inline bool supportsMobAiSearch(std::string_view identifier, ActorType type, const MobAiDecision &decision)
 {
     if (!decision.target_search_interval_ticks || !decision.target_search_player_range_blocks ||
-        !std::isfinite(*decision.target_search_player_range_blocks) || *decision.target_search_player_range_blocks <= 0 ||
-        (type & ActorType::Monster) != ActorType::Monster || !supportsMobAiIdle(identifier, type)) {
+        !std::isfinite(*decision.target_search_player_range_blocks) ||
+        *decision.target_search_player_range_blocks <= 0 || (type & ActorType::Monster) != ActorType::Monster) {
         return false;
     }
     constexpr std::array allowed{"minecraft:zombie",

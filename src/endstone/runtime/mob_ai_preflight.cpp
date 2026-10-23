@@ -49,13 +49,12 @@ bool pathIdentity(std::uintptr_t base)
                                                       0x00, 0x48, 0x8D, 0xAC, 0x24, 0x80, 0x00, 0x00, 0x00};
     constexpr std::array<unsigned char, 19> target_prefix = {0x41, 0x57, 0x41, 0x56, 0x41, 0x55, 0x41, 0x54, 0x56, 0x57,
                                                              0x55, 0x53, 0x48, 0x81, 0xEC, 0x78, 0x01, 0x00, 0x00};
-    constexpr std::array<unsigned char, 5> call_bytes = {0xE8, 0x7E, 0xA3, 0x79, 0x02};
     const auto max = std::numeric_limits<std::uintptr_t>::max();
     auto readable_code = [base](std::size_t offset, std::size_t size) {
         return offset <= std::numeric_limits<std::uintptr_t>::max() - base &&
                containsImage(base, base + offset, size, false) && containsImage(base, base + offset, size, true);
     };
-    if (!readable_code(function, prefix.size()) || !readable_code(call, call_bytes.size()) ||
+    if (!readable_code(function, prefix.size()) || !readable_code(call, 5) ||
         !readable_code(target, target_prefix.size())) {
         return false;
     }
@@ -72,7 +71,7 @@ bool pathIdentity(std::uintptr_t base)
     }
     if (std::memcmp(reinterpret_cast<const void *>(base + function), prefix.data(), prefix.size()) != 0 ||
         std::memcmp(reinterpret_cast<const void *>(base + target), target_prefix.data(), target_prefix.size()) != 0 ||
-        std::memcmp(reinterpret_cast<const void *>(base + call), call_bytes.data(), call_bytes.size()) != 0) {
+        *reinterpret_cast<const std::uint8_t *>(base + call) != 0xE8) {
         return false;
     }
     std::int32_t displacement;
@@ -141,12 +140,11 @@ int checkExecutable(dl_phdr_info *info, std::size_t, void *context)
     constexpr std::array<unsigned char, 33> prefix = {0x41, 0x57, 0x41, 0x56, 0x53, 0x48, 0x81, 0xEC, 0x50, 0x01, 0x00,
                                                       0x00, 0xF3, 0x0F, 0x11, 0x44, 0x24, 0x0C, 0xF3, 0x0F, 0x2A, 0xC9,
                                                       0x49, 0x89, 0xF6, 0xF3, 0x41, 0x0F, 0x2A, 0xD0, 0x48, 0x89, 0xFB};
-    constexpr std::array<unsigned char, 5> call_bytes = {0xE8, 0x96, 0xA2, 0x8D, 0x00};
     if (function > max - check.base || call > max - check.base ||
         !contains(*info, check.base + function, prefix.size(), PF_R | PF_X) ||
-        !contains(*info, check.base + call, call_bytes.size(), PF_R | PF_X) ||
+        !contains(*info, check.base + call, 5, PF_R | PF_X) ||
         std::memcmp(reinterpret_cast<const void *>(check.base + function), prefix.data(), prefix.size()) != 0 ||
-        std::memcmp(reinterpret_cast<const void *>(check.base + call), call_bytes.data(), call_bytes.size()) != 0) {
+        *reinterpret_cast<const std::uint8_t *>(check.base + call) != 0xE8) {
         check.error = "mob AI path observer does not match the verified native boundary";
         return 1;
     }

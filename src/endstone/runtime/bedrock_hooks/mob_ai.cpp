@@ -48,7 +48,7 @@ Actor *owner(void *goal, const endstone::runtime::MobAiGoalLayout &layout)
     return actor;
 }
 
-std::optional<endstone::core::MobAiDecision> sleepDecision(Actor *actor)
+std::optional<std::int64_t> sleepPolicyId(Actor *actor)
 {
     if (!actor || actor->getActorIdentifier().getCanonicalName() != "minecraft:villager_v2") {
         return std::nullopt;
@@ -58,7 +58,10 @@ std::optional<endstone::core::MobAiDecision> sleepDecision(Actor *actor)
         return std::nullopt;
     }
     auto &server = EndstoneServer::getInstance();
-    return server.getMobAiPolicies().resolve("minecraft:villager_v2");
+    if (!server.getMobAiPolicies().resolve("minecraft:villager_v2").sleep_failure_skip_night) {
+        return std::nullopt;
+    }
+    return id->unique_id.raw_id;
 }
 
 struct SleepAttempt;
@@ -121,7 +124,7 @@ std::optional<std::array<double, 3>> feetPosition(const Actor &actor)
     }
     const std::array<double, 3> feet{position->pos.x, static_cast<double>(position->pos.y) - offset->height_offset,
                                      position->pos.z};
-    return std::isfinite(feet[1]) ? std::optional(feet) : std::nullopt;
+    return feet;
 }
 
 bool activeMob(const Actor &actor, std::int64_t id, double range, MobAiState &state)
@@ -231,15 +234,14 @@ bool suppressIdle(Actor *actor, bool stroll)
 bool SleepGoal::canUse()
 {
     auto *actor = owner(this, endstone::runtime::sleep_goal_layout);
-    const auto decision = sleepDecision(actor);
-    if (decision && decision->sleep_failure_skip_night) {
-        const auto id = actor->tryGetComponent<ActorUniqueIDComponent>()->unique_id.raw_id;
+    const auto id = sleepPolicyId(actor);
+    if (id) {
         const auto world_time = actor->getLevel().getTime();
         auto &state = EndstoneServer::getInstance().getMobAiState();
-        if (!state.canAttemptSleep(id, world_time)) {
+        if (!state.canAttemptSleep(*id, world_time)) {
             return false;
         }
-        const SleepAttempt attempt{actor, id, state};
+        const SleepAttempt attempt{actor, *id, state};
         return ENDSTONE_HOOK_CALL_ORIGINAL(&SleepGoal::canUse, this);
     }
     return ENDSTONE_HOOK_CALL_ORIGINAL(&SleepGoal::canUse, this);
@@ -248,8 +250,8 @@ bool SleepGoal::canUse()
 void SleepGoal::stop()
 {
     auto *actor = owner(this, endstone::runtime::sleep_goal_layout);
-    const auto decision = sleepDecision(actor);
-    if (decision && decision->sleep_failure_skip_night && !actor->isSleeping()) {
+    const auto id = sleepPolicyId(actor);
+    if (id && !actor->isSleeping()) {
 #ifdef _WIN32
         constexpr std::size_t attempts_offset = 0x30;
         constexpr std::size_t limit_offset = 0x38;
@@ -271,8 +273,7 @@ void SleepGoal::stop()
         std::memcpy(&reached, goal + reached_offset, sizeof(reached));
         std::memcpy(&failure, goal + failure_offset, sizeof(failure));
         if (!reached && attempts > 0 && (failure != 0 || attempts > limit)) {
-            const auto id = actor->tryGetComponent<ActorUniqueIDComponent>()->unique_id.raw_id;
-            EndstoneServer::getInstance().getMobAiState().recordSleepFailure(id, actor->getLevel().getTime());
+            EndstoneServer::getInstance().getMobAiState().recordSleepFailure(*id, actor->getLevel().getTime());
         }
     }
     ENDSTONE_HOOK_CALL_ORIGINAL(&SleepGoal::stop, this);

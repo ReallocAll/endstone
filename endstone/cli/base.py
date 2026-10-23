@@ -272,8 +272,7 @@ class Bootstrap:
 
         # create or update the config file
         ref = importlib_resources.files("endstone") / "config" / "endstone.default.toml"
-        with importlib_resources.as_file(ref) as path, open(path, "r", encoding="utf-8", newline="") as f:
-            default_config = tomlkit.load(f)
+        default_config = tomlkit.parse(ref.read_text(encoding="utf-8"))
 
         original = None
         config = tomlkit.document()

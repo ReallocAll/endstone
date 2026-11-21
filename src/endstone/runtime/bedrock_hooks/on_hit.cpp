@@ -30,7 +30,7 @@ static_assert(sizeof(OnHitChildren) == 3 * sizeof(void *));
 
 void reclaimChildren(void *record)
 {
-    // BDS 1.26.65.1: OnHit child-pointer vector at +0x120 on Linux and Windows.
+    // OnHit child-pointer vector starts at record +0x120.
     auto &children = *reinterpret_cast<OnHitChildren *>(static_cast<std::byte *>(record) + 0x120);
     if (!children.begin) {
         return;

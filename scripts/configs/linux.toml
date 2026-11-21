@@ -987,7 +987,7 @@ extra = 0
 #    the child objects it contains.
 # 3. Locate the callee whose prologue reads record+0x2A8; distinguish it from
 #    nearby record move/copy helpers in the storage removal path. The pattern
-#    starts at the function entry (1.26.65.1 ELF image EA 0x7757D20).
+#    starts at the function entry.
 pattern = "53 48 89 FB 48 8B BF A8 02 00 00 48 85 FF 74 05 E8"
 
 [[signatures]]
@@ -1001,5 +1001,5 @@ extra = 0
 #    end at record+0x128 to begin at +0x120, then appends factory-made children.
 # 3. Match the callee's entry prologue; unlike the record finalizer above it
 #    takes two arguments and creates the replacement children. The pattern
-#    starts at function entry (1.26.65.1 ELF image EA 0x7143B40).
+#    starts at the function entry.
 pattern = "55 41 57 41 56 41 55 41 54 53 48 81 EC C8 00 00 00 49 89 F4 48 89 FB 48 8B 86 98 00 00 00 4C 8B A8 10 03 00 00"

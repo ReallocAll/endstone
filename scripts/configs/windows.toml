@@ -1097,7 +1097,7 @@ extra = 0
 #    end at record+0x128 to begin at +0x120, then appends factory-made children.
 # 3. Match the entry prologue with its stack frame; distinguish from the
 #    one-argument record finalizer in the same storage's erase/clear path.
-#    Pattern begins at entry (1.26.65.1 PE RVA 0x19209F0).
+#    The pattern begins at the function entry.
 pattern = "55 41 57 41 56 41 55 41 54 56 57 53 48 81 EC 18 01 00 00 48 8D AC 24 80 00 00 00 48 C7 85 90 00 00 00 FE FF FF FF 49 89 D6 48 89 CF"
 
 [[signatures]]
@@ -1111,5 +1111,5 @@ extra = 0
 #    Storage removal calls it directly; a small forwarding thunk also calls it.
 # 3. Match its entry prologue followed by the +0x2B0 load; distinguish from
 #    pool relocation helpers and the forwarding thunk. The pattern starts
-#    at entry (1.26.65.1 PE RVA 0x420FE0).
+#    at the function entry.
 pattern = "55 56 57 48 83 EC 30 48 8D 6C 24 30 48 C7 45 F8 FE FF FF FF 48 89 CE 48 8B 89 B0 02 00 00 48 85 C9 74 13 F0 FF 49 0C"

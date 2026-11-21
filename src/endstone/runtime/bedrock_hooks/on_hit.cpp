@@ -16,7 +16,7 @@
 #include <cstddef>
 #include <cstdint>
 
-#include "bedrock/bedrock.h"
+#include "bedrock/entity/components/reconstructed_on_hit_record.h"
 #include "endstone/runtime/hook.h"
 
 #if defined(__linux__) || defined(_WIN32)
@@ -54,17 +54,17 @@ void reclaimChildren(void *record)
 }  // namespace
 
 // BDS otherwise discards the previous OnHit children when it resets end = begin.
-extern "C" ENDSTONE_HOOK std::uintptr_t endstone_onhit_initialize(void *record, void *actor)
+std::uintptr_t ReconstructedOnHitRecord::initialize(Actor *actor)
 {
-    reclaimChildren(record);
-    return ENDSTONE_HOOK_CALL_ORIGINAL_NAME(&endstone_onhit_initialize, "endstone_onhit_initialize", record, actor);
+    reclaimChildren(this);
+    return ENDSTONE_HOOK_CALL_ORIGINAL(&ReconstructedOnHitRecord::initialize, this, actor);
 }
 
 // BDS destroys the pointer array but not the owned subcomponents.
-extern "C" ENDSTONE_HOOK std::uintptr_t endstone_onhit_cleanup(void *record)
+std::uintptr_t ReconstructedOnHitRecord::cleanup()
 {
-    reclaimChildren(record);
-    return ENDSTONE_HOOK_CALL_ORIGINAL_NAME(&endstone_onhit_cleanup, "endstone_onhit_cleanup", record);
+    reclaimChildren(this);
+    return ENDSTONE_HOOK_CALL_ORIGINAL(&ReconstructedOnHitRecord::cleanup, this);
 }
 
 #endif

@@ -976,7 +976,7 @@ extra = 0
 pattern = "55 41 57 41 56 41 55 41 54 53 48 83 EC 58 48 89 4C 24 50 48 89"
 
 [[signatures]]
-name = "endstone_onhit_cleanup"
+name = "_ZN24ReconstructedOnHitRecord7cleanupEv"
 relative = false
 extra = 0
 # 1. Start from the ProjectileComponent EnTT storage found through the Actor
@@ -991,7 +991,7 @@ extra = 0
 pattern = "53 48 89 FB 48 8B BF A8 02 00 00 48 85 FF 74 05 E8"
 
 [[signatures]]
-name = "endstone_onhit_initialize"
+name = "_ZN24ReconstructedOnHitRecord10initializeEP5Actor"
 relative = false
 extra = 0
 # 1. In Actor component setup, find the EnTT lookup for ProjectileComponent

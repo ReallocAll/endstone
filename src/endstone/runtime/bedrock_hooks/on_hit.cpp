@@ -1,4 +1,4 @@
-// Copyright (c) 2026, The Endstone Project. (https://endstone.dev) All Rights Reserved.
+// Copyright (c) 2024, The Endstone Project. (https://endstone.dev) All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,8 +19,6 @@
 #include "bedrock/entity/components/reconstructed_on_hit_record.h"
 #include "endstone/runtime/hook.h"
 
-#if defined(__linux__) || defined(_WIN32)
-
 namespace {
 struct OnHitChildren {
     void **begin;
@@ -32,6 +30,7 @@ static_assert(sizeof(OnHitChildren) == 3 * sizeof(void *));
 
 void reclaimChildren(void *record)
 {
+    // BDS 1.26.65.1: OnHit child-pointer vector at +0x120 on Linux and Windows.
     auto &children = *reinterpret_cast<OnHitChildren *>(static_cast<std::byte *>(record) + 0x120);
     if (!children.begin) {
         return;
@@ -66,5 +65,3 @@ std::uintptr_t ReconstructedOnHitRecord::cleanup()
     reclaimChildren(this);
     return ENDSTONE_HOOK_CALL_ORIGINAL(&ReconstructedOnHitRecord::cleanup, this);
 }
-
-#endif

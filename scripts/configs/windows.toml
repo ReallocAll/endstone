@@ -1087,7 +1087,7 @@ extra = 0
 pattern = "55 41 57 41 56 41 55 41 54 56 57 53 48 83 EC ? 48 8D 6C 24 ? 48 C7 45 ? ? ? ? ? 4C 89 CB 4D 89 C7 48 89 D6"
 
 [[signatures]]
-name = "endstone_onhit_initialize"
+name = "?initialize@ReconstructedOnHitRecord@@QEAA_KPEAVActor@@@Z"
 relative = false
 extra = 0
 # 1. In Actor component setup, find the EnTT lookup for ProjectileComponent
@@ -1101,7 +1101,7 @@ extra = 0
 pattern = "55 41 57 41 56 41 55 41 54 56 57 53 48 81 EC 18 01 00 00 48 8D AC 24 80 00 00 00 48 C7 85 90 00 00 00 FE FF FF FF 49 89 D6 48 89 CF"
 
 [[signatures]]
-name = "endstone_onhit_cleanup"
+name = "?cleanup@ReconstructedOnHitRecord@@QEAA_KXZ"
 relative = false
 extra = 0
 # 1. Trace erase, clear and teardown of 768-byte ProjectileComponent
